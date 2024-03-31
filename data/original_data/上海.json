@@ -1,0 +1,1428 @@
+[
+  {
+    "id": "25709416",
+    "title": "🎉🚀👶上海儿童博物馆，免费参观，带娃必游！",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2f12000cm08hq1CD05.jpg",
+        "width": "1170",
+        "height": "1170"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2f12000cm08hq1CD05.jpg",
+        "width": "1170",
+        "height": "1170"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2f12000cm08hq1CD05.jpg",
+        "width": "1170",
+        "height": "1170"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=25709416&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "674.44525",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.6869002",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "0",
+      "rerank.sort": "1.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "249.0",
+      "centraltagids": "990886,990362,910238",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "674.44525",
+      "scatter.index.after": "0",
+      "scoreDr": "0.3048478",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.09818679",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.03654689",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0365\",\"clk\":\"0.1881\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0982\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"674.4453\",\"dr\":\"0.3048\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.18811923",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0365\\\",\\\"clk\\\":\\\"0.1881\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0982\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"674.4453\\\",\\\"dr\\\":\\\"0.3048\\\"}\",\"productid\":\"25709416\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z81e12000clu0uh066BB.jpg",
+      "nickname": "安安旅行狂想曲",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "1.6万",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "4563BCA45E0862A2A2A3FE4B81E1044C"
+  },
+  {
+    "id": "24727453",
+    "title": "逛古镇大街小巷",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me3u12000cdbexmdB339.jpg",
+        "width": "1088",
+        "height": "1920"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me3u12000cdbexmdB339.jpg",
+        "width": "1088",
+        "height": "1920"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me3u12000cdbexmdB339.jpg",
+        "width": "1088",
+        "height": "1920"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=24727453&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "554.9091",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.60728806",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "1",
+      "rerank.sort": "2.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "16.0",
+      "centraltagids": "990203,992236,993039,999199,999148,998401",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "554.9091",
+      "scatter.index.after": "1",
+      "scoreDr": "0.27873406",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.09137495",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.02178812",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0218\",\"clk\":\"0.1786\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0914\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"554.9091\",\"dr\":\"0.2787\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.17864338",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0218\\\",\\\"clk\\\":\\\"0.1786\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0914\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"554.9091\\\",\\\"dr\\\":\\\"0.2787\\\"}\",\"productid\":\"24727453\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 5309099,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z81y12000a3x3849535B.jpg",
+      "nickname": "爱旅路上",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "734",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "04B536173FCB4CD59401C6B6EED7FE80"
+  },
+  {
+    "id": "100001406672",
+    "imageUrl": "https://dimg04.c-ctrip.com/images/0105f120008htr3lv43F3.jpg",
+    "jumpurl": "https://m.ctrip.com/webapp/xranking/cranking/crankingCity/100001406672.html?ishideheader=true&isHideNavBar=YES&seo=0&skipAb=true&source_from_tag=uvsource_uccrank_100001406672_widget_feeds",
+    "type": "h5pictxt",
+    "title": "上海必打卡景点榜，全新视角的景点探索",
+    "subtitle1TextColor": "FF7700",
+    "enhanceImage": "https://dimg04.c-ctrip.com/images/0AS2v120009ev92hv0687.png",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0AS6g120009ev404l8E29.png",
+      "nickname": "携程口碑榜"
+    },
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/0105f120008htr3lv43F3.jpg",
+        "width": "1080",
+        "height": "683"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/0105f120008htr3lv43F3.jpg",
+        "width": "1080",
+        "height": "683"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/0105f120008htr3lv43F3.jpg",
+        "width": "1080",
+        "height": "683"
+      }
+    },
+    "ext": {
+      "biztype": "Rank",
+      "cityid": "2",
+      "cityname": "上海",
+      "modification": "0",
+      "redirection": "0",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"cmm\\\":\\\"0.0007\\\",\\\"clk\\\":\\\"0.2302\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"0.0001\\\",\\\"rank\\\":\\\"0.0669\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"RANCD\\\",\\\"mix\\\":\\\"0.1606\\\",\\\"dr\\\":\\\"0.0109\\\"}\",\"productid\":\"100001406672\",\"producttype\":\"Rank\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "24842182",
+    "title": "上海迪士尼周边酒店，我只推荐它！",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000cecl8ew2970.jpg",
+        "width": "810",
+        "height": "1080"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000cecl8ew2970.jpg",
+        "width": "810",
+        "height": "1080"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000cecl8ew2970.jpg",
+        "width": "810",
+        "height": "1080"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=24842182&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "506.22803",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.61648005",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "2",
+      "rerank.sort": "3.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "6725.0",
+      "centraltagids": "993049",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "506.22803",
+      "scatter.index.after": "2",
+      "scoreDr": "0.31311697",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.08211588",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.07747521",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0775\",\"clk\":\"0.1563\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0821\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"506.2280\",\"dr\":\"0.3131\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.15633771",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0775\\\",\\\"clk\\\":\\\"0.1563\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0821\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"506.2280\\\",\\\"dr\\\":\\\"0.3131\\\"}\",\"productid\":\"24842182\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/1h60312000ce9ovov0C7E.jpg",
+      "nickname": "凯文_家庭旅居",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "7.7万",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "23FE2608B7E7D77E465852AFBB75C6CC"
+  },
+  {
+    "id": "28877446",
+    "title": "限时！穿越到上海民国的酱园弄|拍照！！！",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4n12000d2dbpy2A14E.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4n12000d2dbpy2A14E.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4n12000d2dbpy2A14E.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=28877446&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "420.8934",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.842604",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "3",
+      "rerank.sort": "4.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "1913.0",
+      "centraltagids": "993179",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "420.8934",
+      "scatter.index.after": "3",
+      "scoreDr": "0.41499364",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.04995151",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.031793118",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0318\",\"clk\":\"0.0883\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0500\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"420.8934\",\"dr\":\"0.4150\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.088253945",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0318\\\",\\\"clk\\\":\\\"0.0883\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0500\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"420.8934\\\",\\\"dr\\\":\\\"0.4150\\\"}\",\"productid\":\"28877446\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z80b12000bhqiq9jEE4B.jpg",
+      "nickname": "学贤德",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "9953",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "8A7A126360284C38B537DBF8059D5F4F"
+  },
+  {
+    "id": "30176511",
+    "title": "论书店的颜值，朵云书院可以代表上海💙",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000dc1q1kdE333.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000dc1q1kdE333.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000dc1q1kdE333.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=30176511&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "416.59024",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9360376",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "4",
+      "rerank.sort": "5.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "134.0",
+      "centraltagids": "990171,999181,993048,999213,999199",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "416.59024",
+      "scatter.index.after": "4",
+      "scoreDr": "0.38156757",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.044505715",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.026011886",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0260\",\"clk\":\"0.0805\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0445\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"416.5902\",\"dr\":\"0.3816\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.080534816",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0260\\\",\\\"clk\\\":\\\"0.0805\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0445\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"416.5902\\\",\\\"dr\\\":\\\"0.3816\\\"}\",\"productid\":\"30176511\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z84y12000cui8xtaA3F6.jpg",
+      "nickname": "左拉在旅行",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "1387",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "0DFA56CDAA2391E26E3928CA55AB29CF"
+  },
+  {
+    "id": "51681287",
+    "title": "奥尔梅加头像",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/0101a12000axa33i5066A.jpg",
+        "width": "922",
+        "height": "640"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/0101a12000axa33i5066A.jpg",
+        "width": "922",
+        "height": "640"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/0101a12000axa33i5066A.jpg",
+        "width": "922",
+        "height": "640"
+      }
+    },
+    "type": "h5pictxt",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/2/0.html?poiId=51681287&seo=0&isHideNavBar=YES",
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "12条评论",
+    "score": "4.2",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "405.6912",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "pv": "18",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.2",
+      "reRankDropWeight": "1.0",
+      "lon": "121.5597407",
+      "scatter.index.before": "5",
+      "rerank.sort": "6.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "lat": "31.2150028",
+      "centraltagids": "900172",
+      "aiScore": "0.0",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsChoice,feedsNearby",
+      "score.rerank": "405.6912",
+      "scatter.index.after": "5",
+      "scoreDr": "0.19843215",
+      "districtId": "2",
+      "score.prem": "0.04056912",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.024494417",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0245\",\"clk\":\"0.0922\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0406\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"405.6912\",\"dr\":\"0.1984\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.092202544",
+      "biztype": "Poi",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0245\\\",\\\"clk\\\":\\\"0.0922\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0406\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"405.6912\\\",\\\"dr\\\":\\\"0.1984\\\"}\",\"productid\":\"51681287\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "23486331",
+    "title": "上海霍格沃茨绝美书店，好震撼啊…",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1w12000c040r5p8FA8.jpg",
+        "width": "1440",
+        "height": "1920"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1w12000c040r5p8FA8.jpg",
+        "width": "1440",
+        "height": "1920"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1w12000c040r5p8FA8.jpg",
+        "width": "1440",
+        "height": "1920"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=23486331&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "405.4149",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.5273109",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "6",
+      "rerank.sort": "7.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "245.0",
+      "centraltagids": "993049",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "405.4149",
+      "scatter.index.after": "6",
+      "scoreDr": "0.23272595",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.076883465",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.036816705",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0368\",\"clk\":\"0.1559\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0769\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"405.4149\",\"dr\":\"0.2327\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.15592164",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0368\\\",\\\"clk\\\":\\\"0.1559\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0769\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"405.4149\\\",\\\"dr\\\":\\\"0.2327\\\"}\",\"productid\":\"23486331\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z86w12000br9t7uy897F.jpg",
+      "nickname": "岁岁旅行者",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "2.8万",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "127018FE2D34E86DD9B7C072A3502DFA"
+  },
+  {
+    "id": "24642739",
+    "title": "上海·徐家汇书院",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0112000ccmb7ht82CC.jpg",
+        "width": "1088",
+        "height": "1920"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0112000ccmb7ht82CC.jpg",
+        "width": "1088",
+        "height": "1920"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0112000ccmb7ht82CC.jpg",
+        "width": "1088",
+        "height": "1920"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=24642739&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "378.09174",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.6018388",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "7",
+      "rerank.sort": "8.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "8.0",
+      "centraltagids": "993048,910238",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "378.09174",
+      "scatter.index.after": "7",
+      "scoreDr": "0.0901382",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.06282276",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.02125115",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0213\",\"clk\":\"0.1441\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0628\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"378.0917\",\"dr\":\"0.0901\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.14407063",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0213\\\",\\\"clk\\\":\\\"0.1441\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0628\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"378.0917\\\",\\\"dr\\\":\\\"0.0901\\\"}\",\"productid\":\"24642739\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 5288053,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z82n12000b2mc2z3B101.jpg",
+      "nickname": "小瞧会旅行",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "956",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "E7312D22D6C96C7DA8F7B996DE9456E2"
+  },
+  {
+    "id": "29103220",
+    "title": "惊喜上海世博会博物馆",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0g12000d58mnbmBA36.jpg",
+        "width": "1080",
+        "height": "1438"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0g12000d58mnbmBA36.jpg",
+        "width": "1080",
+        "height": "1438"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0g12000d58mnbmBA36.jpg",
+        "width": "1080",
+        "height": "1438"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=29103220&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "260.2045",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.86569947",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "8",
+      "rerank.sort": "9.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "11.0",
+      "centraltagids": "999181,900168,992307,993049,999199,1000442,990362,910238",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "260.2045",
+      "scatter.index.after": "8",
+      "scoreDr": "0.294526",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.03005714",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.017111896",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"89bff414-282c-4126-a323-1d95baacb984\",\"rough\":\"0.0171\",\"clk\":\"0.0580\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0301\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"260.2045\",\"dr\":\"0.2945\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.05804661",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"89bff414-282c-4126-a323-1d95baacb984\\\",\\\"rough\\\":\\\"0.0171\\\",\\\"clk\\\":\\\"0.0580\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0301\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"260.2045\\\",\\\"dr\\\":\\\"0.2945\\\"}\",\"productid\":\"29103220\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 6163664,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z80c12000cpoa4i87C7B.jpg",
+      "nickname": "惊喜小申探",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "1159",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "F0FB3201ABDD92C91B4E904564F7E555"
+  },
+  {
+    "id": "28337873",
+    "title": "酱园弄Citywalk｜魔都又一个新的必打卡点，还免费～",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000cw57c9n22FD.jpg",
+        "width": "1633",
+        "height": "2450"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000cw57c9n22FD.jpg",
+        "width": "1633",
+        "height": "2450"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0u12000cw57c9n22FD.jpg",
+        "width": "1633",
+        "height": "2450"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=28337873&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "395.07996",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.7958502",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "0",
+      "rerank.sort": "1.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "15.0",
+      "centraltagids": "999181,993048",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "395.07996",
+      "scatter.index.after": "0",
+      "scoreDr": "0.31432742",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.049642503",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.018209107",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0182\",\"clk\":\"0.0944\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0496\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"395.0800\",\"dr\":\"0.3143\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.09442568",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0182\\\",\\\"clk\\\":\\\"0.0944\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0496\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"395.0800\\\",\\\"dr\\\":\\\"0.3143\\\"}\",\"productid\":\"28337873\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/Z8061b000001a9nbw80C2.jpg",
+      "nickname": "Mirr月牙刀",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "3097",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "DBBEF95BD31E8F081047E519FC57DE6B"
+  },
+  {
+    "id": "22163639",
+    "title": "童话世界过一天——上海迪士尼一日游攻略",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2a12000bnkr50tE743.jpg",
+        "width": "1080",
+        "height": "1341"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2a12000bnkr50tE743.jpg",
+        "width": "1080",
+        "height": "1341"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2a12000bnkr50tE743.jpg",
+        "width": "1080",
+        "height": "1341"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=22163639&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "333.71213",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.4647967",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "1",
+      "rerank.sort": "2.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "5.0",
+      "centraltagids": "993179,991436",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "333.71213",
+      "scatter.index.after": "1",
+      "scoreDr": "0.35113364",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.071797445",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.020424852",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0204\",\"clk\":\"0.1328\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0718\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"333.7121\",\"dr\":\"0.3511\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.13284668",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0204\\\",\\\"clk\\\":\\\"0.1328\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0718\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"333.7121\\\",\\\"dr\\\":\\\"0.3511\\\"}\",\"productid\":\"22163639\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z83e12000blnwtryCFF4.jpg",
+      "nickname": "🌞🌞旅行ing",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "1567",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "254B8D3888389C8E867403ACB4B6C55B"
+  },
+  {
+    "id": "33157412",
+    "title": "上海citywalk攻略来啦",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6p12000dfvgs9r5275.jpg",
+        "width": "1440",
+        "height": "1920"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6p12000dfvgs9r5275.jpg",
+        "width": "1440",
+        "height": "1920"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6p12000dfvgs9r5275.jpg",
+        "width": "1440",
+        "height": "1920"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33157412&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "330.13672",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9791879",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "2",
+      "rerank.sort": "3.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "310.0",
+      "centraltagids": "",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "330.13672",
+      "scatter.index.after": "2",
+      "scoreDr": "0.43144944",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.03371536",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.031016124",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0310\",\"clk\":\"0.0589\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0337\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"330.1367\",\"dr\":\"0.4314\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.05888325",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0310\\\",\\\"clk\\\":\\\"0.0589\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0337\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"330.1367\\\",\\\"dr\\\":\\\"0.4314\\\"}\",\"productid\":\"33157412\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z80o12000be7td7xCC2F.jpg",
+      "nickname": "小张的流浪日志",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "378",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "06EF3D7244F0E3B54721F2878F7DEF9B"
+  },
+  {
+    "id": "18090605",
+    "title": "《欢乐马戏》演出",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/100j1f000001gpsvsF287.jpg",
+        "width": "1024",
+        "height": "576"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/100j1f000001gpsvsF287.jpg",
+        "width": "1024",
+        "height": "576"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/100j1f000001gpsvsF287.jpg",
+        "width": "1024",
+        "height": "576"
+      }
+    },
+    "type": "h5pictxt",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/2/0.html?poiId=18090605&seo=0&isHideNavBar=YES",
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "1683条评论",
+    "score": "4.7",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "299.60175",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "pv": "0",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.7",
+      "reRankDropWeight": "1.0",
+      "lon": "121.4500707",
+      "scatter.index.before": "3",
+      "rerank.sort": "4.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "lat": "31.2771842",
+      "centraltagids": "990135",
+      "aiScore": "0.0",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "mix,feedsChoice,nearby,feedsNearby,ontravel_poi",
+      "score.rerank": "299.60175",
+      "scatter.index.after": "3",
+      "scoreDr": "0.17977327",
+      "districtId": "2",
+      "score.prem": "0.029960174",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.02709102",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0271\",\"clk\":\"0.0681\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0300\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"299.6017\",\"dr\":\"0.1798\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.0680913",
+      "biztype": "Poi",
+      "extension": "{\"price\":\"160\",\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0271\\\",\\\"clk\\\":\\\"0.0681\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0300\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"299.6017\\\",\\\"dr\\\":\\\"0.1798\\\"}\",\"productid\":\"18090605\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "29003687",
+    "title": "除了打卡EVA初号机，这里没啥好逛的😂",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2k12000d3ymtx9E704.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2k12000d3ymtx9E704.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2k12000d3ymtx9E704.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=29003687&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "262.06857",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.85535765",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "4",
+      "rerank.sort": "5.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "37.0",
+      "centraltagids": "990171,900168,992307,999199",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "262.06857",
+      "scatter.index.after": "4",
+      "scoreDr": "0.28455967",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.030638479",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.021973053",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0220\",\"clk\":\"0.0596\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0306\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"262.0686\",\"dr\":\"0.2846\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.059628367",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0220\\\",\\\"clk\\\":\\\"0.0596\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0306\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"262.0686\\\",\\\"dr\\\":\\\"0.2846\\\"}\",\"productid\":\"29003687\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z84y12000cui8xtaA3F6.jpg",
+      "nickname": "左拉在旅行",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "1297",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "0DFA56CDAA2391E26E3928CA55AB29CF"
+  },
+  {
+    "id": "21381691",
+    "title": "欢乐谷开园游玩！胆小攻略",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0k12000bf4kmxt18A4.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0k12000bf4kmxt18A4.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0k12000bf4kmxt18A4.jpg",
+        "width": "1733",
+        "height": "2310"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=21381691&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "223.70819",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.42601252",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "5",
+      "rerank.sort": "6.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "20.0",
+      "centraltagids": "910264,991436",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "223.70819",
+      "scatter.index.after": "5",
+      "scoreDr": "0.27213266",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.052512117",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.055211354",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0552\",\"clk\":\"0.1032\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0525\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"223.7082\",\"dr\":\"0.2721\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.10319701",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0552\\\",\\\"clk\\\":\\\"0.1032\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0525\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"223.7082\\\",\\\"dr\\\":\\\"0.2721\\\"}\",\"productid\":\"21381691\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z83z12000bf4scc66696.jpg",
+      "nickname": "一个又菜又爱玩的人",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "1.1万",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "3CFC1080151BA53E44E0540C39057C49"
+  },
+  {
+    "id": "24652122",
+    "title": "七宝古镇",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/10060z000000njtcq4DF3.jpg",
+        "width": "1280",
+        "height": "854"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/10060z000000njtcq4DF3.jpg",
+        "width": "1280",
+        "height": "854"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/10060z000000njtcq4DF3.jpg",
+        "width": "1280",
+        "height": "854"
+      }
+    },
+    "type": "h5pictxt",
+    "itag": "丰富历史内涵的江南古镇",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/2/0.html?poiId=24652122&seo=0&isHideNavBar=YES",
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "343条评论",
+    "score": "4.4",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "212.99101",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "pv": "17349",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.4",
+      "reRankDropWeight": "0.6202",
+      "lon": "121.3546884",
+      "scatter.index.before": "6",
+      "rerank.sort": "7.0",
+      "dropScore": "0.6202",
+      "scenicspot": "",
+      "districtIds": "2",
+      "lat": "31.1530298",
+      "centraltagids": "993237,990998,990207,993239",
+      "aiScore": "0.43491723606627786",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsVillage,mix,feedsNationalPark,feedsChoice,nearby,feedsNearby,ontravel_poi",
+      "score.rerank": "212.99101",
+      "scatter.index.after": "6",
+      "scoreDr": "0.21479014",
+      "districtId": "2",
+      "score.prem": "0.045100443",
+      "showPoi": "0",
+      "scatterWeight.other": "0.76146287",
+      "score.rough": "0.028934842",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0289\",\"clk\":\"0.1025\",\"pageIndex\":\"1\",\"dropScore\":\"0.6202\",\"rank\":\"0.0451\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"212.9910\",\"dr\":\"0.2148\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.102501005",
+      "biztype": "Poi",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0289\\\",\\\"clk\\\":\\\"0.1025\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"0.6202\\\",\\\"rank\\\":\\\"0.0451\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"212.9910\\\",\\\"dr\\\":\\\"0.2148\\\"}\",\"productid\":\"24652122\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "type": "h5pictxt",
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "3485条评论",
+    "score": "4.7",
+    "currencyChar": "￥",
+    "id": "425587",
+    "title": "上海虹桥祥源希尔顿酒店",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/0206d1200091wp84p9F74.jpg",
+        "width": "2460",
+        "height": "3000"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/0206d1200091wp84p9F74.jpg",
+        "width": "2460",
+        "height": "3000"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/0206d1200091wp84p9F74.jpg",
+        "width": "2460",
+        "height": "3000"
+      }
+    },
+    "tag": "",
+    "jumpurl": "https://m.ctrip.com/webapp/hotel/hoteldetail/425587.html?daylater=0&days=1&source_from_tag=basebiz_ctrip_app_home&fromgsw=1&link_traceid=65f6b12d-deab-4e68-92ea-b312bc0bf624&hotelUniqueKey=H4sIAAAAAAAAAAF6AIX_Ch4KAhgBGhgI8uPQhQSYAfP8GcgBpAe6BQZHWDlESlgaJGI4OGM2YjQ5LTUxMTktNDVkOC04YWM5LTAwMTYxNDdiYWI4YSjM1rCu5zFIAVIGNDY0QzVGWgUaA0NOWWIFemgtQ05ohA9wAaoBAMgBAdIBA0MtNNoBATIuq-3LegAAAA",
+    "enhanceMidTag": {
+      "text": "上海豪华酒店榜第15名",
+      "width": "48",
+      "height": "48",
+      "startcolor": "FFEEDF",
+      "endcolor": "FFEEDF",
+      "textColor": "673114",
+      "icon": "https://dimg04.c-ctrip.com/images/1np0w12000aq6kyhu218B.png"
+    },
+    "ext": {
+      "extension": "{\"price\":\"932\",\"date\":\"20240408-20240409\",\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0227\\\",\\\"clk\\\":\\\"0.0304\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0134\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"133.5757\\\",\\\"dr\\\":\\\"0.2452\\\"}\",\"productid\":\"425587\",\"producttype\":\"Htl\",\"datasource\":\"ai\"}",
+      "biztype": "Htl",
+      "cityid": "2",
+      "cityname": "上海",
+      "modification": "1",
+      "redirection": "0"
+    }
+  },
+  {
+    "id": "90595",
+    "title": "中国航海博物馆",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/100o0q000000gaboj9A75.jpg",
+        "width": "844",
+        "height": "472"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/100o0q000000gaboj9A75.jpg",
+        "width": "844",
+        "height": "472"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/100o0q000000gaboj9A75.jpg",
+        "width": "844",
+        "height": "472"
+      }
+    },
+    "type": "h5pictxt",
+    "itag": "了解中国航海史观仿真模型",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/2/0.html?poiId=90595&seo=0&isHideNavBar=YES",
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "4407条评论",
+    "score": "4.7",
+    "showvideoicon": "1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "130.13315",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "pv": "42528",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.7",
+      "reRankDropWeight": "0.6414",
+      "lon": "121.9197033",
+      "scatter.index.before": "8",
+      "rerank.sort": "9.0",
+      "dropScore": "0.6414",
+      "scenicspot": "",
+      "districtIds": "2",
+      "lat": "30.8971754",
+      "centraltagids": "998285,993111,993110,940115,990886,993160,910238,993109",
+      "aiScore": "0.5823022599421921",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsChild,mix,feedsChoice,nearby,feedsNearby,feedsMuseum,ontravel_poi,feedsYoung",
+      "score.rerank": "130.13315",
+      "scatter.index.after": "8",
+      "scoreDr": "0.15195689",
+      "districtId": "2",
+      "score.prem": "0.031477142",
+      "showPoi": "0",
+      "scatterWeight.other": "0.6445605",
+      "score.rough": "0.028616225",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0286\",\"clk\":\"0.0715\",\"pageIndex\":\"1\",\"dropScore\":\"0.6414\",\"rank\":\"0.0315\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"130.1331\",\"dr\":\"0.1520\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.071538955",
+      "biztype": "Poi",
+      "extension": "{\"price\":\"27\",\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0286\\\",\\\"clk\\\":\\\"0.0715\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"0.6414\\\",\\\"rank\\\":\\\"0.0315\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"130.1331\\\",\\\"dr\\\":\\\"0.1520\\\"}\",\"productid\":\"90595\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "28944762",
+    "title": "上海｜爆发性的成长与觉悟使我冷漠",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2712000d39ms8i42B0.jpg",
+        "width": "827",
+        "height": "1099"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2712000d39ms8i42B0.jpg",
+        "width": "827",
+        "height": "1099"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me2712000d39ms8i42B0.jpg",
+        "width": "827",
+        "height": "1099"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=28944762&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "2",
+      "cityname": "上海",
+      "mixScore": "123.80497",
+      "PbAdderWeight.foodLimitCity": "0.8",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.8502332",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "9",
+      "rerank.sort": "10.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "2",
+      "showDecayPV.PV": "4.0",
+      "centraltagids": "991386,993050,993052",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "123.80497",
+      "scatter.index.after": "9",
+      "scoreDr": "0.25867572",
+      "getFeature": "fail",
+      "districtId": "2",
+      "score.prem": "0.02390349",
+      "showPoi": "0",
+      "scatterWeight.other": "0.76146287",
+      "score.rough": "0.015881281",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"65f6b12d-deab-4e68-92ea-b312bc0bf624\",\"rough\":\"0.0159\",\"clk\":\"0.0475\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0239\",\"intentCity\":\"2,1819\",\"strategy\":\"SFLI\",\"mix\":\"123.8050\",\"dr\":\"0.2587\"}",
+      "strategy": "SFLI",
+      "scoreClk": "0.047477454",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"65f6b12d-deab-4e68-92ea-b312bc0bf624\\\",\\\"rough\\\":\\\"0.0159\\\",\\\"clk\\\":\\\"0.0475\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0239\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"SFLI\\\",\\\"mix\\\":\\\"123.8050\\\",\\\"dr\\\":\\\"0.2587\\\"}\",\"productid\":\"28944762\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z83m12000b6otld171B1.jpg",
+      "nickname": "一只小酒",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "1013",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "上海",
+      "text": "上海",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "79366652002A9A3D329B749802DA17CA"
+  }
+]

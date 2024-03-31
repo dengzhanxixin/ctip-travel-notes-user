@@ -1,0 +1,1493 @@
+[
+  {
+    "id": "33104212",
+    "title": "来成都！一定要来这里看看！（附一日游攻略）",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0e12000dfrck1x4DAD.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0e12000dfrck1x4DAD.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0e12000dfrck1x4DAD.jpg",
+        "width": "1733",
+        "height": "2310"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33104212&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "559.9011",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9791879",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "0",
+      "rerank.sort": "1.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1158.0",
+      "centraltagids": "993048",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "559.9011",
+      "scatter.index.after": "0",
+      "scoreDr": "0.45401657",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.05718015",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.039428256",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0394\",\"clk\":\"0.0983\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0572\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt_DEST\",\"mix\":\"559.9011\",\"dr\":\"0.4540\"}",
+      "strategy": "CitySgmt_DEST",
+      "scoreClk": "0.098314136",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0394\\\",\\\"clk\\\":\\\"0.0983\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0572\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt_DEST\\\",\\\"mix\\\":\\\"559.9011\\\",\\\"dr\\\":\\\"0.4540\\\"}\",\"productid\":\"33104212\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z81l120009rtf0gtF30E.jpg",
+      "nickname": "路西的游乐场",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "1314",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "62528FBC390E3090C9F1ADBEFD02860B"
+  },
+  {
+    "id": "10556867",
+    "title": "成都动物园",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/10071f000001h6ysl2959.jpg",
+        "width": "2048",
+        "height": "1365"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/10071f000001h6ysl2959.jpg",
+        "width": "2048",
+        "height": "1365"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/10071f000001h6ysl2959.jpg",
+        "width": "2048",
+        "height": "1365"
+      }
+    },
+    "type": "h5pictxt",
+    "itag": "看看金丝猴馆和熊猫馆",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/104/0.html?poiId=10556867&seo=0&isHideNavBar=YES",
+    "enhanceMidTag": {
+      "text": "四川亲子景点榜第5名",
+      "width": "48",
+      "height": "48",
+      "startcolor": "FFEEDF",
+      "endcolor": "FFEEDF",
+      "textColor": "673114",
+      "icon": "https://dimg04.c-ctrip.com/images/1np0w12000aq6kyhu218B.png"
+    },
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "9932条评论",
+    "score": "4.7",
+    "showvideoicon": "1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "438.4954",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "pv": "161679",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.7",
+      "reRankDropWeight": "1.0",
+      "lon": "104.1059909",
+      "scatter.index.before": "1",
+      "rerank.sort": "2.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "lat": "30.7109463",
+      "centraltagids": "991007,993184,910103,998474,990886,990658,993162,991393,991180",
+      "aiScore": "0.6237518775540495",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsChild,mix,feedsChoice,nearby,feedsNearby,ontravel_poi",
+      "score.rerank": "438.4954",
+      "scatter.index.after": "1",
+      "scoreDr": "0.38662234",
+      "districtId": "104",
+      "score.prem": "0.04384954",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.035579722",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0356\",\"clk\":\"0.0997\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0438\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"438.4954\",\"dr\":\"0.3866\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.09965804",
+      "biztype": "Poi",
+      "extension": "{\"price\":\"20\",\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0356\\\",\\\"clk\\\":\\\"0.0997\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0438\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"438.4954\\\",\\\"dr\\\":\\\"0.3866\\\"}\",\"productid\":\"10556867\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "100001406590",
+    "imageUrl": "https://dimg04.c-ctrip.com/images/100i0900000042371C245.jpg",
+    "jumpurl": "https://m.ctrip.com/webapp/xranking/cranking/crankingCity/100001406590.html?ishideheader=true&isHideNavBar=YES&seo=0&skipAb=true&source_from_tag=uvsource_uccrank_100001406590_widget_feeds",
+    "type": "h5pictxt",
+    "title": "成都必打卡景点榜，全新视角的景点探索",
+    "subtitle1TextColor": "FF7700",
+    "enhanceImage": "https://dimg04.c-ctrip.com/images/0AS2v120009ev92hv0687.png",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0AS6g120009ev404l8E29.png",
+      "nickname": "携程口碑榜"
+    },
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/100i0900000042371C245.jpg",
+        "width": "2800",
+        "height": "1864"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/100i0900000042371C245.jpg",
+        "width": "2800",
+        "height": "1864"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/100i0900000042371C245.jpg",
+        "width": "2800",
+        "height": "1864"
+      }
+    },
+    "ext": {
+      "biztype": "Rank",
+      "cityid": "28",
+      "cityname": "成都",
+      "modification": "0",
+      "redirection": "0",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"cmm\\\":\\\"0.0011\\\",\\\"clk\\\":\\\"0.0664\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"0.6063\\\",\\\"rank\\\":\\\"0.0205\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"RANCD\\\",\\\"mix\\\":\\\"0.0492\\\",\\\"dr\\\":\\\"0.0049\\\"}\",\"productid\":\"100001406590\",\"producttype\":\"Rank\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "33901330",
+    "title": "成都宽窄巷",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgx1zy35385.jpg",
+        "width": "530",
+        "height": "707"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgx1zy35385.jpg",
+        "width": "530",
+        "height": "707"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgx1zy35385.jpg",
+        "width": "530",
+        "height": "707"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33901330&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "420.26303",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.99102694",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "2",
+      "rerank.sort": "3.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1084.0",
+      "centraltagids": "990171,1000442",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "420.26303",
+      "scatter.index.after": "2",
+      "scoreDr": "0.36807224",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.042406823",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.032689344",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0327\",\"clk\":\"0.0775\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0424\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt\",\"mix\":\"420.2630\",\"dr\":\"0.3681\"}",
+      "strategy": "CitySgmt",
+      "scoreClk": "0.07749376",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0327\\\",\\\"clk\\\":\\\"0.0775\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0424\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt\\\",\\\"mix\\\":\\\"420.2630\\\",\\\"dr\\\":\\\"0.3681\\\"}\",\"productid\":\"33901330\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 7497792,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/1h65r12000d2g90zyA6D8.jpg",
+      "nickname": "融融带你游天下",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "628",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "6A1B1341F69DE512F1B0A6AD6563D7A1"
+  },
+  {
+    "id": "19831546",
+    "title": "住独栋庭院农庄🏡享轻奢田园风情",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6n12000aw30z5g8921.jpg",
+        "width": "1088",
+        "height": "608"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6n12000aw30z5g8921.jpg",
+        "width": "1088",
+        "height": "608"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6n12000aw30z5g8921.jpg",
+        "width": "1088",
+        "height": "608"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=19831546&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "361.09143",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.76704717",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "3",
+      "rerank.sort": "4.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "8.0",
+      "centraltagids": "900168,990886,993039,999199,993050",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "361.09143",
+      "scatter.index.after": "3",
+      "scoreDr": "0.22579113",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.047075517",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.02449017",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0245\",\"clk\":\"0.0960\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0471\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"361.0914\",\"dr\":\"0.2258\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.09601048",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0245\\\",\\\"clk\\\":\\\"0.0960\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0471\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"361.0914\\\",\\\"dr\\\":\\\"0.2258\\\"}\",\"productid\":\"19831546\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 3865215,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z801120007s8rzht9FDC.jpg",
+      "nickname": "小米的阳光☀️",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "3117",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "1EDD35A8936C31E0578E55B854D92C55"
+  },
+  {
+    "id": "27496926",
+    "title": "成都人民公园：市中心的绿洲与美景",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1f12000cs96avjF5EC.jpg",
+        "width": "882",
+        "height": "1176"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1f12000cs96avjF5EC.jpg",
+        "width": "882",
+        "height": "1176"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1f12000cs96avjF5EC.jpg",
+        "width": "882",
+        "height": "1176"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=27496926&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "355.44348",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.75622123",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "4",
+      "rerank.sort": "5.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "68.0",
+      "centraltagids": "990203,993039,998401,910238",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "355.44348",
+      "scatter.index.after": "4",
+      "scoreDr": "0.43455037",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.047002576",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.021257257",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0213\",\"clk\":\"0.0819\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0470\",\"intentCity\":\"2,1819\",\"strategy\":\"LBS\",\"mix\":\"355.4435\",\"dr\":\"0.4346\"}",
+      "strategy": "LBS",
+      "scoreClk": "0.08191168",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0213\\\",\\\"clk\\\":\\\"0.0819\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0470\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"LBS\\\",\\\"mix\\\":\\\"355.4435\\\",\\\"dr\\\":\\\"0.4346\\\"}\",\"productid\":\"27496926\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 5824911,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0AS1k120009l60yh36D69.jpg",
+      "nickname": "M53****6623",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "3312",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "FC886B4071E01BBE661763BA4CE72091"
+  },
+  {
+    "id": "33386662",
+    "title": "周末滨江公园浅露营",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1p12000dg7hha50445.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1p12000dg7hha50445.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1p12000dg7hha50445.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33386662&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "355.20416",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.98213434",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "5",
+      "rerank.sort": "6.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "427.0",
+      "centraltagids": "910190",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "355.20416",
+      "scatter.index.after": "5",
+      "scoreDr": "0.40748447",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.036166556",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.039033704",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0390\",\"clk\":\"0.0642\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0362\",\"intentCity\":\"2,1819\",\"strategy\":\"LBS\",\"mix\":\"355.2042\",\"dr\":\"0.4075\"}",
+      "strategy": "LBS",
+      "scoreClk": "0.06423971",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0390\\\",\\\"clk\\\":\\\"0.0642\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0362\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"LBS\\\",\\\"mix\\\":\\\"355.2042\\\",\\\"dr\\\":\\\"0.4075\\\"}\",\"productid\":\"33386662\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/Z80o180000013ulo9C34A.jpg",
+      "nickname": "星外星空旅行者",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "581",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "182985ACF812D2469410D21BDBC63A2E"
+  },
+  {
+    "id": "26964711",
+    "title": "成都春熙路附近这家酒店人均100+",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6b12000cqttf7d2354.jpg",
+        "width": "1041",
+        "height": "1388"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6b12000cqttf7d2354.jpg",
+        "width": "1041",
+        "height": "1388"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6b12000cqttf7d2354.jpg",
+        "width": "1041",
+        "height": "1388"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=26964711&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "328.1958",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.7404827",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "6",
+      "rerank.sort": "7.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "86.0",
+      "centraltagids": "1000032,1000442,993050,998299",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "328.1958",
+      "scatter.index.after": "6",
+      "scoreDr": "0.39799803",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.044321876",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.019236907",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0192\",\"clk\":\"0.0793\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0443\",\"intentCity\":\"2,1819\",\"strategy\":\"LBS\",\"mix\":\"328.1958\",\"dr\":\"0.3980\"}",
+      "strategy": "LBS",
+      "scoreClk": "0.079259545",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0192\\\",\\\"clk\\\":\\\"0.0793\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0443\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"LBS\\\",\\\"mix\\\":\\\"328.1958\\\",\\\"dr\\\":\\\"0.3980\\\"}\",\"productid\":\"26964711\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z80112000bi0ch250982.jpg",
+      "nickname": "大橙子爱旅行",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "8179",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "4A06B89CAFEFB443499762DD0D04F06F"
+  },
+  {
+    "id": "33315598",
+    "title": "不是瑞士！！真的在成都！！来了真舍不得走！！",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0z12000dfz8dri9D6B.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0z12000dfz8dri9D6B.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me0z12000dfz8dri9D6B.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33315598&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "326.50842",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.98213434",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "7",
+      "rerank.sort": "8.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "3761.0",
+      "centraltagids": "990203,999487,993050,998401",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "326.50842",
+      "scatter.index.after": "7",
+      "scoreDr": "0.38371468",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.033244785",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.041823737",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0418\",\"clk\":\"0.0601\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0332\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt_DEST\",\"mix\":\"326.5084\",\"dr\":\"0.3837\"}",
+      "strategy": "CitySgmt_DEST",
+      "scoreClk": "0.060064375",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0418\\\",\\\"clk\\\":\\\"0.0601\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0332\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt_DEST\\\",\\\"mix\\\":\\\"326.5084\\\",\\\"dr\\\":\\\"0.3837\\\"}\",\"productid\":\"33315598\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z82p12000chi0ythF0A5.jpg",
+      "nickname": "爱旅行的果果呀",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "1760",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "D471499B9471598C98ECAF1C89C3B620"
+  },
+  {
+    "id": "25263500",
+    "title": "盘点成都好吃不拐弯的8家饭店😋",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me5a12000chzk0h13952.jpg",
+        "width": "961",
+        "height": "1280"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me5a12000chzk0h13952.jpg",
+        "width": "961",
+        "height": "1280"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me5a12000chzk0h13952.jpg",
+        "width": "961",
+        "height": "1280"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=25263500&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "326.2093",
+      "PbAdderWeight.foodLimitCity": "0.8",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.648786",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "8",
+      "rerank.sort": "9.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "254.0",
+      "centraltagids": "993052,999203",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "326.2093",
+      "scatter.index.after": "8",
+      "scoreDr": "0.57129526",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.06284994",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.0151664205",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"614307a3-a661-43b2-8f01-83885c29ee04\",\"rough\":\"0.0152\",\"clk\":\"0.1000\",\"pageIndex\":\"0\",\"dropScore\":\"1.0000\",\"rank\":\"0.0628\",\"intentCity\":\"2,1819\",\"strategy\":\"LBS\",\"mix\":\"326.2093\",\"dr\":\"0.5713\"}",
+      "strategy": "LBS",
+      "scoreClk": "0.099997014",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"614307a3-a661-43b2-8f01-83885c29ee04\\\",\\\"rough\\\":\\\"0.0152\\\",\\\"clk\\\":\\\"0.1000\\\",\\\"pageIndex\\\":\\\"0\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0628\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"LBS\\\",\\\"mix\\\":\\\"326.2093\\\",\\\"dr\\\":\\\"0.5713\\\"}\",\"productid\":\"25263500\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0AS1k120009l60yh36D69.jpg",
+      "nickname": "M63****4184",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "7508",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "983FCF9FFDCBA2961ADFCF86C1BD3301"
+  },
+  {
+    "id": "76341",
+    "title": "武侯祠",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/0104w1200094jgc7232B7.jpg",
+        "width": "1000",
+        "height": "699"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/0104w1200094jgc7232B7.jpg",
+        "width": "1000",
+        "height": "699"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/0104w1200094jgc7232B7.jpg",
+        "width": "1000",
+        "height": "699"
+      }
+    },
+    "type": "h5pictxt",
+    "itag": "祭拜诸葛亮刘备品三国文化",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/104/0.html?poiId=76341&seo=0&isHideNavBar=YES",
+    "enhanceMidTag": {
+      "text": "成都近期热门景点榜第1名",
+      "width": "48",
+      "height": "48",
+      "startcolor": "FFEEDF",
+      "endcolor": "FFEEDF",
+      "textColor": "673114",
+      "icon": "https://dimg04.c-ctrip.com/images/1np0w12000aq6kyhu218B.png"
+    },
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "1.6万条评论",
+    "score": "4.6",
+    "showvideoicon": "1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "408.36823",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "pv": "475845",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.6",
+      "reRankDropWeight": "1.0",
+      "lon": "104.0481966",
+      "scatter.index.before": "0",
+      "rerank.sort": "1.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "lat": "30.6466391",
+      "centraltagids": "991007,993238,990593,998434,993183,993237,993184,990886,990584,900212,999215,993162,998398",
+      "aiScore": "0.770846505719896",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsChild,mix,feedsIns,feedsChoice,nearby,feedsNearby,ontravel_poi",
+      "score.rerank": "408.36823",
+      "scatter.index.after": "0",
+      "scoreDr": "0.46168023",
+      "districtId": "104",
+      "score.prem": "0.040836822",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.0371197",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0371\",\"clk\":\"0.0928\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0408\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST_LBS\",\"mix\":\"408.3682\",\"dr\":\"0.4617\"}",
+      "strategy": "DEST_LBS",
+      "scoreClk": "0.09281096",
+      "biztype": "Poi",
+      "extension": "{\"price\":\"50\",\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0371\\\",\\\"clk\\\":\\\"0.0928\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0408\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST_LBS\\\",\\\"mix\\\":\\\"408.3682\\\",\\\"dr\\\":\\\"0.4617\\\"}\",\"productid\":\"76341\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "33881436",
+    "title": "走进锦里，穿越千年的时光之路",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4l12000dgwag2o29A4.jpg",
+        "width": "1080",
+        "height": "1438"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4l12000dgwag2o29A4.jpg",
+        "width": "1080",
+        "height": "1438"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4l12000dgwag2o29A4.jpg",
+        "width": "1080",
+        "height": "1438"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33881436&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "363.19385",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9880538",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "1",
+      "rerank.sort": "2.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1027.0",
+      "centraltagids": "1000396,993048,993039,999487",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "363.19385",
+      "scatter.index.after": "1",
+      "scoreDr": "0.38594788",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.036758512",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.033107713",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0331\",\"clk\":\"0.0663\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0368\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt\",\"mix\":\"363.1938\",\"dr\":\"0.3859\"}",
+      "strategy": "CitySgmt",
+      "scoreClk": "0.06630573",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0331\\\",\\\"clk\\\":\\\"0.0663\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0368\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt\\\",\\\"mix\\\":\\\"363.1938\\\",\\\"dr\\\":\\\"0.3859\\\"}\",\"productid\":\"33881436\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 7490799,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z82i12000carwigx91DD.jpg",
+      "nickname": "沣儿爱旅行",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "423",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "2DBA6F209F72FE90EF6498BC6B32671F"
+  },
+  {
+    "id": "34130160",
+    "title": "在成都|0.5h徒步找到通往森林秘境的任意门",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1l12000dh8oqym9600.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1l12000dh8oqym9600.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1l12000dh8oqym9600.jpg",
+        "width": "1733",
+        "height": "2310"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=34130160&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "324.6388",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.99400896",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "2",
+      "rerank.sort": "3.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1067.0",
+      "centraltagids": "990133,900104,930112,993049,998299",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "324.6388",
+      "scatter.index.after": "2",
+      "scoreDr": "0.3735449",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.03265954",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.052200105",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0522\",\"clk\":\"0.0594\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0327\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"324.6388\",\"dr\":\"0.3735\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.05944389",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0522\\\",\\\"clk\\\":\\\"0.0594\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0327\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"324.6388\\\",\\\"dr\\\":\\\"0.3735\\\"}\",\"productid\":\"34130160\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z84m12000dc12ybo5EA5.jpg",
+      "nickname": "芽米呀",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "514",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "22B818971B3E933B521487165AEB75E2"
+  },
+  {
+    "id": "34109230",
+    "title": "强烈建议，逛完这个花海公园，再离开成都",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1812000dh7rnel216B.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1812000dh7rnel216B.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1812000dh7rnel216B.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=34109230&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "311.39706",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.99102694",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "3",
+      "rerank.sort": "4.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1002.0",
+      "centraltagids": "990796,999181,1000442,1000443,993050",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "311.39706",
+      "scatter.index.after": "3",
+      "scoreDr": "0.32334933",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.031421654",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.041463237",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0415\",\"clk\":\"0.0594\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0314\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"311.3971\",\"dr\":\"0.3233\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.059360087",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0415\\\",\\\"clk\\\":\\\"0.0594\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0314\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"311.3971\\\",\\\"dr\\\":\\\"0.3233\\\"}\",\"productid\":\"34109230\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z86112000clws59z1A66.jpg",
+      "nickname": "小扣子爱旅游",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "468",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "369B6556067E9E93A3FB9BD8D8B853B4"
+  },
+  {
+    "id": "33900231",
+    "title": "🌸春风里 花海里",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1u12000dgwhqvqC256.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1u12000dgwhqvqC256.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1u12000dgwhqvqC256.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33900231&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "301.78275",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.99102694",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "4",
+      "rerank.sort": "5.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1397.0",
+      "centraltagids": "990796,999181,990765,998887,993049,999213,999199,1000442,1000443,999207",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "301.78275",
+      "scatter.index.after": "4",
+      "scoreDr": "0.24888209",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.030451518",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.031858347",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0319\",\"clk\":\"0.0610\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0305\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt_DEST\",\"mix\":\"301.7827\",\"dr\":\"0.2489\"}",
+      "strategy": "CitySgmt_DEST",
+      "scoreClk": "0.06095755",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0319\\\",\\\"clk\\\":\\\"0.0610\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0305\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt_DEST\\\",\\\"mix\\\":\\\"301.7827\\\",\\\"dr\\\":\\\"0.2489\\\"}\",\"productid\":\"33900231\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/Z80g0z000000mi3db1DBE.jpg",
+      "nickname": "想想冬至",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "912",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "9E617DDA1D3FADF89CCD5E2D2EED7E01"
+  },
+  {
+    "id": "34189254",
+    "title": "自驾赏花｜成都的春天！是一万次的春和景明啊！",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1q12000dhcsvhb975E.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1q12000dhcsvhb975E.jpg",
+        "width": "1733",
+        "height": "2310"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1q12000dhcsvhb975E.jpg",
+        "width": "1733",
+        "height": "2310"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=34189254&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "291.27078",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.99400896",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "5",
+      "rerank.sort": "6.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "619.0",
+      "centraltagids": "990796,993168,990765,1000442,1000443",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "291.27078",
+      "scatter.index.after": "5",
+      "scoreDr": "0.35758054",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.02930263",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.027354717",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0274\",\"clk\":\"0.0540\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0293\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST\",\"mix\":\"291.2708\",\"dr\":\"0.3576\"}",
+      "strategy": "DEST",
+      "scoreClk": "0.053961128",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0274\\\",\\\"clk\\\":\\\"0.0540\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0293\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST\\\",\\\"mix\\\":\\\"291.2708\\\",\\\"dr\\\":\\\"0.3576\\\"}\",\"productid\":\"34189254\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/1h60j120008m7637y9D28.jpg",
+      "nickname": "LIRROR",
+      "viplevel": "13",
+      "vIcon": "https://dimg04.c-ctrip.com/images/0104h1200082xud8qB94B.png",
+      "isbusinessuser": "0",
+      "interactionText": "391",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "BF68E6397E80A04A3B34CDB764DF4C7D"
+  },
+  {
+    "id": "33866841",
+    "title": "治愈系",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgvf0y13033.jpg",
+        "width": "1080",
+        "height": "1920"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgvf0y13033.jpg",
+        "width": "1080",
+        "height": "1920"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me4s12000dgvf0y13033.jpg",
+        "width": "1080",
+        "height": "1920"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=33866841&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "275.46042",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9880538",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "6",
+      "rerank.sort": "7.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "861.0",
+      "centraltagids": "1000144,993048,999478,999213,999199,998401",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "275.46042",
+      "scatter.index.after": "6",
+      "scoreDr": "0.26474148",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.027879091",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.029841756",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0298\",\"clk\":\"0.0551\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0279\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt\",\"mix\":\"275.4604\",\"dr\":\"0.2647\"}",
+      "strategy": "CitySgmt",
+      "scoreClk": "0.05510828",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0298\\\",\\\"clk\\\":\\\"0.0551\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0279\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt\\\",\\\"mix\\\":\\\"275.4604\\\",\\\"dr\\\":\\\"0.2647\\\"}\",\"productid\":\"33866841\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 7485451,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/1h63a12000ddafkj4C90B.jpg",
+      "nickname": "wirepuller呀",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "364",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "2C8D5893CF5686213B4CBAA4BCC3BDCE"
+  },
+  {
+    "id": "13822298",
+    "title": "四川科技馆",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/0103q12000apua0i84C7B.jpg",
+        "width": "854",
+        "height": "640"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/0103q12000apua0i84C7B.jpg",
+        "width": "854",
+        "height": "640"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/0103q12000apua0i84C7B.jpg",
+        "width": "854",
+        "height": "640"
+      }
+    },
+    "type": "h5pictxt",
+    "itag": "众多成都造科技展品",
+    "jumpurl": "https://m.ctrip.com/webapp/you/gspoi/sight/104/0.html?poiId=13822298&seo=0&isHideNavBar=YES",
+    "enhanceMidTag": {
+      "text": "成都亲子景点榜第14名",
+      "width": "48",
+      "height": "48",
+      "startcolor": "FFEEDF",
+      "endcolor": "FFEEDF",
+      "textColor": "673114",
+      "icon": "https://dimg04.c-ctrip.com/images/1np0w12000aq6kyhu218B.png"
+    },
+    "currencyChar": "￥",
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "text1": "290条评论",
+    "score": "4.4",
+    "showvideoicon": "1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "271.59238",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "pv": "55519",
+      "fromGetAppInfoFeeds": "1",
+      "rating": "4.4",
+      "reRankDropWeight": "1.0",
+      "lon": "104.06574",
+      "scatter.index.before": "7",
+      "rerank.sort": "8.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "lat": "30.660031",
+      "centraltagids": "998285,990886,910239",
+      "aiScore": "0.4522297696079912",
+      "star": "3",
+      "CityTypeAdderWeight": "10000.0",
+      "topics": "feedsChild,mix,feedsChoice,feedsExhibition\t,nearby,feedsNearby,ontravel_poi",
+      "score.rerank": "271.59238",
+      "scatter.index.after": "7",
+      "scoreDr": "0.31255388",
+      "districtId": "104",
+      "score.prem": "0.035667185",
+      "showPoi": "0",
+      "scatterWeight.other": "0.76146287",
+      "score.rough": "0.038346495",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0383\",\"clk\":\"0.0811\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0357\",\"intentCity\":\"2,1819\",\"strategy\":\"DEST_LBS\",\"mix\":\"271.5924\",\"dr\":\"0.3126\"}",
+      "strategy": "DEST_LBS",
+      "scoreClk": "0.08106178",
+      "biztype": "Poi",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0383\\\",\\\"clk\\\":\\\"0.0811\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0357\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"DEST_LBS\\\",\\\"mix\\\":\\\"271.5924\\\",\\\"dr\\\":\\\"0.3126\\\"}\",\"productid\":\"13822298\",\"producttype\":\"Poi\",\"datasource\":\"ai\"}"
+    }
+  },
+  {
+    "id": "31235345",
+    "title": "不是在意大利💐是成都周边最浪漫的小镇☕️",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1012000ddd0z6y0659.jpg",
+        "width": "1440",
+        "height": "1080"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1012000ddd0z6y0659.jpg",
+        "width": "1440",
+        "height": "1080"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me1012000ddd0z6y0659.jpg",
+        "width": "1440",
+        "height": "1080"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=31235345&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "269.4527",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "1",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.9502055",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "8",
+      "rerank.sort": "9.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "1669.0",
+      "centraltagids": "910238",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "269.4527",
+      "scatter.index.after": "8",
+      "scoreDr": "0.3903053",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.03150812",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.05183109",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0518\",\"clk\":\"0.0567\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0315\",\"intentCity\":\"2,1819\",\"strategy\":\"CitySgmt\",\"mix\":\"269.4527\",\"dr\":\"0.3903\"}",
+      "AuthorIdentityTypeAdderWeight": "0.9",
+      "strategy": "CitySgmt",
+      "scoreClk": "0.056656837",
+      "biztype": "CTP",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0518\\\",\\\"clk\\\":\\\"0.0567\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0315\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"CitySgmt\\\",\\\"mix\\\":\\\"269.4527\\\",\\\"dr\\\":\\\"0.3903\\\"}\",\"productid\":\"31235345\",\"producttype\":\"CTP\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "videoId": 6743878,
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z85n120009e9uvp1C169.jpg",
+      "nickname": "小袁的旅行日记呀",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "2451",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "1",
+    "clientAuth": "B7765C95B1EB85E52F7C0833D7B80104"
+  },
+  {
+    "id": "23910572",
+    "title": "成都|太古里旁人均50$入住度假大 house",
+    "img": {
+      "img1": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000c3x8wnq7A35.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img2": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000c3x8wnq7A35.jpg",
+        "width": "1731",
+        "height": "2309"
+      },
+      "img3": {
+        "url": "https://dimg04.c-ctrip.com/images/1me6a12000c3x8wnq7A35.jpg",
+        "width": "1731",
+        "height": "2309"
+      }
+    },
+    "jumpurl": "https://m.ctrip.com/webapp/you/lvpai-taro/detail?articleId=23910572&isHideNavBar=YES&seo=0&hideOpenCtrip=1",
+    "ext": {
+      "cityid": "28",
+      "cityname": "成都",
+      "mixScore": "262.81955",
+      "timeDecayRatio.timeDecay": "0.997",
+      "rankcategory": "",
+      "hasvideo": "0",
+      "fromGetAppInfoFeeds": "1",
+      "reRankDropWeight": "1.0",
+      "timeDecayWeight": "0.5549441",
+      "showDecayWeight": "1.0",
+      "scatter.index.before": "9",
+      "rerank.sort": "10.0",
+      "dropScore": "1.0",
+      "scenicspot": "",
+      "districtIds": "104",
+      "showDecayPV.PV": "20.0",
+      "centraltagids": "990171",
+      "CityTypeAdderWeight": "10000.0",
+      "score.rerank": "262.81955",
+      "scatter.index.after": "9",
+      "scoreDr": "0.3704877",
+      "getFeature": "fail",
+      "districtId": "104",
+      "score.prem": "0.052621827",
+      "showPoi": "0",
+      "scatterWeight.other": "1.0",
+      "score.rough": "0.012017656",
+      "zoneid": "",
+      "recfrom": "{\"biztype\":\"destination_city\",\"traceId\":\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\",\"rough\":\"0.0120\",\"clk\":\"0.0960\",\"pageIndex\":\"1\",\"dropScore\":\"1.0000\",\"rank\":\"0.0526\",\"intentCity\":\"2,1819\",\"strategy\":\"LBS\",\"mix\":\"262.8195\",\"dr\":\"0.3705\"}",
+      "AuthorIdentityTypeAdderWeight": "0.9",
+      "strategy": "LBS",
+      "scoreClk": "0.09599106",
+      "biztype": "LvPai",
+      "extension": "{\"scene\":\"waterflow.destination\",\"recfrom\":\"{\\\"biztype\\\":\\\"destination_city\\\",\\\"traceId\\\":\\\"86fc9ba2-b1b7-405a-a1af-2b2ea5a55f72\\\",\\\"rough\\\":\\\"0.0120\\\",\\\"clk\\\":\\\"0.0960\\\",\\\"pageIndex\\\":\\\"1\\\",\\\"dropScore\\\":\\\"1.0000\\\",\\\"rank\\\":\\\"0.0526\\\",\\\"intentCity\\\":\\\"2,1819\\\",\\\"strategy\\\":\\\"LBS\\\",\\\"mix\\\":\\\"262.8195\\\",\\\"dr\\\":\\\"0.3705\\\"}\",\"productid\":\"23910572\",\"producttype\":\"LvPai\",\"datasource\":\"ai\"}"
+    },
+    "itag": "",
+    "type": "h5pictxt",
+    "user": {
+      "icon": "https://dimg04.c-ctrip.com/images/0Z83p12000c044cx27C2A.jpg",
+      "nickname": "汤圆旅行者",
+      "viplevel": "0",
+      "vIcon": "",
+      "interactionText": "5979",
+      "interactionIcon": "https://images4.c-ctrip.com/target/0zc3v120008xuwygkC3B0.png"
+    },
+    "traffic": {
+      "country": "中国",
+      "city": "成都",
+      "text": "成都",
+      "locationicon": "https://images4.c-ctrip.com/target/zc0h1e000001f4j0152BE.png"
+    },
+    "showvideoicon": "0",
+    "clientAuth": "1DCA37628767F17DCFC29E93135C9DAA"
+  }
+]
