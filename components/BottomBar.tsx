@@ -14,12 +14,12 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
       icon: <AppOutline />,
     },
     {
-      key: "/",
+      key: "/AddPost",
       title: "发布游记",
       icon: <AddSquareOutline />,
     },
     {
-      key: "/",
+      key: "/person",
       title: "我的",
       icon: <UserOutline />,
     },
