@@ -26,10 +26,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
   if (!payload.searchInfo || payload.searchInfo === "") {
     filterDate = travelDailyData;
   } else {
-    // 将用户名字含有的游记或者游记标题含有的游记
+    // 将游记标题含有的游记
     filterDate = travelDailyData.filter(
       (items) =>
-        (payload.searchInfo && items.user.nickname.includes(payload.searchInfo)) ||
+        // (payload.searchInfo && items.user.nickname.includes(payload.searchInfo)) ||
         (payload.searchInfo && items.title.includes(payload.searchInfo))
     );
   }
