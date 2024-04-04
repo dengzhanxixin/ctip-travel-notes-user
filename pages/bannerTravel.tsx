@@ -25,7 +25,7 @@ export type TravelNoteProps = {
 
 
 const TravelList: React.FC = () => {
-  const [PageProp, setPageProp] = useState({ PageSize: 10, PageIndex: 0, searchInfo: "" });
+  const searchInfo = { PageSize: 10, PageIndex: 0};
   const [isSticky, setIsSticky] = useState(false);
 
   // 点击推荐卡片跳转到详情页
@@ -71,7 +71,7 @@ const TravelList: React.FC = () => {
           /> */}
         </div>
       </div>
-      <TravelWaterFlow notes={PageProp} />
+      <TravelWaterFlow notes={searchInfo} />
     </>
   );
 };

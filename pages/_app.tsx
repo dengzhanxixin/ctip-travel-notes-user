@@ -7,9 +7,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
     <>
-      <BottomBar>
+      {/* <BottomBar> */}
         <Component {...pageProps} />
-      </BottomBar>
+      {/* </BottomBar> */}
     </>
   );
 }

@@ -25,7 +25,10 @@ interface TravelNoteProps  {
 interface travelNoteListProps {
     PageIndex: number;
     PageSize: number;
-    searchInfo: string; // 与搜索词相关的旅游日记
+    searchTitle?: string; // 查询标题与搜索词相关的旅游日记
+    searchUser?: string; // 查询该用户的旅游日记
+    searchCity?: string; // 查询关于该城市的旅游日记
+    strictSearch?: boolean; // 严格搜索还是模糊搜索
   }
 
 interface Props {
@@ -36,7 +39,7 @@ interface Props {
 const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
-  const [PageProp, setPageProp] = useState({ PageSize: notes.PageSize, PageIndex: notes.PageIndex, searchInfo: notes.searchInfo});
+  const [PageProp, setPageProp] = useState(notes);
 
 //   const travelNoteList = travelNotes;
 

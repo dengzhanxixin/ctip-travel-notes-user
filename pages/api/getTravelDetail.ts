@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import travelDailyData from "../../data/TravelData.json";
+import travelDailyData from "@/data/TravelData.json";
 
 
 

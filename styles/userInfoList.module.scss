@@ -1,0 +1,99 @@
+.card {
+    // width: 100%;
+    padding: 8px;
+    margin: 0 10px 9px 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    &:active {
+      // 点击时透明度发生变化
+      opacity: 0.7;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .userIcon {
+    background: #d8d8d8;
+    border-radius: 35px;
+    overflow: hidden;
+  }
+  .userIntroduction {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+  }
+
+  .userName {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .notFollow{
+    color: red;
+    border: 1px solid red;
+  }
+
+  // .gridImg {
+  //   text-align: center;
+  // }
+  // .userIcon {
+  //   background: #d8d8d8;
+  //   border-radius: 30px;
+  //   overflow: hidden;
+  // }
+  // .restaurantCommentContainer{
+  //   margin-top: 5px;
+  //   margin-bottom: 10px;
+  // }
+  // .restaurantName {
+  //   color: #222;
+  //   font-size: 17px;
+  //   font-family: PingFangSC-Semibold;
+  //   text-overflow: ellipsis;
+  //   overflow: hidden;
+  //   display: -webkit-box;
+  //   flex: 1;
+  //   height: 21px;
+  //   line-height: 21px;
+  // }
+  // .restaurantScore {
+  //   font-size: 14px;
+  //   font-family: PingFangSC-Medium;
+  //   color: #dd2626;
+  //   .restaurantNameIcon {
+  //     margin: 0 4px;
+  //     color: #b8b4b4;
+  //   }
+  //   .restaurantCommentCount {
+  //     font-size: 12px;
+  //     color: rgb(51, 51, 51);
+  //   }
+  //   .averagePrice {
+  //     font-size: 12px;
+  //     color: rgb(51, 51, 51);
+  //   }
+  // }
+  // .restaurantNoScore {
+  //   font-size: 12px;
+  //   color: #333;
+  //   font-family: PingFangSC-Regular;
+  // }
+  // .cuisinelocation {
+  //   font-size: 12px;
+  //   color: #999;
+  //   flex: 1;
+  //   text-overflow: ellipsis;
+  //   overflow: hidden;
+  // }
+  

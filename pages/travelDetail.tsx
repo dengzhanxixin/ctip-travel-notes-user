@@ -133,7 +133,7 @@ const TravelDetail: React.FC = () => {
           >
             <NavBar onBack={()=> setShareState(false)}>分享至</NavBar>
             <div>
-              
+              {/* 分享到微信 */}
             </div>
           </Popup>
           <Badge
