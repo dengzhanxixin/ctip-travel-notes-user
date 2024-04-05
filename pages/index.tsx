@@ -1,15 +1,11 @@
 import { useRouter } from "next/router";
-
+import TravelList  from "./bannerTravel"
 
 
 export default function Home() {
-  const router = useRouter();
-  async function handleClick() {
-    router.push(`/bannerTravel`);
-  };
   return (
     <>
-      <div onClick={handleClick}>123</div>
+      <TravelList />
     </>
   );
 }

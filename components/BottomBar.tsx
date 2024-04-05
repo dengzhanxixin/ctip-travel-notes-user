@@ -26,7 +26,6 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
   ];
 
   const setRouteActive = (value: string) => {
-    console.log(value);
     router.push(value);
   };
 

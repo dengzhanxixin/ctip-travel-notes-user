@@ -1,12 +1,12 @@
 .container {
     display: flex;
+    height: 100vh;
     flex-direction: column;
-    // .content{
-    //   flex: 1;
-    // }
+    .content{
+      flex: 1;
+      overflow-y: scroll; /* 滚动条在内容溢出时出现 */
+    }
     .footer {
-      position: fixed;
-      bottom: 0;
       width: 100%;
       height: 50px; /* 页脚的高度 */
       background: #fff;

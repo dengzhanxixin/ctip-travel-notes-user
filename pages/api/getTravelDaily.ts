@@ -4,7 +4,6 @@ import travelDailyData from "@/data/TravelData.json";
 interface travelNoteFilterPayload {
   PageIndex: number;
   PageSize: number;
-  // 搜索顺序，先标题,再用户，最后城市
   searchTitle?: string; // 查询标题与搜索词相关的旅游日记
   searchUser?: string; // 查询该用户的旅游日记
   searchCity?: string; // 查询关于该城市的旅游日记

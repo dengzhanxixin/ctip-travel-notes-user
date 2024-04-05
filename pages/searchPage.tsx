@@ -2,7 +2,19 @@ import { useRouter } from "next/router";
 import React from "react";
 import { NavBar, SearchBar,Tag } from "antd-mobile";
 import Styles from "@/styles/searchPage.module.scss";
-import { Value } from "sass";
+
+const hotCityList = [
+  { cityName: "上海", cityID: "2", isDomesticCity: "1" },
+  { cityName: "北京", cityID: "1", isDomesticCity: "1" },
+  { cityName: "广州", cityID: "152", isDomesticCity: "1" },
+  { cityName: "杭州", cityID: "14", isDomesticCity: "1" },
+  { cityName: "成都", cityID: "104", isDomesticCity: "1" },
+  { cityName: "南京", cityID: "9", isDomesticCity: "1" },
+  { cityName: "西安", cityID: "7", isDomesticCity: "1" },
+  { cityName: "重庆", cityID: "158", isDomesticCity: "1" },
+  { cityName: "深圳", cityID: "26", isDomesticCity: "1" },
+];
+
 
 interface TravelDetailProps {
   [key: string]: any;
@@ -10,8 +22,15 @@ interface TravelDetailProps {
 
 const SearchInfo: React.FC = () => {
   const router = useRouter();
+  const info = router.query.info as string;
   const handleClick = (value:string) => {
-    router.push(`/showResult?info=${value}`)
+    if(value.trim()===""){
+      router.push(`/showResult?info=${info}`)
+    }
+    else{
+      router.push(`/showResult?info=${value}`)
+    }
+    
   }
   const data = [
     {
@@ -43,58 +62,12 @@ const SearchInfo: React.FC = () => {
       title: "热门游记",
     },
   ]
-  const hotcities = [
-    {
-      key: "1",
-      title: "北京",
-    },
-    {
-      key: "2",
-      title: "上海",
-    },
-    {
-      key: "3",
-      title: "广州",
-    },
-    {
-      key: "4",
-      title: "深圳",
-    },
-    {
-      key: "5",
-      title: "杭州",
-    },
-    {
-      key: "6",
-      title: "南京",
-    },
-    {
-      key: "7",
-      title: "武汉",
-    },
-    {
-      key: "8",
-      title: "成都",
-    },
-    {
-      key: "9",
-      title: "西安",
-    },
-    {
-      key: "10",
-      title: "南宁",
-    },
-    {
-      key: "11",
-      title: "柳州",
-    },
-  ]
   return (
     <div className={Styles.container}>
       <div className={Styles.searchBar}>
         <NavBar onBack={() => router.back()}>
           <SearchBar
-            placeholder="请输入内容"
+            placeholder={info}
             style={{ "--border-radius": "100px", "--height": "32px", width: "100%" }}
             showCancelButton
             onSearch={(value)=>handleClick(value)}
@@ -121,10 +94,10 @@ const SearchInfo: React.FC = () => {
         <span >热门城市</span>
             <div className={Styles.searchTags}>
                 {
-                    hotcities.map((item, index) => {
+                    hotCityList.map((item) => {
                         return (
-                            <Tag round className={Styles.tag} onClick={() => router.push('./showSearchResult')}>
-                                 {item.title}
+                            <Tag round className={Styles.tag} key={item.cityID} onClick={() => router.push(`/travelCity?info=${item.cityName}`)}>
+                                 {item.cityName}
                             </Tag>
                                
                         )

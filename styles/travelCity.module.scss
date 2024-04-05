@@ -1,0 +1,22 @@
+.header {
+  position: relative;
+  height: 200px;
+  color: #fff;
+  .cityInfo {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    .cityName {
+      font-size: 28px;
+      font-family: "PingFangSC-Medium", sans-serif;
+      .eName {
+        padding-left: 10px;
+        font-size: 14px;
+      }
+    }
+    .photoCount {
+      font-size: 14px;
+      font-family: "PingFangSC-Regular", sans-serif;
+    }
+  }
+}
