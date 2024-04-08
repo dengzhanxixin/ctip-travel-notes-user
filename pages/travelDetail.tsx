@@ -7,9 +7,31 @@ interface TravelDetailProps {
   [key: string]: any;
 }
 
+const shareBtns = [
+  {
+    text: "微信",
+    icon: "iconfont icon-weixin",
+  },
+  {
+    text: "朋友圈",
+    icon: "iconfont icon-pengyouquan",
+  },
+  {
+    text: "QQ",
+    icon: "iconfont icon-QQ",
+  },
+  {
+    text: "QQ空间",
+    icon: "iconfont icon-QQkongjian",
+  },
+  {
+    text: "微博",
+    icon: "iconfont icon-xinlangweibo",
+  },
+];
+
 const TravelDetail: React.FC = () => {
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
-  const [showCommentModal, setShowCommentModal] = useState(false);
   const [commentState, setCommentState] = useState({
     islike: false,
     likeNum: 0,
@@ -17,7 +39,7 @@ const TravelDetail: React.FC = () => {
     saveNum: 0,
     isFollow: false,
   });
-  const [isShare, setShareState] = useState(false); 
+  const [isShare, setShareState] = useState(false);
   const router = useRouter();
   const id = parseInt(router.query.id as string);
 
@@ -51,7 +73,7 @@ const TravelDetail: React.FC = () => {
         }
         right={
           <Button
-            shape = "rounded"
+            shape="rounded"
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
             onClick={() => setCommentState({ ...commentState, isFollow: !commentState.isFollow })}
           >
@@ -72,7 +94,7 @@ const TravelDetail: React.FC = () => {
           >
             {travelDetail.images.map((item: any, index: number) => (
               <Swiper.Item key={index}>
-                  <img src={item.url} alt={`旅游图片 ${index}`} className={Styles.imgSwiper} />
+                <img src={item.url} alt={`旅游图片 ${index}`} className={Styles.imgSwiper} />
               </Swiper.Item>
             ))}
           </Swiper>
@@ -90,7 +112,9 @@ const TravelDetail: React.FC = () => {
         </div>
       )}
       <div className={Styles.bottomBar}>
-        <Button  className={Styles.comment} shape="rounded">浅聊一下吧</Button>
+        <Button className={Styles.comment} shape="rounded">
+          浅聊一下吧
+        </Button>
         <div className={Styles.bottomBtn}>
           <Badge
             content={<div className={Styles.customBadge}>{commentState.likeNum}</div>}
@@ -127,46 +151,48 @@ const TravelDetail: React.FC = () => {
           <Button className={Styles.barBtn} onClick={() => setShareState(true)}>
             <span className="iconfont icon-share" style={{ fontSize: "24px" }} />
           </Button>
-          <Popup
-            visible={isShare}
-            onClose={() => setShareState(false)}
-          >
-            <NavBar onBack={()=> setShareState(false)}>分享至</NavBar>
-            <div>
-              {/* 分享到微信 */}
-            </div>
+          <Popup visible={isShare} onClose={() => setShareState(false)}>
+            <NavBar onBack={() => setShareState(false)}>分享至</NavBar>
+              <ul className={Styles.shareSofts} >
+                {shareBtns.map((share) => {
+                  return (
+                    <li className={Styles.shareAPP}>
+                      <span className={share.icon} style={{fontSize: "45px"}}/>
+                      <div className={Styles.appName}>{share.text}</div>
+                    </li>
+                  );
+                })}
+              </ul>
           </Popup>
           <Badge
             content={<div className={Styles.customBadge}>{commentState.saveNum}</div>}
             style={{ "--right": "20%", "--top": "20%", backgroundColor: "#ffffff" }}
             className={Styles.customBadge}
           >
-             <Button
-            className={Styles.barBtn}
-            onClick={() => {
-              if(commentState.isSave === false) {
-                setCommentState({
-                 ...commentState,
-                  isSave: true,
-                  saveNum: commentState.saveNum + 1,
-                });
-              }
-              else {
-                setCommentState({
-                 ...commentState,
-                  isSave: false,
-                  saveNum: commentState.saveNum - 1,
-                });
-              }
-            }}
-          >
-            <span
-              className={commentState.isSave ? "iconfont icon-like" : "iconfont icon-like2"}
-              style={commentState.isSave ? { fontSize: "24px", color: "red" } : { fontSize: "24px" }}
-            ></span>
-          </Button>
+            <Button
+              className={Styles.barBtn}
+              onClick={() => {
+                if (commentState.isSave === false) {
+                  setCommentState({
+                    ...commentState,
+                    isSave: true,
+                    saveNum: commentState.saveNum + 1,
+                  });
+                } else {
+                  setCommentState({
+                    ...commentState,
+                    isSave: false,
+                    saveNum: commentState.saveNum - 1,
+                  });
+                }
+              }}
+            >
+              <span
+                className={commentState.isSave ? "iconfont icon-like" : "iconfont icon-like2"}
+                style={commentState.isSave ? { fontSize: "24px", color: "red" } : { fontSize: "24px" }}
+              ></span>
+            </Button>
           </Badge>
-         
         </div>
       </div>
     </div>

@@ -88,3 +88,19 @@
 }
 
 
+.shareSofts {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  padding: 10px 12px;
+  .shareAPP {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .appName {
+      margin-top: 5px;
+    }
+  }
+}
+
+

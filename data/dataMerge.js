@@ -11,10 +11,15 @@ function shuffleArray(array) {
 }
 
 const CityList = [
-    { cityName: "北京", cityID: "1", isDomesticCity: "1" },
     { cityName: "上海", cityID: "2", isDomesticCity: "1" },
-    { cityName: "广州", cityID: "152", isDomesticCity: "1" },
-    { cityName: "成都", cityID: "104", isDomesticCity: "1" },
+  { cityName: "北京", cityID: "1", isDomesticCity: "1" },
+  { cityName: "广州", cityID: "152", isDomesticCity: "1" },
+  { cityName: "杭州", cityID: "14", isDomesticCity: "1" },
+  { cityName: "成都", cityID: "104", isDomesticCity: "1" },
+  { cityName: "南京", cityID: "9", isDomesticCity: "1" },
+  { cityName: "西安", cityID: "7", isDomesticCity: "1" },
+  { cityName: "重庆", cityID: "158", isDomesticCity: "1" },
+  { cityName: "深圳", cityID: "26", isDomesticCity: "1" },
   ];
 
 // 合并四个城市的旅游日记

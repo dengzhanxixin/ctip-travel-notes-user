@@ -65,32 +65,31 @@ const UserInfoList: React.FC<Props> = ({ notes }) => {
     setHasMore(res.items.length > 0);
   }
 
+
   return (
-    <div>
-      {userInfoList &&
-        userInfoList.map((item) => (
-          <Card className={Styles.card} key={item.nickName} onClick={() => handleClick(item.nickName)}>
-            <div className={Styles.content}>
-              <div className={Styles.userInfo}>
-              <img className={Styles.userIcon} src={item.icon} alt={"用户头像"} width={70} height={70} />
-              <div className={Styles.userIntroduction}>
-                <div className={Styles.userName}>{item.nickName}</div>
-                <div className={Styles.userid}>用户id: 666</div>
-                <div className={Styles.user}>游记: 10 |粉丝: 10</div>
-              </div>
-            </div>
-            <Button
-            shape = "rounded"
-            className={Styles.notFollow}
-          >
-            { "+ 关注"}
-          </Button>
-            </div>
-            
-          </Card>
-        ))}
+    <>
+      <div>
+        {userInfoList &&
+          userInfoList.map((item) => (
+              <Card className={Styles.card} key={item.nickName} onClick={() => handleClick(item.nickName)}>
+                <div className={Styles.content}>
+                  <div className={Styles.userInfo}>
+                    <img className={Styles.userIcon} src={item.icon} alt={"用户头像"} width={70} height={70} />
+                    <div className={Styles.userIntroduction}>
+                      <div className={Styles.userName}>{item.nickName}</div>
+                      <div className={Styles.userid}>用户id: 666</div>
+                      <div className={Styles.user}>游记: 10 |粉丝: 10</div>
+                    </div>
+                  </div>
+                  <Button shape="rounded" className={Styles.notFollow}>
+                    {"+ 关注"}
+                  </Button>
+                </div>
+              </Card>
+          ))}
+      </div>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
-    </div>
+    </>
   );
 };
 

@@ -13,7 +13,6 @@ interface travelNoteResponse {
 //  获取城市介绍数据
 export default function handler(req: NextApiRequest, res: NextApiResponse<travelNoteResponse>) {
   const payload = req.body as cityPayload;
-
   const cityinfo = CityInfoData.find(item => item.cityName === payload.cityName);
   if(cityinfo){
     res.status(200).json(cityinfo);

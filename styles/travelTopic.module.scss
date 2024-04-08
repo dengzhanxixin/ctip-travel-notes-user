@@ -1,9 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 50px);
+}
+
+
 .header {
     position: relative;
     height: 200px;
     color: #fff;
+    transition: all 0.3s ease-out; /* 添加一个过渡效果 */
     .topicInfo {
       position: absolute;
+      transition: all 0.3s ease-out; /* 添加一个过渡效果 */
       bottom: 10px;
       left: 12px;
       .topicName {
@@ -25,8 +34,16 @@
     }
   }
 
+  .hidden_header {
+    height: 120px;
+  }
 
-  .container {
+  .ctt {
+    flex: 1;
+    overflow: scroll;
+  }
+
+  .content {
     margin: 0 auto;
     display: grid;
     column-gap: 5px;

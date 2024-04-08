@@ -65,7 +65,7 @@ const SearchInfo: React.FC = () => {
   return (
     <div className={Styles.container}>
       <div className={Styles.searchBar}>
-        <NavBar onBack={() => router.back()}>
+        <NavBar onBack={() => router.push('/')}>
           <SearchBar
             placeholder={info}
             style={{ "--border-radius": "100px", "--height": "32px", width: "100%" }}

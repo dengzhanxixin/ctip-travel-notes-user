@@ -17,7 +17,6 @@ const hotCityList = [
   { cityName: "深圳", cityID: "26", isDomesticCity: "1" },
 ];
 
-
 type topicProps = {
   topicId: number;
   topicName: string;
@@ -27,21 +26,21 @@ type topicProps = {
 
 const TravelList: React.FC = () => {
   const searchInfo = { PageSize: 10, PageIndex: 0 };
-  const [isSticky, setIsSticky] = useState(false);
+  const [ishidden, setIsHidden] = useState(false);
   const [topics, setTopics] = useState<topicProps[]>([]);
+  const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
 
-  var activeIndex=0;
-
+  var activeIndex = 0;
 
   // 点击推荐卡片跳转到详情页
   const router = useRouter();
 
   const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 60) {
-      setIsSticky(true);
+    const offset = contentRef.current?.scrollTop; // 获取滚动位置
+    if (offset && offset > 160) {
+      setIsHidden(true);
     } else {
-      setIsSticky(false);
+      setIsHidden(false);
     }
   };
 
@@ -58,26 +57,34 @@ const TravelList: React.FC = () => {
     };
 
     fetchData();
-    window.addEventListener("scroll", handleScroll);
+
+
+    contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      contentRef.current?.removeEventListener("scroll", handleScroll); // 移除滚动事件监听器
     };
   }, []);
 
   return (
-    <>
+    <div className={Styles.container}>
       <div className={Styles.header}>
-        <div className={Styles.searchBar} onClick={()=>{router.push(`/searchPage?info=${searchHotWords[activeIndex]}`)}}>
+        <div
+          className={Styles.searchBar}
+          onClick={() => {
+            router.push(`/searchPage?info=${searchHotWords[activeIndex]}`);
+          }}
+        >
           <div className={Styles.searchInput}>
-            {/* 上海 */}
             <Swiper
               className={Styles.searchWord}
               direction="vertical"
               loop
               autoplay
               allowTouchMove={false}
-              onIndexChange={(index)=>{activeIndex=index}}
+              onIndexChange={(index) => {
+                activeIndex = index;
+              }}
               indicator={() => null}
             >
               {searchHotWords.map((item, index) => (
@@ -89,51 +96,58 @@ const TravelList: React.FC = () => {
           </div>
           <div className={Styles.searchButton}>搜索</div>
         </div>
-        <div className={Styles.hotWords}>
-          <ul className={Styles.wordsContainer}>
-            {hotCityList.map((item) => (
-              <Tag round className={Styles.tag} key={item.cityID} onClick={()=>{
-                router.push(`/travelCity?info=${item.cityName}`)
-                }}>
-                {item.cityName}
-              </Tag>
-            ))}
-          </ul>
-        </div>
+          <div className={`${Styles.hotWords} ${ishidden ? Styles.hidden : ''}`}>
+            <ul className={Styles.wordsContainer}>
+              {hotCityList.map((item) => (
+                <Tag
+                  round
+                  className={Styles.tag}
+                  key={item.cityID}
+                  onClick={() => {
+                    router.push(`/travelCity?info=${item.cityName}`);
+                  }}
+                >
+                  {item.cityName}
+                </Tag>
+              ))}
+            </ul>
+          </div>
       </div>
-      <div className={Styles.travelTopics}>
-        <Swiper
-          style={{
-            "--border-radius": "8px",
-          }}
-          slideSize={70}
-          trackOffset={15}
-          loop
-          stuckAtBoundary={false}
-        >
-          {topics &&
-            topics.map((topic) => {
-              return (
-                <Swiper.Item key={topic.topicId} onClick={()=> router.push(`/travelTopic?info=${topic.topicId}`)}>
-                  <div
-                    className={Styles.topicCard}
-                    style={{
-                      backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url(${topic.image?.url})`,
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    <div className={Styles.topicName}>
-                      {topic.topicName}
-                      <span className={Styles.topicHeat}>{topic.heatText}条游记</span>
+      <div className={Styles.content} ref={contentRef}>
+        <div className={Styles.travelTopics}>
+          <Swiper
+            style={{
+              "--border-radius": "8px",
+            }}
+            slideSize={70}
+            trackOffset={15}
+            loop
+            stuckAtBoundary={false}
+          >
+            {topics &&
+              topics.map((topic) => {
+                return (
+                  <Swiper.Item key={topic.topicId} onClick={() => router.push(`/travelTopic?info=${topic.topicId}`)}>
+                    <div
+                      className={Styles.topicCard}
+                      style={{
+                        backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url(${topic.image?.url})`,
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <div className={Styles.topicName}>
+                        {topic.topicName}
+                        <span className={Styles.topicHeat}>{topic.heatText}条游记</span>
+                      </div>
                     </div>
-                  </div>
-                </Swiper.Item>
-              );
-            })}
-        </Swiper>
+                  </Swiper.Item>
+                );
+              })}
+          </Swiper>
+        </div>
+        <TravelWaterFlow notes={searchInfo} />
       </div>
-      <TravelWaterFlow notes={searchInfo} />
-    </>
+    </div>
   );
 };
 

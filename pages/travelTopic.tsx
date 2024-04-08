@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, {useState, useRef, } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavBar, Card, InfiniteScroll } from "antd-mobile";
 import Image from "next/image";
 import Styles from "@/styles/travelTopic.module.scss";
@@ -27,11 +27,11 @@ interface travelNoteListProps {
 }
 
 type topicProps = {
-    topicId: number;
-    topicName: string;
-    remark: string;
-    [key: string]: any;
-  };
+  topicId: number;
+  topicName: string;
+  remark: string;
+  [key: string]: any;
+};
 
 const TopicTravelNotes: React.FC = () => {
   const router = useRouter();
@@ -40,6 +40,32 @@ const TopicTravelNotes: React.FC = () => {
   const [topic, setTopic] = useState<topicProps>();
   const [PageProp, setPageProp] = useState({ PageSize: 10, PageIndex: 0, topicId: info });
   const [hasMore, setHasMore] = useState(true);
+  const [isReady, setIsReady] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
+  const [ishidden, setIsHidden] = useState(false);
+
+
+  const handleScroll = () => {
+    const offset = contentRef.current?.scrollTop; // 获取滚动位置
+    if (offset && offset > 160) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  };
+
+  useEffect(() => {
+    if (info) {
+      setPageProp({ ...PageProp, topicId: info });
+      setIsReady(true);
+    }
+
+    contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
+
+    return () => {
+      contentRef.current?.removeEventListener("scroll", handleScroll); // 移除滚动事件监听器
+    };
+  }, [info]);
 
   // 点击推荐卡片跳转到详情页
 
@@ -85,80 +111,74 @@ const TopicTravelNotes: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={Styles.container}>
       <div
-        className={Styles.header}
+        className={`${Styles.header} ${ishidden ? Styles.hidden_header : ''}`}
         style={{
           backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url(${topic?.image?.url})`,
           backgroundSize: "cover",
         }}
       >
-        <NavBar onBack={() => router.back()} />
+        <NavBar onBack={() => router.back()} /> 
         <div className={Styles.topicInfo}>
           <div className={Styles.topicName}>
             <span>#{topic?.topicName}</span>
           </div>
           <div className={Styles.heatText}>{topic?.heatText}条游记</div>
-          <div className={Styles.remark}>{topic?.remark}</div>
+          {ishidden ? null:<div className={Styles.remark}>{topic?.remark}</div>}
         </div>
       </div>
-      <div>
-      <div className={Styles.container}>
-        {travelNoteList &&
-          travelNoteList.map((item, i) => (
-            <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
-              <Card
-                onClick={() => handleClick(item.id)}
-                className={Styles.travelCard}
-                bodyStyle={{ padding: "0" }}
-                key={item.id}
-              >
-                <Image
-                  src={item.coverImg}
-                  className={Styles.restImg}
-                  alt={"旅游图片"}
-                  width={180}
-                  height={240}
-                  onLoad={() => handleSetGridRowEnd(i)}
-                />
-                <div className={Styles.infoBox}>
-                  <div className={Styles.travelPlace}>
-                    <img
-                      className={Styles.userIcon}
-                      src='/images/location.png'
-                      alt={"地点"}
-                      width={18}
-                      height={18}
-                    />
-                    <span>{item.city}</span>
-                  </div>
-                  <div className={Styles.travelTitle}>
-                    <h3>{item.title}</h3>
-                  </div>
-                  <div className={Styles.travelUser}>
-                    <div className={Styles.userInfo}>
-                      <img className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
-                      <span className={Styles.userName}>{item.user.nickName}</span>
+      <div className={Styles.ctt} ref={contentRef}>
+        <div className={Styles.content}>
+          {travelNoteList &&
+            travelNoteList.map((item, i) => (
+              <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
+                <Card
+                  onClick={() => handleClick(item.id)}
+                  className={Styles.travelCard}
+                  bodyStyle={{ padding: "0" }}
+                  key={item.id}
+                >
+                  <Image
+                    src={item.coverImg}
+                    className={Styles.restImg}
+                    alt={"旅游图片"}
+                    width={180}
+                    height={240}
+                    onLoad={() => handleSetGridRowEnd(i)}
+                  />
+                  <div className={Styles.infoBox}>
+                    <div className={Styles.travelPlace}>
+                      <img className={Styles.userIcon} src="/images/location.png" alt={"地点"} width={18} height={18} />
+                      <span>{item.city}</span>
                     </div>
-                    <div className={Styles.viewInfo}>
-                      <img
-                        className={Styles.iconSee}
-                        src={item.user.interactionIcon}
-                        alt={" 浏览数"}
-                        width={14}
-                        height={14}
-                      />
-                      <span className={Styles.viewNumber}>{item.user.interactionText}</span>
+                    <div className={Styles.travelTitle}>
+                      <h3>{item.title}</h3>
+                    </div>
+                    <div className={Styles.travelUser}>
+                      <div className={Styles.userInfo}>
+                        <img className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
+                        <span className={Styles.userName}>{item.user.nickName}</span>
+                      </div>
+                      <div className={Styles.viewInfo}>
+                        <img
+                          className={Styles.iconSee}
+                          src={item.user.interactionIcon}
+                          alt={" 浏览数"}
+                          width={14}
+                          height={14}
+                        />
+                        <span className={Styles.viewNumber}>{item.user.interactionText}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            </div>
-          ))}
+                </Card>
+              </div>
+            ))}
+        </div>
+        {isReady && <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />}
       </div>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
-      </div>
-    </>
+    </div>
   );
 };
 
