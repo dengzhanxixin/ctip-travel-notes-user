@@ -1,47 +1,26 @@
 import React, { useState } from 'react';
 import style from "../styles/person.module.scss";
-import { Card, Button, Space, Grid } from "antd-mobile";
-import { Upload, Row, Col, Empty, FloatButton } from 'antd';
-import type { GetProp, UploadProps, UploadFile } from 'antd';
+import { Card, Button, Space, Grid, Popup, FloatingBubble, Divider, Toast, Dialog } from "antd-mobile";
+import { Upload, message, Row, Col, Avatar } from 'antd';
+import type { GetProp, UploadProps, UploadFile} from 'antd';
+import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, DeleteOutline } from 'antd-mobile-icons'
+import { UploadOutlined } from '@ant-design/icons';
 import { useRouter } from "next/router";
-import ImgCrop from 'antd-img-crop';
+import MyPost from "./MyPost";
+import { clearHistory } from '../data/userData';
+
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const PersonLogin = () => {
     const router = useRouter();
-    const [fileList, setFileList] = useState<UploadFile[]>([
-        {
-            uid: '-1',
-            name: 'image.png',
-            status: 'done',
-            url: '/person.png',
-          },
-      ]);
-    
-      const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
-        setFileList(newFileList);
-      };
-    
-      const onPreview = async (file: UploadFile) => {
-        let src = file.url as string;
-        if (!src) {
-          src = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file.originFileObj as FileType);
-            reader.onload = () => resolve(reader.result as string);
-          });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow?.document.write(image.outerHTML);
-      };
 
     //编辑用户个人签名
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState('简单的自我介绍，让你更受欢迎！');
     const [editingText, setEditingText] = useState(text);
+    const [visible, setVisible] = useState(false)
+
 
     // 处理双击事件，进入编辑模式
     const handleDoubleClick = () => {
@@ -65,23 +44,28 @@ const PersonLogin = () => {
 
     return (
         <div className={style.background}>
+            <MoreOutline
+                fontSize={36}
+                style={{ position: 'absolute', top: '20px', right: '30px', zIndex: '9999' }}
+                onClick={() => { setVisible(true) }} />
+
+            <Popup
+                visible={visible}
+                onMaskClick={() => {
+                    setVisible(false)
+                }}
+                position='left'
+                bodyStyle={{ width: '50vw', padding: '10px' }}
+            >
+                {mockContent}
+            </Popup>
 
             <Card className={style.cardContainer}>
                 <Row>
                     <Col span={8}>
-                        <ImgCrop rotationSlider>
-                            <Upload
-                                action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                                listType="picture-card"
-                                fileList={fileList}
-                                onChange={onChange}
-                                onPreview={onPreview}
-                            >
-                                {fileList.length < 1 && '+ Upload'}
-                            </Upload>
-                        </ImgCrop>
-
+                    <Avatar size={64} src={'/person.png'} alt="avatar" />
                     </Col>
+
                     <Col span={16}>
                         <div className={style.username}>
                             尊敬的用户
@@ -111,17 +95,61 @@ const PersonLogin = () => {
             <div
                 style={{ backgroundColor: '#f0f2f5', height: '80%', borderRadius: '10px 10px 0 0' }}
             >
-                <Card
-                    title="我的游记"
-                    className={style.cardPostWrapper}>
-                        <Empty description={false} />
-                    <FloatButton className={style.floatButton} tooltip={<div>Documents</div>} onClick={AddPost} />
-
-                </Card>
+                <MyPost />
+                {/* <FloatingBubble className={style.floatButton} tooltip={<div>Documents</div>} onClick={AddPost} /> */}
+                <FloatingBubble
+                    style={{
+                        '--initial-position-bottom': '84px',
+                        '--initial-position-right': '24px',
+                        '--edge-distance': '24px',
+                        '--background': '#000000',
+                    }}
+                >
+                    <EditSFill onClick={AddPost} fontSize={32} />
+                </FloatingBubble>
             </div>
 
 
         </div>
     )
+}
+const iconSize = 33
+
+const mockContent = (
+    <div style={{ margin: '100px 10px', padding: '20 60', fontSize: '16px', textAlign: 'start', lineHeight: '30px' }}>
+        <SetOutline fontSize={iconSize} /> 个人设置
+        <br /><br />
+        <ContentOutline fontSize={iconSize} /> 浏览记录
+        <br /><br />
+        <MailOpenOutline fontSize={iconSize} /> 草稿箱
+        <br /><br />
+        {/* <DeleteOutline fontSize={iconSize} onClick={() =>
+              Dialog.confirm({
+                content: '是否确认清空全部个人信息',
+                onConfirm: async () => {
+                    clearHistory();
+                  Toast.show({
+                    icon: 'success',
+                    content: '提交成功',
+                    position: 'bottom',
+                  })
+                },
+              })} /> 清空个人信息
+        <br /><br />
+        <Divider /> */}
+        <br /><br />
+        <Button block color='primary' size='large'>
+            退出登陆
+        </Button>
+
+
+    </div>
+)
+
+export async function mockUpload(file: File) {
+    // await sleep(3000)
+    return {
+        url: URL.createObjectURL(file),
+    }
 }
 export default PersonLogin;

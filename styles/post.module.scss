@@ -1,0 +1,34 @@
+.paramsModal {
+  :global {
+      .ant-upload-list{
+        width: 340px;
+        height: 200px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .ant-upload {
+          background-color: antiquewhite;
+          width: 100px;
+          height: 100px;
+      }
+  }
+}
+.containerImage{
+  // display: flex;
+}
+.searchBarContainer {
+  padding: 12px;
+  border-bottom: solid 1px var(--adm-color-border);
+}
+
+.checkListContainer {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.myCheckList {
+  --border-top: 0;
+  --border-bottom: 0;
+}
