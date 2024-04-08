@@ -1,191 +1,153 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Card, InfiniteScroll, SearchBar, NavBar } from "antd-mobile";
+import { Swiper, Tag, Space } from "antd-mobile";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import TravelWaterFlow from "@/components/TravelWaterfallFlow";
 
-interface ImageInfo {
-  url: string;
-  width: string;
-  height: string;
-}
-interface ImagesDictionary {
-  [key: string]: ImageInfo;
-}
+const searchHotWords = ["上海", "上海迪斯尼", "东方明珠塔"];
+const hotCityList = [
+  { cityName: "上海", cityID: "2", isDomesticCity: "1" },
+  { cityName: "北京", cityID: "1", isDomesticCity: "1" },
+  { cityName: "广州", cityID: "152", isDomesticCity: "1" },
+  { cityName: "杭州", cityID: "14", isDomesticCity: "1" },
+  { cityName: "成都", cityID: "104", isDomesticCity: "1" },
+  { cityName: "南京", cityID: "9", isDomesticCity: "1" },
+  { cityName: "西安", cityID: "7", isDomesticCity: "1" },
+  { cityName: "重庆", cityID: "158", isDomesticCity: "1" },
+  { cityName: "深圳", cityID: "26", isDomesticCity: "1" },
+];
 
-interface UserInfo {
-  icon: string; // 头像
-  interactionText: string;
-  nickname: string; // 昵称
-  interactionIcon: string;
-}
-
-interface CityInfo {
-  city: string;
-  locationicon: string;
-}
-
-export type TravelNoteProps = {
-  id: string;
-  height: number;
-  title: string;
-  img: ImagesDictionary;
-  img_Intrinsic: string; // 瀑布流展示的图
-  cityname: string;
-  user: UserInfo;
-  traffic: CityInfo;
+type topicProps = {
+  topicId: number;
+  topicName: string;
+  remark: string;
+  [key: string]: any;
 };
 
-interface travelNoteListProps {
-  PageIndex: number;
-  PageSize: number;
-  searchInfo: string; // 与搜索词相关的旅游日记
-}
-
 const TravelList: React.FC = () => {
-  const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [PageProp, setPageProp] = useState({ PageSize: 10, PageIndex: 0, searchInfo: "" });
-  const [isSticky, setIsSticky] = useState(false);
+  const searchInfo = { PageSize: 10, PageIndex: 0 };
+  const [ishidden, setIsHidden] = useState(false);
+  const [topics, setTopics] = useState<topicProps[]>([]);
+  const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
+
+  var activeIndex = 0;
 
   // 点击推荐卡片跳转到详情页
   const router = useRouter();
 
   const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 60) {
-      setIsSticky(true);
+    const offset = contentRef.current?.scrollTop; // 获取滚动位置
+    if (offset && offset > 160) {
+      setIsHidden(true);
     } else {
-      setIsSticky(false);
+      setIsHidden(false);
     }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    const fetchData = async () => {
+      const response = await fetch("/api/getTopicInfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setTopics(data.items);
+    };
+
+    fetchData();
+
+
+    contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      contentRef.current?.removeEventListener("scroll", handleScroll); // 移除滚动事件监听器
     };
   }, []);
 
-  const updateSearchInfo = async (value: string) => {
-    setPageProp({ PageSize: 10, PageIndex: 0, searchInfo: value }); // 搜索时重置PageIndex
-    setTravelNoteList([]); // 清空当前列表，以便加载新的搜索结果
-    const res = await fetchTravelNoteList({ PageSize: 10, PageIndex: 0, searchInfo: value }); // 立即搜索
-    setTravelNoteList([...res.items]);
-    setHasMore(res.items.length > 0);
-  };
-
-  // 请求推荐列表数据
-  async function fetchTravelNoteList(payload: travelNoteListProps) {
-    const response = await fetch("/api/getTravelDaily", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    return data;
-  }
-
-  // 无限加载，当用户页面滚动到底部 threshold (默认为 250px)时调用。
-  async function loadMore() {
-    setPageProp((val) => ({ ...val, PageIndex: val.PageIndex + 1 }));
-    const res = await fetchTravelNoteList(PageProp);
-    setTravelNoteList((val) => {
-      const filteredItems = res.items.filter(
-        (item: TravelNoteProps) => !val.some((v: TravelNoteProps) => v.id === item.id)
-      );
-      return [...val, ...filteredItems];
-    });
-    setHasMore(res.items.length > 0);
-  }
-
-  // 瀑布流，通过设置grid-row-end属性实现
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const handleSetGridRowEnd = (index: number) => {
-    const cardRef = cardRefs.current[index];
-    if (!cardRef) return;
-    const height = cardRef.offsetHeight;
-    // grid-row-end: <line> | <span>;设置元素在网格布局中结束的位置
-    cardRef.style.gridRowEnd = `span ${Math.ceil(height)}`;
-  };
-
   return (
-    <>
+    <div className={Styles.container}>
       <div className={Styles.header}>
-        <div className={isSticky? Styles.search_fixed:Styles.search}>
-          <SearchBar
-            placeholder="游记标题 用户昵称"
-            style={{
-              "--border-radius": "100px",
-              "--background": "#fff",
-              "--height": "32px",
-              "--padding-left": "12px",
-            }}
-            onSearch={(value) => {
-              updateSearchInfo(value);
-            }}
-          />
+        <div
+          className={Styles.searchBar}
+          onClick={() => {
+            router.push(`/searchPage?info=${searchHotWords[activeIndex]}`);
+          }}
+        >
+          <div className={Styles.searchInput}>
+            <Swiper
+              className={Styles.searchWord}
+              direction="vertical"
+              loop
+              autoplay
+              allowTouchMove={false}
+              onIndexChange={(index) => {
+                activeIndex = index;
+              }}
+              indicator={() => null}
+            >
+              {searchHotWords.map((item, index) => (
+                <Swiper.Item key={index}>
+                  <div className={Styles.searchWord}>{item}</div>
+                </Swiper.Item>
+              ))}
+            </Swiper>
+          </div>
+          <div className={Styles.searchButton}>搜索</div>
         </div>
+          <div className={`${Styles.hotWords} ${ishidden ? Styles.hidden : ''}`}>
+            <ul className={Styles.wordsContainer}>
+              {hotCityList.map((item) => (
+                <Tag
+                  round
+                  className={Styles.tag}
+                  key={item.cityID}
+                  onClick={() => {
+                    router.push(`/travelCity?info=${item.cityName}`);
+                  }}
+                >
+                  {item.cityName}
+                </Tag>
+              ))}
+            </ul>
+          </div>
       </div>
-
-      <div className={Styles.container}>
-        {travelNoteList &&
-          travelNoteList.map((item, i) => (
-            <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
-              <Card
-                // onClick={() => handleClick(item.restaurantId)}
-                className={Styles.travelCard}
-                bodyStyle={{ padding: "0" }}
-                key={item.id}
-              >
-                <Image
-                  src={item.img_Intrinsic}
-                  className={Styles.restImg}
-                  alt={"旅游图片"}
-                  width={180}
-                  height={240}
-                  onLoad={() => handleSetGridRowEnd(i)}
-                />
-                <div className={Styles.infoBox}>
-                  <div className={Styles.travelPlace}>
-                    <img
-                      className={Styles.userIcon}
-                      src={item.traffic.locationicon}
-                      alt={"地点"}
-                      width={18}
-                      height={18}
-                    />
-                    <span>{item.traffic.city}</span>
-                  </div>
-                  <div className={Styles.travelTitle}>
-                    <h3>{item.title}</h3>
-                  </div>
-                  <div className={Styles.travelUser}>
-                    <div className={Styles.userInfo}>
-                      <img className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
-                      <span className={Styles.userName}>{item.user.nickname}</span>
+      <div className={Styles.content} ref={contentRef}>
+        <div className={Styles.travelTopics}>
+          <Swiper
+            style={{
+              "--border-radius": "8px",
+            }}
+            slideSize={70}
+            trackOffset={15}
+            loop
+            stuckAtBoundary={false}
+          >
+            {topics &&
+              topics.map((topic) => {
+                return (
+                  <Swiper.Item key={topic.topicId} onClick={() => router.push(`/travelTopic?info=${topic.topicId}`)}>
+                    <div
+                      className={Styles.topicCard}
+                      style={{
+                        backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0)), url(${topic.image?.url})`,
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <div className={Styles.topicName}>
+                        {topic.topicName}
+                        <span className={Styles.topicHeat}>{topic.heatText}条游记</span>
+                      </div>
                     </div>
-                    <div className={Styles.viewInfo}>
-                      <img
-                        className={Styles.iconSee}
-                        src={item.user.interactionIcon}
-                        alt={" 浏览数"}
-                        width={14}
-                        height={14}
-                      />
-                      <span className={Styles.viewNumber}>{item.user.interactionText}</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          ))}
-        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
+                  </Swiper.Item>
+                );
+              })}
+          </Swiper>
+        </div>
+        <TravelWaterFlow notes={searchInfo} />
       </div>
-    </>
+    </div>
   );
 };
 

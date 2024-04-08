@@ -1,44 +1,107 @@
 import { useRouter } from "next/router";
-import React, { createContext, useState,useMemo} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Typography, Divider } from 'antd';
-import { NavBar, TextArea, Card, Popup, Button, CheckList, SearchBar } from "antd-mobile";
+import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast } from "antd-mobile";
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
 import AddImage from "../components/AddImage";
 import styles from "../styles/post.module.scss";
+import { options } from '../data/province'
 
 const items = ['公开可见', '仅自己可见']
 interface FormData {
     id: number;
     title: string;
+    coverImg: string;
+    user: {
+        icon: string,
+        nickName: string,
+        interactionText: string,
+        likeCount: number,
+        commentCount: number,
+        shareCount: number,
+        interactionIcon: string,
+    },
+    city: string;
+    isChecked: number;
+    checkReason: string;
+    districtPoiCollect: string;
+    url: string[];
+
+
     content: string;
-    images: string[]; // 所有图片
-    publishDisplayTime: string;
+    publishTime: string;
+    firstPublishTime: string,
+    publishDisplayTime: string,
+    shootTime: string,
+    shootDisplayTime: string
 }
 
 const { Title } = Typography;
 export default function AddPost() {
     const router = useRouter();
-    const [visible, setVisible] = useState(false)
+    const [visible2, setVisible2] = useState(false)
     const [selected, setSelected] = useState('公开可见')
+    const [selectedCity, setSelectedCity] = useState('');
+    const [value, setValue] = useState<(string | number)[]>([])
+
     const [formData, setFormData] = useState<FormData>({
+
         id: 0,
         title: '',
+        coverImg: '',
+        user: {
+            icon: '',
+            nickName: '',
+            interactionText: '',
+            likeCount: 0,
+            commentCount: 0,
+            shareCount: 0,
+            interactionIcon: '',
+        },
+        city: '',
+        isChecked: 0,
+        checkReason: '',
+        districtPoiCollect: '',
+        url: [],
         content: '',
+        publishTime: '',
+        firstPublishTime: '',
         publishDisplayTime: '',
-        images: []
+        shootTime: '',
+        shootDisplayTime: '',
     });
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        // console.log(storedUser);
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                user: {
+                    ...prevFormData.user,
+                    icon: user.avatar,
+                    nickName: user.username,
+                },
+            }));
+
+
+        }
+
+    }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
 
     const handleInputChange = (name: string, value: string) => {
         setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = () => {
-        const newId = formData.id + 1;
+        if (!formData.title || !formData.content) {
+            Toast.show('标题和正文不能为空！');
+            return; // 不执行提交操作
+        }
         const publishDisplayTime = new Date().toISOString();
-
         setFormData(prevFormData => ({
             ...prevFormData,
-            id: newId,
+            // id: newId,
             publishDisplayTime: publishDisplayTime,
 
         }));
@@ -51,16 +114,38 @@ export default function AddPost() {
                 },
                 body: JSON.stringify(formData)
             });
+            Toast.show('发布成功！');
         } catch (error) {
             console.error('Error posting data:', error);
         }
     };
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
-        setFormData({ ...formData, images: thumbUrls });
+        console.log('thumbUrls', thumbUrls)
+
+        setFormData({ ...formData, url: thumbUrls });
     };
     const filteredItems = useMemo(() => {
-          return items
-      }, items)
+        return items
+    }, items)
+    const handleAddLocation = async () => {
+        const value = await Cascader.prompt({
+            options,
+            title: '选择地址',
+        });
+        if (value) {
+            const selectedCity = value.join('-'); // 将选择的地址拼接成一个字符串
+            setSelectedCity(selectedCity); // 更新组件中的状态
+            // 更新表单数据中的 city 字段
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                city: selectedCity,
+            }));
+            Toast.show(`你选择了 ${selectedCity}`);
+        } else {
+            Toast.show('你没有进行选择');
+        }
+    };
+
 
 
 
@@ -100,52 +185,56 @@ export default function AddPost() {
             <div>
                 <Card style={{ height: 200, marginBottom: '20px', lineHeight: '20px' }}>
                     <div style={{ display: 'flex', paddingRight: '40px' }}>
-                        <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} /> <Title level={4} style={{ display: 'flex', alignItems: 'center' }}> 添加地点</Title>
+                        <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} />
+                        <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
+                            <div onClick={handleAddLocation}>添加地点</div>
+                        </Title>
+
 
                     </div>
                     <br />
-                    <div style={{ display: 'flex', width:'100%',justifyContent:'space-between',alignItems:'center' }}>
-                    <div style={{ display: 'flex', paddingRight: '40px'}}>
-                        <TeamOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} /> <Title level={4} style={{ display: 'flex', alignItems: 'center' }}> 
-                        <div onClick={() => {
-                                setVisible(true)
-                            }}>公开选项</div>
-                        
-                        </Title>
-                        
-                        <Popup
-                            visible={visible}
-                            onMaskClick={() => {
-                                setVisible(false)
-                            }}
-                            destroyOnClose
-                        >
-                            <div className={styles.searchBarContainer}>
-                            </div>
-                            <div className={styles.checkListContainer}>
-                                <CheckList
-                                    className={styles.myCheckList}
-                                    defaultValue={[selected]}
-                                    onChange={val => {
-                                        setSelected(val[0] as string)
-                                        setVisible(false)
-                                    }}
-                                >
-                                    {filteredItems.map(item => (
-                                        <CheckList.Item key={item} value={item}>
-                                            {item}
-                                        </CheckList.Item>
-                                    ))}
-                                </CheckList>
-                            </div>
-                           
-                        </Popup>
-                    </div>
-                    <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right'}}>{selected}</div>
+                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', paddingRight: '40px' }}>
+                            <TeamOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} /> <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
+                                <div onClick={() => {
+                                    setVisible2(true)
+                                }}>公开选项</div>
+                            </Title>
+                            <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{formData.city}</div>
+
+                            <Popup
+                                visible={visible2}
+                                onMaskClick={() => {
+                                    setVisible2(false)
+                                }}
+                                destroyOnClose
+                            >
+                                <div className={styles.searchBarContainer}>
+                                </div>
+                                <div className={styles.checkListContainer}>
+                                    <CheckList
+                                        className={styles.myCheckList}
+                                        defaultValue={[selected]}
+                                        onChange={val => {
+                                            setSelected(val[0] as string)
+                                            setVisible2(false)
+                                        }}
+                                    >
+                                        {filteredItems.map(item => (
+                                            <CheckList.Item key={item} value={item}>
+                                                {item}
+                                            </CheckList.Item>
+                                        ))}
+                                    </CheckList>
+                                </div>
+
+                            </Popup>
+                        </div>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{selected}</div>
 
                     </div>
-                    
-                    
+
+
 
                     <br />
                     <div style={{ display: 'flex', paddingRight: '40px' }}>

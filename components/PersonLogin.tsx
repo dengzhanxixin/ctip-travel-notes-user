@@ -7,7 +7,7 @@ import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, De
 import { UploadOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
-import { clearHistory } from "../data/userData";
+
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -19,6 +19,7 @@ const PersonLogin = () => {
   const [text, setText] = useState("简单的自我介绍，让你更受欢迎！");
   const [editingText, setEditingText] = useState(text);
   const [visible, setVisible] = useState(false);
+  const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
 
   // 增加新的state来存储用户信息
   const [userInfo, setUserInfo] = useState({
@@ -26,17 +27,21 @@ const PersonLogin = () => {
     avatar: "/person.png", // 这里应该是你的默认头像路径
   });
 
-  // 当组件加载时，尝试从localStorage中获取用户信息
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+    // console.log(storedUser);
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserInfo({
         username: user.username,
         avatar: user.avatar,
       });
+      // console.log(user.username)
+      setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }
+    console.log(isLogin);
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
+
   const logout = () => {
     // 移除特定的项
     // localStorage.removeItem('token');

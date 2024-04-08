@@ -1,0 +1,106 @@
+.container {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.navBar {
+  height: 60px;
+  .barUser {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    .userIcon {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+  .notFollow {
+    border: 1px solid #bbb;
+  }
+  .isFollow {
+    border: 1px solid #bbb;
+    background: #bbb;
+    color: #fff;
+  }
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.imgSwiper {
+    width: 100%;
+    aspect-ratio: 3/4;
+    color: #ffffff;
+  }
+
+.contentText {
+    margin: 0 15px;
+    margin-top: 10px;
+    .travelTitle{
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .travelText {
+      white-space: pre-wrap; //  让div解析换行符
+      font-size: 17px;
+    }
+
+    .briefTime{
+      padding: 16px 0 14px;
+      color: #999999;
+      .ip {
+        margin-left: 10px;
+        margin-right: 16px;
+      }
+    }
+}
+
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  .comment{
+    width: 45%;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 16px;
+    color: #bbbbbb;
+    background-color: rgba($color: #000000, $alpha: 0.05)
+  }
+
+  .barBtn{
+    border: none;
+    outline: none;
+  }
+
+
+
+}
+
+.customBadge{
+  color: #000;
+  font-size: 10px;
+}
+
+
+.shareSofts {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  padding: 10px 12px;
+  .shareAPP {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .appName {
+      margin-top: 5px;
+    }
+  }
+}
+
+
