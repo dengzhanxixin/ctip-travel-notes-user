@@ -37,6 +37,12 @@ const PersonLogin = () => {
       });
     }
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
+  const logout = () => {
+    // 移除特定的项
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('user');
+    router.push(`/login`)
+  }
 
   // 处理双击事件，进入编辑模式
   const handleDoubleClick = () => {
@@ -56,6 +62,40 @@ const PersonLogin = () => {
   const AddPost = () => {
     router.push(`/AddPost`);
   };
+  const mockContent = () => (
+    <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
+      <SetOutline fontSize={iconSize} /> 个人设置
+      <br />
+      <br />
+      <ContentOutline fontSize={iconSize} /> 浏览记录
+      <br />
+      <br />
+      <MailOpenOutline fontSize={iconSize} /> 草稿箱
+      <br />
+      <br />
+      {/* <DeleteOutline fontSize={iconSize} onClick={() =>
+                Dialog.confirm({
+                  content: '是否确认清空全部个人信息',
+                  onConfirm: async () => {
+                      clearHistory();
+                    Toast.show({
+                      icon: 'success',
+                      content: '提交成功',
+                      position: 'bottom',
+                    })
+                  },
+                })} /> 清空个人信息
+          <br /><br />
+          <Divider /> */}
+      <br />
+      <br />
+      <Button block color="primary" size="large">
+          {userInfo.username === "尊敬的用户" ? (
+          <div onClick={() => router.push("/login")}>点击登陆</div>
+        ) : (<div onClick={() => router.push("/login")}>退出登陆</div>)}
+      </Button>
+    </div>
+  );
 
   return (
     <div className={style.background}>
@@ -75,7 +115,7 @@ const PersonLogin = () => {
         position="left"
         bodyStyle={{ width: "50vw", padding: "10px" }}
       >
-        {mockContent}
+        {mockContent()}
       </Popup>
 
       <Card className={style.cardContainer}>
@@ -140,38 +180,7 @@ const PersonLogin = () => {
 };
 const iconSize = 33;
 
-const mockContent = (
-  <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
-    <SetOutline fontSize={iconSize} /> 个人设置
-    <br />
-    <br />
-    <ContentOutline fontSize={iconSize} /> 浏览记录
-    <br />
-    <br />
-    <MailOpenOutline fontSize={iconSize} /> 草稿箱
-    <br />
-    <br />
-    {/* <DeleteOutline fontSize={iconSize} onClick={() =>
-              Dialog.confirm({
-                content: '是否确认清空全部个人信息',
-                onConfirm: async () => {
-                    clearHistory();
-                  Toast.show({
-                    icon: 'success',
-                    content: '提交成功',
-                    position: 'bottom',
-                  })
-                },
-              })} /> 清空个人信息
-        <br /><br />
-        <Divider /> */}
-    <br />
-    <br />
-    <Button block color="primary" size="large">
-      退出登陆
-    </Button>
-  </div>
-);
+
 
 export async function mockUpload(file: File) {
   // await sleep(3000)

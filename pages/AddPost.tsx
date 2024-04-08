@@ -127,7 +127,7 @@ export default function AddPost() {
                                     className={styles.myCheckList}
                                     defaultValue={[selected]}
                                     onChange={val => {
-                                        setSelected(val[0])
+                                        setSelected(val[0] as string)
                                         setVisible(false)
                                     }}
                                 >

@@ -16,5 +16,11 @@
     "username": "admin3",
     "password": "$2b$10$obO.6k92dyaJJsaWg2huWuhpVhpWW2hwoBZljMscUHUno0AnngQSO",
     "avatar": "images/avatar1.png"
+  },
+  {
+    "id": 4,
+    "username": "001",
+    "password": "$2b$10$OiEYX7dGDFUMCXwT1eTtqOL43haAiXXnPaVvxyhfQRYUgjW67Lg5S",
+    "avatar": "images/avatar1.png"
   }
 ]
