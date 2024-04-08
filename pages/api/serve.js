@@ -45,4 +45,4 @@ app.get('/api/getpost', (req, res) => {
 });
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
-}); 4
+}); 
