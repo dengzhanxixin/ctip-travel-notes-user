@@ -1,0 +1,56 @@
+.page {
+  display: flex;
+  flex-direction: column; /* 以列方式堆叠子元素 */
+  justify-content: center; /* 垂直居中子元素 */
+  align-items: center; /* 水平居中子元素 */
+  height: 100vh;
+  background-image: url('../public/images/background_login.png');
+  background-size: cover; /* 背景图片覆盖整个元素 */
+  background-position: center; /* 背景图片居中显示 */
+  color: #ffffff; /* 文字颜色为白色 */
+  text-align: center; /* 所有子元素的文字居中对齐 */
+
+  .logo {
+    margin-top: -100px;
+    margin-bottom: 20px; /* 在 logo 和卡片之间添加间距 */
+    width: 200px; 
+    height: 200px;
+  }
+
+  .am-card {
+    width: 90%;
+    max-width: 400px;
+    background-color: #127BDC; // 深一点的蓝色背景
+    border-radius: 15px; // 圆角
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 简单的阴影效果
+  }
+
+  .am-button {
+    margin-top: 20px;
+    border-radius: 15px; // 圆角按钮
+  }
+
+  .am-input {
+    --border-radius: 15px; // 圆角输入框
+    --padding-horizontal: 16px; // 调整内边距使得更加宽敞
+  }
+
+  .avatarSelection, .avatarDisplay {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 50px; // 头像大小
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 10px;
+    cursor: pointer;
+    border: 2px solid transparent; // 默认无边框
+
+    &:hover, &.selected {
+      border-color: #ffffff; // 鼠标悬停或选中时的边框颜色
+    }
+  }
+}
