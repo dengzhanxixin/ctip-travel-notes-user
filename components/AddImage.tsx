@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Button, Image, Upload } from "antd";
-import { Toast } from "antd-mobile"
+import { Toast} from "antd-mobile"
 import type { GetProp, UploadFile, UploadProps } from 'antd';
 import { LoadingOutlined, PlusOutlined,UploadOutlined } from '@ant-design/icons';
+
 import styles from "../styles/post.module.scss";
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
@@ -62,12 +63,13 @@ const AddImage = ({ onThumbUrlsChange }: { onThumbUrlsChange: (thumbUrls: string
             <div style={{ marginTop: 8, fontSize: '14px' }}>上传图片</div>
         </button>
     );
+
+      
     return (
         <>
             <Upload className={styles.commonModal +' '+styles.paramsModal}
                 listType="picture-card"
                 fileList={fileList}
-                showUploadList
                 onChange={handleChange}
                 beforeUpload={beforeUpload}
                 onRemove={onRemove}
