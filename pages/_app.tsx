@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
     <>
-      {(router.pathname === "/travelDetail" || router.pathname === "/searchPage") ? (
+      {(router.pathname === "/travelDetail" || router.pathname === "/searchPage" || router.pathname === "/") ? (
         <Component {...pageProps} />
       ) : (
         <BottomBar>
