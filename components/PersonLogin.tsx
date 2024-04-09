@@ -39,7 +39,6 @@ const PersonLogin = () => {
       // console.log(user.username)
       setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }
-    console.log(isLogin);
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
 
   const logout = () => {

@@ -18,6 +18,7 @@ interface TravelNoteProps  {
   title: string;
   coverImg: string;
   city: string;
+  isChecked:number;
 
   user: UserInfo;
 };
@@ -46,9 +47,14 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   // 点击推荐卡片跳转到详情页
   const router = useRouter();
 
-  const handleClick = (id: number) => {
+  const handleClick = (id: number, isChecked:number) => {
+    if(isChecked === 1){
+       router.push(`/travelDetail?id=${id.toString()}`);
+    }else{
+      router.push(`/EditPost`)
+    }
 
-    router.push(`/travelDetail?id=${id.toString()}`);
+    
   }
 
   // 请求推荐列表数据
@@ -77,6 +83,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
     setHasMore(res.items.length > 0);
   }
 
+
   // 瀑布流，通过设置grid-row-end属性实现
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const handleSetGridRowEnd = (index: number) => {
@@ -94,7 +101,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
           travelNoteList.map((item, i) => (
             <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
               <Card
-                onClick={() => handleClick(item.id)}
+                onClick={() => handleClick(item.id,item.isChecked)}
                 className={Styles.travelCard}
                 bodyStyle={{ padding: "0" }}
                 key={item.id}

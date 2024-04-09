@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import UserPostInfo from "@/data/user_data/userData.json";
-
+import UserPostInfo from "../../data/user_data/userData.json";
 
 interface UserPost {
     [key: string]: any;

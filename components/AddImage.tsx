@@ -19,7 +19,9 @@ const getBase64 = (file: FileType): Promise<string> =>
 
 
 const AddImage = ({ onThumbUrlsChange }: { onThumbUrlsChange: (thumbUrls: string[]) => void }) => {
-    const [fileList, setFileList] = useState<UploadFile[]>([])
+    const [fileList, setFileList] = useState<UploadFile[]>([
+        
+    ])
     const [thumbUrls, setThumbUrls] = useState<string[]>([])
     const [loading, setLoading] = useState(false);
 

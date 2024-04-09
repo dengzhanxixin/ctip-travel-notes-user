@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from 'react';
-import { Typography, Divider,AutoComplete } from 'antd';
+import { Typography, Divider } from 'antd';
 import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast } from "antd-mobile";
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
 import AddImage from "../components/AddImage";
@@ -43,20 +43,6 @@ export default function AddPost() {
     const [selected, setSelected] = useState('公开可见')
     const [selectedCity, setSelectedCity] = useState('');
     const [value, setValue] = useState<(string | number)[]>([])
-    const [options, setOptions] = useState([
-        { value: '清明-放假快乐' },
-        { value: '清明出游' },
-        // 其他关联文字
-    ]);
-    const [inputValue, setInputValue] = useState('');
-
-    const handleInput = (value: string) => {
-        setInputValue(value);
-    };
-
-    const handleSelect = (value: string) => {
-        setInputValue(value);
-    };
 
     const [formData, setFormData] = useState<FormData>({
 
@@ -129,7 +115,6 @@ export default function AddPost() {
                 body: JSON.stringify(formData)
             });
             Toast.show('发布成功！');
-            router.push('/person');
         } catch (error) {
             console.error('Error posting data:', error);
         }
@@ -174,17 +159,6 @@ export default function AddPost() {
                 </div>
             </div>
             {/* 加载标题 */}
-            {/* <AutoComplete
-                style={{ width: '90%', fontSize: '20px', fontWeight: 'bold' }}
-                options={options.map(option => ({ value: option.value }))}
-                onChange={handleInput}
-                onSelect={handleSelect}
-                value={inputValue}
-                placeholder="请填写你的游记标题～"
-                filterOption={(inputValue, option) =>
-                    option?.value?.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-                }
-            /> */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
                 <TextArea
                     name='title'
@@ -210,18 +184,14 @@ export default function AddPost() {
             </div>
             <div>
                 <Card style={{ height: 200, marginBottom: '20px', lineHeight: '20px' }}>
-                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', paddingRight: '40px' }}>
-                            <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} />
-                            <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
-                                <div onClick={handleAddLocation}>添加地点</div>
-                            </Title>
-                        </div>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{formData.city}</div>
+                    <div style={{ display: 'flex', paddingRight: '40px' }}>
+                        <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} />
+                        <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
+                            <div onClick={handleAddLocation}>添加地点</div>
+                        </Title>
+
 
                     </div>
-
-
                     <br />
                     <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div style={{ display: 'flex', paddingRight: '40px' }}>
@@ -230,6 +200,7 @@ export default function AddPost() {
                                     setVisible2(true)
                                 }}>公开选项</div>
                             </Title>
+                            <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{formData.city}</div>
 
                             <Popup
                                 visible={visible2}
