@@ -1,0 +1,24 @@
+.cover {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-image: url(/images/cover1.png);
+    background-size: cover; /* 确保背景图片覆盖整个容器 */
+    background-position: center; /* 图片在容器中居中显示 */
+}
+
+.time {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: rgba($color: #000, $alpha: 0.3);
+    top: 10px;
+    right: 10px;
+
+    color: #fff;
+    font-size: 20px;
+}
