@@ -7,8 +7,8 @@ interface travelNoteFilterPayload {
   searchTitle?: string; // 查询标题与搜索词相关的旅游日记
   searchUser?: string; // 查询该用户的旅游日记
   searchCity?: string; // 查询关于该城市的旅游日记
-  strictSearch?: boolean; // 严格搜索还是模糊搜索
-  // searchContent?: string; // 查询内容与搜索词相关的旅游日记
+  strictSearch?: boolean; 
+  searchChecked?: number; // 严格搜索还是模糊搜索
 }
 
 interface travelNoteItem {
@@ -34,7 +34,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
       payload.strictSearch
         ? (payload.searchTitle && item.title === payload.searchTitle) ||
           (payload.searchUser && item.user.nickName === payload.searchUser) ||
-          (payload.searchCity && item.city === payload.searchCity)
+          (payload.searchCity && item.city === payload.searchCity)||
+          (payload.searchChecked && item.isChecked === payload.searchChecked)
         : (payload.searchTitle && item.title.includes(payload.searchTitle))  ||
           (payload.searchUser && item.user.nickName.includes(payload.searchUser)) ||
           (payload.searchCity && item.city.includes(payload.searchCity))

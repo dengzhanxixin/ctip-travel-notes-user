@@ -31,8 +31,8 @@ const MyPost: React.FC = () => {
   const [userInfo, setUserInfo] = useState([]);
   // const travelInfo = { PageSize: 0, PageIndex: 0, searchUser: info, strictSearch: true };
   const travelInfo: TravelInfo[] = [
-    { PageSize: 0, PageIndex: 0, searchUser: info, strictSearch: true },
-    { PageSize: 0, PageIndex: 0, searchUser: info, strictSearch: false },
+    { PageSize: 10, PageIndex: 0, searchUser: info, strictSearch: true },
+    { PageSize: 10, PageIndex: 0, searchUser: info, strictSearch: false },
     // 其他旅行信息对象
   ];
   const [ishidden, setIsHidden] = useState(false);
@@ -64,6 +64,7 @@ const MyPost: React.FC = () => {
         const unpublished = data.items.filter((note: TravelNoteProps) => note.isChecked !== 1);
         setPublishedNotes(published);
         setUnpublishedNotes(unpublished);
+        console.log(published);
       }
     };
     fetchData();
