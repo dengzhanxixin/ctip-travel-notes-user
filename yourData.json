@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "66",
+    "title": "11",
     "coverImg": "/images/user/id1_images_i0.jpg",
     "user": {
       "icon": "images/avatar1.png",
@@ -12,7 +12,7 @@
       "shareCount": 0,
       "interactionIcon": ""
     },
-    "city": "",
+    "city": "北京市",
     "isChecked": 0,
     "checkReason": "",
     "districtPoiCollect": "",
@@ -23,7 +23,16 @@
     "shootTime": "",
     "shootDisplayTime": "",
     "images": [
-      "/images/user/id1_images_i0.jpg"
+      {
+        "url": "/images/user/id1_images_i0.jpg",
+        "width": 0,
+        "height": 0
+      },
+      {
+        "url": "/images/user/id1_images_i1.jpg",
+        "width": 0,
+        "height": 0
+      }
     ]
   }
 ]

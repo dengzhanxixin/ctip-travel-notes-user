@@ -15,7 +15,6 @@ const { Title } = Typography;
 export default function AddPost() {
     const router = useRouter();
     const id = parseInt(router.query.id as string);
-    const [formData, setFormData] = useState('')
     const [visible2, setVisible2] = useState(false)
     const [selected, setSelected] = useState('公开可见')
     const [selectedCity, setSelectedCity] = useState('');
@@ -29,7 +28,6 @@ export default function AddPost() {
             setEditorData(prevEditorData => ({
                 ...prevEditorData,
                 id: params.toString(),
-    
             }));
             const data = await response.json();
             setEditorData(data);
@@ -41,7 +39,6 @@ export default function AddPost() {
         fetchTravelNote(id);
     }, [id]);
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
-        console.log('thumbUrls', thumbUrls)
         setEditorData(prevEditorData => ({
             ...prevEditorData,
             images: thumbUrls
@@ -59,14 +56,15 @@ export default function AddPost() {
             publishDisplayTime: publishDisplayTime,
 
         }));
+        console.log('SubEditorData', EditorData)
 
         try {
-            const response = fetch(`/api/newPost`, {
+            const response = fetch(`/api/editorPost`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(EditorData)
             });
             Toast.show('发布成功！');
             router.push('/person');
@@ -101,13 +99,13 @@ export default function AddPost() {
             Toast.show('你没有进行选择');
         }
     };
-    // console.log('EditorData', EditorData&&EditorData.title)
+    // console.log('EditorData.images', EditorData&&EditorData.images)
 
     return (
         <>
             <div style={{ width: "100%", height: "140px" }}>
                 <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
-                {EditorData && <AddImage ImgList={EditorData.images || []} onThumbUrlsChange={handleThumbUrlsChange} />}
+                {EditorData && <AddImage ImgList={EditorData.images} onThumbUrlsChange={handleThumbUrlsChange} />}
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>

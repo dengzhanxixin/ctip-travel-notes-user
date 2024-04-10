@@ -49,7 +49,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
       return '其他状态';
     }
   }
-
+  
   return (
     <>
       <div className={styles.container}>

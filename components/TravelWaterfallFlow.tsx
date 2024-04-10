@@ -61,6 +61,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
       },
     });
     const data = await response.json();
+    console.log('data',data);
     return data;
   }
 
