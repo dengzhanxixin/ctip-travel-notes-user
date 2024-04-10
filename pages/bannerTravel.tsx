@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Swiper, Tag, Space } from "antd-mobile";
+import { Swiper, Tag, FloatingBubble } from "antd-mobile";
+import { EditSFill } from "antd-mobile-icons";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
@@ -25,7 +26,7 @@ type topicProps = {
 };
 
 const TravelList: React.FC = () => {
-  const searchInfo = { PageSize: 10, PageIndex: 0, searchChecked:1};
+  const searchInfo = { PageSize: 10, PageIndex: 0, searchChecked: 1 };
   const [ishidden, setIsHidden] = useState(false);
   const [topics, setTopics] = useState<topicProps[]>([]);
   const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
@@ -57,7 +58,6 @@ const TravelList: React.FC = () => {
     };
 
     fetchData();
-
 
     contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
 
@@ -96,22 +96,22 @@ const TravelList: React.FC = () => {
           </div>
           <div className={Styles.searchButton}>搜索</div>
         </div>
-          <div className={`${Styles.hotWords} ${ishidden ? Styles.hidden : ''}`}>
-            <ul className={Styles.wordsContainer}>
-              {hotCityList.map((item) => (
-                <Tag
-                  round
-                  className={Styles.tag}
-                  key={item.cityID}
-                  onClick={() => {
-                    router.push(`/travelCity?info=${item.cityName}`);
-                  }}
-                >
-                  {item.cityName}
-                </Tag>
-              ))}
-            </ul>
-          </div>
+        <div className={`${Styles.hotWords} ${ishidden ? Styles.hidden : ""}`}>
+          <ul className={Styles.wordsContainer}>
+            {hotCityList.map((item) => (
+              <Tag
+                round
+                className={Styles.tag}
+                key={item.cityID}
+                onClick={() => {
+                  router.push(`/travelCity?info=${item.cityName}`);
+                }}
+              >
+                {item.cityName}
+              </Tag>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className={Styles.content} ref={contentRef}>
         <div className={Styles.travelTopics}>

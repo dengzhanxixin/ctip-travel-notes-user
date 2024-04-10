@@ -5,9 +5,7 @@ import { AppOutline, UserOutline, AddSquareOutline } from "antd-mobile-icons";
 import Styles from "../styles/bottomBar.module.scss";
 
 const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-  });
+  const [isLogin, setIsLogin] = useState(false);// 初始化为未登录状态
   const router = useRouter();
   // 定义底部栏
   const tabs = [
@@ -17,7 +15,7 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
       icon: <AppOutline />,
     },
     {
-      key: userInfo.username!=="" ? "/AddPost":"/login",
+      key: isLogin ? "/AddPost": "/login",
       title: "发布游记",
       icon: <AddSquareOutline />,
     },
@@ -32,12 +30,9 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      setUserInfo({
-        username: user.username,
-      });
+      setIsLogin(true);
     }
-    console.log(1);
-  }, [localStorage]);
+  }, []);
 
   const setRouteActive = (value: string) => {
     router.push(value);

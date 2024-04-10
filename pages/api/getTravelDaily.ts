@@ -40,7 +40,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
           (payload.searchUser && item.user.nickName.includes(payload.searchUser)) ||
           (payload.searchCity && item.city.includes(payload.searchCity))
     );
-    
+
     searchData = searchData.filter((item) =>
       payload.notChecked?
       (item.isChecked != payload.searchChecked):(item.isChecked === payload.searchChecked)

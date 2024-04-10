@@ -41,12 +41,6 @@ const PersonLogin = () => {
     }
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
 
-  const logout = () => {
-    // 移除特定的项
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('user');
-    router.push(`/login`)
-  }
 
   const handleClick = () => { 
     if(userInfo.username === "尊敬的用户"){
@@ -56,6 +50,10 @@ const PersonLogin = () => {
       // 移除特定的项
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      setUserInfo({
+        username: "尊敬的用户",
+        avatar: "/person.png", // 这里应该是你的默认头像路径
+      })
       router.push("/bannerTravel");
     }
   }
@@ -76,10 +74,13 @@ const PersonLogin = () => {
     setIsEditing(false); // 退出编辑模式
   };
   const AddPost = () => {
+    console.log(userInfo.username);
     if(userInfo.username === "尊敬的用户"){
       router.push("/login");
+    }else{
+      router.push(`/AddPost`);
     }
-    router.push(`/AddPost`);
+    
   };
   const mockContent = () => (
     <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
