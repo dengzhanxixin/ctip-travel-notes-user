@@ -76,6 +76,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 id:newId,title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
                 content, publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images:updatedImages
             };
+            newData.coverImg = images[0];
 
             userData.push(newData);
 
