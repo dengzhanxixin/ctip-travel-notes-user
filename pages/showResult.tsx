@@ -4,7 +4,7 @@ import { NavBar, Swiper, SwiperRef } from "antd-mobile";
 import Styles from "@/styles/showResult.module.scss";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import TravelWaterFlow from "@/components/TravelWaterfallFlow";
+import TravelWaterFlow from "@/components/TravelWaterFlow";
 import UserInfoList from "@/components/UserInfoList";
 
 // interface Props {
@@ -55,6 +55,7 @@ const SearchInfo: React.FC = () => {
     searchUser: info,
     searchCity: info,
     strictSearch: false,
+    searchChecked:1
   };
   const [isTravel, setIsTravel] = useState(false);
   const [isUser, setIsUser] = useState(false);

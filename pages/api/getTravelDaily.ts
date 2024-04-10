@@ -40,16 +40,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
           (payload.searchUser && item.user.nickName.includes(payload.searchUser)) ||
           (payload.searchCity && item.city.includes(payload.searchCity))
     );
-    // if(payload.notChecked){
-    //   searchData = searchData.filter((item) =>(item.isChecked === 0))
-    // }else{
-    //   searchData = searchData.filter((item) =>(item.isChecked === payload.searchChecked))
-    // }
+    
     searchData = searchData.filter((item) =>
       payload.notChecked?
       (item.isChecked != payload.searchChecked):(item.isChecked === payload.searchChecked)
     );
-    console.log('searchData',searchData);
   }
 
   const startIndex = 5 * ((payload.PageIndex || 1) - 1);

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Swiper, Tag, Space } from "antd-mobile";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
-import TravelWaterFlow from "@/components/TravelWaterfallFlow";
+import TravelWaterFlow from "@/components/TravelWaterFlow";
 
 const searchHotWords = ["上海", "上海迪斯尼", "东方明珠塔"];
 const hotCityList = [

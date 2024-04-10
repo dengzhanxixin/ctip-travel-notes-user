@@ -22,5 +22,11 @@
     "username": "001",
     "password": "$2b$10$OiEYX7dGDFUMCXwT1eTtqOL43haAiXXnPaVvxyhfQRYUgjW67Lg5S",
     "avatar": "images/avatar1.png"
+  },
+  {
+    "id": 5,
+    "username": "123",
+    "password": "$2b$10$uboIU3aTFLGUDu76GV02N.6unCHSVkeF0wDMYB5gsWwD1AMf9EWKC",
+    "avatar": "images/avatar1.png"
   }
 ]

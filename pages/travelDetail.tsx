@@ -31,6 +31,9 @@ const shareBtns = [
 ];
 
 const TravelDetail: React.FC = () => {
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+  });
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
     islike: false,
@@ -59,6 +62,13 @@ const TravelDetail: React.FC = () => {
 
   useEffect(() => {
     fetchTravelNote(id);
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserInfo({
+        username: user.username,
+      });
+    }
   }, [id]);
 
   return (
@@ -75,7 +85,9 @@ const TravelDetail: React.FC = () => {
           <Button
             shape="rounded"
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
-            onClick={() => setCommentState({ ...commentState, isFollow: !commentState.isFollow })}
+            onClick={() => { userInfo.username!==''?
+              setCommentState({ ...commentState, isFollow: !commentState.isFollow }): router.push('/login')
+            }}
           >
             {commentState.isFollow ? "已关注" : "+ 关注"}
           </Button>
@@ -124,18 +136,21 @@ const TravelDetail: React.FC = () => {
             <Button
               className={Styles.barBtn}
               onClick={() => {
-                if (commentState.islike === false) {
+                if (userInfo.username!=='' && commentState.islike === false) {
                   setCommentState({
                     ...commentState,
                     islike: true,
                     likeNum: commentState.likeNum + 1,
                   });
-                } else {
+                } else if (userInfo.username!=='' &&commentState.islike === true) {
                   setCommentState({
                     ...commentState,
                     islike: false,
                     likeNum: commentState.likeNum - 1,
                   });
+                }
+                else {
+                  router.push('/login')
                 }
               }}
             >
@@ -153,16 +168,16 @@ const TravelDetail: React.FC = () => {
           </Button>
           <Popup visible={isShare} onClose={() => setShareState(false)}>
             <NavBar onBack={() => setShareState(false)}>分享至</NavBar>
-              <ul className={Styles.shareSofts} >
-                {shareBtns.map((share) => {
-                  return (
-                    <li className={Styles.shareAPP}>
-                      <span className={share.icon} style={{fontSize: "45px"}}/>
-                      <div className={Styles.appName}>{share.text}</div>
-                    </li>
-                  );
-                })}
-              </ul>
+            <ul className={Styles.shareSofts}>
+              {shareBtns.map((share) => {
+                return (
+                  <li className={Styles.shareAPP}>
+                    <span className={share.icon} style={{ fontSize: "45px" }} />
+                    <div className={Styles.appName}>{share.text}</div>
+                  </li>
+                );
+              })}
+            </ul>
           </Popup>
           <Badge
             content={<div className={Styles.customBadge}>{commentState.saveNum}</div>}
@@ -172,18 +187,21 @@ const TravelDetail: React.FC = () => {
             <Button
               className={Styles.barBtn}
               onClick={() => {
-                if (commentState.isSave === false) {
+                if (userInfo.username!=='' && commentState.isSave === false) {
                   setCommentState({
                     ...commentState,
                     isSave: true,
                     saveNum: commentState.saveNum + 1,
                   });
-                } else {
+                } else if(userInfo.username!=='' && commentState.isSave === true) {
                   setCommentState({
                     ...commentState,
                     isSave: false,
                     saveNum: commentState.saveNum - 1,
                   });
+                }
+                else {
+                  router.push('/login');
                 }
               }}
             >

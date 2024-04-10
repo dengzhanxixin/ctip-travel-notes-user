@@ -91,7 +91,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, '');
             const buffer = Buffer.from(base64Data, 'base64');
             const imgPath = path.join('public', 'images', 'user', `id${id}_images_i${index}.jpg`);
-            const Path = path.join('/', 'images', 'user', `id${id}_images_i${index}.jpg`);
+            const Path = path.join('/', 'images', 'user', `id${id}_images_i${index}.jpg`).replace(/\\/g, '/');
 
             fs.writeFileSync(imgPath, buffer);
 
@@ -102,7 +102,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 console.error('Error uploading image:', error);
             }
         });
-        newData.coverImg = path.join('/', 'images', 'user', `id${id}_images_i${0}.jpg`);;
+        newData.coverImg = path.join('/', 'images', 'user', `id${id}_images_i${0}.jpg`).replace(/\\/g, '/');;
 
 
         // 将新数据对象添加到 userData 数组中

@@ -48,6 +48,18 @@ const PersonLogin = () => {
     router.push(`/login`)
   }
 
+  const handleClick = () => { 
+    if(userInfo.username === "尊敬的用户"){
+      router.push("/login");
+    }
+    else{
+      // 移除特定的项
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      router.push("/bannerTravel");
+    }
+  }
+
   // 处理双击事件，进入编辑模式
   const handleDoubleClick = () => {
     setIsEditing(true);
@@ -64,6 +76,9 @@ const PersonLogin = () => {
     setIsEditing(false); // 退出编辑模式
   };
   const AddPost = () => {
+    if(userInfo.username === "尊敬的用户"){
+      router.push("/login");
+    }
     router.push(`/AddPost`);
   };
   const mockContent = () => (
@@ -93,10 +108,8 @@ const PersonLogin = () => {
           <Divider /> */}
       <br />
       <br />
-      <Button block color="primary" size="large">
-          {userInfo.username === "尊敬的用户" ? (
-          <div onClick={() => router.push("/login")}>点击登陆</div>
-        ) : (<div onClick={() => router.push("/login")}>退出登陆</div>)}
+      <Button block color="primary" size="large" onClick={()=>handleClick()}>
+          {userInfo.username==="尊敬的用户" ? "点击登陆":"退出登陆"}
       </Button>
     </div>
   );

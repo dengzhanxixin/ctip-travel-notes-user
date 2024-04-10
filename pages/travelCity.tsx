@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState, useRef } from "react";
 import { NavBar } from "antd-mobile";
 import Styles from "@/styles/travelCity.module.scss";
-import TravelWaterFlow from "@/components/TravelWaterfallFlow";
+import TravelWaterFlow from "@/components/TravelWaterFlow";
 
 type cityProps = {
   cityName: string;

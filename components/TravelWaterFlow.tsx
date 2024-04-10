@@ -2,7 +2,7 @@ import React, { useState, useRef} from "react";
 import { Card, InfiniteScroll} from "antd-mobile";
 import Styles from "@/styles/travelWaterfallFlow.module.scss";
 import { useRouter } from "next/router";
-import WaterFollow from "./WaterFollow";
+import WaterFollow from "./WaterFlow";
 import Check from "./Check";
 import Image from "next/image";
 
@@ -31,8 +31,8 @@ interface travelNoteListProps {
     searchUser?: string; // 查询该用户的旅游日记
     searchCity?: string; // 查询关于该城市的旅游日记
     strictSearch?: boolean; // 严格搜索还是模糊搜索
-    searchChecked: number; 
-    notChecked?: boolean;
+    searchChecked: number; // 游记审核状态
+    notChecked?: boolean; // 
   }
 
 interface Props {
@@ -44,8 +44,6 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
-  console.log(PageProp);
-
 //   const travelNoteList = travelNotes;
 
   // 点击推荐卡片跳转到详情页
@@ -69,14 +67,12 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   async function loadMore() {
     setPageProp((val) => ({ ...val, PageIndex: val.PageIndex + 1 }));
     const res = await fetchTravelNoteList(PageProp);
-    console.log('PageProp',PageProp);
     setTravelNoteList((val) => {
       const filteredItems = res.items.filter(
         (item: TravelNoteProps) => !val.some((v: TravelNoteProps) => v.id === item.id)
       );
       return [...val, ...filteredItems];
     });
-    console.log(res.items);
     setHasMore(res.items.length > 0);
   }
   
@@ -95,7 +91,6 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   return (
     <>
     {PageProp.notChecked?<Check travelNoteList={travelNoteList} />:<WaterFollow travelNoteList={travelNoteList} />}
-      
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </>
   );

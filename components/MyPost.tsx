@@ -2,7 +2,7 @@ import { Empty, Card, Drawer, Button } from 'antd';
 import { CapsuleTabs } from 'antd-mobile'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
-import TravelWaterFlow from "@/components/TravelWaterfallFlow";
+import TravelWaterFlow from "@/components/TravelWaterFlow";
 
 interface TravelInfo {
   PageSize: number;
@@ -22,10 +22,7 @@ interface TravelNoteProps {
 
 const MyPost: React.FC = () => {
   const router = useRouter();
-  const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
   const [isMyPost, setIsMyPost] = useState(false); // 0表示未发表过游记
-  const [publishedNotes, setPublishedNotes] = useState<TravelNoteProps[]>([]);
-  const [unpublishedNotes, setUnpublishedNotes] = useState<TravelNoteProps[]>([]);
   const [userInfo, setUserInfo] = useState({
     username: "",
     avatar: "", // 这里应该是你的默认头像路径
@@ -34,16 +31,7 @@ const MyPost: React.FC = () => {
   const DoneInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked:1, strictSearch: true};
   const WaitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked:1, strictSearch: true, notChecked:true };
 
-  const [ishidden, setIsHidden] = useState(false);
 
-  const handleScroll = () => {
-    const offset = contentRef.current?.scrollTop; // 获取滚动位置
-    if (offset && offset > 160) {
-      setIsHidden(true);
-    } else {
-      setIsHidden(false);
-    }
-  };
 
 
   useEffect(() => {
@@ -54,13 +42,9 @@ const MyPost: React.FC = () => {
         username: user.username,
         avatar: user.avatar,
       });
+      setIsMyPost(true);
     }
-    setIsMyPost(!userInfo.username)
-    contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
-
-    return () => {
-      contentRef.current?.removeEventListener("scroll", handleScroll); // 移除滚动事件监听器
-    };
+    
 
   }, []);
 
@@ -88,7 +72,6 @@ const MyPost: React.FC = () => {
             )}
           </CapsuleTabs.Tab>
         </CapsuleTabs>
-
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         </div>
       </div>
