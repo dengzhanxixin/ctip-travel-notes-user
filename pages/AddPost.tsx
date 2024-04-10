@@ -43,11 +43,6 @@ export default function AddPost() {
     const [selected, setSelected] = useState('公开可见')
     const [selectedCity, setSelectedCity] = useState('');
     const [value, setValue] = useState<(string | number)[]>([])
-    const [options, setOptions] = useState([
-        { value: '清明-放假快乐' },
-        { value: '清明出游' },
-        // 其他关联文字
-    ]);
     const [inputValue, setInputValue] = useState('');
 
     const handleInput = (value: string) => {
@@ -136,7 +131,6 @@ export default function AddPost() {
     };
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
         console.log('thumbUrls', thumbUrls)
-
         setFormData({ ...formData, url: thumbUrls });
     };
     const filteredItems = useMemo(() => {
@@ -170,21 +164,9 @@ export default function AddPost() {
             {/* 上传图片 */}
             <div style={{ width: "100%", height: "140px" }}>
                 <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
-                    <AddImage onThumbUrlsChange={handleThumbUrlsChange} />
+                    <AddImage ImgList={[]} onThumbUrlsChange={handleThumbUrlsChange} />
                 </div>
             </div>
-            {/* 加载标题 */}
-            {/* <AutoComplete
-                style={{ width: '90%', fontSize: '20px', fontWeight: 'bold' }}
-                options={options.map(option => ({ value: option.value }))}
-                onChange={handleInput}
-                onSelect={handleSelect}
-                value={inputValue}
-                placeholder="请填写你的游记标题～"
-                filterOption={(inputValue, option) =>
-                    option?.value?.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-                }
-            /> */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
                 <TextArea
                     name='title'

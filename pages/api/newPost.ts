@@ -56,6 +56,7 @@ interface CurrentData {
     shootTime: string,
     shootDisplayTime: string
 }
+const userDataPath = path.join(process.cwd(), 'data', 'user_data', 'userData.json');
 
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -65,9 +66,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     } = req.body as CurrentData;
     if (req.method === "POST") {
 
-
         // 1. 本地储存文章Json
-        const userDataPath = path.join(process.cwd(), 'data', 'user_data', 'userData.json');
+
         let userData: FormData[] = [];
         try {
             const userDataContent = fs.readFileSync(userDataPath, 'utf8');
@@ -90,8 +90,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             // const imgPath = `data:image/jpeg;base64,${imageUrl}`;
             const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, '');
             const buffer = Buffer.from(base64Data, 'base64');
-            const imgPath = path.join('public', 'images', 'user',`id${id}_images_i${index}.jpg`);
-            const Path = path.join('/', 'images', 'user',`id${id}_images_i${index}.jpg`);
+            const imgPath = path.join('public', 'images', 'user', `id${id}_images_i${index}.jpg`);
+            const Path = path.join('/', 'images', 'user', `id${id}_images_i${index}.jpg`);
 
             fs.writeFileSync(imgPath, buffer);
 
@@ -102,7 +102,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 console.error('Error uploading image:', error);
             }
         });
-        newData.coverImg = path.join('/', 'images', 'user',`id${id}_images_i${0}.jpg`);;
+        newData.coverImg = path.join('/', 'images', 'user', `id${id}_images_i${0}.jpg`);;
 
 
         // 将新数据对象添加到 userData 数组中
@@ -117,5 +117,40 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.status(500).json({ success: false, message: 'Failed to write user data' });
         }
     }
+    const jsonData = fs.readFileSync(userDataPath, 'utf8');
+    const dataArray = JSON.parse(jsonData);
+
+    // 用于存储已删除的对象的索引
+    const indexesToDelete: number[] = [];
+
+    // 遍历数组以查找重复的 ID 和发布时间更早或为空的对象
+    dataArray.forEach((item: CurrentData, index: number) => {
+        const currentIndex = indexesToDelete.indexOf(index);
+        if (currentIndex !== -1) return; // 如果该对象已被标记为要删除，则跳过
+
+        const duplicateIndex = dataArray.findIndex((otherItem:CurrentData, otherIndex:number) => {
+            return index !== otherIndex && item.id === otherItem.id;
+        });
+
+        if (duplicateIndex !== -1) {
+            const earlierItem = dataArray[duplicateIndex].publishDisplayTime;
+            const currentItem = item.publishDisplayTime;
+            if (!earlierItem || (currentItem && earlierItem > currentItem)) {
+                indexesToDelete.push(duplicateIndex);
+            } else {
+                indexesToDelete.push(index);
+            }
+        }
+    });
+
+    // 删除重复的对象
+    indexesToDelete.forEach((indexToDelete) => {
+        dataArray.splice(indexToDelete, 1);
+    });
+
+    // 将更新后的数组写回到 JSON 文件中
+    fs.writeFileSync('yourData.json', JSON.stringify(dataArray, null, 2), 'utf8');
+
+    console.log('Duplicates removed successfully.');
 }
 

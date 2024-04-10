@@ -8,7 +8,8 @@ interface travelNoteFilterPayload {
   searchUser?: string; // 查询该用户的旅游日记
   searchCity?: string; // 查询关于该城市的旅游日记
   strictSearch?: boolean; 
-  searchChecked?: number; // 严格搜索还是模糊搜索
+  searchChecked: number; // 严格搜索还是模糊搜索
+  notChecked?: boolean; // 查询未审核的旅游日记
 }
 
 interface travelNoteItem {
@@ -34,12 +35,21 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
       payload.strictSearch
         ? (payload.searchTitle && item.title === payload.searchTitle) ||
           (payload.searchUser && item.user.nickName === payload.searchUser) ||
-          (payload.searchCity && item.city === payload.searchCity)||
-          (payload.searchChecked && item.isChecked === payload.searchChecked)
+          (payload.searchCity && item.city === payload.searchCity)
         : (payload.searchTitle && item.title.includes(payload.searchTitle))  ||
           (payload.searchUser && item.user.nickName.includes(payload.searchUser)) ||
           (payload.searchCity && item.city.includes(payload.searchCity))
     );
+    // if(payload.notChecked){
+    //   searchData = searchData.filter((item) =>(item.isChecked === 0))
+    // }else{
+    //   searchData = searchData.filter((item) =>(item.isChecked === payload.searchChecked))
+    // }
+    searchData = searchData.filter((item) =>
+      payload.notChecked?
+      (item.isChecked != payload.searchChecked):(item.isChecked === payload.searchChecked)
+    );
+    console.log('searchData',searchData);
   }
 
   const startIndex = 5 * ((payload.PageIndex || 1) - 1);

@@ -17,11 +17,13 @@ const getBase64 = (file: FileType): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 
+interface AddImageProps {
+    onThumbUrlsChange: (thumbUrls: string[]) => void;
+    ImgList: UploadFile[]; // 接收 ImgListList 作为 prop
+}
 
-const AddImage = ({ onThumbUrlsChange }: { onThumbUrlsChange: (thumbUrls: string[]) => void }) => {
-    const [fileList, setFileList] = useState<UploadFile[]>([
-        
-    ])
+const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
+    const [fileList, setFileList] = useState<UploadFile[]>(ImgList)
     const [thumbUrls, setThumbUrls] = useState<string[]>([])
     const [loading, setLoading] = useState(false);
 
@@ -30,16 +32,22 @@ const AddImage = ({ onThumbUrlsChange }: { onThumbUrlsChange: (thumbUrls: string
         setFileList(newFileList);
         const newThumbUrls: string[] = [];
         newFileList.forEach((file: UploadFile) => {
-            // 对每个文件获取其Base64编码
-            getBase64(file.originFileObj as FileType)
+            if(file.url){
+                newThumbUrls.push(file.url);
+            }else{
+                getBase64(file.originFileObj as FileType)
                 .then(base64Data => {
                     newThumbUrls.push(base64Data);
                 })
                 .catch(error => {
                     console.error('Error converting file to base64:', error);
                 });
+                
+            }
         });
+        
         setThumbUrls(newThumbUrls);
+        console.log('newFileList',thumbUrls)
         onThumbUrlsChange(newThumbUrls);
 
     }

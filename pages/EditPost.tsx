@@ -8,100 +8,54 @@ import styles from "../styles/post.module.scss";
 import { options } from '../data/province'
 
 const items = ['公开可见', '仅自己可见']
-interface FormData {
-    id: number;
-    title: string;
-    coverImg: string;
-    user: {
-        icon: string,
-        nickName: string,
-        interactionText: string,
-        likeCount: number,
-        commentCount: number,
-        shareCount: number,
-        interactionIcon: string,
-    },
-    city: string;
-    isChecked: number;
-    checkReason: string;
-    districtPoiCollect: string;
-    url: string[];
-
-
-    content: string;
-    publishTime: string;
-    firstPublishTime: string,
-    publishDisplayTime: string,
-    shootTime: string,
-    shootDisplayTime: string
+interface EditorDetailProps {
+    [key: string]: any;
 }
-
 const { Title } = Typography;
 export default function AddPost() {
     const router = useRouter();
+    const id = parseInt(router.query.id as string);
+    const [formData, setFormData] = useState('')
     const [visible2, setVisible2] = useState(false)
     const [selected, setSelected] = useState('公开可见')
     const [selectedCity, setSelectedCity] = useState('');
-    const [value, setValue] = useState<(string | number)[]>([])
-
-    const [formData, setFormData] = useState<FormData>({
-
-        id: 0,
-        title: '',
-        coverImg: '',
-        user: {
-            icon: '',
-            nickName: '',
-            interactionText: '',
-            likeCount: 0,
-            commentCount: 0,
-            shareCount: 0,
-            interactionIcon: '',
-        },
-        city: '',
-        isChecked: 0,
-        checkReason: '',
-        districtPoiCollect: '',
-        url: [],
-        content: '',
-        publishTime: '',
-        firstPublishTime: '',
-        publishDisplayTime: '',
-        shootTime: '',
-        shootDisplayTime: '',
-    });
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        // console.log(storedUser);
-        if (storedUser) {
-            const user = JSON.parse(storedUser);
-            setFormData(prevFormData => ({
-                ...prevFormData,
-                user: {
-                    ...prevFormData.user,
-                    icon: user.avatar,
-                    nickName: user.username,
-                },
+    const [EditorData, setEditorData] = useState<EditorDetailProps>();
+    const fetchTravelNote = async (id: number) => {
+        try {
+            const params = new URLSearchParams({
+                id: id?.toString(),
+            });
+            const response = await fetch(`/api/getTravelDetail?${params.toString()}`);
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
+                id: params.toString(),
+    
             }));
-
-
+            const data = await response.json();
+            setEditorData(data);
+        } catch (err) {
+            Toast.show("Failed to fetch travel details.");
         }
-
-    }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
-
-    const handleInputChange = (name: string, value: string) => {
-        setFormData({ ...formData, [name]: value });
     };
+    useEffect(() => {
+        fetchTravelNote(id);
+    }, [id]);
+    const handleThumbUrlsChange = (thumbUrls: string[]) => {
+        console.log('thumbUrls', thumbUrls)
+        setEditorData(prevEditorData => ({
+            ...prevEditorData,
+            images: thumbUrls
+        }));
 
+    };
     const handleSubmit = () => {
-        if (!formData.title || !formData.content) {
+        if (!(EditorData&&EditorData.title) || !(EditorData&&EditorData.content)) {
             Toast.show('标题和正文不能为空！');
             return; // 不执行提交操作
         }
         const publishDisplayTime = new Date().toISOString();
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            // id: newId,
+        setEditorData(prevEditorData => ({
+            ...prevEditorData,
             publishDisplayTime: publishDisplayTime,
 
         }));
@@ -115,14 +69,16 @@ export default function AddPost() {
                 body: JSON.stringify(formData)
             });
             Toast.show('发布成功！');
+            router.push('/person');
         } catch (error) {
             console.error('Error posting data:', error);
         }
     };
-    const handleThumbUrlsChange = (thumbUrls: string[]) => {
-        console.log('thumbUrls', thumbUrls)
-
-        setFormData({ ...formData, url: thumbUrls });
+    const handleInputChange = (name: string, value: string) => {
+        setEditorData(prevEditorData => ({
+            ...prevEditorData,
+            [name]: value
+        }));
     };
     const filteredItems = useMemo(() => {
         return items
@@ -136,8 +92,8 @@ export default function AddPost() {
             const selectedCity = value.join('-'); // 将选择的地址拼接成一个字符串
             setSelectedCity(selectedCity); // 更新组件中的状态
             // 更新表单数据中的 city 字段
-            setFormData(prevFormData => ({
-                ...prevFormData,
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
                 city: selectedCity,
             }));
             Toast.show(`你选择了 ${selectedCity}`);
@@ -145,23 +101,19 @@ export default function AddPost() {
             Toast.show('你没有进行选择');
         }
     };
-
-
-
-
+    // console.log('EditorData', EditorData&&EditorData.title)
 
     return (
-        <div className="containerImage">
-            {/* 上传图片 */}
+        <>
             <div style={{ width: "100%", height: "140px" }}>
                 <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
-                    <AddImage onThumbUrlsChange={handleThumbUrlsChange} />
+                {EditorData && <AddImage ImgList={EditorData.images || []} onThumbUrlsChange={handleThumbUrlsChange} />}
                 </div>
             </div>
-            {/* 加载标题 */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
                 <TextArea
                     name='title'
+                    value={EditorData && EditorData.title}
                     style={{ width: '90%', height: '10px', fontSize: '20px', fontWeight: 'bold' }}
                     onChange={(value) => { handleInputChange('title', value) }}
                     placeholder="请填写你的游记标题～"
@@ -170,11 +122,12 @@ export default function AddPost() {
                     autoSize />
             </div>
             <Divider dashed />
-            {/* 编写正文 */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '200px', marginBottom: '10px' }}>
+             {/* 编写正文 */}
+             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '200px', marginBottom: '10px' }}>
                 <TextArea
                     name='content'
                     style={{ width: '90%', height: '100%' }}
+                    value={EditorData && EditorData.content}
                     onChange={(value) => { handleInputChange('content', value) }}
                     placeholder="请在这里输入你的游记正文吧～"
                     showCount
@@ -184,14 +137,18 @@ export default function AddPost() {
             </div>
             <div>
                 <Card style={{ height: 200, marginBottom: '20px', lineHeight: '20px' }}>
-                    <div style={{ display: 'flex', paddingRight: '40px' }}>
-                        <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} />
-                        <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
-                            <div onClick={handleAddLocation}>添加地点</div>
-                        </Title>
-
+                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', paddingRight: '40px' }}>
+                            <EnvironmentOutlined style={{ fontSize: '32px', width: '30px', padding: '0 10px 10px 0' }} />
+                            <Title level={4} style={{ display: 'flex', alignItems: 'center' }}>
+                                <div onClick={handleAddLocation}>添加地点</div>
+                            </Title>
+                        </div>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{EditorData && EditorData.city}</div>
 
                     </div>
+
+
                     <br />
                     <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div style={{ display: 'flex', paddingRight: '40px' }}>
@@ -200,7 +157,6 @@ export default function AddPost() {
                                     setVisible2(true)
                                 }}>公开选项</div>
                             </Title>
-                            <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'right' }}>{formData.city}</div>
 
                             <Popup
                                 visible={visible2}
@@ -247,6 +203,6 @@ export default function AddPost() {
                 <button style={{ width: '90%' }} onClick={handleSubmit}>提交</button>
             </div>
 
-        </div>
+        </>
     )
 }
