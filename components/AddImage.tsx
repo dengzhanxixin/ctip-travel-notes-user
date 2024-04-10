@@ -1,8 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Image, Upload } from "antd";
-import { Toast} from "antd-mobile"
+import { Toast } from "antd-mobile"
 import type { GetProp, UploadFile, UploadProps } from 'antd';
-import { LoadingOutlined, PlusOutlined,UploadOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 
 import styles from "../styles/post.module.scss";
 
@@ -23,33 +23,36 @@ interface AddImageProps {
 }
 
 const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
-    const [fileList, setFileList] = useState<UploadFile[]>(ImgList)
+    const [fileList, setFileList] = useState<UploadFile[]>(ImgList);
     const [thumbUrls, setThumbUrls] = useState<string[]>([])
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (!fileList && ImgList) {
+            setFileList(ImgList);
+        }
+    }, [fileList, ImgList]);
+
 
 
     const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
         setFileList(newFileList);
         const newThumbUrls: string[] = [];
+        console.log('newFileList', newFileList)
         newFileList.forEach((file: UploadFile) => {
-            if(file.url){
+            if (file.url) {
                 newThumbUrls.push(file.url);
-            }else{
+            } else
                 getBase64(file.originFileObj as FileType)
-                .then(base64Data => {
-                    newThumbUrls.push(base64Data);
-                })
-                .catch(error => {
-                    console.error('Error converting file to base64:', error);
-                });
-                
-            }
+                    .then(base64Data => {
+                        newThumbUrls.push(base64Data);
+                    })
+                    .catch(error => {
+                        console.error('Error converting file to base64:', error);
+                    });
         });
-        
         setThumbUrls(newThumbUrls);
-        console.log('newFileList',thumbUrls)
         onThumbUrlsChange(newThumbUrls);
-
     }
 
     const onRemove = (file: UploadFile) => {
@@ -74,10 +77,10 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
         </button>
     );
 
-      
+
     return (
         <>
-            <Upload className={styles.commonModal +' '+styles.paramsModal}
+            {fileList ? <Upload className={styles.commonModal + ' ' + styles.paramsModal}
                 listType="picture-card"
                 fileList={fileList}
                 onChange={handleChange}
@@ -85,7 +88,8 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 onRemove={onRemove}
             >
                 {fileList.length >= maxCount ? null : uploadButton}
-            </Upload>
+            </Upload> : null}
+
         </>
     )
 }
