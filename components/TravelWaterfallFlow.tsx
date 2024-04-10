@@ -44,6 +44,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
+  console.log(PageProp);
 
 //   const travelNoteList = travelNotes;
 
@@ -75,6 +76,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
       );
       return [...val, ...filteredItems];
     });
+    console.log(res.items);
     setHasMore(res.items.length > 0);
   }
   

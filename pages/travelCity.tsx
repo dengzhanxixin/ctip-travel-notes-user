@@ -15,7 +15,7 @@ type cityProps = {
 const CityTravelNotes: React.FC = () => {
   const router = useRouter();
   const info = router.query.info as string;
-  const travelInfo = { PageSize: 10, PageIndex: 0, searchCity: info, strictSearch: true };
+  const travelInfo = { PageSize: 10, PageIndex: 0, searchCity: info, strictSearch: true, searchChecked:1 };
   const [cityInfo, setCityInfo] = useState<cityProps>();
   const [isReady, setIsReady] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null); // 创建 ref

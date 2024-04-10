@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import travelDailyData from "@/data/user_data/userData.json";
+import travelDailyData from "@/data/TravelData.json";
 
 interface travelNoteFilterPayload {
   PageIndex: number;

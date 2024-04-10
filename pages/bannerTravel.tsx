@@ -25,7 +25,7 @@ type topicProps = {
 };
 
 const TravelList: React.FC = () => {
-  const searchInfo = { PageSize: 10, PageIndex: 0 };
+  const searchInfo = { PageSize: 10, PageIndex: 0, searchChecked:1};
   const [ishidden, setIsHidden] = useState(false);
   const [topics, setTopics] = useState<topicProps[]>([]);
   const contentRef = useRef<HTMLDivElement>(null); // 创建 ref
