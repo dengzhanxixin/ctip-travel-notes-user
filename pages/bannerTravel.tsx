@@ -122,6 +122,7 @@ const TravelList: React.FC = () => {
             slideSize={70}
             trackOffset={15}
             loop
+            autoplay
             stuckAtBoundary={false}
           >
             {topics &&

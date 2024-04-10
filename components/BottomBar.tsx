@@ -1,11 +1,13 @@
-import React, { PropsWithChildren, FC } from "react";
+import React, { PropsWithChildren, FC, useState, useEffect } from "react";
 import { TabBar } from "antd-mobile";
 import { useRouter } from "next/router";
 import { AppOutline, UserOutline, AddSquareOutline } from "antd-mobile-icons";
 import Styles from "../styles/bottomBar.module.scss";
 
 const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const storedUser = localStorage.getItem("user");
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+  });
   const router = useRouter();
   // 定义底部栏
   const tabs = [
@@ -15,7 +17,7 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
       icon: <AppOutline />,
     },
     {
-      key: storedUser? "/AddPost":"/login",
+      key: userInfo.username!=="" ? "/AddPost":"/login",
       title: "发布游记",
       icon: <AddSquareOutline />,
     },
@@ -25,6 +27,17 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
       icon: <UserOutline />,
     },
   ];
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserInfo({
+        username: user.username,
+      });
+    }
+    console.log(1);
+  }, [localStorage]);
 
   const setRouteActive = (value: string) => {
     router.push(value);
