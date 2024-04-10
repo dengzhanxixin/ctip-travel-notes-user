@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fs from 'fs';
 import path from 'path';
 
-const userDataPath = path.join(process.cwd(), 'data', 'user_data', 'userData.json');
+const userDataPath = path.join(process.cwd(), 'data', 'TravelData.json');
 
 interface FormData {
     id: number;
