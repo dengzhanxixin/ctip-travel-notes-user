@@ -5,7 +5,7 @@ import { AppOutline, UserOutline, AddSquareOutline } from "antd-mobile-icons";
 import Styles from "../styles/bottomBar.module.scss";
 
 const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const storedUser = localStorage.getItem("user");
+  // const storedUser = localStorage.getItem("user");
   const router = useRouter();
   // 定义底部栏
   const tabs = [
@@ -15,7 +15,7 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
       icon: <AppOutline />,
     },
     {
-      key: storedUser? "/AddPost":"/login",
+      key:  "/AddPost",
       title: "发布游记",
       icon: <AddSquareOutline />,
     },

@@ -31,6 +31,39 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
   const handleClick = (id: number, isChecked: number) => {
     router.push(`/EditPost?id=${id.toString()}`);
   }
+  async function fetchId(id: number) {
+    const response = await fetch(`/api/delete`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id }) // 注意将 id 包装在对象中
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        // 删除成功，显示成功消息
+        Toast.show('删除成功！');
+        window.location.reload();
+        
+      } else {
+        // 删除失败，显示失败消息
+        Toast.show('删除失败！');
+      }
+    } else {
+      // 请求失败，显示错误消息
+      console.error('Error posting data:', response.statusText);
+    }
+  }
+  const Delete = async (id: number) => {
+    try {
+      await fetchId(id); // 等待 fetchId 函数完成
+    } catch (error) {
+      console.error('Error posting data:', error);
+      // 处理请求错误的情况
+    }
+  }
+
   const handleSetGridRowEnd = (index: number) => {
     const cardRef = cardRefs.current[index];
     if (!cardRef) return;
@@ -74,23 +107,23 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
 
                 <Divider />
                 <div className={styles.footer} onClick={e => e.stopPropagation()}>
-                  {!item.isChecked?<Button
+                  {!item.isChecked ? <Button
                     className={styles.checkingButton}
                     color='primary'
                     onClick={() => {
                       Toast.show('点击了底部按钮')
                     }}
-                  >待审核 </Button>:<Button
+                  >待审核 </Button> : <Button
                     className={styles.checkRejectButton}
                     color='primary'
                     onClick={() => {
                       Toast.show('点击了底部按钮')
                     }}
-                  >审核未通过</Button>} 
-                  
-                  
-                  {item.isChecked != 3 ? <div><Button className={styles.editButton}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
-                  </div> : <div><Button className={styles.editButton}>删除</Button>
+                  >审核未通过</Button>}
+
+
+                  {item.isChecked != 3 ? <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
+                  </div> : <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button>
                   </div>}
                 </div>
 
@@ -102,4 +135,3 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
   )
 }
 export default WaitCheack;
-
