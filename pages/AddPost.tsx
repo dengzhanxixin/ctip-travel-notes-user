@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from 'react';
+import type { FC } from 'react'
 import { Typography, Divider,AutoComplete } from 'antd';
 import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast } from "antd-mobile";
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
@@ -9,7 +10,7 @@ import { options } from '../data/province'
 
 const items = ['公开可见', '仅自己可见']
 interface FormData {
-    id: number;
+    id: string
     title: string;
     coverImg: string;
     user: {
@@ -55,7 +56,7 @@ export default function AddPost() {
 
     const [formData, setFormData] = useState<FormData>({
 
-        id: 0,
+        id: '0',
         title: '',
         coverImg: '',
         user: {
@@ -103,10 +104,26 @@ export default function AddPost() {
     };
 
     const handleSubmit = () => {
-        if (!formData.title || !formData.content) {
-            Toast.show('标题和正文不能为空！');
-            return; // 不执行提交操作
-        }
+        console.log('Now formData.url.length',formData.url.length);
+        const conditions = [
+            { condition: !formData.title, message: '标题不能为空' },
+            { condition: !formData.content, message: '正文不能为空' },
+            { condition: formData.url.length = 0, message: '图片不能为空' }
+        ];
+        
+        const errorMessage = conditions
+            .filter(condition => condition.condition)
+            .map(condition => condition.message)
+            .join('且');
+        
+        if (errorMessage) {
+            Toast.show(errorMessage);
+            return;
+        } 
+        // if (!formData.title || !formData.content||!formData.url) {
+        //     Toast.show('标题和正文不能为空！');
+        //     return; // 不执行提交操作
+        // }
         const publishDisplayTime = new Date().toISOString();
         setFormData(prevFormData => ({
             ...prevFormData,
@@ -132,6 +149,7 @@ export default function AddPost() {
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
         console.log('thumbUrls', thumbUrls)
         setFormData({ ...formData, url: thumbUrls });
+        // console.log('formData.url.length',formData.url.length);
     };
     const filteredItems = useMemo(() => {
         return items

@@ -8,7 +8,7 @@ interface Image {
     height: number;
 }
 interface FormData {
-    id: number;
+    id: string;
     title: string;
     coverImg: string;
     user: {
@@ -96,9 +96,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 return image.url;
             });
         }
-
-
-       
 
         let publishTime = new Date().toISOString();
         let coverNewImg = updatedImages[0];

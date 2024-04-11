@@ -67,21 +67,21 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
             setFileList(fileListWithVersion);
         }
     }, [ImgList]);
-    console.log(fileList, typeof (fileList))
+    // console.log(fileList, typeof (fileList))
 
     const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
         const newThumbUrls: string[] = [];
     
         const updatedFileList: UploadFile[] = await Promise.all(newFileList.map(async (file: UploadFile) => {
             if (file.url) {
-                console.log('file.url', file.url)
+                
                 let urlWithoutVersion = file.url;
                 // 检查是否包含版本信息，如果包含，去掉版本信息
                 const versionIndex = urlWithoutVersion.indexOf('?v=');
                 if (versionIndex !== -1) {
                     urlWithoutVersion = urlWithoutVersion.substring(0, versionIndex);
                 }
-                console.log('urlWithoutVersion', urlWithoutVersion)
+                
                 newThumbUrls.push(urlWithoutVersion);
                 return file
 
@@ -106,36 +106,6 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
         onThumbUrlsChange(newThumbUrls); // 触发回调函数
         setFileList(updatedFileList);
     };
-    
-    // const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
-    //     setFileList(newFileList);
-    //     const newThumbUrls: string[] = [];
-    //     newFileList.forEach((file: UploadFile) => {
-    //         if (file.url) {
-    //             console.log('file.url', file.url)
-    //             let urlWithoutVersion = file.url;
-    //             // 检查是否包含版本信息，如果包含，去掉版本信息
-    //             const versionIndex = urlWithoutVersion.indexOf('?v=');
-    //             if (versionIndex !== -1) {
-    //                 urlWithoutVersion = urlWithoutVersion.substring(0, versionIndex);
-    //             }
-    //             console.log('urlWithoutVersion', urlWithoutVersion)
-    //             newThumbUrls.push(urlWithoutVersion);
-    //         } else {
-    //             getBase64(file.originFileObj as FileType)
-    //             .then(base64Data => {
-    //                 newThumbUrls.push(base64Data);
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error converting file to base64:', error);
-    //             });
-    //         }
-
-    //     });
-    //     setThumbUrls(newThumbUrls);
-    //     console.log('newThumbUrls', newThumbUrls)
-    //     onThumbUrlsChange(newThumbUrls);
-    // }
 
     const onRemove = (file: UploadFile) => {
         const index = fileList.indexOf(file);
