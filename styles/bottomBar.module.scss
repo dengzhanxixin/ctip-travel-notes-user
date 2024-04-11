@@ -8,7 +8,23 @@
     }
     .footer {
       width: 100%;
-      height: 50px; /* 页脚的高度 */
-      background: #fff;
+      height: 60px; /* 页脚的高度 */
+      background: rgb(130, 191, 166);
+      font-size: 20px;
     }
   }
+  .tabBar{
+    color: white;
+  }
+  .paramsModal {
+  :global {
+    .adm-tab-bar-warp{
+      .adm-tab-bar-item{
+        font-size: 1.5vh;
+      }
+
+    }
+    
+    
+  }
+}

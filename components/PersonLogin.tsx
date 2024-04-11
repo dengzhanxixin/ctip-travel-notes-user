@@ -3,10 +3,11 @@ import style from "../styles/person.module.scss";
 import { Card, Button, NavBar, TextArea, Popup, FloatingBubble, Divider, Toast, Dialog } from "antd-mobile";
 import { List, Space, message, Row, Input, Avatar } from "antd";
 import type { GetProp, UploadProps, UploadFile } from "antd";
-import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, AddCircleOutline, } from "antd-mobile-icons";
-import { LikeOutlined, MessageOutlined, StarOutlined  } from "@ant-design/icons";
+import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, AddCircleOutline, CheckCircleOutline } from "antd-mobile-icons";
+import { LikeOutlined, MessageOutlined, StarOutlined, } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
+import AvatarUpload from "./AvatarUpload";
 
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
@@ -22,6 +23,8 @@ const PersonLogin = () => {
   const [visible4, setVisible4] = useState(false)
   const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
+  const [imageUrl, setImageUrl] = useState<string>('');
+
 
   // 增加新的state来存储用户信息
   const [userInfo, setUserInfo] = useState({
@@ -84,6 +87,40 @@ const PersonLogin = () => {
     }
 
   };
+  const onChange = (url: string) => {
+    setImageUrl(url)
+  }
+  const submitAvatar = (username: string, url: string) => {
+    const avatarData = {
+      username,
+      url,
+    };
+    try {
+      fetch("http://localhost:3001/api/avatar", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(avatarData)
+      })
+      .then(response => response.json()) // 解析响应数据为 JSON
+      .then(data => {
+        // 更新用户信息中的头像路径
+        setUserInfo(prevUserInfo => ({
+          ...prevUserInfo,
+          avatar: data.user.avatar // 使用从服务器返回的新头像路径更新用户信息
+        }));
+  
+        Toast.show('修改头像成功！');
+      })
+      .catch(error => {
+        console.error('Error posting data:', error);
+      });
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  }
+  
 
   const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
     <Space>
@@ -116,6 +153,8 @@ const PersonLogin = () => {
 
 
 
+
+
   return (
     <div className={style.background}>
 
@@ -133,6 +172,7 @@ const PersonLogin = () => {
       <div className={style.top}>
         <MoreOutline
           fontSize={36}
+          color="white"
           className={style.more}
           onClick={() => {
             setVisible(true);
@@ -141,8 +181,26 @@ const PersonLogin = () => {
         <Card className={style.cardContainer}>
           {/* 使用state中的avatar显示头像 */}
           <div className={style.avatarContainer}>
-            <AddCircleOutline fontSize={30} className={style.editorAvatar} onClick={() => { setIsEditor(true) }} />
-            <Avatar size={100} className={style.userAvatar} src={userInfo.avatar} alt="avatar" />
+
+            {isEditor ? (
+              <div>
+                <AvatarUpload onChange={onChange} />
+                <CheckCircleOutline fontSize={30} fontWeight={"bold"} color="rgb(243,242,239)" className={style.editorAvatar} onClick={() => { setIsEditor(false);
+                  submitAvatar(userInfo.username, imageUrl); }} />
+
+              </div>
+
+            ) : (
+              <div>
+                <AddCircleOutline fontSize={30} fontWeight={"bold"} color="rgb(243,242,239)" className={style.editorAvatar} onClick={() => {
+                  setIsEditor(true)
+                }}
+                />
+
+                <Avatar size={100} className={style.userAvatar} src={userInfo.avatar} alt="avatar" />
+              </div>
+            )}
+
           </div>
           <div className={style.username}>
             {/* 使用state中的username显示用户名 */}
@@ -174,25 +232,17 @@ const PersonLogin = () => {
               {text}
             </div>
           )}
-          <List.Item
-            actions={[
-              <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-            ]}
-          ></List.Item>
-          {/* <div className={style.sub}>
-            0
-          </div>
-          <div>
-            关注
-          </div>
-          <div className={style.fans}>
-            0
-          </div>
-          <div>
-            粉丝
-          </div> */}
+          <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
+            <div style={{ marginRight: '30px' }}>
+              <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />
+            </div>
+            <div style={{ marginRight: '30px' }}>
+              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />
+            </div>
+            <div style={{ listStyle: 'none' }}>
+              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />
+            </div>
+          </List.Item>
         </Card>
       </div>
 

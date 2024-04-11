@@ -3,6 +3,7 @@ import { CapsuleTabs } from 'antd-mobile'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
+import style from "../styles/person.module.scss";
 
 interface TravelInfo {
   PageSize: number;
@@ -53,7 +54,7 @@ const MyPost: React.FC = () => {
   return (
     <>
 
-      <div>
+      <div className={style.mypost}>
         <CapsuleTabs defaultActiveKey='1'>
           <CapsuleTabs.Tab title='已发布游记' key='1'>
             {isMyPost ? (
