@@ -111,67 +111,66 @@ app.get("/api/getpost", (req, res) => {
   console.log("One post data:", postDataArray[0]);
 });
 
-// // 微信分享后端接口实现
+// 微信分享后端接口实现
 
-// // 接口配置信息测试
-// app.get("/api/wxJssdk", (req, res) => {
-//   let wx = req.query;
+// 接口配置信息测试
+app.get("/api/wxJssdk", (req, res) => {
+  let wx = req.query;
 
-//   let token = "ctrip_wexinShare";
-//   let timestamp = wx.timestamp;
-//   let nonce = wx.nonce;
+  let token = "ctrip_wexinShare";
+  let timestamp = wx.timestamp;
+  let nonce = wx.nonce;
 
-//   // 将token、timestamp、nonce三个参数进行字典排序
-//   let list = [token, timestamp, nonce].sort();
+  // 将token、timestamp、nonce三个参数进行字典排序
+  let list = [token, timestamp, nonce].sort();
 
-//   // 将三个参数字符串拼接成一个字符串进行sha1加密
-//   let str = list.join("");
-//   let result = sha1(str);
+  // 将三个参数字符串拼接成一个字符串进行sha1加密
+  let str = list.join("");
+  let result = sha1(str);
 
-//   // 3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-//   if (result === wx.signature) {
-//     res.send(wx.echostr); // 返回微信传来的echostr，表示校验成功，此处不能返回其它
-//   } else {
-//     res.send(false);
-//   }
-// });
+  // 3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+  if (result === wx.signature) {
+    res.send(wx.echostr); // 返回微信传来的echostr，表示校验成功，此处不能返回其它
+  } else {
+    res.send(false);
+  }
+});
 
-// // 微信分享后端接口实现
-// app.post("/api/wxJssdk/getJssdk", async (req, res) => {
-//   const grant_type = "client_credential";
-//   // 测试号
-//   const appid = "wx7038d3636b5797ed";
-//   const secret = "bd3dbda5b59c8f6c1057fb9edd163acd";
-//   console.log(1);
+// 微信分享后端接口实现
+app.post("/api/wxJssdk/getJssdk", async (req, res) => {
+  const grant_type = "client_credential";
+  // 测试号
+  const appid = "wx7038d3636b5797ed";
+  const secret = "bd3dbda5b59c8f6c1057fb9edd163acd";
 
-//   try {
-//     const response1 = await axios.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret);
-//     const access_token = response1.data.access_token;
-//     const response2 = await axios.get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi");
-//     const jsapi_ticket = response2.data.ticket;
+  try {
+    const response1 = await axios.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret);
+    const access_token = response1.data.access_token;
+    const response2 = await axios.get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi");
+    const jsapi_ticket = response2.data.ticket;
 
-//     const nonce_str = "123456"; // 随机字符串
-//     const timestamp = new Date().getTime(); // 时间戳
-//     const url = req.query.url; // 请求的 URL
+    const nonce_str = "123456"; // 随机字符串
+    const timestamp = new Date().getTime(); // 时间戳
+    const url = req.query.url; // 请求的 URL
 
-//     // 构造待加密字符串
-//     const str = `jsapi_ticket=${jsapi_ticket}&noncestr=${nonce_str}&timestamp=${timestamp}&url=${url}`;
+    // 构造待加密字符串
+    const str = `jsapi_ticket=${jsapi_ticket}&noncestr=${nonce_str}&timestamp=${timestamp}&url=${url}`;
 
-//     // 使用 sha1 加密
-//     const signature = sha1(str);
+    // 使用 sha1 加密
+    const signature = sha1(str);
 
-//     res.send({
-//       appId: appid,
-//       timestamp: timestamp,
-//       nonceStr: nonce_str,
-//       signature: signature,
-//     });
-//   } catch (err) { 
-//     console.error("Error fetching data:", err.message);
-//     res.status(500).send("Internal Server Error");
-//   }
+    res.send({
+      appId: appid,
+      timestamp: timestamp,
+      nonceStr: nonce_str,
+      signature: signature,
+    });
+  } catch (err) { 
+    console.error("Error fetching data:", err.message);
+    res.status(500).send("Internal Server Error");
+  }
 
-// });
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
