@@ -102,8 +102,10 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                     onLoad={() => handleSetGridRowEnd(i)}
                   />
                   <div className={styles.travelTitle}>
+                    
                     <h3>{item.title}</h3>
-                    <p className={styles.checkReason}>{item.checkReason}</p>
+                    {item.isChecked !=0 ? <p className={styles.checkReason}>{item.checkReason}</p>: null}
+                    
                   </div>
 
 
