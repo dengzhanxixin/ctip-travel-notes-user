@@ -8,6 +8,7 @@ import { LikeOutlined, MessageOutlined, StarOutlined, } from "@ant-design/icons"
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
 import AvatarUpload from "./AvatarUpload";
+const path = require("path");
 
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
@@ -24,6 +25,7 @@ const PersonLogin = () => {
   const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
   const [imageUrl, setImageUrl] = useState<string>('');
+  
 
 
   // 增加新的state来存储用户信息
@@ -34,13 +36,28 @@ const PersonLogin = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    // console.log(storedUser);
+
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserInfo({
+        ...userInfo,
         username: user.username,
-        avatar: user.avatar,
+        // avatar: user.avatar,
       });
+      const isAvatar = path.join('images',`${user.username}_avatar.jpg`).replace(/\\/g, '/')
+      console.log('isAvatar',isAvatar)
+      if(isAvatar)
+        setUserInfo({
+          ...userInfo,
+          avatar: isAvatar,
+        })
+      else{
+        const user = JSON.parse(storedUser);
+        setUserInfo({
+          ...userInfo,
+          avatar: user.avatar,
+        })
+      }
       // console.log(user.username)
       setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }

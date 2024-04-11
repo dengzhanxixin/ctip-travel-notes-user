@@ -62,7 +62,8 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 uid: index.toString(),
                 name: image.name,
                 status: 'done',
-                url: `${image.url}?v=${version}`, // 附加版本信息
+                // url: `${image.url}?v=${version}`, // 附加版本信息
+                url: image.url, // 直接使用原始 URL
             }));
             setFileList(fileListWithVersion);
         }
@@ -71,6 +72,8 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
         const newThumbUrls: string[] = [];
+        console.log('newFileList', newFileList)
+
     
         const updatedFileList: UploadFile[] = await Promise.all(newFileList.map(async (file: UploadFile) => {
             if (file.url) {

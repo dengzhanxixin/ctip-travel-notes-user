@@ -17,6 +17,7 @@ interface TravelNoteProps {
   coverImg: string;
   city: string;
   isChecked: number;
+  checkReason: string;
   user: UserInfo;
 };
 interface WaterFollowProps {
@@ -102,8 +103,9 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                   />
                   <div className={styles.travelTitle}>
                     <h3>{item.title}</h3>
-                    {/* <div>{item.coverImg+version}</div> */}
+                    <p className={styles.checkReason}>{item.checkReason}</p>
                   </div>
+
 
                 </div>
 

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from 'react';
 import type { FC } from 'react'
-import { Typography, Divider,AutoComplete } from 'antd';
+import { Typography, Divider, AutoComplete } from 'antd';
 import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast } from "antd-mobile";
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
 import AddImage from "../components/AddImage";
@@ -45,6 +45,8 @@ export default function AddPost() {
     const [selectedCity, setSelectedCity] = useState('');
     const [value, setValue] = useState<(string | number)[]>([])
     const [inputValue, setInputValue] = useState('');
+    const [tempImages, setTempImages] = useState<string[]>([])
+    const [isReady, setIsReady] = useState(false);
 
     const handleInput = (value: string) => {
         setInputValue(value);
@@ -56,7 +58,7 @@ export default function AddPost() {
 
     const [formData, setFormData] = useState<FormData>({
 
-        id: '0',
+        id: '',
         title: '',
         coverImg: '',
         user: {
@@ -104,52 +106,51 @@ export default function AddPost() {
     };
 
     const handleSubmit = () => {
-        console.log('Now formData.url.length',formData.url.length);
+        console.log('Now formData.url.length', formData.url.length);
         const conditions = [
             { condition: !formData.title, message: '标题不能为空' },
             { condition: !formData.content, message: '正文不能为空' },
             { condition: formData.url.length = 0, message: '图片不能为空' }
         ];
-        
+
         const errorMessage = conditions
             .filter(condition => condition.condition)
             .map(condition => condition.message)
             .join('且');
-        
+
         if (errorMessage) {
             Toast.show(errorMessage);
             return;
-        } 
-        // if (!formData.title || !formData.content||!formData.url) {
-        //     Toast.show('标题和正文不能为空！');
-        //     return; // 不执行提交操作
-        // }
-        const publishDisplayTime = new Date().toISOString();
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            // id: newId,
-            // publishDisplayTime: publishDisplayTime,
-
-        }));
-
-        try {
-            const response = fetch(`/api/newPost`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            Toast.show('发布成功！');
-            router.push('/person');
-        } catch (error) {
-            console.error('Error posting data:', error);
         }
+
+        setFormData({ ...formData, url: tempImages });
+        setIsReady(true);
+
+
     };
+    useEffect(() => {
+        if (isReady) {
+            try {
+                const response = fetch(`/api/newPost`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                console.log('response', formData);
+
+                Toast.show('发布成功！');
+                router.push('/person');
+            } catch (error) {
+                console.error('Error posting data:', error);
+            }
+        }
+    }, [isReady]);
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
-        console.log('thumbUrls', thumbUrls)
-        setFormData({ ...formData, url: thumbUrls });
-        // console.log('formData.url.length',formData.url.length);
+        // console.log('thumbUrls', thumbUrls)
+        setTempImages(thumbUrls);
+        console.log('tempImages', tempImages)
     };
     const filteredItems = useMemo(() => {
         return items
@@ -172,6 +173,7 @@ export default function AddPost() {
             Toast.show('你没有进行选择');
         }
     };
+    console.log('formData.url', formData.url);
 
 
 
