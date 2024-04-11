@@ -28,6 +28,7 @@ const imgArray = [];
 
 app.post("/api/register", async (req, res) => {
   const { username, password, avatar, likeNote, saveNote, followUser } = req.body;
+  console.log(username, password, avatar,likeNote, saveNote, followUser);
 
   if (!username || !password) {
     return res.status(400).json({ message: "需要用户名和密码" });
@@ -57,39 +58,6 @@ app.post("/api/register", async (req, res) => {
 
   res.status(201).json({ message: "用户创建成功" });
 });
-app.post("/api/avatar", (req, res) => {
-  const { username, url } = req.body;
-  // console.log(username, url)
-  if (url.startsWith('data:image')) {
-    const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-    const buffer = Buffer.from(base64Data, 'base64');
-    const imgPath = path.join('public', 'images', `${username}_avatar.jpg`);
-
-    // 检查是否存在同名文件，如果存在，则删除
-    if (fs.existsSync(imgPath)) {
-      fs.unlinkSync(imgPath);
-      console.log(`已删除旧文件：${imgPath}`);
-    } else {
-      console.log(`不存在旧文件：${imgPath}`);
-    }
-    // 写入新的图片文件
-    fs.writeFileSync(imgPath, buffer);
-    console.log('文件写入成功');
-  }
-  const users = JSON.parse(fs.readFileSync(dataPath, "utf8"));
-  const userToUpdate = users.find((user) => user.username === username);
-  if (userToUpdate) {
-    // 更新用户的头像路径
-    userToUpdate.avatar = path.join('images',`${username}_avatar.jpg`).replace(/\\/g, '/');
-  
-    // 将更新后的用户列表写回到 JSON 文件中
-    fs.writeFileSync(dataPath, JSON.stringify(users, null, 2), 'utf8');
-    console.log('用户头像路径更新成功！');
-    res.json({ success: true, user: userToUpdate });
-  } else {
-    console.log('未找到需要更新头像的用户！');
-  }
-})
 
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
@@ -174,7 +142,6 @@ app.post("/api/wxJssdk/getJssdk", async (req, res) => {
   // 测试号
   const appid = "wx7038d3636b5797ed";
   const secret = "bd3dbda5b59c8f6c1057fb9edd163acd";
-  console.log(1);
 
   try {
     const response1 = await axios.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret);
@@ -198,7 +165,7 @@ app.post("/api/wxJssdk/getJssdk", async (req, res) => {
       nonceStr: nonce_str,
       signature: signature,
     });
-  } catch (err) {
+  } catch (err) { 
     console.error("Error fetching data:", err.message);
     res.status(500).send("Internal Server Error");
   }

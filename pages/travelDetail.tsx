@@ -17,10 +17,12 @@ const TravelDetail: React.FC = () => {
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
     islike: false,
-    likeCount: 0,
     isSave: false,
-    saveNum: 0,
     isFollow: false,
+  });
+  const [commentNum, setCommentNum] = useState({
+    likeCount: 0,
+    saveNum: 0,
     shareCount: 0,
   });
   const [isShare, setShareState] = useState(false);
@@ -60,42 +62,70 @@ const TravelDetail: React.FC = () => {
       const response = await fetch(`/api/getTravelDetail?${params.toString()}`);
       const data = await response.json();
       setTravelDetail(data);
-      // 添加点赞数和收藏数
-      setCommentState({
+      setCommentNum({
         ...commentState,
         likeCount: data.user.likeCount,
-        shareCount: data.user.shareCount,
         saveNum: data.user.commentCount,
+        shareCount: data.user.shareCount,
       });
     } catch (err) {
       Toast.show("Failed to fetch travel details.");
     }
   };
 
-  // // 获取该游记是否被点赞和收藏
-  // const fetchLikeAndSave = async ({id: number, username: string}) => {
-  //   try {
-  //     const response = await fetch("/api/getTravelDaily", {
-  //       method: "POST",
-  //       body: JSON.stringify(payload),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     return data;
-  //     setTravelDetail(data);
-  //     // 添加点赞数和收藏数
-  //     setCommentState({
-  //       ...commentState,
-  //       likeCount: data.user.likeCount,
-  //       shareCount: data.user.shareCount,
-  //       saveNum: data.user.commentCount,
-  //     });
-  //   } catch (err) {
-  //     Toast.show("Failed to fetch travel details.");
-  //   }
-  // };
+  // 获取该游记是否被点赞和收藏
+  const fetchLikeAndSave = async (id: number, username: string) => {
+    try {
+      const response = await fetch("/api/getLikeAndSave", {
+        method: "POST",
+        body: JSON.stringify({ id: id, username: username }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setCommentState({
+        ...commentState,
+        islike: data.islike,
+        isSave: data.isSave,
+        isFollow: data.isFollow,
+      });
+    } catch (err) {
+      Toast.show("Failed to fetch travel details.");
+    }
+  };
+
+  // 增加或消除点赞、收藏数据
+  const handleLikeAndSave = async (id: number, username: string, tabType:string, isadd: boolean) => {
+    try {
+      const response = await fetch("/api/likeAndSave", {
+        method: "POST",
+        body: JSON.stringify({ id: id, username: username, tabType:tabType, isadd: isadd }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+    } catch (err) {
+      Toast.show("Failed to fetch travel details.");
+    }
+  };
+
+  // 增加游记数据里的点赞、收藏数
+  const handleAddAndSub = async (id: number, tabType:string, isadd: boolean) => {
+    try {
+      const response = await fetch("/api/addAndSub", {
+        method: "POST",
+        body: JSON.stringify({ id: id, tabType:tabType, isadd: isadd }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+    } catch (err) {
+      Toast.show("Failed to fetch travel details.");
+    }
+  };
 
 
   // 分享游记信息到微信
@@ -130,18 +160,18 @@ const TravelDetail: React.FC = () => {
     // 获取游记详情
     fetchTravelNote(id);
 
-    // // wx分享接口初始化
-    // axios.post('http://localhost:3001/api/wxJssdk/getJssdk', {url: location.href}).then((response) => {
-    //   var data = response.data;
-    //   wx.config({
-    //     debug: false, // 调试模式
-    //     appId: data.appId, // 公众号唯一标识
-    //     timestamp: data.timestamp, // 时间戳
-    //     nonceStr: data.nonceStr, // 随机串
-    //     signature: data.signature, // 签名
-    //     jsApiList: ['onMenuShareAppMessage'], // js接口列表
-    //   });
-    // });
+    // wx分享接口初始化
+    axios.post('http://localhost:3001/api/wxJssdk/getJssdk', {url: location.href}).then((response) => {
+      var data = response.data;
+      wx.config({
+        debug: false, // 调试模式
+        appId: data.appId, // 公众号唯一标识
+        timestamp: data.timestamp, // 时间戳
+        nonceStr: data.nonceStr, // 随机串
+        signature: data.signature, // 签名
+        jsApiList: ['onMenuShareAppMessage'], // js接口列表
+      });
+    });
 
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -149,6 +179,7 @@ const TravelDetail: React.FC = () => {
       setUserInfo({
         username: user.username,
       });
+      fetchLikeAndSave(id, user.username);
     }
   }, [id]);
 
@@ -166,10 +197,15 @@ const TravelDetail: React.FC = () => {
           <Button
             shape="rounded"
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
-            onClick={() => {
-              userInfo.username !== ""
-                ? setCommentState({ ...commentState, isFollow: !commentState.isFollow })
-                : router.push("/login");
+            onClick={async() => {
+              if(userInfo.username !== ""){
+                await handleLikeAndSave(id, userInfo.username, "followUser", !commentState.isFollow);
+                setCommentState({ ...commentState, isFollow: !commentState.isFollow });
+                
+              }
+              else{
+                 router.push("/login");
+              }
             }}
           >
             {commentState.isFollow ? "已关注" : "+ 关注"}
@@ -212,24 +248,28 @@ const TravelDetail: React.FC = () => {
         </Button>
         <div className={Styles.bottomBtn}>
           <Badge
-            content={<div className={Styles.customBadge}>{commentState.likeCount>1000 ? Math.ceil(commentState.likeCount/100)+'k':commentState.likeCount}</div>}
+            content={
+              <div className={Styles.customBadge}>
+                {commentNum.likeCount > 1000 ? Math.ceil(commentNum.likeCount / 100) + "k" : commentNum.likeCount}
+              </div>
+            }
             style={{ "--right": "20%", "--top": "20%", backgroundColor: "#ffffff" }}
             className={Styles.customBadge}
           >
             <Button
               className={Styles.barBtn}
-              onClick={() => {
-                if (userInfo.username !== "" && commentState.islike === false) {
+              onClick={async () => {
+                if (userInfo.username !== "") {
+                  const newLikeCount = commentState.islike ? commentNum.likeCount - 1 : commentNum.likeCount + 1;
+                  await handleLikeAndSave(id, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
+                  await handleAddAndSub(id,"likeCount", !commentState.islike)
                   setCommentState({
                     ...commentState,
-                    islike: true,
-                    likeCount: commentState.likeCount + 1,
+                    islike: !commentState.islike, // 反转点赞状态
                   });
-                } else if (userInfo.username !== "" && commentState.islike === true) {
-                  setCommentState({
-                    ...commentState,
-                    islike: false,
-                    likeCount: commentState.likeCount - 1,
+                  setCommentNum({
+                    ...commentNum,
+                    likeCount: newLikeCount, // 更新点赞数
                   });
                 } else {
                   router.push("/login");
@@ -246,7 +286,11 @@ const TravelDetail: React.FC = () => {
             <span className="iconfont icon-comment" style={{ fontSize: "24px" }} />
           </Button>
           <Badge
-            content={<div className={Styles.customBadge}>{commentState.shareCount>1000 ? Math.ceil(commentState.shareCount/100)+'k':commentState.shareCount}</div>}
+            content={
+              <div className={Styles.customBadge}>
+                {commentNum.shareCount > 1000 ? Math.ceil(commentNum.shareCount / 100) + "k" : commentNum.shareCount}
+              </div>
+            }
             style={{ "--right": "20%", "--top": "20%", backgroundColor: "#ffffff" }}
             className={Styles.customBadge}
           >
@@ -268,24 +312,28 @@ const TravelDetail: React.FC = () => {
             </ul>
           </Popup>
           <Badge
-            content={<div className={Styles.customBadge}>{commentState.saveNum>1000 ? Math.ceil(commentState.saveNum/100)+'k':commentState.saveNum}</div>}
+            content={
+              <div className={Styles.customBadge}>
+                {commentNum.saveNum > 1000 ? Math.ceil(commentNum.saveNum / 100) + "k" : commentNum.saveNum}
+              </div>
+            }
             style={{ "--right": "20%", "--top": "20%", backgroundColor: "#ffffff" }}
             className={Styles.customBadge}
           >
             <Button
               className={Styles.barBtn}
-              onClick={() => {
-                if (userInfo.username !== "" && commentState.isSave === false) {
+              onClick={async() => {
+                if (userInfo.username !== "") {
+                  const newSaveNum = commentState.isSave ? commentNum.saveNum - 1 : commentNum.saveNum + 1;
+                  await handleLikeAndSave(id, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
+                  await handleAddAndSub(id,"commentCount", !commentState.isSave);
                   setCommentState({
                     ...commentState,
-                    isSave: true,
-                    saveNum: commentState.saveNum + 1,
+                    isSave: !commentState.isSave, // 反转保存状态
                   });
-                } else if (userInfo.username !== "" && commentState.isSave === true) {
-                  setCommentState({
-                    ...commentState,
-                    isSave: false,
-                    saveNum: commentState.saveNum - 1,
+                  setCommentNum({
+                    ...commentNum,
+                    saveNum: newSaveNum, // 更新保存数
                   });
                 } else {
                   router.push("/login");
