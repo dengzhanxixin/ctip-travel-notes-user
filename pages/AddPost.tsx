@@ -111,7 +111,7 @@ export default function AddPost() {
         setFormData(prevFormData => ({
             ...prevFormData,
             // id: newId,
-            publishDisplayTime: publishDisplayTime,
+            // publishDisplayTime: publishDisplayTime,
 
         }));
 
