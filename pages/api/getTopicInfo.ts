@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import TopicInfo from "@/data/TopicData/TopicInfo.json";
+const fs = require("fs");
 
 
 
@@ -13,6 +13,6 @@ interface topicResponse {
 
 //  获取旅游日记数据
 export default function handler(req: NextApiRequest, res: NextApiResponse<topicResponse>) {
-  const items = TopicInfo;
+  const items = JSON.parse(fs.readFileSync("data/TopicData/TopicInfo.json", "utf8"));
   res.status(200).json({items});
 }

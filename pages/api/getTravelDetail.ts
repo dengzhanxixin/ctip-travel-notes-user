@@ -1,19 +1,23 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import travelDailyData from "@/data/TravelData.json";
+const fs = require("fs");
 
+interface travelNoteItem {
+  id?: number;
+  [key: string]: any;
+}
 
 
 //  获取旅游日记数据
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
-  console.log("id:",id);
+  const travelDailyData = JSON.parse(fs.readFileSync('data/TravelData.json', "utf8"));
 
   switch (req.method) {
     case "GET": 
       if(id === undefined){
         return res.status(400).json({"message": "Id parameter is required"});
       }
-      const travelDetail = travelDailyData.find((item) => item.id === parseInt(id as string));
+      const travelDetail = travelDailyData.find((item:travelNoteItem) => item.id === parseInt(id as string));
       res.json(travelDetail);
       break;
     case '/api/getTravelDetail':

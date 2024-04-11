@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import travelDailyData from "../../data/TravelData.json";
+const fs = require("fs");
 
 interface travelNoteFilterPayload {
   PageIndex?: number;
@@ -16,14 +16,21 @@ interface UserInfo {
 
 interface userInfoResponse {
   total: number;
-  items: UserInfo[];
+  items: any;
 }
+
+interface travelNoteItem {
+  id?: number;
+  [key: string]: any;
+}
+
 
 //  获取旅游日记数据
 export default function handler(req: NextApiRequest, res: NextApiResponse<userInfoResponse>) {
   const payload = req.body as travelNoteFilterPayload;
+  const travelDailyData = JSON.parse(fs.readFileSync('data/TravelData.json', "utf8"));
 
-  const userinfos = travelDailyData.map((item) => {
+  const userinfos = travelDailyData.map((item:travelNoteItem) => {
     return item.user;
   });
 
@@ -33,7 +40,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<userIn
     filterData = userinfos;
   } else {
     // 将符合条件的用户信息返回
-    filterData = userinfos.filter((item) => payload.searchInfo && item.nickName.includes(payload.searchInfo));
+    filterData = userinfos.filter((item:UserInfo) => payload.searchInfo && item.nickName.includes(payload.searchInfo));
   }
 
   const startIndex = 5 * ((payload.PageIndex || 1) - 1);
@@ -44,7 +51,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<userIn
   const itemData = filterData.slice(startIndex, endIndex);
 
   // 去重
-  const items = Array.from(itemData.reduce((map, obj) => map.set(obj.nickName, obj), new Map()).values());
+  const items = Array.from(itemData.reduce((map:any, obj:any) => map.set(obj.nickName, obj), new Map()).values());
 
   res.status(200).json({ total, items });
 }
