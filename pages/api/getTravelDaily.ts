@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import travelDailyData from "@/data/TravelData.json";
+const fs = require("fs");
 
 interface travelNoteFilterPayload {
   PageIndex: number;
@@ -25,13 +25,14 @@ interface travelNoteResponse {
 //  获取旅游日记数据
 export default function handler(req: NextApiRequest, res: NextApiResponse<travelNoteResponse>) {
   const payload = req.body as travelNoteFilterPayload;
+  const travelDailyData = JSON.parse(fs.readFileSync('data/TravelData.json', "utf8"));
 
   var searchData: any[] = [];
   // 没有搜索关键词则显示全部信息
   if (!payload.searchCity && !payload.searchTitle && !payload.searchUser) {
     searchData = travelDailyData;
   } else {
-    searchData = travelDailyData.filter((item) =>
+    searchData = travelDailyData.filter((item:travelNoteItem) =>
       payload.strictSearch
         ? (payload.searchTitle && item.title === payload.searchTitle) ||
           (payload.searchUser && item.user.nickName === payload.searchUser) ||

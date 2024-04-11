@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import UserPostInfo from "../../data/user_data/userData.json";
+const fs = require('fs');
 
 interface UserPost {
     [key: string]: any;
@@ -11,6 +11,6 @@ interface UserPost {
 
 //  获取旅游日记数据
 export default function handler(req: NextApiRequest, res: NextApiResponse<UserResponse>) {
-    const items = UserPostInfo;
+    const items = JSON.parse(fs.readFileSync('data/user_data/userData.json', "utf8"));
     res.status(200).json({items});
 }
