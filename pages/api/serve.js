@@ -28,8 +28,6 @@ const imgArray = [];
 
 app.post("/api/register", async (req, res) => {
   const { username, password, avatar, likeNote, saveNote, followUser } = req.body;
-  console.log(username, password, avatar,likeNote, saveNote, followUser);
-
   if (!username || !password) {
     return res.status(400).json({ message: "需要用户名和密码" });
   }
