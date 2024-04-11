@@ -25,12 +25,21 @@ export default function AddPost() {
                 id: id?.toString(),
             });
             const response = await fetch(`/api/getTravelDetail?${params.toString()}`);
-            setEditorData(prevEditorData => ({
-                ...prevEditorData,
-                id: params.toString(),
-            }));
+            // setEditorData(prevEditorData => ({
+            //     ...prevEditorData,
+            //     id: params.toString(),
+            // }));
+            if (!response.ok) {
+                throw new Error("Failed to fetch travel details: " + response.statusText);
+            }
             const data = await response.json();
-            setEditorData(data);
+            if (data) {
+                setEditorData(prevEditorData => ({
+                    ...prevEditorData,
+                    id: params.toString(),
+                    ...data, // 将返回的数据合并到 EditorData 中
+                }));
+            }
             console.log('EditorData', EditorData)
         } catch (err) {
             console.log(err)
@@ -48,7 +57,7 @@ export default function AddPost() {
 
     };
     const handleSubmit = () => {
-        if (!(EditorData&&EditorData.title) || !(EditorData&&EditorData.content)) {
+        if (!(EditorData && EditorData.title) || !(EditorData && EditorData.content)) {
             Toast.show('标题和正文不能为空！');
             return; // 不执行提交操作
         }
@@ -102,12 +111,18 @@ export default function AddPost() {
         }
     };
     // console.log('EditorData.images', EditorData&&EditorData.images)
+    var version = Math.random();
+    const imageListWithVersion = EditorData && EditorData.images
+  ? EditorData.images.map((imageUrl: string) => `${imageUrl}?v=${version}`)
+  : [];
+
 
     return (
         <>
             <div style={{ width: "100%", height: "140px" }}>
                 <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
                 {EditorData && <AddImage ImgList={EditorData.images} onThumbUrlsChange={handleThumbUrlsChange} />}
+
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
@@ -122,8 +137,8 @@ export default function AddPost() {
                     autoSize />
             </div>
             <Divider dashed />
-             {/* 编写正文 */}
-             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '200px', marginBottom: '10px' }}>
+            {/* 编写正文 */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '200px', marginBottom: '10px' }}>
                 <TextArea
                     name='content'
                     style={{ width: '90%', height: '100%' }}

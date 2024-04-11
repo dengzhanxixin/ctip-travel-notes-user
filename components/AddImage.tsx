@@ -32,7 +32,7 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
             setFileList(ImgList);
         }
     }, [fileList, ImgList]);
-
+    console.log('fileList', fileList)
 
 
     const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {

@@ -31,13 +31,13 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
   const handleClick = (id: number, isChecked: number) => {
     router.push(`/EditPost?id=${id.toString()}`);
   }
-  async function fetchId(id: number) {
+  async function fetchId(id: number,username?:string) {
     const response = await fetch(`/api/delete`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id }) // 注意将 id 包装在对象中
+      body: JSON.stringify({ id,username }) // 注意将 id 包装在对象中
     });
     if (response.ok) {
       const data = await response.json();
@@ -55,9 +55,9 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
       console.error('Error posting data:', response.statusText);
     }
   }
-  const Delete = async (id: number) => {
+  const Delete = async (id: number, username?:string) => {
     try {
-      await fetchId(id); // 等待 fetchId 函数完成
+      await fetchId(id,username); // 等待 fetchId 函数完成
     } catch (error) {
       console.error('Error posting data:', error);
       // 处理请求错误的情况
@@ -82,6 +82,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
       return '其他状态';
     }
   }
+  var version = Math.random();
 
   return (
     <>
@@ -92,7 +93,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
               <Card className={styles.cardcontainer}>
                 <div className={styles.content}>
                   <Image
-                    src={item.coverImg}
+                    src={`${item.coverImg}?v=${version}`}
                     className={styles.restImg}
                     alt={"旅游图片"}
                     width={100}
@@ -101,6 +102,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                   />
                   <div className={styles.travelTitle}>
                     <h3>{item.title}</h3>
+                    {/* <div>{item.coverImg+version}</div> */}
                   </div>
 
                 </div>

@@ -9,6 +9,7 @@ const nextConfig = {
   images: {
     // unoptimized: true,
     // 引用网络图片，需要配置
+    domains: ['localhost'], 
     remotePatterns: [
       {
         protocol: "https",
@@ -34,8 +35,6 @@ const nextConfig = {
   },
   publicRuntimeConfig: {
     staticFolder: "/public",
-    // 配置 assetPrefix，用于指定静态资源的路径，后续修改
-    // assetPrefix: process.env.NODE_ENV === "production" ? "/your-subdirectory" : "",
   },
   transpilePackages: ["antd-mobile"],
 };

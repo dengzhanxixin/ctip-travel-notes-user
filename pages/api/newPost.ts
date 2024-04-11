@@ -61,12 +61,43 @@ const userDataPath = path.join(process.cwd(), 'data', 'TravelData.json');
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
-        title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
+        id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
         content, publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, url,
     } = req.body as CurrentData;
     if (req.method === "POST") {
+        // const jsonData = fs.readFileSync(userDataPath, 'utf8');
+        // const dataArray = JSON.parse(jsonData);
+        // const indexesToDelete: number[] = [];
+        // // 遍历数组以查找重复的 ID 和发布时间更早或为空的对象
+        // dataArray.forEach((item: CurrentData, index: number) => {
+        //     const currentIndex = indexesToDelete.indexOf(index);
+        //     if (currentIndex !== -1) return; // 如果该对象已被标记为要删除，则跳过
+
+        //     const duplicateIndex = dataArray.findIndex((otherItem: CurrentData, otherIndex: number) => {
+        //         return index !== otherIndex && item.id === otherItem.id;
+        //     });
+
+        //     if (duplicateIndex !== -1) {
+        //         const earlierItem = dataArray[duplicateIndex].publishDisplayTime;
+        //         const currentItem = item.publishDisplayTime;
+        //         if (!earlierItem || (currentItem && earlierItem > currentItem)) {
+        //             indexesToDelete.push(duplicateIndex);
+        //         } else {
+        //             indexesToDelete.push(index);
+        //         }
+        //     }
+        // });
+
+        // // 删除重复的对象
+        // indexesToDelete.forEach((indexToDelete) => {
+        //     dataArray.splice(indexToDelete, 1);
+        // });
+
+        // // 将更新后的数组写回到 JSON 文件中
+        // fs.writeFileSync('yourData.json', JSON.stringify(dataArray, null, 2), 'utf8');
 
         // 1. 本地储存文章Json
+        console.log('ok');
 
         let userData: FormData[] = [];
         try {
@@ -78,11 +109,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         ;
         const id = userData.length + 1;
         const publishTime = new Date().toISOString();
+        console.log('publishTime',publishTime);
 
         // 2. 将新数据添加到现有数据的末尾
         const newData: FormData = {
             id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
-            content, publishTime:publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime,
+            content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime,
             images: [],
         };
 
@@ -118,39 +150,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.status(500).json({ success: false, message: 'Failed to write user data' });
         }
     }
-    const jsonData = fs.readFileSync(userDataPath, 'utf8');
-    const dataArray = JSON.parse(jsonData);
-
-    // 用于存储已删除的对象的索引
-    const indexesToDelete: number[] = [];
-
-    // 遍历数组以查找重复的 ID 和发布时间更早或为空的对象
-    dataArray.forEach((item: CurrentData, index: number) => {
-        const currentIndex = indexesToDelete.indexOf(index);
-        if (currentIndex !== -1) return; // 如果该对象已被标记为要删除，则跳过
-
-        const duplicateIndex = dataArray.findIndex((otherItem:CurrentData, otherIndex:number) => {
-            return index !== otherIndex && item.id === otherItem.id;
-        });
-
-        if (duplicateIndex !== -1) {
-            const earlierItem = dataArray[duplicateIndex].publishDisplayTime;
-            const currentItem = item.publishDisplayTime;
-            if (!earlierItem || (currentItem && earlierItem > currentItem)) {
-                indexesToDelete.push(duplicateIndex);
-            } else {
-                indexesToDelete.push(index);
-            }
-        }
-    });
-
-    // 删除重复的对象
-    indexesToDelete.forEach((indexToDelete) => {
-        dataArray.splice(indexToDelete, 1);
-    });
-
-    // 将更新后的数组写回到 JSON 文件中
-    fs.writeFileSync('yourData.json', JSON.stringify(dataArray, null, 2), 'utf8');
 
     console.log('Duplicates removed successfully.');
 }
