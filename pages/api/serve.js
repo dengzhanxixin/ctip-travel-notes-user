@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 // sha1加密
 // const sha1 = require("sha1");
 
@@ -132,42 +133,40 @@ app.get("/api/wxJssdk", (req, res) => {
 });
 
 // 微信分享后端接口实现
-app.post("/api/wxJssdk/getJssdk", (req, res) => {
+app.post("/api/wxJssdk/getJssdk", async (req, res) => {
   const grant_type = "client_credential";
   // 测试号
   const appid = "wx7038d3636b5797ed";
   const secret = "bd3dbda5b59c8f6c1057fb9edd163acd";
+  console.log(1);
 
-  request(
-    "https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret,
-    (err, response, body) => {
-      let access_token = JSON.parse(body).access_token;
+  try {
+    const response1 = await axios.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret);
+    const access_token = response1.data.access_token;
+    const response2 = await axios.get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi");
+    const jsapi_ticket = response2.data.ticket;
 
-      request(
-        "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi",
-        (err, response, body) => {
-          let jsapi_ticket = JSON.parse(body).ticket;
-          let nonce_str = "123456"; // 密钥，字符串任意，可以随机生成
-          let timestamp = new Date().getTime(); // 时间戳
-          let url = req.query.url; // 使用接口的url链接，不包含#后的内容
+    const nonce_str = "123456"; // 随机字符串
+    const timestamp = new Date().getTime(); // 时间戳
+    const url = req.query.url; // 请求的 URL
 
-          // 将请求以上字符串，先按字典排序，再以'&'拼接，如下：其中j > n > t > u，此处直接手动排序
-          let str =
-            "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + nonce_str + "&timestamp=" + timestamp + "&url=" + url;
+    // 构造待加密字符串
+    const str = `jsapi_ticket=${jsapi_ticket}&noncestr=${nonce_str}&timestamp=${timestamp}&url=${url}`;
 
-          // 用sha1加密
-          let signature = sha1(str);
+    // 使用 sha1 加密
+    const signature = sha1(str);
 
-          res.send({
-            appId: appid,
-            timestamp: timpstamp,
-            nonceStr: nonce_str,
-            signature: signature,
-          });
-        }
-      );
-    }
-  );
+    res.send({
+      appId: appid,
+      timestamp: timestamp,
+      nonceStr: nonce_str,
+      signature: signature,
+    });
+  } catch (err) { 
+    console.error("Error fetching data:", err.message);
+    res.status(500).send("Internal Server Error");
+  }
+
 });
 
 app.listen(port, () => {

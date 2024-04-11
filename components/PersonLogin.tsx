@@ -93,20 +93,7 @@ const PersonLogin = () => {
       <MailOpenOutline fontSize={iconSize} /> 草稿箱
       <br />
       <br />
-      {/* <DeleteOutline fontSize={iconSize} onClick={() =>
-                Dialog.confirm({
-                  content: '是否确认清空全部个人信息',
-                  onConfirm: async () => {
-                      clearHistory();
-                    Toast.show({
-                      icon: 'success',
-                      content: '提交成功',
-                      position: 'bottom',
-                    })
-                  },
-                })} /> 清空个人信息
-          <br /><br />
-          <Divider /> */}
+      
       <br />
       <br />
       <Button block color="primary" size="large" onClick={()=>handleClick()}>

@@ -81,7 +81,7 @@ const SearchInfo: React.FC = () => {
                 {
                     data.map((item, index) => {
                         return (
-                            <Tag round className={Styles.tag}>
+                            <Tag round className={Styles.tag} key={index}>
                                  {item.title}
                             </Tag>
                                

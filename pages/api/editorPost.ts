@@ -2,6 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fs from 'fs';
 import path from 'path';
 
+interface Image {
+    url: string;
+    width: number;
+    height: number;
+}
 interface FormData {
     id: number;
     title: string;
@@ -19,7 +24,7 @@ interface FormData {
     isChecked: number;
     checkReason: string;
     districtPoiCollect: string;
-    images: string[];
+    images: Image[];
     content: string;
     publishTime: string;
     firstPublishTime: string,
@@ -34,13 +39,10 @@ const imagesDirPath = path.join(process.cwd(), '/', 'images', 'user');
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
-        id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
-        content, publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images,
+        id, title, user, city, isChecked, checkReason, districtPoiCollect,
+        content, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images,
     } = req.body as FormData;
-    const hasBase64Image = images.some(image => image.startsWith('data:image'));
-
-console.log(hasBase64Image ? '存在base64编码的图片' : '不存在base64编码的图片');
-
+    console.log('req.body', images);
 
     if (req.method === "POST") {
         let updatedImages: string[] = [];
@@ -60,28 +62,28 @@ console.log(hasBase64Image ? '存在base64编码的图片' : '不存在base64编
         }
         fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
 
-        let newId = userData.length + 1;
-        console.log('新id', newId);
 
         if (Array.isArray(images)) {
+            images.map((image, index) => { console.log('image.url', image); })
             updatedImages = images.map((image, index) => {
-                if (image.startsWith('data:image')) {
-                    const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
+                console.log('image.url', image);
+                if (image.url.startsWith('data:image')) {
+                    const base64Data = image.url.replace(/^data:image\/\w+;base64,/, '');
                     const buffer = Buffer.from(base64Data, 'base64');
-                    const imgPath = path.join('public', 'images', 'user', `id${newId}_images_i${index}.jpg`);
+                    const imgPath = path.join('public', 'images', 'user', `id${id}_images_i${index}.jpg`);
                     const Path = path.join('/', 'images', 'user', `id${id}_images_i${index}.jpg`).replace(/\\/g, '/');
                     // 检查是否存在同名文件，如果存在，则删除
                     try {
                         // 同步读取
                         const files = fs.readdirSync(imagesDirPath);
                         console.log('目录下的文件:', files);
-                      } catch (err) {
+                    } catch (err) {
                         console.error('读取目录出错:', err);
-                      }
+                    }
                     if (fs.existsSync(imgPath)) {
                         fs.unlinkSync(imgPath);
                         console.log(`已删除旧文件：${imgPath}`);
-                    }else{
+                    } else {
                         console.log(`不存在旧文件：${imgPath}`);
                     }
                     // 写入新的图片文件
@@ -91,19 +93,18 @@ console.log(hasBase64Image ? '存在base64编码的图片' : '不存在base64编
                     // 返回新图片的路径，以便保存或进一步处理
                     return Path;
                 }
-                return image;
+                return image.url;
             });
         }
 
 
-        // 添加新数据到数组中
-
+       
 
         let publishTime = new Date().toISOString();
         let coverNewImg = updatedImages[0];
         const newData: FormData = {
-            id:newId,title, coverImg:coverNewImg, user, city, isChecked, checkReason, districtPoiCollect,
-            content, publishTime:publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images:updatedImages
+            id: id, title, coverImg: coverNewImg, user, city, isChecked, checkReason, districtPoiCollect,
+            content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images: updatedImages.map(url => ({ url, width: 0, height: 0 })),
         };
 
         userData.push(newData);
