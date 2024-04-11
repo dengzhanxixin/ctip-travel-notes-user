@@ -8,7 +8,7 @@ interface Image {
     height: number;
 }
 interface FormData {
-    id: string;
+    id: number;
     title: string;
     coverImg: string;
     user: {
@@ -63,6 +63,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
 
 
+         // 解析 JSON 数据
+         const jsonData = fs.readFileSync(userDataPath, 'utf8');
+         const data = JSON.parse(jsonData);
+
+         // 获取最后一条数据的 ID
+         const lastData = data[data.length - 1];
+         const lastId = lastData.id+1;
+
+
         if (Array.isArray(images)) {
             images.map((image, index) => { console.log('image.url', image); })
             updatedImages = images.map((image, index) => {
@@ -70,8 +79,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 if (image.url.startsWith('data:image')) {
                     const base64Data = image.url.replace(/^data:image\/\w+;base64,/, '');
                     const buffer = Buffer.from(base64Data, 'base64');
-                    const imgPath = path.join('public', 'images', 'user', `id${id}_images_i${index}.jpg`);
-                    const Path = path.join('/', 'images', 'user', `id${id}_images_i${index}.jpg`).replace(/\\/g, '/');
+                    const imgPath = path.join('public', 'images', 'user', `id${lastId}_images_i${index}.jpg`);
+                    const Path = path.join('/', 'images', 'user', `id${lastId}_images_i${index}.jpg`).replace(/\\/g, '/');
                     // 检查是否存在同名文件，如果存在，则删除
                     try {
                         // 同步读取
@@ -97,10 +106,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             });
         }
 
+
+        // 添加新数据到数组中
+       
+
+       
+
         let publishTime = new Date().toISOString();
         let coverNewImg = updatedImages[0];
         const newData: FormData = {
-            id: id, title, coverImg: coverNewImg, user, city, isChecked, checkReason, districtPoiCollect,
+            id: lastId, title, coverImg: coverNewImg, user, city, isChecked, checkReason, districtPoiCollect,
             content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images: updatedImages.map(url => ({ url, width: 0, height: 0 })),
         };
 

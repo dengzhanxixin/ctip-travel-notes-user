@@ -55,7 +55,7 @@ const MyPost: React.FC = () => {
     <>
 
       <div className={style.mypost}>
-        <CapsuleTabs defaultActiveKey='1'>
+        <CapsuleTabs style={{ color:'balck'}} defaultActiveKey='1'>
           <CapsuleTabs.Tab title='已发布游记' key='1'>
             {isMyPost ? (
               <TravelWaterFlow notes={DoneInfo} />

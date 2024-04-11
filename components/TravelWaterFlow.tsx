@@ -22,6 +22,7 @@ interface TravelNoteProps  {
   city: string;
   isChecked:number;
   user: UserInfo;
+  checkReason: string;
 };
 
 interface travelNoteListProps {
