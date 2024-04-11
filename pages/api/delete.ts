@@ -30,25 +30,34 @@ interface FormData {
     shootDisplayTime: string
 }
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { id } = req.body;
-
-
+    const { id,nickName } = req.body;
     if (req.method === "POST") {
-        console.log(id);
         const userDataContent = fs.readFileSync(userDataPath, 'utf8');
-        let userData: FormData[] = JSON.parse(userDataContent);
-
-        // 在 JavaScript 对象中查找具有匹配 id 的数据
-        const indexToDelete = userData.findIndex(item => item.id === id);
-        if (indexToDelete !== -1) {
-            // 如果找到了匹配的数据，则从数组中删除该数据
-            userData.splice(indexToDelete, 1);
-            console.log('删除成功');
-        } else {
-            console.log('没有找到匹配的数据');
+        let userData: FormData[] = JSON.parse(userDataContent);  
+        if(nickName){
+            const indexToDelete = userData.findIndex(item => item.user.nickName === nickName);
+            if (indexToDelete !== -1) {
+                // 如果找到了匹配的数据，则从数组中删除该数据
+                userData.splice(indexToDelete, 1);
+                console.log('删除成功');
+            } else {
+                console.log('没有找到匹配的数据');
+            }
+            fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
+            res.status(200).json({ success: true, message: '删除成功' });
+        } else{
+            const indexToDelete = userData.findIndex(item => item.id === id);
+            if (indexToDelete !== -1) {
+                // 如果找到了匹配的数据，则从数组中删除该数据
+                userData.splice(indexToDelete, 1);
+                console.log('删除成功');
+            } else {
+                console.log('没有找到匹配的数据');
+            }
+            fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
+            res.status(200).json({ success: true, message: '删除成功' });
         }
-        fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
-        res.status(200).json({ success: true, message: '删除成功' });
+        
 
 
 

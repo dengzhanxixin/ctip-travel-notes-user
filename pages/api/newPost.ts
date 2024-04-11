@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const fs = require('fs');
 import path from 'path';
 interface FormData {
-    id: number;
+    id: string;
     title: string;
     coverImg: string;
     user: {
@@ -30,7 +30,7 @@ interface FormData {
 }
 
 interface CurrentData {
-    id: number;
+    id: string;
     title: string;
     coverImg: string;
     user: {
@@ -61,28 +61,49 @@ const userDataPath = path.join(process.cwd(), 'data', 'TravelData.json');
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
-        title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
+        id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
         content, publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, url,
     } = req.body as CurrentData;
     if (req.method === "POST") {
+        let updatedImages: string[] = [];
+        // // 读取 JSON 文件并解析为 JavaScript 对象
+        const userDataContent = fs.readFileSync(userDataPath, 'utf8');
+        let userData: FormData[] = JSON.parse(userDataContent);
 
-        // 1. 本地储存文章Json
+        // 在 JavaScript 对象中查找具有匹配 id 的数据
+        const indexToDelete = userData.findIndex(item => item.id === id);
+        if (indexToDelete !== -1) {
 
-        let userData: FormData[] = [];
+            // 如果找到了匹配的数据，则从数组中删除该数据
+            userData.splice(indexToDelete, 1);
+            console.log('找到匹配的数据，准备删除', indexToDelete);
+        } else {
+            console.log('没有找到匹配的数据');
+        }
+        fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
+
+        
+
         try {
             const userDataContent = fs.readFileSync(userDataPath, 'utf8');
             userData = JSON.parse(userDataContent);
         } catch (error) {
             console.error('Error reading userData.json file:', error);
         }
-        ;
-        const id = userData.length + 1;
+
+        // 获取最后一条数据的 ID
+        const lastData = userData[userData.length - 1];
+        const lastId = lastData.id+1;
+        const paddedId = String(lastId).padStart(4, '0');
+
+        // const id = userData.length + 1;
         const publishTime = new Date().toISOString();
+        console.log('publishTime', publishTime);
 
         // 2. 将新数据添加到现有数据的末尾
         const newData: FormData = {
-            id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
-            content, publishTime:publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime,
+            id:paddedId, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
+            content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime,
             images: [],
         };
 
@@ -118,39 +139,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             return res.status(500).json({ success: false, message: 'Failed to write user data' });
         }
     }
-    const jsonData = fs.readFileSync(userDataPath, 'utf8');
-    const dataArray = JSON.parse(jsonData);
-
-    // 用于存储已删除的对象的索引
-    const indexesToDelete: number[] = [];
-
-    // 遍历数组以查找重复的 ID 和发布时间更早或为空的对象
-    dataArray.forEach((item: CurrentData, index: number) => {
-        const currentIndex = indexesToDelete.indexOf(index);
-        if (currentIndex !== -1) return; // 如果该对象已被标记为要删除，则跳过
-
-        const duplicateIndex = dataArray.findIndex((otherItem:CurrentData, otherIndex:number) => {
-            return index !== otherIndex && item.id === otherItem.id;
-        });
-
-        if (duplicateIndex !== -1) {
-            const earlierItem = dataArray[duplicateIndex].publishDisplayTime;
-            const currentItem = item.publishDisplayTime;
-            if (!earlierItem || (currentItem && earlierItem > currentItem)) {
-                indexesToDelete.push(duplicateIndex);
-            } else {
-                indexesToDelete.push(index);
-            }
-        }
-    });
-
-    // 删除重复的对象
-    indexesToDelete.forEach((indexToDelete) => {
-        dataArray.splice(indexToDelete, 1);
-    });
-
-    // 将更新后的数组写回到 JSON 文件中
-    fs.writeFileSync('yourData.json', JSON.stringify(dataArray, null, 2), 'utf8');
 
     console.log('Duplicates removed successfully.');
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import style from "../styles/person.module.scss";
-import { Card, Button, Space, Grid, Popup, FloatingBubble, Divider, Toast, Dialog } from "antd-mobile";
-import { Upload, message, Row, Col, Avatar } from "antd";
+import { Card, Button, NavBar, TextArea, Popup, FloatingBubble, Divider, Toast, Dialog } from "antd-mobile";
+import { List, Space, message, Row, Input, Avatar } from "antd";
 import type { GetProp, UploadProps, UploadFile } from "antd";
-import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, DeleteOutline } from "antd-mobile-icons";
-import { UploadOutlined } from "@ant-design/icons";
+import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, AddCircleOutline, } from "antd-mobile-icons";
+import { LikeOutlined, MessageOutlined, StarOutlined  } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
 
@@ -16,9 +16,11 @@ const PersonLogin = () => {
 
   //编辑用户个人签名
   const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState("简单的自我介绍，让你更受欢迎！");
+  const [text, setText] = useState("简单的自我介绍吧！");
   const [editingText, setEditingText] = useState(text);
   const [visible, setVisible] = useState(false);
+  const [visible4, setVisible4] = useState(false)
+  const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
 
   // 增加新的state来存储用户信息
@@ -42,11 +44,11 @@ const PersonLogin = () => {
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
 
 
-  const handleClick = () => { 
-    if(userInfo.username === "尊敬的用户"){
+  const handleClick = () => {
+    if (userInfo.username === "尊敬的用户") {
       router.push("/login");
     }
-    else{
+    else {
       // 移除特定的项
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -75,16 +77,26 @@ const PersonLogin = () => {
   };
   const AddPost = () => {
     console.log(userInfo.username);
-    if(userInfo.username === "尊敬的用户"){
+    if (userInfo.username === "尊敬的用户") {
       router.push("/login");
-    }else{
+    } else {
       router.push(`/AddPost`);
     }
-    
+
   };
+
+  const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+    <Space>
+      {React.createElement(icon)}
+      {text}
+    </Space>
+  );
+
   const mockContent = () => (
     <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
-      <SetOutline fontSize={iconSize} /> 个人设置
+      <SetOutline fontSize={iconSize} onClick={() => {
+        setVisible4(true)
+      }} /> 个人设置
       <br />
       <br />
       <ContentOutline fontSize={iconSize} /> 浏览记录
@@ -93,37 +105,19 @@ const PersonLogin = () => {
       <MailOpenOutline fontSize={iconSize} /> 草稿箱
       <br />
       <br />
-      {/* <DeleteOutline fontSize={iconSize} onClick={() =>
-                Dialog.confirm({
-                  content: '是否确认清空全部个人信息',
-                  onConfirm: async () => {
-                      clearHistory();
-                    Toast.show({
-                      icon: 'success',
-                      content: '提交成功',
-                      position: 'bottom',
-                    })
-                  },
-                })} /> 清空个人信息
-          <br /><br />
-          <Divider /> */}
+
       <br />
       <br />
-      <Button block color="primary" size="large" onClick={()=>handleClick()}>
-          {userInfo.username==="尊敬的用户" ? "点击登陆":"退出登陆"}
+      <Button block color="primary" size="large" onClick={() => handleClick()}>
+        {userInfo.username === "尊敬的用户" ? "点击登陆" : "退出登陆"}
       </Button>
     </div>
   );
 
+
+
   return (
     <div className={style.background}>
-      <MoreOutline
-        fontSize={36}
-        style={{ position: "absolute", top: "20px", right: "30px", zIndex: "9999" }}
-        onClick={() => {
-          setVisible(true);
-        }}
-      />
 
       <Popup
         visible={visible}
@@ -136,52 +130,74 @@ const PersonLogin = () => {
         {mockContent()}
       </Popup>
 
-      <Card className={style.cardContainer}>
-        <Row>
-          <Col span={8}>
-            {/* 使用state中的avatar显示头像 */}
-            <Avatar size={64} src={userInfo.avatar} alt="avatar" />
-          </Col>
-
-          <Col span={16}>
-            <div className={style.username}>
-              {/* 使用state中的username显示用户名 */}
-              {userInfo.username}
+      <div className={style.top}>
+        <MoreOutline
+          fontSize={36}
+          className={style.more}
+          onClick={() => {
+            setVisible(true);
+          }}
+        />
+        <Card className={style.cardContainer}>
+          {/* 使用state中的avatar显示头像 */}
+          <div className={style.avatarContainer}>
+            <AddCircleOutline fontSize={30} className={style.editorAvatar} onClick={() => { setIsEditor(true) }} />
+            <Avatar size={100} className={style.userAvatar} src={userInfo.avatar} alt="avatar" />
+          </div>
+          <div className={style.username}>
+            {/* 使用state中的username显示用户名 */}
+            {userInfo.username}
+          </div>
+          {isEditing ? (
+            <div style={{ display: "flex", justifyContent: "flex-start" }}>
+              <TextArea
+                // type="text"
+                value={editingText}
+                onChange={handleChangeText}
+                style={{
+                  height: "60px",
+                  backgroundColor: "#f5f5f5",
+                  border: "1px dashed #ccc",
+                  margin: "1px 0 0 120px",
+                  fontSize: "14px",
+                  lineHeight: "14px",
+                  flexBasis: "180px",
+                }}
+                autoFocus
+              />
+              <Button className={style.save} onClick={handleSave}>
+                保存
+              </Button>
             </div>
+          ) : (
+            <div className={style.userintroduction} onClick={handleDoubleClick}>
+              {text}
+            </div>
+          )}
+          <List.Item
+            actions={[
+              <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+            ]}
+          ></List.Item>
+          {/* <div className={style.sub}>
+            0
+          </div>
+          <div>
+            关注
+          </div>
+          <div className={style.fans}>
+            0
+          </div>
+          <div>
+            粉丝
+          </div> */}
+        </Card>
+      </div>
 
-            {isEditing ? (
-              <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                <textarea
-                  // type="text"
-                  value={editingText}
-                  onChange={handleChangeText}
-                  style={{
-                    height: "30px",
-                    backgroundColor: "#f5f5f5",
-                    border: "1px dashed #ccc",
-                    padding: "0",
-                    fontSize: "8px",
-                    lineHeight: "12px",
-                    flexBasis: "180px",
-                  }}
-                  autoFocus
-                />
-                <Button style={{ marginLeft: "8px", fontSize: "12px", flexBasis: "50px" }} onClick={handleSave}>
-                  保存
-                </Button>
-              </div>
-            ) : (
-              <div className={style.userintroduction} onClick={handleDoubleClick}>
-                {text}
-              </div>
-            )}
-          </Col>
-        </Row>
-      </Card>
-
-      <div style={{ backgroundColor: "#f0f2f5", height: "80%", borderRadius: "10px 10px 0 0" }}>
+      <div className={style.bottom}>
         <MyPost />
-        {/* <FloatingBubble className={style.floatButton} tooltip={<div>Documents</div>} onClick={AddPost} /> */}
         <FloatingBubble
           style={{
             "--initial-position-bottom": "84px",
