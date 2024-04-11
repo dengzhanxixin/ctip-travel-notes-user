@@ -93,8 +93,8 @@ const SearchInfo: React.FC = () => {
   };
 
   const pages = [
-    <div>{isTravel && <TravelWaterFlow notes={travelInfo} />}</div>,
-    <div>{isUser && <UserInfoList notes={{ PageSize: 10, PageIndex: 0, searchInfo: info }} />}</div>,
+    <div key={0}>{isTravel && <TravelWaterFlow notes={travelInfo} />}</div>,
+    <div key={1}>{isUser && <UserInfoList notes={{ PageSize: 10, PageIndex: 0, searchInfo: info }} />}</div>,
   ];
 
 

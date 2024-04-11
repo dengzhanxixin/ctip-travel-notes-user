@@ -1,34 +1,14 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { NavBar, Swiper, Toast, Badge, Button, Popup } from "antd-mobile";
+import Image from "next/image";
 import Styles from "@/styles/travelDetail.module.scss";
+import wx from "weixin-js-sdk";
+import axios from "axios";
 
 interface TravelDetailProps {
   [key: string]: any;
 }
-
-const shareBtns = [
-  {
-    text: "微信",
-    icon: "iconfont icon-weixin",
-  },
-  {
-    text: "朋友圈",
-    icon: "iconfont icon-pengyouquan",
-  },
-  {
-    text: "QQ",
-    icon: "iconfont icon-QQ",
-  },
-  {
-    text: "QQ空间",
-    icon: "iconfont icon-QQkongjian",
-  },
-  {
-    text: "微博",
-    icon: "iconfont icon-xinlangweibo",
-  },
-];
 
 const TravelDetail: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
@@ -46,6 +26,30 @@ const TravelDetail: React.FC = () => {
   const router = useRouter();
   const id = parseInt(router.query.id as string);
 
+  const shareBtns = [
+    {
+      text: "微信",
+      icon: "iconfont icon-weixin",
+      onClick: () => handleShareToWechat(),
+    },
+    {
+      text: "朋友圈",
+      icon: "iconfont icon-pengyouquan",
+    },
+    {
+      text: "QQ",
+      icon: "iconfont icon-QQ",
+    },
+    {
+      text: "QQ空间",
+      icon: "iconfont icon-QQkongjian",
+    },
+    {
+      text: "微博",
+      icon: "iconfont icon-xinlangweibo",
+    },
+  ];
+
   // 获取游记的详细信息
   const fetchTravelNote = async (id: number) => {
     try {
@@ -60,8 +64,52 @@ const TravelDetail: React.FC = () => {
     }
   };
 
+  // 分享游记信息到微信
+  const handleShareToWechat = () => {
+    if (!wx) {
+      // 如果微信 JSSDK 未加载完成，则给出提示
+      Toast.show("无法分享，请稍后重试。");
+      return;
+    }
+    wx.ready(() => {
+      wx.onMenuShareAppMessage({
+        title: `${travelDetail?.title}`,
+        desc: `${travelDetail?.content}`,
+        link: `${window.location.href}`,
+        imgUrl: `${travelDetail?.images[0]}`,
+        type: "link",
+        success: () => {
+          Toast.show("分享成功！");
+        },
+        cancel: () => {
+          Toast.show("分享取消！");
+        },
+      });
+    });
+
+    wx.error(()=>{
+      Toast.show("分享失败！");
+    })
+  }
+
   useEffect(() => {
+    // 获取游记详情
     fetchTravelNote(id);
+
+    // // wx分享接口初始化
+    // axios.post('http://localhost:3001/api/wxJssdk/getJssdk', {url: location.href}).then((response) => {
+    //   var data = response.data;
+    //   wx.config({
+    //     debug: false, // 调试模式
+    //     appId: data.appId, // 公众号唯一标识
+    //     timestamp: data.timestamp, // 时间戳
+    //     nonceStr: data.nonceStr, // 随机串
+    //     signature: data.signature, // 签名
+    //     jsApiList: ['onMenuShareAppMessage'], // js接口列表
+    //   });
+    // });
+
+
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const user = JSON.parse(storedUser);
@@ -169,9 +217,9 @@ const TravelDetail: React.FC = () => {
           <Popup visible={isShare} onClose={() => setShareState(false)}>
             <NavBar onBack={() => setShareState(false)}>分享至</NavBar>
             <ul className={Styles.shareSofts}>
-              {shareBtns.map((share) => {
+              {shareBtns.map((share,index) => {
                 return (
-                  <li className={Styles.shareAPP}>
+                  <li className={Styles.shareAPP} onClick={share.onClick} key={index}>
                     <span className={share.icon} style={{ fontSize: "45px" }} />
                     <div className={Styles.appName}>{share.text}</div>
                   </li>
