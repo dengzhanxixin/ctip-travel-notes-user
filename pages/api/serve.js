@@ -27,7 +27,7 @@ const postDataArray = [];
 const imgArray = [];
 
 app.post("/api/register", async (req, res) => {
-  const { username, password, avatar } = req.body;
+  const { username, password, avatar, likeNote, saveNote, followUser } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({ message: "需要用户名和密码" });
@@ -47,6 +47,9 @@ app.post("/api/register", async (req, res) => {
     username,
     password: hashedPassword, // 存储加密后的密码
     avatar,
+    likeNote,
+    saveNote,
+    followUser,
   };
 
   users.push(newUser);

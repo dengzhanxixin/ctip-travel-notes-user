@@ -60,6 +60,9 @@ const handleRegister = async () => {
     username,
     password,
     avatar: selectedAvatar,
+    likeNote: [],
+    saveNote: [],
+    followUser: [],
   };
 
   try {

@@ -35,31 +35,31 @@ const SearchInfo: React.FC = () => {
   const data = [
     {
       key: "1",
-      title: "游记列表",
+      title: "迪斯尼",
     },
     {
       key: "2",
-      title: "热门游记",
+      title: "爬山",
     },
     {
       key: "3",
-      title: "热门游记",
+      title: "重庆",
     },
     {
       key: "4",
-      title: "热门游记",
+      title: "海阔天空",
     },
     {
       key: "5",
-      title: "热门游记",
+      title: "杭州樱花",
     },
     {
       key: "6",
-      title: "热门游记",
+      title: "莫愁湖",
     },
     {
       key: "7",
-      title: "热门游记",
+      title: "鸡鸣寺",
     },
   ]
   return (
