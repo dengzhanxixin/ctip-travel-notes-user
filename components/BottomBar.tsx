@@ -11,17 +11,17 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
     {
       key: "/bannerTravel",
       title: "游记列表",
-      icon: <AppOutline />,
+      icon: <AppOutline fontSize={35}/>,
     },
     {
       key: "/AddPost",
       title: "发布游记",
-      icon: <AddSquareOutline />,
+      icon: <AddSquareOutline fontSize={35}/>,
     },
     {
       key: "/person",
       title: "我的",
-      icon: <UserOutline />,
+      icon: <UserOutline fontSize={35}/>,
     },
   ];
 
@@ -40,9 +40,9 @@ const BottomBar: FC<PropsWithChildren<{}>> = ({ children }) => {
     <div className={Styles.container}>
       <div className={Styles.content}>{children}</div>
       <div className={Styles.footer}>
-        <TabBar activeKey={router.pathname}  onChange={(value) => setRouteActive(value)}>
+        <TabBar className={Styles.tabBar} activeKey={router.pathname}  onChange={(value) => setRouteActive(value)}>
         {tabs.map((item) => (
-          <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
+          <TabBar.Item className={Styles.tabBar} key={item.key} icon={item.icon} title={item.title} />
         ))}
       </TabBar>
       </div>
