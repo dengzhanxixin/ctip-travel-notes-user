@@ -9,9 +9,13 @@
 .cardcontainer{
     height: 180px;
     margin-bottom: 20px;
+    border: 1px solid rgb(130, 191, 166);
+    
+    
 }
 .content{
     display: flex;
+    
 
     // justify-content: space-between;
 }
@@ -42,10 +46,12 @@
 }
 .editButton{
     // background-color: rgb(254,240,226);
-    font-weight: 'bold';
+    font-weight: 700;
+    border-color: rgb(108,170,137);
     color: rgb(74,99,117);
 }
 .checkReason{
     color: rgb(176,69,71);
+    font-size: 10px;
     font-weight: 700;
 }

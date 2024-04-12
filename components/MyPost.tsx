@@ -45,8 +45,6 @@ const MyPost: React.FC = () => {
       });
       setIsMyPost(true);
     }
-    
-
   }, []);
 
 
@@ -55,10 +53,13 @@ const MyPost: React.FC = () => {
     <>
 
       <div className={style.mypost}>
-        <CapsuleTabs style={{ color:'balck'}} defaultActiveKey='1'>
+        <CapsuleTabs style={{ background:'balck'}} defaultActiveKey='1'>
           <CapsuleTabs.Tab title='已发布游记' key='1'>
             {isMyPost ? (
-              <TravelWaterFlow notes={DoneInfo} />
+              <div style={{ display: 'flex', flexWrap:"wrap", gap: '10px', justifyContent: 'center',paddingTop:'4px',marginRight:'10px'}}>
+                <TravelWaterFlow notes={DoneInfo} />
+              </div>
+              
             ) : (
               <Empty description={false} />
             )}

@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef,useEffect} from "react";
 import { Card, InfiniteScroll} from "antd-mobile";
 import Styles from "@/styles/travelWaterfallFlow.module.scss";
 import { useRouter } from "next/router";
@@ -76,6 +76,9 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
     });
     setHasMore(res.items.length > 0);
   }
+  useEffect(() => {
+    
+  },[PageProp])
   
 
 

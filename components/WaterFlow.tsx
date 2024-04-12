@@ -49,7 +49,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
                                 bodyStyle={{ padding: "0" }}
                                 key={item.id}
                             >
-                                <Image
+                                <img
                                     src={item.coverImg}
                                     className={Styles.restImg}
                                     alt={"旅游图片"}
@@ -73,7 +73,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
                                     </div>
                                     <div className={Styles.travelUser}>
                                         <div className={Styles.userInfo}>
-                                            <img className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
+                                            <Image className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
                                             <span className={Styles.userName}>{item.user.nickName}</span>
                                         </div>
                                         <div className={Styles.viewInfo}>

@@ -25,6 +25,7 @@ const PersonLogin = () => {
   const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [exists, setExists] = useState('');
   
 
 
@@ -42,22 +43,26 @@ const PersonLogin = () => {
       setUserInfo({
         ...userInfo,
         username: user.username,
-        // avatar: user.avatar,
+        avatar: user.avatar,
       });
-      const isAvatar = path.join('images',`${user.username}_avatar.jpg`).replace(/\\/g, '/')
-      console.log('isAvatar',isAvatar)
-      if(isAvatar)
-        setUserInfo({
-          ...userInfo,
-          avatar: isAvatar,
-        })
-      else{
-        const user = JSON.parse(storedUser);
-        setUserInfo({
-          ...userInfo,
-          avatar: user.avatar,
-        })
-      }
+      // fetch(`http://localhost:3001/api/check-avatar?username=${userInfo.username}`)
+      // .then(response => response.json())
+      // .then(data => setExists(data.avatar))
+      // .catch(error => console.error('Error:', error));
+      // console.log('exists',exists)
+
+      // if(exists)
+      //   setUserInfo({
+      //     ...userInfo,
+      //     avatar: exists,
+      //   })
+      // else{
+      //   const user = JSON.parse(storedUser);
+      //   setUserInfo({
+      //     ...userInfo,
+      //     avatar: user.avatar,
+      //   })
+      // }
       // console.log(user.username)
       setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }
@@ -100,7 +105,7 @@ const PersonLogin = () => {
     if (userInfo.username === "尊敬的用户") {
       router.push("/login");
     } else {
-      router.push(`/AddPost`);
+      router.push(`/AddPost?username=${userInfo.username.toString()}`);
     }
 
   };
@@ -112,6 +117,8 @@ const PersonLogin = () => {
       username,
       url,
     };
+    console.log(avatarData)
+
     try {
       fetch("http://localhost:3001/api/avatar", {
         method: 'POST',
@@ -202,17 +209,18 @@ const PersonLogin = () => {
             {isEditor ? (
               <div>
                 <AvatarUpload onChange={onChange} />
-                <CheckCircleOutline fontSize={30} fontWeight={"bold"} color="rgb(243,242,239)" className={style.editorAvatar} onClick={() => { setIsEditor(false);
+                <img src='/done.png' className={style.editorAvatar} onClick={() => { setIsEditor(false);
                   submitAvatar(userInfo.username, imageUrl); }} />
 
               </div>
 
             ) : (
               <div>
-                <AddCircleOutline fontSize={30} fontWeight={"bold"} color="rgb(243,242,239)" className={style.editorAvatar} onClick={() => {
+                 {userInfo.username === "尊敬的用户" ?(<></>):(<img src='/add.png' className={style.editorAvatar} onClick={() => {
                   setIsEditor(true)
-                }}
-                />
+                }}/>)}
+               
+                
 
                 <Avatar size={100} className={style.userAvatar} src={userInfo.avatar} alt="avatar" />
               </div>
@@ -223,7 +231,7 @@ const PersonLogin = () => {
             {/* 使用state中的username显示用户名 */}
             {userInfo.username}
           </div>
-          {isEditing ? (
+          {userInfo.username === "尊敬的用户" ? null : <> {isEditing ? (
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
               <TextArea
                 // type="text"
@@ -248,8 +256,9 @@ const PersonLogin = () => {
             <div className={style.userintroduction} onClick={handleDoubleClick}>
               {text}
             </div>
-          )}
-          <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
+          )}</>}
+         
+          {userInfo.username === "尊敬的用户" ? null : <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
             <div style={{ marginRight: '30px' }}>
               <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />
             </div>
@@ -259,7 +268,8 @@ const PersonLogin = () => {
             <div style={{ listStyle: 'none' }}>
               <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />
             </div>
-          </List.Item>
+          </List.Item>}
+          
         </Card>
       </div>
 
@@ -270,7 +280,7 @@ const PersonLogin = () => {
             "--initial-position-bottom": "84px",
             "--initial-position-right": "24px",
             "--edge-distance": "24px",
-            "--background": "#000000",
+            "--background": "rgb(130, 191, 166)",
           }}
         >
           <EditSFill onClick={AddPost} fontSize={32} />

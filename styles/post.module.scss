@@ -8,17 +8,40 @@
         align-items: flex-start;
         flex-wrap: wrap;
         // overflow-y: scroll;
-      }
+        
       .ant-upload {
-          background-color: antiquewhite;
-          width: 100px;
-          height: 100px;
+          background-color: rgb(130, 191, 166);
+          width: auto;
+          height: 120px;
+          border-radius: 15px;
+          border: 0;
+          ant-upload-select{
+            .div{
+              color:white
+
+            }
+            
+          }
       }
+      .ant-upload-list-item{
+        width: auto;
+        margin-right: 12px;
+        margin-bottom: 12px;
+        .ant-upload-list-item-info{
+          .ant-upload-list-item-name{
+            display: none;
+          }
+        }
+        .ant-upload-list-item-done{
+          width: auto;
+          height: 100px;
+          border-radius: 15px;
+          border: 2px solid rgb(130, 191, 166);
+      }
+    }
   }
 }
-.containerImage{
-  // display: flex;
-}
+
 .searchBarContainer {
   padding: 12px;
   border-bottom: solid 1px var(--adm-color-border);
@@ -33,4 +56,29 @@
   --border-top: 0;
   --border-bottom: 0;
 }
+.buttonContainer{
+  display: flex;
+  flex: flex-end;
+  
+  align-items: center;
+  margin-top: 12px;
+  width: 100%;
+}
+.submitButton{
+  width: 90%;
+  background-color: rgb(130, 191, 166);
+  color: white;
+  display: flex;
+  
+  border-radius: 15px;
+  border: 0;
+  padding: 12px;
+  margin-top: 12px;
 
+}
+.submitButton:hover{
+  background-color: rgb(130, 191, 166);
+  color: white;
+
+}
+}

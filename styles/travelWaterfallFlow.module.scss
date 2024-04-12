@@ -2,7 +2,9 @@
     margin: 0 auto;
     display: grid;
     column-gap: 5px;
-    padding: 10px 10px 0 10px;
+    padding-left:0px;
+    // padding: 10px 10px 0 10px;
+    // padding-right: 20px;
     justify-items: center;
     grid-template-columns: repeat(2, minmax(180px, 1fr));
   }

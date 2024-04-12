@@ -103,7 +103,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                   />
                   <div className={styles.travelTitle}>
                     
-                    <h3>{item.title}</h3>
+                    <h3 style={{width:'200px'}}>{item.title}</h3>
                     {item.isChecked !=0 ? <p className={styles.checkReason}>{item.checkReason}</p>: null}
                     
                   </div>
