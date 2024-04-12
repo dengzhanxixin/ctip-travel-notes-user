@@ -30,15 +30,15 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const handleClick = (id: number, isChecked: number) => {
-    router.push(`/EditPost?id=${id.toString()}`);
+    router.push(`/AddPost?id=${id.toString()}`);
   }
-  async function fetchId(id: number,username?:string) {
+  async function fetchId(id: number, username?: string) {
     const response = await fetch(`/api/delete`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id,username }) // 注意将 id 包装在对象中
+      body: JSON.stringify({ id, username }) // 注意将 id 包装在对象中
     });
     if (response.ok) {
       const data = await response.json();
@@ -46,7 +46,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
         // 删除成功，显示成功消息
         Toast.show('删除成功！');
         window.location.reload();
-        
+
       } else {
         // 删除失败，显示失败消息
         Toast.show('删除失败！');
@@ -56,9 +56,9 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
       console.error('Error posting data:', response.statusText);
     }
   }
-  const Delete = async (id: number, username?:string) => {
+  const Delete = async (id: number, username?: string) => {
     try {
-      await fetchId(id,username); // 等待 fetchId 函数完成
+      await fetchId(id, username); // 等待 fetchId 函数完成
     } catch (error) {
       console.error('Error posting data:', error);
       // 处理请求错误的情况
@@ -91,22 +91,36 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
         {travelNoteList &&
           travelNoteList.map((item, i) => (
             <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
+
               <Card className={styles.cardcontainer}>
                 <div className={styles.content}>
-                  <Image
-                    src={`${item.coverImg}?v=${version}`}
-                    className={styles.restImg}
-                    alt={"旅游图片"}
-                    width={100}
-                    height={80}
-                    onLoad={() => handleSetGridRowEnd(i)}
-                  />
-                  <div className={styles.travelTitle}>
-                    
-                    <h3 style={{width:'200px'}}>{item.title}</h3>
-                    {item.isChecked !=0 ? <p className={styles.checkReason}>{item.checkReason}</p>: null}
-                    
-                  </div>
+                  {item.coverImg == "" ?
+                    <><img
+                      src='./notSubmit.png'
+                      className={styles.restImg}
+                      alt={"旅游图片"}
+                      width={100}
+                      height={80}
+                      onLoad={() => handleSetGridRowEnd(i)}
+                    />
+                    </>
+                    : <>
+                      <Image
+                        src={`${item.coverImg}?v=${version}`}
+                        className={styles.restImg}
+                        alt={"旅游图片"}
+                        width={100}
+                        height={80}
+                        onLoad={() => handleSetGridRowEnd(i)}
+                      />
+                    </>
+                  }
+                  {item.title != "" ? <div className={styles.travelTitle}>
+                    <h3 style={{ width: '200px' }}>{item.title}</h3>
+                    {item.isChecked != 0 ? <p className={styles.checkReason}>{item.checkReason}</p> : null}
+                  </div> : <h3 style={{ width: '200px' }}>标题未编辑</h3>}
+
+
 
 
                 </div>
@@ -116,16 +130,13 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                   {!item.isChecked ? <Button
                     className={styles.checkingButton}
                     color='primary'
-                    onClick={() => {
-                      Toast.show('点击了底部按钮')
-                    }}
-                  >待审核 </Button> : <Button
+                  >待审核 </Button> : item.isChecked == -1 ? <Button
+                    className={styles.notSubmitButton}
+                    color='primary'
+                  >待提交</Button> :(<Button
                     className={styles.checkRejectButton}
                     color='primary'
-                    onClick={() => {
-                      Toast.show('点击了底部按钮')
-                    }}
-                  >审核未通过</Button>}
+                  >审核未通过</Button>)}
 
 
                   {item.isChecked != 3 ? <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
@@ -134,6 +145,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                 </div>
 
               </Card>
+
             </div>
           ))}
       </div>

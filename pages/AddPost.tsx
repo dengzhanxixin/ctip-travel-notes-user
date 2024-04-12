@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from 'react';
 import type { FC } from 'react'
 import { Typography, Divider, AutoComplete } from 'antd';
-import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast, NoticeBar, Space, List } from "antd-mobile";
-import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
+import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast, NoticeBar, Space, List, Modal, } from "antd-mobile";
+import { EnvironmentOutlined, TeamOutlined, } from '@ant-design/icons';
+import { ExclamationCircleFill } from 'antd-mobile-icons'
 import AddImage from "../components/AddImage";
 import styles from "../styles/post.module.scss";
 import { options } from '../data/province'
@@ -36,6 +37,14 @@ interface FormData {
     shootTime: string,
     shootDisplayTime: string
 }
+interface EditorDetailProps {
+    [key: string]: any;
+}
+interface Image {
+    url: string;
+    width: number;
+    height: number;
+}
 
 const { Title } = Typography;
 export default function AddPost() {
@@ -48,6 +57,10 @@ export default function AddPost() {
     const [inputValue, setInputValue] = useState('');
     const [tempImages, setTempImages] = useState<string[]>([])
     const [isReady, setIsReady] = useState(false);
+    const id = parseInt(router.query.id as string);
+
+    const [EditorData, setEditorData] = useState<EditorDetailProps>()
+    const [tempEdit, setTempEdit] = useState<Image[]>([]);
 
 
 
@@ -89,6 +102,28 @@ export default function AddPost() {
         shootTime: '',
         shootDisplayTime: '',
     });
+    const fetchTravelNote = async (id: number) => {
+        try {
+            const params = new URLSearchParams({
+                id: id?.toString(),
+            });
+            const response = await fetch(`/api/getTravelDetail?${params.toString()}`);
+            if (!response.ok) {
+                throw new Error("Failed to fetch travel details: " + response.statusText);
+            }
+            const data = await response.json();
+            if (data) {
+                setEditorData(prevEditorData => ({
+                    ...prevEditorData,
+                    id: params.toString(),
+                    ...data, // 将返回的数据合并到 EditorData 中
+                }));
+            }
+        } catch (err) {
+            console.log(err)
+            // Toast.show("现在开始添加新的游记吧");
+        }
+    };
     useEffect(() => {
         const params = new URLSearchParams({
             username: formData.user.nickName?.toString(),
@@ -107,61 +142,146 @@ export default function AddPost() {
                 },
             }));
 
-
         }
-
-    }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
+        fetchTravelNote(id);
+    }, [id]); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
 
     const handleInputChange = (name: string, value: string) => {
-        setFormData({ ...formData, [name]: value });
+        if (EditorData) {
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
+                [name]: value
+            }));
+        }
+        else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = () => {
-        console.log('Now formData.url.length', formData.url.length);
+        // console.log('Now formData.url.length', formData.url.length);
         const conditions = [
-            { condition: !formData.title, message: '标题不能为空' },
-            { condition: !formData.content, message: '正文不能为空' },
-            { condition: formData.url.length = 0, message: '图片不能为空' }
+            { condition: (!formData.title) && (EditorData && EditorData.title==""), message: '未填写标题' },
+            { condition: (!formData.content) && (EditorData && EditorData.content==""), message: '未填写正文' },
+            { condition: tempImages.length == 0, message: '图片不能为空' }
         ];
+        console.log("conditions:", conditions);
 
         const errorMessage = conditions
             .filter(condition => condition.condition)
             .map(condition => condition.message)
-            .join('且');
+            .join(',\n');
 
         if (errorMessage) {
-            Toast.show(errorMessage);
+            Modal.alert({
+                header: (
+                    <ExclamationCircleFill
+                        style={{
+                            fontSize: 44,
+                            color: 'var(--adm-color-warning)',
+                        }}
+                    />
+                ),
+                title: '注意',
+                content: (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', wordWrap: 'break-word' }}>
+                        <div style={{ width: '90px', lineHeight: '20px', textAlign: 'center' }}>{errorMessage}</div>
+                    </div>
+                ),
+                closeOnMaskClick: true,
+            })
             return;
         }
-
-        setFormData({ ...formData, url: tempImages });
-        setIsReady(true);
-
-
-    };
-    useEffect(() => {
-        if (isReady) {
-            try {
-                const response = fetch(`/api/newPost`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-                console.log('response', formData);
-
-                Toast.show('发布成功！');
-                router.push('/person');
-            } catch (error) {
-                console.error('Error posting data:', error);
-            }
+        if (EditorData) {
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
+                ...EditorData,
+                images: tempEdit,
+            }));
         }
+        else {
+            setFormData({ ...formData, url: tempImages });
+        }
+
+        setIsReady(true)
+    };
+    const handleDraft = () => {
+        if ((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content)) && tempImages.length === 0) {
+            Modal.alert({
+                header: (
+                    <ExclamationCircleFill
+                        style={{
+                            fontSize: 44,
+                            color: 'var(--adm-color-warning)',
+                        }}
+                    />
+                ),
+                title: '注意',
+                content: (
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', wordWrap: 'break-word' }}>
+                        <div style={{ width: '90px', lineHeight: '20px', textAlign: 'center' }}>游记内容不能为空</div>
+                    </div>
+                ),
+                closeOnMaskClick: true,
+            })
+        }
+        setFormData({ ...formData, url: tempImages, isChecked: -1 });
+        setIsReady(true)
+        
+    }
+
+    useEffect(() => {
+
+        try {
+            if (isReady) {
+                if (EditorData) {
+                    const response = fetch(`/api/editorPost`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(EditorData)
+                    });
+                    Toast.show('编辑成功！');
+                    
+                }
+                else{
+                    const response = fetch(`/api/newPost`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    if(formData.isChecked==-1){
+                        Toast.show('保存成功！');
+                    }else{
+                        Toast.show('发布成功！');
+                    }
+                    
+
+                } 
+                
+                router.push('/person');
+            }
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
+
+
     }, [isReady]);
     const handleThumbUrlsChange = (thumbUrls: string[]) => {
-        // console.log('thumbUrls', thumbUrls)
+        if (EditorData) {
+            const updatedTempImages = thumbUrls.map((url, index) => ({
+                url: url,
+                width: 0,
+                height: 0
+            }));
+            setTempEdit(updatedTempImages);
+
+        }
         setTempImages(thumbUrls);
-        console.log('tempImages', tempImages)
+
     };
     const filteredItems = useMemo(() => {
         return items
@@ -185,6 +305,7 @@ export default function AddPost() {
         }
     };
     console.log('formData.url', formData.url);
+    const back = () => router.push('/person');
 
 
 
@@ -192,24 +313,34 @@ export default function AddPost() {
 
     return (
         <>
-            <NoticeBar content='本月发布超过五条游记，即可获得100积分奖励' color='alert'
+        {EditorData ? (<NavBar back='返回' onBack={back}>
+          编辑游记
+        </NavBar>):<NoticeBar content='本月发布超过五条游记，即可获得100积分奖励' color='alert'
                 extra={
                     <Space style={{ '--gap': '12px' }}>
                         <span>查看详情</span>
                     </Space>
 
                 } closeable />
+            }
             <div className="containerImage">
+            
                 {/* 上传图片 */}
                 <div style={{ width: "100%", height: "180px" }}>
                     <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
-                        <AddImage ImgList={[]} onThumbUrlsChange={handleThumbUrlsChange} />
+                        {EditorData ? (
+                            <AddImage ImgList={EditorData.images} onThumbUrlsChange={handleThumbUrlsChange} />
+                        ) : (
+                            <AddImage ImgList={[]} onThumbUrlsChange={handleThumbUrlsChange} />
+                        )}
+
                     </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
                     <TextArea
                         name='title'
                         style={{ width: '90%', height: '10px', "--font-size": '20px' }}
+                        value={EditorData && EditorData.title}
                         onChange={(value) => { handleInputChange('title', value) }}
                         placeholder="请填写你的游记标题～"
                         showCount
@@ -221,6 +352,7 @@ export default function AddPost() {
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '120px', marginBottom: '10px' }}>
                     <TextArea
                         name='content'
+                        value={EditorData && EditorData.content}
                         style={{ width: '90%', height: '100%', "--font-size": '18px' }}
                         onChange={(value) => { handleInputChange('content', value) }}
                         placeholder="请在这里输入你的游记正文吧～"
@@ -230,17 +362,18 @@ export default function AddPost() {
                     />
                 </div>
                 <div>
-                    <List mode='card' style={{ margin: '10px',"--font-size":"18px", }} >
-                        <List.Item  prefix={<EnvironmentOutlined />} onClick={handleAddLocation} >
-                            {formData.city ? <div style={{color: 'rgb(108, 170, 137)',fontWeight:'700'}}>{formData.city}</div>
-                             : '添加地点'}
+                    <List mode='card' style={{ margin: '10px', "--font-size": "18px", }} >
+                        <List.Item prefix={<EnvironmentOutlined />} onClick={handleAddLocation} >
+                            {EditorData ? EditorData.city :
+                                (formData.city ? <div style={{ color: 'rgb(108, 170, 137)', fontWeight: '700' }}>{formData.city}</div>
+                                    : '添加地点')}
                         </List.Item>
 
                         <List.Item prefix={<TeamOutlined />} onClick={() => { setVisible2(true) }}>
-                             {selected? <div style={{color: 'rgb(108, 170, 137)',fontWeight:'700'}}>{selected}</div>: '公开设置'}
-                            
+                            {selected ? <div style={{ color: 'rgb(108, 170, 137)', fontWeight: '700' }}>{selected}</div> : '公开设置'}
+
                         </List.Item>
-                        
+
 
                         <List.Item prefix={<EnvironmentOutlined />} onClick={() => { }}>
                             高级设置
@@ -276,22 +409,61 @@ export default function AddPost() {
                         </div>
                     </Popup>
                 </div>
-                <div className={styles.buttonContainer}>
-                    
-                    <Button style={{
-                        width: '50%',
-                        backgroundColor: 'rgb(130, 191, 166)',
-                        color: 'white',
-                        flex:'flex-end',
-                        borderRadius: '15px',
-                        fontSize: '20px',
-                        border: '0',
-                        marginLeft:'100px',
-                        marginTop: '12px'
-                    }} onClick={handleSubmit}>提交</Button>
-                </div>
 
-            </div></>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '15px', paddingLeft: '1px', width: '100%' }}>
+                {EditorData ? (null):<Button style={{
+                    width: '30%',
+                    height: '140%',
+                    backgroundColor: 'white',
+                    border: '1px solid rgb(130, 191, 166)',
+                    color: 'white',
+                    borderRadius: '15px',
+                    fontSize: '20px',
+
+                }} onClick={handleDraft}>
+                    <div style={{
+                        display: 'flex',
+                        width: '80%',
+                        flexWrap: 'wrap',
+                        height: '80px',
+                        marginLeft: '10px',
+                        // marginRight: '30px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <img src='./submit.png' style={{ width: '60px' }}></img>
+                        <span style={{ fontSize: '18px', color: 'rgb(130, 191, 166)', fontWeight: '500' }}>草稿箱</span>
+                    </div>
+                </Button>}
+
+
+                <Button style={{
+                    width: '30%',
+                    height: '140%',
+                    backgroundColor: 'white',
+                    border: '1px solid rgb(130, 191, 166)',
+                    color: 'white',
+                    borderRadius: '15px',
+                    fontSize: '20px',
+
+                }} onClick={handleSubmit}>
+                    <div style={{
+                        display: 'flex',
+                        width: '80%',
+                        flexWrap: 'wrap',
+                        height: '80px',
+                        marginLeft: '10px',
+                        // marginRight: '30px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <img src='./drawer.png' style={{ width: '60px' }}></img>
+                        <span style={{ fontSize: '18px', color: 'rgb(130, 191, 166)', fontWeight: '500' }}>提交</span>
+                    </div>
+                </Button>
+            </div >
+        </>
 
     )
 }

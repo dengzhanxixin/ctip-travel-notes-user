@@ -34,6 +34,7 @@ interface travelNoteListProps {
     strictSearch?: boolean; // 严格搜索还是模糊搜索
     searchChecked: number; // 游记审核状态
     notChecked?: boolean; // 
+    notSubmit?: boolean;
   }
 
 interface Props {
@@ -94,7 +95,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
 
   return (
     <>
-    {PageProp.notChecked?<Check travelNoteList={travelNoteList} />:<WaterFollow travelNoteList={travelNoteList} />}
+    {(PageProp.notChecked || PageProp.notSubmit)?<Check travelNoteList={travelNoteList} />:<WaterFollow travelNoteList={travelNoteList} />}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </>
   );

@@ -11,6 +11,7 @@ interface TravelInfo {
   searchUser: string;
   strictSearch: boolean;
   notChecked: boolean;
+  notSubmit: boolean;
 }
 interface TravelNoteProps {
   id: number;
@@ -28,9 +29,10 @@ const MyPost: React.FC = () => {
     username: "",
     avatar: "", // 这里应该是你的默认头像路径
   });
-  
-  const DoneInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked:1, strictSearch: true};
-  const WaitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked:1, strictSearch: true, notChecked:true };
+
+  const DoneInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked: 1, strictSearch: true };
+  const WaitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked: 1, strictSearch: true, notChecked: true };
+  const notSubmitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked: 1, strictSearch: true, notSubmit: true };
 
 
 
@@ -53,13 +55,13 @@ const MyPost: React.FC = () => {
     <>
 
       <div className={style.mypost}>
-        <CapsuleTabs style={{ background:'balck'}} defaultActiveKey='1'>
+        <CapsuleTabs style={{ background: 'balck' }} defaultActiveKey='1'>
           <CapsuleTabs.Tab title='已发布游记' key='1'>
             {isMyPost ? (
-              <div style={{ display: 'flex', flexWrap:"wrap", gap: '10px', justifyContent: 'center',paddingTop:'4px',marginRight:'10px'}}>
+              <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
                 <TravelWaterFlow notes={DoneInfo} />
               </div>
-              
+
             ) : (
               <Empty description={false} />
             )}
@@ -67,13 +69,21 @@ const MyPost: React.FC = () => {
 
 
           <CapsuleTabs.Tab title='待发布游记' key='2'>
-          {isMyPost ? (
+            {isMyPost ? (
               <TravelWaterFlow notes={WaitInfo} />
             ) : (
               <Empty description={false} />
             )}
           </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='草稿箱' key='3'>
+            {isMyPost ? (
+              <TravelWaterFlow notes={notSubmitInfo} />
+            ) : (
+              <Empty description={false} />
+            )}
+          </CapsuleTabs.Tab>
         </CapsuleTabs>
+
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         </div>
       </div>

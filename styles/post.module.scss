@@ -56,13 +56,23 @@
   --border-top: 0;
   --border-bottom: 0;
 }
-.buttonContainer{
+.buttonContainer {
   display: flex;
-  flex: flex-end;
-  
-  align-items: center;
+  justify-content: space-between; /* 水平方向平均分布子元素 */
+  align-items: center; /* 垂直方向居中对齐 */
   margin-top: 12px;
+  padding-left:10px;
   width: 100%;
+}
+.draft {
+  display: flex;
+  width: 100px;
+  margin-left: 100px;
+  align-items: center; /* 垂直方向居中对齐 */
+}
+.draft img {
+  width: 15%;
+  
 }
 .submitButton{
   width: 90%;
