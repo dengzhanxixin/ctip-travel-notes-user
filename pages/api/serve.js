@@ -6,7 +6,7 @@ const fs = require("fs");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 // sha1加密
-// const sha1 = require("sha1");
+const sha1 = require("sha1");
 
 const saltRounds = 10; // 定义salt的回合数，推荐值
 

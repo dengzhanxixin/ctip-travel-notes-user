@@ -53,7 +53,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
 
   const startIndex = 5 * ((payload.PageIndex || 1) - 1);
   const endIndex = startIndex + (payload.PageSize || 5);
-  console.log(startIndex, endIndex);
+  // console.log(startIndex, endIndex);
 
   const total = searchData.length;
   const items = searchData.slice(startIndex, endIndex);

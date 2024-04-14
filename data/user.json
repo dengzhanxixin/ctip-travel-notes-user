@@ -1,32 +1,20 @@
 [
   {
     "id": 1,
-    "username": "admin",
-    "password": "$2b$10$9WIMg0uTYnUwwFMKBRTzm.tTk.CQst/1PKZ2jw3TsTcEH2rqGgMT.",
-    "avatar": "images/avatar4.png"
+    "username": "123",
+    "password": "$2b$10$zS88KsSWbOeE0pU0Io5Iiu8wmR8VbqR0qHSC72CcZFKhxYtE.wPHO",
+    "avatar": "images/avatar1.png",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": []
   },
   {
     "id": 2,
-    "username": "admin2",
-    "password": "$2b$10$WtBlztYGODofFhWyvQnOMe3jrDV0nufg0wtiYsvZjveE63k/iA0gO",
-    "avatar": "images/avatar1.png"
-  },
-  {
-    "id": 3,
-    "username": "admin3",
-    "password": "$2b$10$obO.6k92dyaJJsaWg2huWuhpVhpWW2hwoBZljMscUHUno0AnngQSO",
-    "avatar": "images/avatar1.png"
-  },
-  {
-    "id": 4,
-    "username": "001",
-    "password": "$2b$10$OiEYX7dGDFUMCXwT1eTtqOL43haAiXXnPaVvxyhfQRYUgjW67Lg5S",
-    "avatar": "images/001_avatar.jpg"
-  },
-  {
-    "id": 5,
-    "username": "123",
-    "password": "$2b$10$uboIU3aTFLGUDu76GV02N.6unCHSVkeF0wDMYB5gsWwD1AMf9EWKC",
-    "avatar": "images/123_avatar.jpg"
+    "username": "1234",
+    "password": "$2b$10$VOg3IcQi.2U7oNVXYTy8ouv9T5JpThBoH2ySpixr7dQl.Pnj2h6NK",
+    "avatar": "images/avatar1.png",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": ["云山集"]
   }
 ]

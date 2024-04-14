@@ -35,9 +35,6 @@ const MyPost: React.FC = () => {
   const WaitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked: 1, strictSearch: true, notChecked: true };
   const notSubmitInfo = { PageSize: 10, PageIndex: 0, searchUser: userInfo.username, searchChecked: 1, strictSearch: true, notSubmit: true };
 
-
-
-
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -49,13 +46,16 @@ const MyPost: React.FC = () => {
       setIsMyPost(true);
     }
   }, []);
+  useEffect(() => {
+      setIsMyPost(true);
+  }, [userInfo]);
   const pages = [
     <div key={0}>{isMyPost ? (
       <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
         <TravelWaterFlow notes={DoneInfo} />
-      </div>) : (<Empty description={false} />)}</div>,
-      <div key={1}>{isMyPost ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} />)}</div>,
-      <div key={2}>{isMyPost ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} />)}</div>,
+      </div>) : (<Empty description={false}  style={{marginTop: '20px'}}/>)}</div>,
+      <div key={1}>{isMyPost ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
+      <div key={2}>{isMyPost ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
 
   ];
   const ref = useRef<SwiperRef>(null);
@@ -87,34 +87,6 @@ const MyPost: React.FC = () => {
             <Swiper.Item key={index}>{page}</Swiper.Item>
           ))}
         </Swiper>
-
-        {/* <CapsuleTabs style={{ background: 'balck' }} defaultActiveKey='1'>
-          <CapsuleTabs.Tab title='已发布游记' key='1'>
-            {isMyPost ? (
-              <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
-                <TravelWaterFlow notes={DoneInfo} />
-              </div>
-            ) : (
-              <Empty description={false} />
-            )}
-          </CapsuleTabs.Tab>
-
-
-          <CapsuleTabs.Tab title='待发布游记' key='2'>
-            {isMyPost ? (
-              <TravelWaterFlow notes={WaitInfo} />
-            ) : (
-              <Empty description={false} />
-            )}
-          </CapsuleTabs.Tab>
-          <CapsuleTabs.Tab title='草稿箱' key='3'>
-            {isMyPost ? (
-              <TravelWaterFlow notes={notSubmitInfo} />
-            ) : (
-              <Empty description={false} />
-            )}
-          </CapsuleTabs.Tab>
-        </CapsuleTabs> */}
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         </div>

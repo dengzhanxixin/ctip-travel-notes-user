@@ -74,11 +74,11 @@ const TravelDetail: React.FC = () => {
   };
 
   // 获取该游记是否被点赞和收藏
-  const fetchLikeAndSave = async (id: number, username: string) => {
+  const fetchLikeAndSave = async (id: number, noteUser: string, username: string) => {
     try {
       const response = await fetch("/api/getLikeAndSave", {
         method: "POST",
-        body: JSON.stringify({ id: id, username: username }),
+        body: JSON.stringify({ id: id, noteUser: noteUser, username: username }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -95,12 +95,12 @@ const TravelDetail: React.FC = () => {
     }
   };
 
-  // 增加或消除点赞、收藏数据
-  const handleLikeAndSave = async (id: number, username: string, tabType: string, isadd: boolean) => {
+  // 增加或消除用户方的点赞、收藏数据
+  const handleLikeAndSave = async (id: number, noteUser: string, username: string, tabType: string, isadd: boolean) => {
     try {
       const response = await fetch("/api/likeAndSave", {
         method: "POST",
-        body: JSON.stringify({ id: id, username: username, tabType: tabType, isadd: isadd }),
+        body: JSON.stringify({ id: id, noteUser: noteUser, username: username, tabType: tabType, isadd: isadd }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -134,41 +134,45 @@ const TravelDetail: React.FC = () => {
       Toast.show("无法分享，请稍后重试。");
       return;
     }
-    // wx分享接口初始化
-    axios.post("http://localhost:3001/api/wxJssdk/getJssdk", { url: location.href }).then((response) => {
-      var data = response.data;
-      wx.config({
-        debug: false, // 调试模式
-        appId: data.appId, // 公众号唯一标识
-        timestamp: data.timestamp, // 时间戳
-        nonceStr: data.nonceStr, // 随机串
-        signature: data.signature, // 签名
-        jsApiList: ["onMenuShareAppMessage"], // js接口列表
-      });
-      wx.ready(() => {
-        wx.onMenuShareAppMessage({
-          title: `${travelDetail?.title}`,
-          desc: `${travelDetail?.content}`,
-          link: `${window.location.href}`,
-          imgUrl: `${travelDetail?.images[0]}`,
-          type: "link",
-          success: () => {
-            Toast.show("分享成功！");
-          },
-          cancel: () => {
-            Toast.show("分享取消！");
-          },
+    if (typeof window !== 'undefined') {
+      // wx分享接口初始化
+      axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk/getJssdk`, { url: location.href }).then((response) => {
+        var data = response.data;
+        wx.config({
+          debug: false, // 调试模式
+          appId: data.appId, // 公众号唯一标识
+          timestamp: data.timestamp, // 时间戳
+          nonceStr: data.nonceStr, // 随机串
+          signature: data.signature, // 签名
+          jsApiList: ["onMenuShareAppMessage"], // js接口列表
+        });
+        wx.ready(() => {
+          wx.onMenuShareAppMessage({
+            title: `${travelDetail?.title}`,
+            desc: `${travelDetail?.content}`,
+            link: `${window.location.href}`,
+            imgUrl: `${travelDetail?.images[0]}`,
+            type: "link",
+            success: () => {
+              Toast.show("分享成功！");
+            },
+            cancel: () => {
+              Toast.show("分享取消！");
+            },
+          });
+        });
+
+        wx.error(() => {
+          Toast.show("分享失败！");
         });
       });
-
-      wx.error(() => {
-        Toast.show("分享失败！");
-      });
-    });
+    } else{
+      console.log("window为undefined")
+    }
   };
 
   useEffect(() => {
-    // 获取游记详情
+      // 获取游记详情
     fetchTravelNote(id);
 
     const storedUser = localStorage.getItem("user");
@@ -177,9 +181,17 @@ const TravelDetail: React.FC = () => {
       setUserInfo({
         username: user.username,
       });
-      fetchLikeAndSave(id, user.username);
     }
   }, [id]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (travelDetail && storedUser) {
+      fetchLikeAndSave(id,travelDetail?.user.nickName,userInfo.username);
+      }
+      
+    }, [travelDetail]);
+  
 
   return (
     <div className={Styles.container}>
@@ -197,7 +209,7 @@ const TravelDetail: React.FC = () => {
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
             onClick={async () => {
               if (userInfo.username !== "") {
-                await handleLikeAndSave(id, userInfo.username, "followUser", !commentState.isFollow);
+                await handleLikeAndSave(id, travelDetail?.user.nickName,userInfo.username, "followUser", !commentState.isFollow);
                 setCommentState({ ...commentState, isFollow: !commentState.isFollow });
               } else {
                 router.push("/login");
@@ -257,7 +269,7 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newLikeCount = commentState.islike ? commentNum.likeCount - 1 : commentNum.likeCount + 1;
-                  await handleLikeAndSave(id, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
+                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
                   await handleAddAndSub(id, "likeCount", !commentState.islike);
                   setCommentState({
                     ...commentState,
@@ -321,7 +333,7 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newSaveNum = commentState.isSave ? commentNum.saveNum - 1 : commentNum.saveNum + 1;
-                  await handleLikeAndSave(id, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
+                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
                   await handleAddAndSub(id, "commentCount", !commentState.isSave);
                   setCommentState({
                     ...commentState,

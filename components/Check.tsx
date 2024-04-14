@@ -99,7 +99,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                       src='./notSubmit.png'
                       className={styles.restImg}
                       alt={"旅游图片"}
-                      width={100}
+                      width={120}
                       height={80}
                       onLoad={() => handleSetGridRowEnd(i)}
                     />
