@@ -1,5 +1,5 @@
 import { Empty, Card, Drawer, Button } from 'antd';
-import { CapsuleTabs } from 'antd-mobile'
+import { Swiper, SwiperRef } from 'antd-mobile'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
@@ -25,6 +25,7 @@ interface TravelNoteProps {
 const MyPost: React.FC = () => {
   const router = useRouter();
   const [isMyPost, setIsMyPost] = useState(false); // 0表示未发表过游记
+  const [activeIndex, setActiveIndex] = useState(0); // 当前活动页面的索引
   const [userInfo, setUserInfo] = useState({
     username: "",
     avatar: "", // 这里应该是你的默认头像路径
@@ -48,6 +49,21 @@ const MyPost: React.FC = () => {
       setIsMyPost(true);
     }
   }, []);
+  const pages = [
+    <div key={0}>{isMyPost ? (
+      <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
+        <TravelWaterFlow notes={DoneInfo} />
+      </div>) : (<Empty description={false} />)}</div>,
+      <div key={1}>{isMyPost ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} />)}</div>,
+      <div key={2}>{isMyPost ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} />)}</div>,
+
+  ];
+  const ref = useRef<SwiperRef>(null);
+  const handleSwipeChange = (index: number) => {
+    setActiveIndex(index); // 更新当前活动页面的索引
+    ref.current?.swipeTo(index); // 切换页面
+  };
+  const nameBars = ["已发布游记", "未发布游记", "草稿箱"];
 
 
 
@@ -55,13 +71,29 @@ const MyPost: React.FC = () => {
     <>
 
       <div className={style.mypost}>
-        <CapsuleTabs style={{ background: 'balck' }} defaultActiveKey='1'>
+      <div className={style.nameBar}>
+        {nameBars.map((name, index) => (
+          <div
+            key={index}
+            className={index === activeIndex ? style.name_active : style.name}
+            onClick={() => handleSwipeChange(index)}
+          >
+            {name}
+          </div>
+        ))}
+      </div>
+      <Swiper ref={ref} indicator={() => null}>
+          {pages.map((page, index) => (
+            <Swiper.Item key={index}>{page}</Swiper.Item>
+          ))}
+        </Swiper>
+
+        {/* <CapsuleTabs style={{ background: 'balck' }} defaultActiveKey='1'>
           <CapsuleTabs.Tab title='已发布游记' key='1'>
             {isMyPost ? (
               <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
                 <TravelWaterFlow notes={DoneInfo} />
               </div>
-
             ) : (
               <Empty description={false} />
             )}
@@ -82,7 +114,7 @@ const MyPost: React.FC = () => {
               <Empty description={false} />
             )}
           </CapsuleTabs.Tab>
-        </CapsuleTabs>
+        </CapsuleTabs> */}
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         </div>

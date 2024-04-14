@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:%20200,300,400,500,600,700,800,900&display=swap') ;
+
 .background {
   width: 100%;
   height: 100%;
@@ -167,5 +169,31 @@
     .adm-capsule-tabs-tab {
       background-color: black;
     }
+  }
+}
+.navigation{
+  margin: 100px 10px,;
+  padding: 20 60;
+  font-size: 16px;
+  text-align: start;
+  line-height: 30px
+}
+.nameBar {
+  padding: 0 17px;
+  display: flex;
+  border-bottom: 1px solid #eee;
+  .name_active {
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 20px;
+    color: #000;
+    border-bottom: 2px solid red;
+  }
+  .name{
+    padding: 10px 0;
+    font-size: 20px;
+    color: #777;
+    margin-right: 20px;
   }
 }

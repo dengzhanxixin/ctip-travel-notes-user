@@ -92,7 +92,6 @@ app.post("/api/login", (req, res) => {
 });
 app.post("/api/avatar", (req, res) => {
   const { username, url } = req.body;
-  console.log(username, url)
   if (url.startsWith('data:image')) {
     const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
     const buffer = Buffer.from(base64Data, 'base64');

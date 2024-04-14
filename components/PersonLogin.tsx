@@ -154,7 +154,7 @@ const PersonLogin = () => {
   );
 
   const mockContent = () => (
-    <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
+    <div className={style.navigation}>
       <SetOutline fontSize={iconSize} onClick={() => {
         setVisible4(true)
       }} /> 个人设置
