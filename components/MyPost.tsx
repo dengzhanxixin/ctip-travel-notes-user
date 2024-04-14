@@ -43,12 +43,14 @@ const MyPost: React.FC = () => {
         username: user.username,
         avatar: user.avatar,
       });
-      setIsMyPost(true);
     }
   }, []);
   useEffect(() => {
+    if (userInfo.username){
       setIsMyPost(true);
-  }, [userInfo]);
+    }
+  }, [userInfo.username]);
+
   const pages = [
     <div key={0}>{isMyPost ? (
       <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
@@ -64,8 +66,6 @@ const MyPost: React.FC = () => {
     ref.current?.swipeTo(index); // 切换页面
   };
   const nameBars = ["已发布游记", "未发布游记", "草稿箱"];
-
-
 
   return (
     <>

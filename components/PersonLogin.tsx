@@ -34,39 +34,7 @@ const PersonLogin = () => {
     username: "尊敬的用户",
     avatar: "/person.png", // 这里应该是你的默认头像路径
   });
-  const isUsrLogin = () => {
-    const storedUser = localStorage.getItem("user");
 
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      setUserInfo({
-        ...userInfo,
-        username: user.username,
-        avatar: user.avatar,
-      });
-      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${userInfo.username}`)
-      .then(response => response.json())
-      .then(data => setExists(data.avatar))
-      .catch(error => console.error('Error:', error));
-    
-      if(exists)
-        setUserInfo({
-          ...userInfo,
-          avatar: exists,
-        })
-      else{
-        const user = JSON.parse(storedUser);
-        setUserInfo({
-          ...userInfo,
-          avatar: user.avatar,
-        })
-      }
-      console.log(user.username)
-       // 判断是否登录并更新状态
-    }
-    
-    
-  }
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
