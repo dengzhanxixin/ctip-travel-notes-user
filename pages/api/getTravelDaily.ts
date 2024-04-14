@@ -10,6 +10,7 @@ interface travelNoteFilterPayload {
   strictSearch?: boolean; 
   searchChecked: number; // 严格搜索还是模糊搜索
   notChecked?: boolean; // 查询未审核的旅游日记
+  notSubmit?: boolean; // 查询未提交的旅游日记
 }
 
 interface travelNoteItem {
@@ -43,8 +44,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<travel
     );
 
     searchData = searchData.filter((item) =>
-      payload.notChecked?
-      (item.isChecked != payload.searchChecked):(item.isChecked === payload.searchChecked)
+      payload.notSubmit?(item.isChecked == -1):
+      (payload.notChecked?
+      (item.isChecked != payload.searchChecked && item.isChecked != -1):(item.isChecked === payload.searchChecked))
+
     );
   }
 

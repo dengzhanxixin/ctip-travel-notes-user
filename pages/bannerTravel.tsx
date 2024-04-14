@@ -119,6 +119,7 @@ const TravelList: React.FC = () => {
           <Swiper
             style={{
               "--border-radius": "8px",
+              marginBottom: "10px",
             }}
             slideSize={70}
             trackOffset={15}
