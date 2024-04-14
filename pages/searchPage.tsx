@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
-import React from "react";
-import { NavBar, SearchBar,Tag } from "antd-mobile";
+import React, { useEffect, useState } from "react";
+import { NavBar, SearchBar, Tag } from "antd-mobile";
 import Styles from "@/styles/searchPage.module.scss";
 
+// 热门城市
 const hotCityList = [
   { cityName: "上海", cityID: "2", isDomesticCity: "1" },
   { cityName: "北京", cityID: "1", isDomesticCity: "1" },
@@ -15,95 +16,100 @@ const hotCityList = [
   { cityName: "深圳", cityID: "26", isDomesticCity: "1" },
 ];
 
-
-interface TravelDetailProps {
-  [key: string]: any;
-}
-
 const SearchInfo: React.FC = () => {
   const router = useRouter();
   const info = router.query.info as string;
-  const handleClick = (value:string) => {
-    if(value.trim()===""){
-      router.push(`/showResult?info=${info}`)
+  const [searchHistory, setSHistory] = useState<string[]>([]);
+  
+  const handleClick = (value: string) => {
+    const newHistory = [...searchHistory]
+    if (value.trim() === "") {
+      const idx = newHistory.indexOf(info);
+      if (idx !== -1) {
+        [newHistory[0], newHistory[idx]] = [newHistory[idx], newHistory[0]];
+      } else {
+        newHistory.unshift(info);
+      }
+      const savehistory = newHistory.length>10 ? newHistory.slice(0, 10) : newHistory;
+      localStorage.setItem("searchHistory", JSON.stringify(savehistory));
+      setSHistory(savehistory);
+      router.push(`/showResult?info=${info}`);
+    } else {
+      const idx = newHistory.indexOf(value);
+      if (idx !== -1) {
+        [newHistory[0], newHistory[idx]] = [newHistory[idx], newHistory[0]];
+      } else {
+        newHistory.unshift(value);
+      }
+      const savehistory = newHistory.length>10 ? newHistory.slice(0, 10) : newHistory;
+      localStorage.setItem("searchHistory", JSON.stringify(savehistory));
+      setSHistory(savehistory)
+      router.push(`/showResult?info=${value}`);
     }
-    else{
-      router.push(`/showResult?info=${value}`)
+  };
+
+  // 加载本地历史搜索记录数据
+  useEffect(() => {
+    const storedHistory = localStorage.getItem("searchHistory");
+    if (storedHistory) {
+      setSHistory(JSON.parse(storedHistory));
     }
-    
-  }
-  const data = [
-    {
-      key: "1",
-      title: "迪斯尼",
-    },
-    {
-      key: "2",
-      title: "爬山",
-    },
-    {
-      key: "3",
-      title: "重庆",
-    },
-    {
-      key: "4",
-      title: "海阔天空",
-    },
-    {
-      key: "5",
-      title: "杭州樱花",
-    },
-    {
-      key: "6",
-      title: "莫愁湖",
-    },
-    {
-      key: "7",
-      title: "鸡鸣寺",
-    },
-  ]
+  }, []);
+
   return (
     <div className={Styles.container}>
       <div className={Styles.searchBar}>
-        <NavBar onBack={() => router.push('/bannerTravel')}>
+        <NavBar onBack={() => router.push("/bannerTravel")}>
           <SearchBar
             placeholder={info}
             style={{ "--border-radius": "100px", "--height": "32px", width: "100%" }}
             showCancelButton
-            onSearch={(value)=>handleClick(value)}
+            onSearch={(value) => handleClick(value)}
           />
         </NavBar>
       </div>
       <div className={Styles.searchContent}>
         <div className={Styles.searchHistory}>
-            <span >历史搜索</span>
-            <div className={Styles.searchTags}>
-                {
-                    data.map((item, index) => {
-                        return (
-                            <Tag round className={Styles.tag} key={index}>
-                                 {item.title}
-                            </Tag>
-                               
-                        )
-                    })
-                }
-            </div>
+          <span>历史搜索</span>
+          <div className={Styles.searchTags}>
+            {searchHistory.map((item, index) => {
+              return (
+                <Tag
+                  round
+                  className={Styles.tag}
+                  key={index}
+                  onClick={() => {
+                    const newHistory = [...searchHistory];
+                    var tmp = newHistory[index];
+                    newHistory[index] = newHistory[0];
+                    newHistory[0] = tmp;
+                    localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+                    setSHistory(newHistory); 
+                    router.push(`/showResult?info=${item}`);
+                  }}
+                >
+                  {item}
+                </Tag>
+              );
+            })}
+          </div>
         </div>
         <div className={Styles.hotCity}>
-        <span >热门城市</span>
-            <div className={Styles.searchTags}>
-                {
-                    hotCityList.map((item) => {
-                        return (
-                            <Tag round className={Styles.tag} key={item.cityID} onClick={() => router.push(`/travelCity?info=${item.cityName}`)}>
-                                 {item.cityName}
-                            </Tag>
-                               
-                        )
-                    })
-                }
-            </div>
+          <span>热门城市</span>
+          <div className={Styles.searchTags}>
+            {hotCityList.map((item) => {
+              return (
+                <Tag
+                  round
+                  className={Styles.tag}
+                  key={item.cityID}
+                  onClick={() => router.push(`/travelCity?info=${item.cityName}`)}
+                >
+                  {item.cityName}
+                </Tag>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

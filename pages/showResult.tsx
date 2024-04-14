@@ -3,31 +3,10 @@ import React, { useEffect } from "react";
 import { NavBar, Swiper, SwiperRef } from "antd-mobile";
 import Styles from "@/styles/showResult.module.scss";
 import { useState, useRef } from "react";
-import Image from "next/image";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
 import UserInfoList from "@/components/UserInfoList";
 
-// interface Props {
-//   Info: any
-// }
-
-// const TravelInfoContainer: React.FC<Props> = ({Info}) => {
-//   return (
-//     <div>
-//       <TravelWaterFlow notes={Info}/>
-//     </div>
-//   );
-// };
-
-
-// const UserInfoContainer: React.FC<Props> = ({Info}) => {
-//   return (
-//     <div>
-//       <UserInfoList notes={Info}/>
-//     </div>
-//   );
-// };
-
+// 用户信息
 interface UserInfo {
   icon: string; // 头像
   interactionText: string;
@@ -35,6 +14,7 @@ interface UserInfo {
   interactionIcon: string;
 }
 
+// 旅游日记
 export type TravelNoteProps = {
   id: number;
   title: string;
@@ -57,14 +37,10 @@ const SearchInfo: React.FC = () => {
     strictSearch: false,
     searchChecked:1
   };
+  // 为每个页面设置状态值
   const [isTravel, setIsTravel] = useState(false);
   const [isUser, setIsUser] = useState(false);
 
-  // useEffect(() => {
-  //   if (info) {
-  //     setIsReady(true);
-  //   }
-  // }, [info]);
   useEffect(() => {
     if (info) { // 只有在激活的页面为0时才设置为true
       if(activeIndex === 0){
@@ -92,6 +68,7 @@ const SearchInfo: React.FC = () => {
     ref.current?.swipeTo(index); // 切换页面
   };
 
+  // 游记结果和用户结果页面
   const pages = [
     <div key={0}>{isTravel && <TravelWaterFlow notes={travelInfo} />}</div>,
     <div key={1}>{isUser && <UserInfoList notes={{ PageSize: 10, PageIndex: 0, searchInfo: info }} />}</div>,
