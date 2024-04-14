@@ -5,7 +5,7 @@ const path = require('path');
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const filePath = path.resolve('./data/user_data/all.json');
   try {
-    const response = await fetch('http://localhost:3001/api/history', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/history`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

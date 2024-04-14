@@ -45,25 +45,25 @@ const PersonLogin = () => {
         username: user.username,
         avatar: user.avatar,
       });
-      // fetch(`http://localhost:3001/api/check-avatar?username=${userInfo.username}`)
-      // .then(response => response.json())
-      // .then(data => setExists(data.avatar))
-      // .catch(error => console.error('Error:', error));
-      // console.log('exists',exists)
+      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${userInfo.username}`)
+      .then(response => response.json())
+      .then(data => setExists(data.avatar))
+      .catch(error => console.error('Error:', error));
+      console.log('exists',exists)
 
-      // if(exists)
-      //   setUserInfo({
-      //     ...userInfo,
-      //     avatar: exists,
-      //   })
-      // else{
-      //   const user = JSON.parse(storedUser);
-      //   setUserInfo({
-      //     ...userInfo,
-      //     avatar: user.avatar,
-      //   })
-      // }
-      // console.log(user.username)
+      if(exists)
+        setUserInfo({
+          ...userInfo,
+          avatar: exists,
+        })
+      else{
+        const user = JSON.parse(storedUser);
+        setUserInfo({
+          ...userInfo,
+          avatar: user.avatar,
+        })
+      }
+      console.log(user.username)
       setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }
   }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
@@ -120,7 +120,7 @@ const PersonLogin = () => {
     console.log(avatarData)
 
     try {
-      fetch("http://localhost:3001/api/avatar", {
+      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/avatar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -135,7 +135,7 @@ const TravelDetail: React.FC = () => {
       return;
     }
     // wx分享接口初始化
-    axios.post("http://localhost:3001/api/wxJssdk/getJssdk", { url: location.href }).then((response) => {
+    axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk/getJssdk`, { url: location.href }).then((response) => {
       var data = response.data;
       wx.config({
         debug: false, // 调试模式
