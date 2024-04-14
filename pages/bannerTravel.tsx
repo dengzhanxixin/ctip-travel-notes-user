@@ -45,6 +45,7 @@ const TravelList: React.FC = () => {
     }
   };
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/getTopicInfo", {

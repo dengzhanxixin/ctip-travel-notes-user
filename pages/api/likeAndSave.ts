@@ -21,7 +21,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<isLike
         payload.isadd ? item[foundkey].push(payload.id) : item[foundkey] = item[foundkey].filter((item:any) => item !== payload.id);
     }
     else {
-        payload.isadd ? item[foundkey].push(payload.username) : item[foundkey] = item[foundkey].filter((item:any) => item !== payload.username);
+        payload.isadd ? item[foundkey].push(payload.noteUser) : item[foundkey] = item[foundkey].filter((item:any) => item !== payload.noteUser);
     }
 
     userInfo = userInfo.map((it:any) =>{

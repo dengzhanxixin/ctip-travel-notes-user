@@ -29,6 +29,9 @@ const TravelDetail: React.FC = () => {
   const router = useRouter();
   const id = parseInt(router.query.id as string);
 
+
+  console.log(window.location.href);
+
   const shareBtns = [
     {
       text: "微信",
@@ -74,11 +77,11 @@ const TravelDetail: React.FC = () => {
   };
 
   // 获取该游记是否被点赞和收藏
-  const fetchLikeAndSave = async (id: number, username: string) => {
+  const fetchLikeAndSave = async (id: number, noteUser: string, username: string) => {
     try {
       const response = await fetch("/api/getLikeAndSave", {
         method: "POST",
-        body: JSON.stringify({ id: id, username: username }),
+        body: JSON.stringify({ id: id, noteUser: noteUser, username: username }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -95,12 +98,12 @@ const TravelDetail: React.FC = () => {
     }
   };
 
-  // 增加或消除点赞、收藏数据
-  const handleLikeAndSave = async (id: number, username: string, tabType: string, isadd: boolean) => {
+  // 增加或消除用户方的点赞、收藏数据
+  const handleLikeAndSave = async (id: number, noteUser: string, username: string, tabType: string, isadd: boolean) => {
     try {
       const response = await fetch("/api/likeAndSave", {
         method: "POST",
-        body: JSON.stringify({ id: id, username: username, tabType: tabType, isadd: isadd }),
+        body: JSON.stringify({ id: id, noteUser: noteUser, username: username, tabType: tabType, isadd: isadd }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -168,7 +171,7 @@ const TravelDetail: React.FC = () => {
   };
 
   useEffect(() => {
-    // 获取游记详情
+      // 获取游记详情
     fetchTravelNote(id);
 
     const storedUser = localStorage.getItem("user");
@@ -177,9 +180,17 @@ const TravelDetail: React.FC = () => {
       setUserInfo({
         username: user.username,
       });
-      fetchLikeAndSave(id, user.username);
     }
   }, [id]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (travelDetail && storedUser) {
+      fetchLikeAndSave(id,travelDetail?.user.nickName,userInfo.username);
+      }
+      
+    }, [travelDetail]);
+  
 
   return (
     <div className={Styles.container}>
@@ -197,7 +208,7 @@ const TravelDetail: React.FC = () => {
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
             onClick={async () => {
               if (userInfo.username !== "") {
-                await handleLikeAndSave(id, userInfo.username, "followUser", !commentState.isFollow);
+                await handleLikeAndSave(id, travelDetail?.user.nickName,userInfo.username, "followUser", !commentState.isFollow);
                 setCommentState({ ...commentState, isFollow: !commentState.isFollow });
               } else {
                 router.push("/login");
@@ -257,7 +268,7 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newLikeCount = commentState.islike ? commentNum.likeCount - 1 : commentNum.likeCount + 1;
-                  await handleLikeAndSave(id, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
+                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
                   await handleAddAndSub(id, "likeCount", !commentState.islike);
                   setCommentState({
                     ...commentState,
@@ -321,7 +332,7 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newSaveNum = commentState.isSave ? commentNum.saveNum - 1 : commentNum.saveNum + 1;
-                  await handleLikeAndSave(id, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
+                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
                   await handleAddAndSub(id, "commentCount", !commentState.isSave);
                   setCommentState({
                     ...commentState,
