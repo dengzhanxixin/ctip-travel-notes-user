@@ -91,7 +91,7 @@ const TravelDetail: React.FC = () => {
         isFollow: data.isFollow,
       });
     } catch (err) {
-      Toast.show("Failed to fetch travel details.");
+      Toast.show("Failed to fetch LikeAndSave.");
     }
   };
 
@@ -107,7 +107,7 @@ const TravelDetail: React.FC = () => {
       });
       const data = await response.json();
     } catch (err) {
-      Toast.show("Failed to fetch travel details.");
+      Toast.show("Failed to add/sub LikeAndSave.");
     }
   };
 
@@ -123,57 +123,66 @@ const TravelDetail: React.FC = () => {
       });
       const data = await response.json();
     } catch (err) {
-      Toast.show("Failed to fetch travel details.");
+      Toast.show("Failed to add/sub LikeAndSave.");
     }
   };
 
   // 分享游记信息到微信
   const handleShareToWechat = () => {
-    if (!wx) {
-      // 如果微信 JSSDK 未加载完成，则给出提示
-      Toast.show("无法分享，请稍后重试。");
-      return;
-    }
-    if (typeof window !== 'undefined') {
-      // wx分享接口初始化
-      axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk/getJssdk`, { url: location.href }).then((response) => {
-        var data = response.data;
-        wx.config({
-          debug: false, // 调试模式
-          appId: data.appId, // 公众号唯一标识
-          timestamp: data.timestamp, // 时间戳
-          nonceStr: data.nonceStr, // 随机串
-          signature: data.signature, // 签名
-          jsApiList: ["onMenuShareAppMessage"], // js接口列表
-        });
-        wx.ready(() => {
-          wx.onMenuShareAppMessage({
-            title: `${travelDetail?.title}`,
-            desc: `${travelDetail?.content}`,
-            link: `${window.location.href}`,
-            imgUrl: `${travelDetail?.images[0]}`,
-            type: "link",
-            success: () => {
-              Toast.show("分享成功！");
-            },
-            cancel: () => {
-              Toast.show("分享取消！");
-            },
-          });
-        });
-
-        wx.error(() => {
-          Toast.show("分享失败！");
-        });
-      });
-    } else{
-      console.log("window为undefined")
-    }
+    // 仅提示用户使用微信自带的分享界面进行分享
+    Toast.show("请点击右上角菜单按钮分享给好友吧！");
   };
 
   useEffect(() => {
-      // 获取游记详情
-    fetchTravelNote(id);
+    // 函数：初始化微信分享配置
+    const initWeChatShare = async () => {
+      if (typeof window !== "undefined") {
+        // 获取当前页面URL并进行编码
+        const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
+        try {
+          const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, {
+            url: currentUrl,
+          });
+          wx.config({
+            debug: false, // 调试模式，发布时应设置为 false
+            appId: data.appId, // 公众号唯一标识
+            timestamp: data.timestamp, // 时间戳
+            nonceStr: data.nonceStr, // 随机串
+            signature: data.signature, // 签名
+            jsApiList: ["updateAppMessageShareData", "updateTimelineShareData"], // JS接口列表
+          });
+
+          wx.ready(() => {
+            wx.updateAppMessageShareData({
+              title: travelDetail?.title || "默认标题",
+              desc: travelDetail?.content || "默认描述",
+              link: window.location.href,
+              imgUrl: travelDetail?.images[0] || "默认图片URL",
+              success: () => Toast.show("分享成功！"),
+              cancel: () => Toast.show("分享取消！"),
+            });
+          });
+
+          wx.error((error) => {
+            Toast.show("分享配置失败！");
+            console.error("WX SDK Error:", error);
+          });
+        } catch (error) {
+          console.error("请求微信分享配置失败:", error);
+          Toast.show("请求微信分享配置失败");
+        }
+      }
+    };
+
+    // 调用初始化微信分享配置函数
+    initWeChatShare();
+  }, [travelDetail]);
+
+  useEffect(() => {
+    // 获取游记详情
+    if (id) {
+      fetchTravelNote(id);
+    }
 
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -187,11 +196,9 @@ const TravelDetail: React.FC = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (travelDetail && storedUser) {
-      fetchLikeAndSave(id,travelDetail?.user.nickName,userInfo.username);
-      }
-      
-    }, [travelDetail]);
-  
+      fetchLikeAndSave(id, travelDetail?.user.nickName, userInfo.username);
+    }
+  }, [travelDetail, userInfo.username]);
 
   return (
     <div className={Styles.container}>
@@ -209,7 +216,13 @@ const TravelDetail: React.FC = () => {
             className={commentState.isFollow ? Styles.isFollow : Styles.notFollow}
             onClick={async () => {
               if (userInfo.username !== "") {
-                await handleLikeAndSave(id, travelDetail?.user.nickName,userInfo.username, "followUser", !commentState.isFollow);
+                await handleLikeAndSave(
+                  id,
+                  travelDetail?.user.nickName,
+                  userInfo.username,
+                  "followUser",
+                  !commentState.isFollow
+                );
                 setCommentState({ ...commentState, isFollow: !commentState.isFollow });
               } else {
                 router.push("/login");
@@ -269,7 +282,13 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newLikeCount = commentState.islike ? commentNum.likeCount - 1 : commentNum.likeCount + 1;
-                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "likeNote", !commentState.islike); // 反转点赞状态
+                  await handleLikeAndSave(
+                    id,
+                    travelDetail?.user.nickName,
+                    userInfo.username,
+                    "likeNote",
+                    !commentState.islike
+                  ); // 反转点赞状态
                   await handleAddAndSub(id, "likeCount", !commentState.islike);
                   setCommentState({
                     ...commentState,
@@ -333,7 +352,13 @@ const TravelDetail: React.FC = () => {
               onClick={async () => {
                 if (userInfo.username !== "") {
                   const newSaveNum = commentState.isSave ? commentNum.saveNum - 1 : commentNum.saveNum + 1;
-                  await handleLikeAndSave(id, travelDetail?.user.nickName, userInfo.username, "saveNote", !commentState.isSave); // 反转保存状态
+                  await handleLikeAndSave(
+                    id,
+                    travelDetail?.user.nickName,
+                    userInfo.username,
+                    "saveNote",
+                    !commentState.isSave
+                  ); // 反转保存状态
                   await handleAddAndSub(id, "commentCount", !commentState.isSave);
                   setCommentState({
                     ...commentState,

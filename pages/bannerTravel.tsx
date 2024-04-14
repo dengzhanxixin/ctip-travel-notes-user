@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Swiper, Tag, FloatingBubble } from "antd-mobile";
+import { Swiper, Tag, PullToRefresh } from "antd-mobile";
 import { EditSFill } from "antd-mobile-icons";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
@@ -45,7 +45,6 @@ const TravelList: React.FC = () => {
     }
   };
 
-  
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/getTopicInfo", {
@@ -148,7 +147,9 @@ const TravelList: React.FC = () => {
               })}
           </Swiper>
         </div>
-        <TravelWaterFlow notes={searchInfo} />
+        <PullToRefresh>
+          <TravelWaterFlow notes={searchInfo} />
+        </PullToRefresh>
       </div>
     </div>
   );
