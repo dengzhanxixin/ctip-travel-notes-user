@@ -29,9 +29,6 @@ const TravelDetail: React.FC = () => {
   const router = useRouter();
   const id = parseInt(router.query.id as string);
 
-
-  console.log(window.location.href);
-
   const shareBtns = [
     {
       text: "微信",
@@ -137,36 +134,42 @@ const TravelDetail: React.FC = () => {
       Toast.show("无法分享，请稍后重试。");
       return;
     }
-    // wx分享接口初始化
-    axios.post("http://localhost:3001/api/wxJssdk", { url: location.href }).then((response) => {
-      var data = response.data;
-      wx.config({
-        debug: true, // 调试模式
-        appId: data.appId, // 公众号唯一标识
-        timestamp: data.timestamp, // 时间戳
-        nonceStr: data.nonceStr, // 随机串
-        signature: data.signature, // 签名
-        jsApiList: ["updateAppMessageShareData","updateTimelineShareData"], // js接口列表
-      });
-      wx.ready(() => {
-        wx.updateAppMessageShareData({
-          title: travelDetail?.title,
-          desc: travelDetail?.content,
-          link: window.location.href,
-          imgUrl: travelDetail?.images[0],
-          success: () => {
-            Toast.show("分享成功！");
-          },
-          cancel: () => {
-            Toast.show("分享取消！");
-          },
+    if (typeof window !== 'undefined') {
+       // 获取当前页面URL并进行编码
+      const currentUrl = encodeURIComponent(window.location.href);
+      // wx分享接口初始化
+      axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, { url: currentUrl }).then((response) => {
+        var data = response.data;
+        wx.config({
+          debug: false, // 调试模式
+          appId: data.appId, // 公众号唯一标识
+          timestamp: data.timestamp, // 时间戳
+          nonceStr: data.nonceStr, // 随机串
+          signature: data.signature, // 签名
+          jsApiList: ["updateAppMessageShareData", "updateTimelineShareData"], // js接口列表
+        });
+        wx.ready(() => {
+          wx.updateAppMessageShareData({
+            title: travelDetail?.title,
+            desc: travelDetail?.content,
+            link: window.location.href,
+            imgUrl: travelDetail?.images[0],
+            success: () => {
+              Toast.show("分享成功！");
+            },
+            cancel: () => {
+              Toast.show("分享取消！");
+            },
+          });
+        });
+
+        wx.error(() => {
+          Toast.show("分享失败！");
         });
       });
-
-      wx.error(() => {
-        Toast.show("分享失败！");
-      });
-    });
+    } else{
+      console.log("window为undefined")
+    }
   };
 
   useEffect(() => {

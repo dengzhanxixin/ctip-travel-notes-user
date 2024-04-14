@@ -26,73 +26,73 @@ const LoginPage: React.FC = () => {
     visible: { opacity: 1, scale: 1 },
   };
 
-// 注册处理函数
-const handleRegister = async () => {
-  // 增加的用户名和密码长度验证
-  if (username.length < 3) {
-    Dialog.alert({
-      content: '用户名长度至少为3个字符',
-    });
-    return; // 提前返回，不执行注册
-  }
-  if (username.length > 16) {
-    Dialog.alert({
-      content: '用户名长度至多为16个字符',
-    });
-    return; // 提前返回，不执行注册
-  }
-
-  if (password.length < 6) {
-    Dialog.alert({
-      content: '密码长度至少为6个字符',
-    });
-    return; // 提前返回，不执行注册
-  }
-
-  if (password.length > 16) {
-    Dialog.alert({
-      content: '密码长度至多为16个字符',
-    });
-    return; // 提前返回，不执行注册
-  }
-
-  const userData = {
-    username,
-    password,
-    avatar: selectedAvatar,
-    likeNote: [],
-    saveNote: [],
-    followUser: [],
-  };
-
-  try {
-    const response = await fetch("http://localhost:3001/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
-
-    if (response.ok) {
+  // 注册处理函数
+  const handleRegister = async () => {
+    // 增加的用户名和密码长度验证
+    if (username.length < 3) {
       Dialog.alert({
-        content: '注册成功！',
-        onConfirm: () => {
-          setIsLogin(true); // 切换回登录视图
-        },
+        content: '用户名长度至少为3个字符',
       });
-    } else {
-      const error = await response.json();
+      return; // 提前返回，不执行注册
+    }
+    if (username.length > 16) {
       Dialog.alert({
-        content: `注册失败：${error.message}`,
+        content: '用户名长度至多为16个字符',
+      });
+      return; // 提前返回，不执行注册
+    }
+
+    if (password.length < 6) {
+      Dialog.alert({
+        content: '密码长度至少为6个字符',
+      });
+      return; // 提前返回，不执行注册
+    }
+
+    if (password.length > 16) {
+      Dialog.alert({
+        content: '密码长度至多为16个字符',
+      });
+      return; // 提前返回，不执行注册
+    }
+
+    const userData = {
+      username,
+      password,
+      avatar: selectedAvatar,
+      likeNote: [],
+      saveNote: [],
+      followUser: [],
+    };
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        Dialog.alert({
+          content: '注册成功！',
+          onConfirm: () => {
+            setIsLogin(true); // 切换回登录视图
+          },
+        });
+      } else {
+        const error = await response.json();
+        Dialog.alert({
+          content: `注册失败：${error.message}`,
+        });
+      }
+    } catch (error) {
+      Dialog.alert({
+        content: '注册请求失败',
       });
     }
-  } catch (error) {
-    Dialog.alert({
-      content: '注册请求失败',
-    });
-  }
-};
+  };
 
 
   // 登录处理函数
@@ -103,7 +103,7 @@ const handleRegister = async () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3001/api/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
