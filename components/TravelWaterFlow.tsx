@@ -75,6 +75,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
       );
       return [...val, ...filteredItems];
     });
+    
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {

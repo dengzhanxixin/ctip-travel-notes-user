@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { NavBar, SearchBar, Tag } from "antd-mobile";
+import { DeleteOutline } from "antd-mobile-icons";
 import Styles from "@/styles/searchPage.module.scss";
 
 // 热门城市
@@ -20,9 +21,9 @@ const SearchInfo: React.FC = () => {
   const router = useRouter();
   const info = router.query.info as string;
   const [searchHistory, setSHistory] = useState<string[]>([]);
-  
+
   const handleClick = (value: string) => {
-    const newHistory = [...searchHistory]
+    const newHistory = [...searchHistory];
     if (value.trim() === "") {
       const idx = newHistory.indexOf(info);
       if (idx !== -1) {
@@ -30,7 +31,7 @@ const SearchInfo: React.FC = () => {
       } else {
         newHistory.unshift(info);
       }
-      const savehistory = newHistory.length>10 ? newHistory.slice(0, 10) : newHistory;
+      const savehistory = newHistory.length > 10 ? newHistory.slice(0, 10) : newHistory;
       localStorage.setItem("searchHistory", JSON.stringify(savehistory));
       setSHistory(savehistory);
       router.push(`/showResult?info=${info}`);
@@ -41,9 +42,9 @@ const SearchInfo: React.FC = () => {
       } else {
         newHistory.unshift(value);
       }
-      const savehistory = newHistory.length>10 ? newHistory.slice(0, 10) : newHistory;
+      const savehistory = newHistory.length > 10 ? newHistory.slice(0, 10) : newHistory;
       localStorage.setItem("searchHistory", JSON.stringify(savehistory));
-      setSHistory(savehistory)
+      setSHistory(savehistory);
       router.push(`/showResult?info=${value}`);
     }
   };
@@ -71,27 +72,35 @@ const SearchInfo: React.FC = () => {
       <div className={Styles.searchContent}>
         <div className={Styles.searchHistory}>
           <span>历史搜索</span>
-          <div className={Styles.searchTags}>
-            {searchHistory.map((item, index) => {
-              return (
-                <Tag
-                  round
-                  className={Styles.tag}
-                  key={index}
-                  onClick={() => {
-                    const newHistory = [...searchHistory];
-                    var tmp = newHistory[index];
-                    newHistory[index] = newHistory[0];
-                    newHistory[0] = tmp;
-                    localStorage.setItem("searchHistory", JSON.stringify(newHistory));
-                    setSHistory(newHistory); 
-                    router.push(`/showResult?info=${item}`);
-                  }}
-                >
-                  {item}
-                </Tag>
-              );
-            })}
+          <div className={Styles.searchItems}>
+            <div className={Styles.searchTags}>
+              {searchHistory.map((item, index) => {
+                return (
+                  <Tag
+                    round
+                    className={Styles.tag}
+                    key={index}
+                    onClick={() => {
+                      const newHistory = [...searchHistory];
+                      var tmp = newHistory[index];
+                      newHistory[index] = newHistory[0];
+                      newHistory[0] = tmp;
+                      localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+                      setSHistory(newHistory);
+                      router.push(`/showResult?info=${item}`);
+                    }}
+                  >
+                    {item}
+                  </Tag>
+                );
+              })}
+            </div>
+            <div className={Styles.delete}>
+              <DeleteOutline  onClick={()=>{
+                setSHistory([]);
+                localStorage.removeItem("searchHistory");
+              }}/>
+            </div>
           </div>
         </div>
         <div className={Styles.hotCity}>

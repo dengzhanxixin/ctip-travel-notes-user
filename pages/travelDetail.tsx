@@ -138,23 +138,22 @@ const TravelDetail: React.FC = () => {
       return;
     }
     // wx分享接口初始化
-    axios.post("http://localhost:3001/api/wxJssdk/getJssdk", { url: location.href }).then((response) => {
+    axios.post("http://localhost:3001/api/wxJssdk", { url: location.href }).then((response) => {
       var data = response.data;
       wx.config({
-        debug: false, // 调试模式
+        debug: true, // 调试模式
         appId: data.appId, // 公众号唯一标识
         timestamp: data.timestamp, // 时间戳
         nonceStr: data.nonceStr, // 随机串
         signature: data.signature, // 签名
-        jsApiList: ["onMenuShareAppMessage"], // js接口列表
+        jsApiList: ["updateAppMessageShareData","updateTimelineShareData"], // js接口列表
       });
       wx.ready(() => {
-        wx.onMenuShareAppMessage({
-          title: `${travelDetail?.title}`,
-          desc: `${travelDetail?.content}`,
-          link: `${window.location.href}`,
-          imgUrl: `${travelDetail?.images[0]}`,
-          type: "link",
+        wx.updateAppMessageShareData({
+          title: travelDetail?.title,
+          desc: travelDetail?.content,
+          link: window.location.href,
+          imgUrl: travelDetail?.images[0],
           success: () => {
             Toast.show("分享成功！");
           },

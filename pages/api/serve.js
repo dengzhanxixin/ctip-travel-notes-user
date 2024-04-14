@@ -157,31 +157,8 @@ app.get("/api/getpost", (req, res) => {
 
 // 微信分享后端接口实现
 
-// 接口配置信息测试
-app.get("/api/wxJssdk", (req, res) => {
-  let wx = req.query;
-
-  let token = "ctrip_wexinShare";
-  let timestamp = wx.timestamp;
-  let nonce = wx.nonce;
-
-  // 将token、timestamp、nonce三个参数进行字典排序
-  let list = [token, timestamp, nonce].sort();
-
-  // 将三个参数字符串拼接成一个字符串进行sha1加密
-  let str = list.join("");
-  let result = sha1(str);
-
-  // 3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-  if (result === wx.signature) {
-    res.send(wx.echostr); // 返回微信传来的echostr，表示校验成功，此处不能返回其它
-  } else {
-    res.send(false);
-  }
-});
-
-// 微信分享后端接口实现
-app.post("/api/wxJssdk/getJssdk", async (req, res) => {
+// 微信分享接口
+app.get("/api/wxJssdk", async (req, res) => {
   const grant_type = "client_credential";
   // 测试号
   const appid = "wx7038d3636b5797ed";
@@ -213,7 +190,6 @@ app.post("/api/wxJssdk/getJssdk", async (req, res) => {
     console.error("Error fetching data:", err.message);
     res.status(500).send("Internal Server Error");
   }
-
 });
 
 app.listen(port, () => {

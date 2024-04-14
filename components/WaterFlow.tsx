@@ -2,7 +2,6 @@ import { useEffect, useState, useRef} from "react";
 import { Card, InfiniteScroll } from "antd-mobile";
 import Styles from "@/styles/travelWaterfallFlow.module.scss";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 interface UserInfo {
     icon: string; // 头像
@@ -73,7 +72,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
                                     </div>
                                     <div className={Styles.travelUser}>
                                         <div className={Styles.userInfo}>
-                                            <Image className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
+                                            <img className={Styles.userIcon} src={item.user.icon} alt={"用户头像"} width={18} height={18} />
                                             <span className={Styles.userName}>{item.user.nickName}</span>
                                         </div>
                                         <div className={Styles.viewInfo}>
