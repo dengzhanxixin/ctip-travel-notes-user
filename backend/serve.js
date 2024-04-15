@@ -247,11 +247,11 @@ app.get("/all-travel-data", (req, res) => {
       // 从 img 对象中提取所有的图片 URL
       const imgs = Object.values(images).map((imgDetail) => {
         // 检查是否是完整的 URL
-        return imgDetail.url.startsWith("http") ? imgDetail.url : `${baseURL}/${imgDetail.url}`;
+        return imgDetail.url.startsWith("http") ? imgDetail.url : `${baseURL}${imgDetail.url}`;
       });
 
       // 对 coverImg 进行同样的处理
-      const fullCoverImg = coverImg.startsWith("http") ? coverImg : `${baseURL}/${coverImg}`;
+      const fullCoverImg = coverImg.startsWith("http") ? coverImg : `${baseURL}${coverImg}`;
 
       return {
         id,
