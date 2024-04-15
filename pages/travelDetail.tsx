@@ -13,7 +13,7 @@ interface TravelDetailProps {
 const TravelDetail: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
-  });
+  }); 
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
     islike: false,
@@ -139,12 +139,14 @@ const TravelDetail: React.FC = () => {
       if (typeof window !== "undefined") {
         // 获取当前页面URL并进行编码
         const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
+        console.log("Current URL: " + currentUrl);
         try {
           const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, {
             url: currentUrl,
           });
+          console.log(data);
           wx.config({
-            debug: false, // 调试模式，发布时应设置为 false
+            debug: true, // 调试模式，发布时应设置为 ture
             appId: data.appId, // 公众号唯一标识
             timestamp: data.timestamp, // 时间戳
             nonceStr: data.nonceStr, // 随机串

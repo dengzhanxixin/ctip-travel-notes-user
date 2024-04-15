@@ -13,7 +13,6 @@ const saltRounds = 10; // 定义salt的回合数，推荐值
 const cookieParser = require("cookie-parser");
 const { readDataFromFile, writeDataToFile } = require("./fileDataManager");
 
-
 const path = require("path");
 // 进入 data 目录
 const dataPath = path.join(__dirname, "..", "data", "user.json");
@@ -106,14 +105,10 @@ app.get("/menus", async (req, res) => {
     ];
 
     // 直接返回菜单数据
-    res
-      .status(200)
-      .json({ meta: { status: 200, msg: "获取菜单列表成功" }, data: menus });
+    res.status(200).json({ meta: { status: 200, msg: "获取菜单列表成功" }, data: menus });
   } catch (error) {
     // 如果有错误，返回500状态码和错误信息
-    res
-      .status(500)
-      .send({ meta: { status: 500, msg: "获取菜单列表失败" }, error: error });
+    res.status(500).send({ meta: { status: 500, msg: "获取菜单列表失败" }, error: error });
   }
 });
 
@@ -122,11 +117,7 @@ app.post("/register", async (req, res) => {
   let { username, password } = req.body;
   username = String(username);
   password = String(password);
-  console.log(
-    `从前端拿到的注册的账号密码 ${JSON.stringify(
-      req.body
-    )} 账号 ${username} 密码 ${password}`
-  );
+  console.log(`从前端拿到的注册的账号密码 ${JSON.stringify(req.body)} 账号 ${username} 密码 ${password}`);
   try {
     const db = client.db(DB_NAME);
     const usersCollection = db.collection("users");
@@ -153,9 +144,7 @@ app.post("/register", async (req, res) => {
     await usersCollection.insertOne(newUser);
 
     console.log("注册成功");
-    res
-      .status(201)
-      .json({ success: true, message: "注册成功", userId: newUser.id });
+    res.status(201).json({ success: true, message: "注册成功", userId: newUser.id });
   } catch (error) {
     console.error("注册失败:", error);
     res.status(500).json({ success: false, message: "注册失败" });
@@ -168,11 +157,7 @@ app.post("/login", async (req, res) => {
   username = String(username);
   password = String(password);
 
-  console.log(
-    `从前端拿到的登陆的账号密码 ${JSON.stringify(
-      req.body
-    )} 账号 ${username} 密码 ${password}`
-  );
+  console.log(`从前端拿到的登陆的账号密码 ${JSON.stringify(req.body)} 账号 ${username} 密码 ${password}`);
   try {
     const db = client.db(DB_NAME);
     const usersCollection = db.collection("users");
@@ -181,26 +166,18 @@ app.post("/login", async (req, res) => {
     const user = await usersCollection.findOne({ username });
     if (!user) {
       console.log("用户名或密码不正确");
-      return res
-        .status(401)
-        .json({ success: false, message: "用户名或密码不正确" });
+      return res.status(401).json({ success: false, message: "用户名或密码不正确" });
     }
 
     // 验证密码
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       console.log("用户名或密码不正确");
-      return res
-        .status(401)
-        .json({ success: false, message: "用户名或密码不正确" });
+      return res.status(401).json({ success: false, message: "用户名或密码不正确" });
     }
 
     // 生成JWT
-    const token = jwt.sign(
-      { userId: user.id, username: user.username },
-      SECRET_KEY,
-      { expiresIn: "1h" }
-    );
+    const token = jwt.sign({ userId: user.id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
 
     console.log("登录成功");
     // 返回成功响应和JWT
@@ -243,10 +220,7 @@ app.post("/assign-role", async (req, res) => {
     const usersCollection = db.collection("users");
 
     // 查找并更新用户角色
-    const result = await usersCollection.updateOne(
-      { id: userId },
-      { $set: { role: role } }
-    );
+    const result = await usersCollection.updateOne({ id: userId }, { $set: { role: role } });
 
     // 检查是否找到并更新了用户
     if (result.matchedCount === 0) {
@@ -264,30 +238,30 @@ app.post("/assign-role", async (req, res) => {
 
 // 获取所有游记的接口
 app.get("/all-travel-data", (req, res) => {
-  const allData = readDataFromFile("totalTravelData.json");
+  const allData = readDataFromFile("TravelData.json");
   console.log("前端请求所有的游记数据");
+  const baseURL = "http://114.55.113.21"; // 指向公共图片目录的基础URL
   // 提取所需的字段
   const requiredData = allData.map(
-    ({
-      id,
-      title,
-      user,
-      traffic,
-      img_Intrinsic,
-      isChecked,
-      detail: { summary, images },
-    }) => {
+    ({ id, title, user, city, coverImg, isChecked, content, publishDisplayTime, images }) => {
       // 从 img 对象中提取所有的图片 URL
-      const imgs = Object.values(images).map((imgDetail) => imgDetail.url);
+      const imgs = Object.values(images).map((imgDetail) => {
+        // 检查是否是完整的 URL
+        return imgDetail.url.startsWith("http") ? imgDetail.url : `${baseURL}/${imgDetail.url}`;
+      });
+
+      // 对 coverImg 进行同样的处理
+      const fullCoverImg = coverImg.startsWith("http") ? coverImg : `${baseURL}/${coverImg}`;
 
       return {
         id,
         title,
         user,
-        traffic,
-        img_Intrinsic,
+        city,
+        coverImg: fullCoverImg,
         isChecked,
-        summary,
+        content,
+        publishDisplayTime,
         imgs,
       };
     }
@@ -302,16 +276,14 @@ app.post("/audit-travel", (req, res) => {
   isChecked = Number(isChecked); // 将 isChecked 转换为数字
   console.log("后端收到的数据", req.body);
   // 读取当前所有游记数据
-  let travelData = readDataFromFile("totalTravelData.json");
+  let travelData = readDataFromFile("TravelData.json");
 
   // 查找对应ID的游记
   const dataIndex = travelData.findIndex((data) => data.id === id);
   if (dataIndex === -1) {
     console.log("没有找到对应游记");
     // 如果找不到，返回错误信息
-    return res
-      .status(404)
-      .json({ success: false, message: "未找到对应的游记" });
+    return res.status(404).json({ success: false, message: "未找到对应的游记" });
   }
 
   // 更新游记的审核状态和驳回理由
@@ -323,7 +295,7 @@ app.post("/audit-travel", (req, res) => {
   }
 
   // 写回修改后的数据到文件
-  writeDataToFile("totalTravelData.json", travelData);
+  writeDataToFile("TravelData.json", travelData);
 
   // 返回成功响应
   res.json({ success: true, message: "游记审核状态更新成功" });
@@ -333,28 +305,24 @@ app.post("/audit-travel", (req, res) => {
 app.delete("/delete-travel/:id", (req, res) => {
   const { id } = req.params; // 从请求URL中获取游记的ID
   console.log("后端收到的数据", req.params);
-  let travelData = readDataFromFile("totalTravelData.json");
+  let travelData = readDataFromFile("TravelData.json");
 
   // 查找并删除指定ID的游记
   const dataIndex = travelData.findIndex((travel) => travel.id === id);
   if (dataIndex === -1) {
     console.log("没有找到对应游记");
-    return res
-      .status(404)
-      .json({ success: false, message: "未找到对应的游记" });
+    return res.status(404).json({ success: false, message: "未找到对应的游记" });
   }
 
   // 更新游记的审核状态和驳回理由
   travelData[dataIndex].isChecked = 3;
 
   // 保存更新后的数据回文件
-  writeDataToFile("totalTravelData.json", travelData);
+  writeDataToFile("TravelData.json", travelData);
 
   // 返回成功响应
   res.json({ success: true, message: "游记已删除" });
 });
-
-
 
 // 用户系统
 
@@ -389,16 +357,15 @@ app.post("/api/register", async (req, res) => {
   res.status(201).json({ message: "用户创建成功" });
 });
 
-app.get('/api/check-avatar', (req, res) => {
+app.get("/api/check-avatar", (req, res) => {
   const username = req.query.username; // 从请求中获取用户名
-  const filePath = path.join(__dirname, 'images', `${username}_avatar.jpg`);
-  if (fs.existsSync(filePath)){
+  const filePath = path.join(__dirname, "images", `${username}_avatar.jpg`);
+  if (fs.existsSync(filePath)) {
     res.json({ success: true, avatar: filePath });
-  }
-  else {
+  } else {
     res.json({ success: false, avatar: null });
   }
-  })
+});
 
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
@@ -423,11 +390,11 @@ app.post("/api/login", (req, res) => {
 });
 app.post("/api/avatar", (req, res) => {
   const { username, url } = req.body;
-  console.log(username, url)
-  if (url.startsWith('data:image')) {
-    const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-    const buffer = Buffer.from(base64Data, 'base64');
-    const imgPath = path.join('public', 'images', `${username}_avatar.jpg`);
+  console.log(username, url);
+  if (url.startsWith("data:image")) {
+    const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
+    const buffer = Buffer.from(base64Data, "base64");
+    const imgPath = path.join("public", "images", `${username}_avatar.jpg`);
 
     // 检查是否存在同名文件，如果存在，则删除
     if (fs.existsSync(imgPath)) {
@@ -438,23 +405,22 @@ app.post("/api/avatar", (req, res) => {
     }
     // 写入新的图片文件
     fs.writeFileSync(imgPath, buffer);
-    console.log('文件写入成功');
+    console.log("文件写入成功");
   }
   const users = JSON.parse(fs.readFileSync(dataPath, "utf8"));
   const userToUpdate = users.find((user) => user.username === username);
   if (userToUpdate) {
     // 更新用户的头像路径
-    userToUpdate.avatar = path.join('images',`${username}_avatar.jpg`).replace(/\\/g, '/');
-  
+    userToUpdate.avatar = path.join("images", `${username}_avatar.jpg`).replace(/\\/g, "/");
+
     // 将更新后的用户列表写回到 JSON 文件中
-    fs.writeFileSync(dataPath, JSON.stringify(users, null, 2), 'utf8');
-    console.log('用户头像路径更新成功！');
+    fs.writeFileSync(dataPath, JSON.stringify(users, null, 2), "utf8");
+    console.log("用户头像路径更新成功！");
     res.json({ success: true, user: userToUpdate });
   } else {
-    console.log('未找到需要更新头像的用户！');
+    console.log("未找到需要更新头像的用户！");
   }
-})
-
+});
 
 // 微信分享后端接口实现
 // 接口配置信息测试
@@ -465,9 +431,13 @@ app.post("/api/wxJssdk", async (req, res) => {
   const secret = "bd3dbda5b59c8f6c1057fb9edd163acd";
 
   try {
-    const response1 = await axios.get("https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret);
+    const response1 = await axios.get(
+      "https://api.weixin.qq.com/cgi-bin/token?grant_type=" + grant_type + "&appid=" + appid + "&secret=" + secret
+    );
     const access_token = response1.data.access_token;
-    const response2 = await axios.get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi");
+    const response2 = await axios.get(
+      "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + access_token + "&type=jsapi"
+    );
     const jsapi_ticket = response2.data.ticket;
 
     const nonce_str = "123456"; // 随机字符串
@@ -486,7 +456,7 @@ app.post("/api/wxJssdk", async (req, res) => {
       nonceStr: nonce_str,
       signature: signature,
     });
-  } catch (err) { 
+  } catch (err) {
     console.error("Error fetching data:", err.message);
     res.status(500).send("Internal Server Error");
   }
