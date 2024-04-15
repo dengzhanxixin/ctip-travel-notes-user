@@ -240,7 +240,7 @@ app.post("/assign-role", async (req, res) => {
 app.get("/all-travel-data", (req, res) => {
   const allData = readDataFromFile("TravelData.json");
   console.log("前端请求所有的游记数据");
-  const baseURL = "http://114.55.113.21"; // 指向公共图片目录的基础URL
+  const baseURL = "http://114.55.113.21/frontend/public"; // 指向公共图片目录的基础URL
   // 提取所需的字段
   const requiredData = allData.map(
     ({ id, title, user, city, coverImg, isChecked, content, publishDisplayTime, images }) => {

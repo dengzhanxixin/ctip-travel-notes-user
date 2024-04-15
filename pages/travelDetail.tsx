@@ -138,11 +138,11 @@ const TravelDetail: React.FC = () => {
     const initWeChatShare = async () => {
       if (typeof window !== "undefined") {
         // 获取当前页面URL并进行编码
-        const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
+        // const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
         // console.log("Current URL: " + currentUrl);
         try {
           const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, {
-            url: currentUrl,
+            url: window.location.href,
           });
           // console.log(data);
           wx.config({
