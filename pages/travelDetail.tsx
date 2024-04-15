@@ -139,14 +139,14 @@ const TravelDetail: React.FC = () => {
       if (typeof window !== "undefined") {
         // 获取当前页面URL并进行编码
         const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
-        console.log("Current URL: " + currentUrl);
+        // console.log("Current URL: " + currentUrl);
         try {
           const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, {
             url: currentUrl,
           });
-          console.log(data);
+          // console.log(data);
           wx.config({
-            debug: true, // 调试模式，发布时应设置为 ture
+            debug: false, // 调试模式，发布时应设置为 ture
             appId: data.appId, // 公众号唯一标识
             timestamp: data.timestamp, // 时间戳
             nonceStr: data.nonceStr, // 随机串
