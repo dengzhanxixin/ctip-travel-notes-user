@@ -15,6 +15,17 @@
     "avatar": "images/avatar1.png",
     "likeNote": [],
     "saveNote": [],
-    "followUser": ["云山集"]
+    "followUser": [
+      "云山集"
+    ]
+  },
+  {
+    "id": 3,
+    "username": "admin",
+    "password": "$2b$10$7jy9bN4pMGuEVoSpHU5ULO75JNVEMKI81L0bB3SnX18KGPkaQ.ggW",
+    "avatar": "images/avatar1.png",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": []
   }
 ]

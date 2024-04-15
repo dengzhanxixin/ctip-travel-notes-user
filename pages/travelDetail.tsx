@@ -13,7 +13,7 @@ interface TravelDetailProps {
 const TravelDetail: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
-  });
+  }); 
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
     islike: false,

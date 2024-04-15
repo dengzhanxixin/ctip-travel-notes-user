@@ -23,7 +23,7 @@ const PersonLogin = () => {
   const [visible, setVisible] = useState(false);
   const [visible4, setVisible4] = useState(false)
   const [isEditor, setIsEditor] = useState(false);
-  const [isLogin, setIsLogin] = useState(0);// 初始化为未登录状态
+  const [isLogin, setIsLogin] = useState(false);// 初始化为未登录状态
   const [imageUrl, setImageUrl] = useState<string>('');
   const [exists, setExists] = useState('');
   
@@ -35,9 +35,10 @@ const PersonLogin = () => {
     avatar: "/person.png", // 这里应该是你的默认头像路径
   });
 
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-
+  
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserInfo({
@@ -45,32 +46,34 @@ const PersonLogin = () => {
         username: user.username,
         avatar: user.avatar,
       });
-      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${userInfo.username}`)
-      .then(response => response.json())
-      .then(data => setExists(data.avatar))
-      .catch(error => console.error('Error:', error));
-      console.log('exists',exists)
-
-      if(exists)
-        setUserInfo({
-          ...userInfo,
-          avatar: exists,
-        })
-      else{
-        const user = JSON.parse(storedUser);
-        setUserInfo({
-          ...userInfo,
-          avatar: user.avatar,
-        })
-      }
-      console.log(user.username)
-      setIsLogin(user.username === "尊敬的用户" ? 0 : 1); // 判断是否登录并更新状态
     }
-  }, []); // 空依赖数组保证这段逻辑只在组件挂载时运行一次
+  }, []);
+  
+  useEffect(() => {
+    if(userInfo.username) {
+      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${userInfo.username}`)
+        .then(response => response.json())
+        .then(data => {
+          setExists(data.avatar);
+          console.log('exists', data.avatar);
+  
+          if(data.avatar) {
+            setUserInfo(prevUserInfo => ({
+              ...prevUserInfo,
+              avatar: data.avatar,
+            }));
+          }
+        })
+        .catch(error => console.error('Error:', error));
+  
+      setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
+    }
+  }, [userInfo.username]); // 只有在 userInfo.username 改变时才触发 useEffect
+  
 
 
   const handleClick = () => {
-    if (userInfo.username === "尊敬的用户") {
+    if (!isLogin) {
       router.push("/login");
     }
     else {
@@ -102,7 +105,7 @@ const PersonLogin = () => {
   };
   const AddPost = () => {
     console.log(userInfo.username);
-    if (userInfo.username === "尊敬的用户") {
+    if (!isLogin) {
       router.push("/login");
     } else {
       router.push(`/AddPost?username=${userInfo.username.toString()}`);
@@ -154,7 +157,7 @@ const PersonLogin = () => {
   );
 
   const mockContent = () => (
-    <div style={{ margin: "100px 10px", padding: "20 60", fontSize: "16px", textAlign: "start", lineHeight: "30px" }}>
+    <div className={style.navigation}>
       <SetOutline fontSize={iconSize} onClick={() => {
         setVisible4(true)
       }} /> 个人设置
@@ -170,13 +173,10 @@ const PersonLogin = () => {
       <br />
       <br />
       <Button block color="primary" size="large" onClick={() => handleClick()}>
-        {userInfo.username === "尊敬的用户" ? "点击登陆" : "退出登陆"}
+        {isLogin ? "退出登陆" : "点击登陆"}
       </Button>
     </div>
   );
-
-
-
 
 
   return (
@@ -216,7 +216,7 @@ const PersonLogin = () => {
 
             ) : (
               <div>
-                 {userInfo.username === "尊敬的用户" ?(<></>):(<img src='/add.png' className={style.editorAvatar} onClick={() => {
+                 {!isLogin ?(<></>):(<img src='/add.png' className={style.editorAvatar} onClick={() => {
                   setIsEditor(true)
                 }}/>)}
                
@@ -231,7 +231,7 @@ const PersonLogin = () => {
             {/* 使用state中的username显示用户名 */}
             {userInfo.username}
           </div>
-          {userInfo.username === "尊敬的用户" ? null : <> {isEditing ? (
+          {!isLogin ? null : <> {isEditing ? (
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
               <TextArea
                 // type="text"
@@ -258,7 +258,7 @@ const PersonLogin = () => {
             </div>
           )}</>}
          
-          {userInfo.username === "尊敬的用户" ? null : <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
+          {!isLogin ? null : <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
             <div style={{ marginRight: '30px' }}>
               <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />
             </div>
