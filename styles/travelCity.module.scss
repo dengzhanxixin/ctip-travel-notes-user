@@ -30,9 +30,6 @@
     }
     
   }
-  // .hidden_Info {
-  //   top:50px
-  // }
  
 }
  .hidden_header {
@@ -41,4 +38,5 @@
 .content {
   flex: 1;
   overflow: scroll;
+  padding-top: 10px;
 }

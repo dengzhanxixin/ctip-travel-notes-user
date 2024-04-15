@@ -22,6 +22,7 @@ const SearchInfo: React.FC = () => {
   const info = router.query.info as string;
   const [searchHistory, setSHistory] = useState<string[]>([]);
 
+  // 执行搜索时增加历史搜索数据
   const handleClick = (value: string) => {
     const newHistory = [...searchHistory];
     if (value.trim() === "") {
@@ -96,10 +97,12 @@ const SearchInfo: React.FC = () => {
               })}
             </div>
             <div className={Styles.delete}>
-              <DeleteOutline  onClick={()=>{
-                setSHistory([]);
-                localStorage.removeItem("searchHistory");
-              }}/>
+              <DeleteOutline
+                onClick={() => {
+                  setSHistory([]);
+                  localStorage.removeItem("searchHistory");
+                }}
+              />
             </div>
           </div>
         </div>

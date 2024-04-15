@@ -30,6 +30,7 @@ const CityTravelNotes: React.FC = () => {
     }
   };
 
+  // 获取相关城市游记
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/getCityInfo", {

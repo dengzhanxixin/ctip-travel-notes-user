@@ -46,11 +46,10 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
-//   const travelNoteList = travelNotes;
+  // const travelNoteList = travelNotes;
 
   // 点击推荐卡片跳转到详情页
   const router = useRouter();
-
 
   // 请求推荐列表数据
   async function fetchTravelNoteList(payload: travelNoteListProps) {
