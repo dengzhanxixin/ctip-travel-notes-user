@@ -24,6 +24,7 @@ interface TravelNoteProps {
 
 const MyPost: React.FC = () => {
   const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
   const [isMyPost, setIsMyPost] = useState(false); // 0表示未发表过游记
   const [activeIndex, setActiveIndex] = useState(0); // 当前活动页面的索引
   const [userInfo, setUserInfo] = useState({
@@ -47,18 +48,17 @@ const MyPost: React.FC = () => {
   }, []);
   useEffect(() => {
     if (userInfo.username){
-      setIsMyPost(true);
+      setIsLogin(true);
     }
   }, [userInfo.username]);
 
   const pages = [
-    <div key={0}>{isMyPost ? (
+    <div key={0}>{isLogin ? (
       <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
         <TravelWaterFlow notes={DoneInfo} />
       </div>) : (<Empty description={false}  style={{marginTop: '20px'}}/>)}</div>,
-      <div key={1}>{isMyPost ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
-      <div key={2}>{isMyPost ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
-
+      <div key={1}>{isLogin ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
+      <div key={2}>{isLogin ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>
   ];
   const ref = useRef<SwiperRef>(null);
   const handleSwipeChange = (index: number) => {

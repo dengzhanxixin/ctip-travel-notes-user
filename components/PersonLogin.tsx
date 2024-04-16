@@ -7,12 +7,18 @@ import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, Ad
 import { LikeOutlined, MessageOutlined, StarOutlined, } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
+import SideNavigation from "./sideNavigation";
 import AvatarUpload from "./AvatarUpload";
 const path = require("path");
 
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
-
+interface likeData {
+  username: string,
+  likeNote: string[],
+  saveNote: string[],
+  followUser: string[]
+}
 const PersonLogin = () => {
   const router = useRouter();
 
@@ -21,12 +27,12 @@ const PersonLogin = () => {
   const [text, setText] = useState("简单的自我介绍吧！");
   const [editingText, setEditingText] = useState(text);
   const [visible, setVisible] = useState(false);
-  const [visible4, setVisible4] = useState(false)
   const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(false);// 初始化为未登录状态
   const [imageUrl, setImageUrl] = useState<string>('');
+  const [likeData, setLikeData] = useState<likeData>()
   const [exists, setExists] = useState('');
-  
+
 
 
   // 增加新的state来存储用户信息
@@ -38,7 +44,6 @@ const PersonLogin = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-  
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserInfo({
@@ -47,46 +52,70 @@ const PersonLogin = () => {
         avatar: user.avatar,
       });
     }
-  }, []);
-  
-  useEffect(() => {
-    if(userInfo.username) {
-      fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${userInfo.username}`)
-        .then(response => response.json())
-        .then(data => {
-          setExists(data.avatar);
-          console.log('exists', data.avatar);
-  
-          if(data.avatar) {
-            setUserInfo(prevUserInfo => ({
-              ...prevUserInfo,
-              avatar: data.avatar,
-            }));
-          }
-        })
-        .catch(error => console.error('Error:', error));
-  
+    if (userInfo.username !== "尊敬的用户") {
+      console.log('set avatar')
+      fetchAvatar(userInfo.username);
+      fetchLikeandSave(userInfo.username);
+      console.log('likeData', likeData)
       setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
     }
-  }, [userInfo.username]); // 只有在 userInfo.username 改变时才触发 useEffect
-  
+  }, [userInfo.username]);
 
+  const fetchLikeandSave = (username: string) => {
+    if (isLogin) {
+      console.log('fetchLikeandSave')
+      const likeData = {
+        username,
+        likeNote: [] as string[],
+        saveNote: [] as string[],
+        followUser: [] as string[]
+      };
 
-  const handleClick = () => {
-    if (!isLogin) {
-      router.push("/login");
-    }
-    else {
-      // 移除特定的项
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      setUserInfo({
-        username: "尊敬的用户",
-        avatar: "/person.png", // 这里应该是你的默认头像路径
+      fetch(`/api/getlikeData`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
       })
-      router.push("/bannerTravel");
+        .then(response => response.json()) // 解析响应数据为 JSON
+        .then(data => {
+          if (data) {
+            setLikeData({
+              ...likeData,
+              likeNote: data.likeNote,
+              saveNote: data.saveNote,
+              followUser: data.followUser
+            })
+            console.log('data', data)
+          }
+
+        })
+        .catch(error => {
+          console.error('Error posting data:', error);
+        });
     }
   }
+
+  const fetchAvatar = (username: string) => {
+    const url = `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${username}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setExists(data.avatar);
+        console.log('exists', data.avatar);
+
+        if (data.avatar && data.avatar !== userInfo.avatar) {
+          setUserInfo(prevUserInfo => ({
+            ...prevUserInfo,
+            avatar: data.avatar,
+          }));
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  };
+
+
 
   // 处理双击事件，进入编辑模式
   const handleDoubleClick = () => {
@@ -120,8 +149,6 @@ const PersonLogin = () => {
       username,
       url,
     };
-    console.log(avatarData)
-
     try {
       fetch(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/avatar`, {
         method: 'POST',
@@ -130,24 +157,25 @@ const PersonLogin = () => {
         },
         body: JSON.stringify(avatarData)
       })
-      .then(response => response.json()) // 解析响应数据为 JSON
-      .then(data => {
-        // 更新用户信息中的头像路径
-        setUserInfo(prevUserInfo => ({
-          ...prevUserInfo,
-          avatar: data.user.avatar // 使用从服务器返回的新头像路径更新用户信息
-        }));
-  
-        Toast.show('修改头像成功！');
-      })
-      .catch(error => {
-        console.error('Error posting data:', error);
-      });
+        .then(response => response.json()) // 解析响应数据为 JSON
+        .then(data => {
+          // 更新用户信息中的头像路径
+          setUserInfo(prevUserInfo => ({
+            ...prevUserInfo,
+            avatar: data.user.avatar // 使用从服务器返回的新头像路径更新用户信息
+          }));
+
+          Toast.show('修改头像成功！');
+
+        })
+        .catch(error => {
+          console.error('Error posting data:', error);
+        });
     } catch (error) {
       console.error('Error posting data:', error);
     }
   }
-  
+
 
   const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
     <Space>
@@ -156,43 +184,12 @@ const PersonLogin = () => {
     </Space>
   );
 
-  const mockContent = () => (
-    <div className={style.navigation}>
-      <SetOutline fontSize={iconSize} onClick={() => {
-        setVisible4(true)
-      }} /> 个人设置
-      <br />
-      <br />
-      <ContentOutline fontSize={iconSize} /> 浏览记录
-      <br />
-      <br />
-      <MailOpenOutline fontSize={iconSize} /> 草稿箱
-      <br />
-      <br />
 
-      <br />
-      <br />
-      <Button block color="primary" size="large" onClick={() => handleClick()}>
-        {isLogin ? "退出登陆" : "点击登陆"}
-      </Button>
-    </div>
-  );
+
 
 
   return (
     <div className={style.background}>
-
-      <Popup
-        visible={visible}
-        onMaskClick={() => {
-          setVisible(false);
-        }}
-        position="left"
-        bodyStyle={{ width: "50vw", padding: "10px" }}
-      >
-        {mockContent()}
-      </Popup>
-
       <div className={style.top}>
         <MoreOutline
           fontSize={36}
@@ -202,27 +199,41 @@ const PersonLogin = () => {
             setVisible(true);
           }}
         />
+        <Popup
+          visible={visible}
+          onMaskClick={() => {
+            setVisible(false);
+          }}
+          position="left"
+        // bodyStyle={{ width: "50vw" }}
+        >
+          <SideNavigation isLogin={isLogin} />
+
+
+        </Popup>
+
+
         <Card className={style.cardContainer}>
           {/* 使用state中的avatar显示头像 */}
+          <div className={style.overlay}></div>
           <div className={style.avatarContainer}>
 
             {isEditor ? (
               <div>
                 <AvatarUpload onChange={onChange} />
-                <img src='/done.png' className={style.editorAvatar} onClick={() => { setIsEditor(false);
-                  submitAvatar(userInfo.username, imageUrl); }} />
+                <img src='/done.png' className={style.editorAvatar} onClick={() => {
+                  setIsEditor(false);
+                  submitAvatar(userInfo.username, imageUrl);
+                }} />
 
               </div>
 
             ) : (
               <div>
-                 {!isLogin ?(<></>):(<img src='/add.png' className={style.editorAvatar} onClick={() => {
+                {!isLogin ? (<></>) : (<img src='/add.png' className={style.editorAvatar} onClick={() => {
                   setIsEditor(true)
-                }}/>)}
-               
-                
-
-                <Avatar size={100} className={style.userAvatar} src={userInfo.avatar} alt="avatar" />
+                }} />)}
+                <img className={style.userAvatar} src={userInfo.avatar} alt="avatar" style={{ width: "100px", height: "100px" }} />
               </div>
             )}
 
@@ -257,19 +268,25 @@ const PersonLogin = () => {
               {text}
             </div>
           )}</>}
-         
-          {!isLogin ? null : <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 50px' }}>
-            <div style={{ marginRight: '30px' }}>
-              <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />
-            </div>
-            <div style={{ marginRight: '30px' }}>
-              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />
-            </div>
-            <div style={{ listStyle: 'none' }}>
-              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />
-            </div>
-          </List.Item>}
-          
+
+          {!isLogin ? null :
+            <div className={style.like}>
+               <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 100px', zIndex: 2 }}>
+              <div style={{ marginRight: '40px' }}>
+                <IconText icon={StarOutlined} text={(likeData?.likeNote.length.toString()) ?? '0'} />
+
+              </div>
+              <div style={{ marginRight: '40px' }}>
+                <IconText icon={LikeOutlined} text={(likeData?.saveNote.length.toString()) ?? '0'} key="list-vertical-like-o" />
+              </div>
+              <div style={{ listStyle: 'none' }}>
+                <IconText icon={MessageOutlined} text={(likeData?.followUser.length.toString()) ?? '0'} key="list-vertical-message" />
+              </div>
+            </List.Item>
+
+            </div>}
+
+
         </Card>
       </div>
 
@@ -283,13 +300,13 @@ const PersonLogin = () => {
             "--background": "rgb(130, 191, 166)",
           }}
         >
-          <EditSFill onClick={AddPost} fontSize={32} />
+          <EditSFill onClick={() => fetchLikeandSave(userInfo.username)} fontSize={32} />
         </FloatingBubble>
       </div>
     </div>
   );
 };
-const iconSize = 33;
+
 
 
 

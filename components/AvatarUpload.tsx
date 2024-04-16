@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Flex, message, Upload } from 'antd';
-import type { GetProp, UploadProps } from 'antd';
+import type { GetProp, UploadProps, UploadFile } from 'antd';
 import style from "../styles/person.module.scss";
+import ImgCrop from 'antd-img-crop';
+import compressor from 'compressorjs';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 interface AvatarUploadProps {
-    onChange:(url: string) => void;// 假设子组件返回的是图片 URL
-  }
+    onChange: (url: string) => void;// 假设子组件返回的是图片 URL
+}
 const getBase64 = (img: FileType, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
@@ -20,16 +22,18 @@ const beforeUpload = (file: FileType) => {
     if (!isJpgOrPng) {
         message.error('You can only upload JPG/PNG file!');
     }
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M = file.size / 1024 / 1024 < 1;
     if (!isLt2M) {
         message.error('Image must smaller than 2MB!');
     }
     return isJpgOrPng && isLt2M;
 };
 
-const AvatarUpload:  React.FC<AvatarUploadProps> = ({onChange}) => {
+const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
+    // const [fileList, setFileList] = useState<UploadFile[]>([]);
+
 
     const handleChange: UploadProps['onChange'] = (info) => {
         if (info.file.status === 'uploading') {
@@ -54,18 +58,28 @@ const AvatarUpload:  React.FC<AvatarUploadProps> = ({onChange}) => {
         </button>
     );
 
-    return (
 
-        <Upload
-            name="avatar"
-            listType="picture-circle"
-            className={style.userAvatar}
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
+    return (
+        <ImgCrop
+            rotationSlider
+            cropShape='round'
+            quality={0.8}
         >
-            {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-        </Upload>
+            <Upload
+                name="avatar"
+                listType="picture-circle"
+                className={style.userAvatar}
+                showUploadList={false}
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+            >
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+            </Upload>
+
+        </ImgCrop>
+
+
+
     );
 };
 
