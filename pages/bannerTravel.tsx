@@ -124,6 +124,8 @@ const TravelList: React.FC = () => {
             };
             var geolocation = new AMap.Geolocation(OPTIONS);
             geolocation.getCityInfo((status: any, result: any) => {
+              console.log(status);
+              console.log(result);
               if (status == "complete") {
                 const city = result.city;
                 // 因为爬取城市数据有限，因此只能显示爬过城市的数据；未爬过的城市显示全部数据
