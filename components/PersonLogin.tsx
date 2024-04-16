@@ -300,7 +300,7 @@ const PersonLogin = () => {
             "--background": "rgb(130, 191, 166)",
           }}
         >
-          <EditSFill onClick={() => fetchLikeandSave(userInfo.username)} fontSize={32} />
+          <EditSFill onClick={() => router.push(`/visitor?username=${userInfo.username}`)} style={{ color: "white" }} fontSize={32} />
         </FloatingBubble>
       </div>
     </div>

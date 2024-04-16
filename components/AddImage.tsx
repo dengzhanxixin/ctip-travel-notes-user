@@ -99,7 +99,6 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
     const sensor = useSensor(PointerSensor, {
         activationConstraint: { distance: 10 },
     });
-    const version = Math.random().toString();
     // console.log('ImgList',ImgList)
     useEffect(() => {
         // 如果 ImgList 不为空，则将其转换为 UploadFile[] 格式并附加版本信息
@@ -251,8 +250,8 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     return (
         <>
-            {/* <DndContext sensors={[sensor]} onDragEnd={handleDragEnd}>
-                <SortableContext items={fileList.map(file => file.uid)} strategy={verticalListSortingStrategy}> */}
+            <DndContext sensors={[sensor]} onDragEnd={handleDragEnd}>
+                <SortableContext items={fileList.map(file => file.uid)} strategy={verticalListSortingStrategy}>
             <div className={styles.uploadContainer}>
             {fileList.length === 0 ? (
                 upload
@@ -284,10 +283,9 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 </>
             )}
             </div>
-            
-
-            {/* </SortableContext>
-            </DndContext> */}
+        
+            </SortableContext>
+            </DndContext>
             {/* {fileList ? <Upload className={styles.commonModal + ' ' + styles.paramsModal}
                 listType="picture-card"
                 fileList={fileList}
@@ -341,6 +339,7 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 open={previewVisible}
                 onCancel={handleCancel}
                 okText="删除"
+                cancelText="取消"
                 onOk={() => {
                     if (fileToDelete) {
                         onRemove(fileToDelete);
