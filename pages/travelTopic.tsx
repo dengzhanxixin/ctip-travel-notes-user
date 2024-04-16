@@ -139,7 +139,7 @@ const TopicTravelNotes: React.FC = () => {
                   bodyStyle={{ padding: "0" }}
                   key={item.id}
                 >
-                  <Image
+                  <img
                     src={item.coverImg}
                     className={Styles.restImg}
                     alt={"旅游图片"}

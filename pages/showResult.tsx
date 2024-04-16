@@ -68,7 +68,7 @@ const SearchInfo: React.FC = () => {
     ref.current?.swipeTo(index); // 切换页面
   };
 
-  // 游记结果和用户结果页面
+  // 游记结果和用户结果页面（为每个页面添加状态主要是因为Swiper组件中一个滑动会影响另外一个滑动）
   const pages = [
     <div key={0}>{isTravel && <TravelWaterFlow notes={travelInfo} />}</div>,
     <div key={1}>{isUser && <UserInfoList notes={{ PageSize: 10, PageIndex: 0, searchInfo: info }} />}</div>,

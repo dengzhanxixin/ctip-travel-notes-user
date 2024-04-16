@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 // 修改这里的路径，使其相对于 serve.js 或其他调用文件的位置
-const getFilePath = (fileName) => path.join(__dirname, "data", fileName);
+const getFilePath = (fileName) => path.join(__dirname, "..", "data", fileName);
 
 const readDataFromFile = (fileName) => {
   try {

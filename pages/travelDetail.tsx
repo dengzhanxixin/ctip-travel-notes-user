@@ -13,7 +13,7 @@ interface TravelDetailProps {
 const TravelDetail: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
-  });
+  }); 
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
     islike: false,
@@ -138,13 +138,15 @@ const TravelDetail: React.FC = () => {
     const initWeChatShare = async () => {
       if (typeof window !== "undefined") {
         // 获取当前页面URL并进行编码
-        const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
+        // const currentUrl = encodeURIComponent(window.location.href.split("#")[0]);
+        // console.log("Current URL: " + currentUrl);
         try {
           const { data } = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/wxJssdk`, {
-            url: currentUrl,
+            url: window.location.href,
           });
+          // console.log(data);
           wx.config({
-            debug: false, // 调试模式，发布时应设置为 false
+            debug: false, // 调试模式，发布时应设置为 ture
             appId: data.appId, // 公众号唯一标识
             timestamp: data.timestamp, // 时间戳
             nonceStr: data.nonceStr, // 随机串
@@ -163,10 +165,10 @@ const TravelDetail: React.FC = () => {
             });
           });
 
-          wx.error((error) => {
-            Toast.show("分享配置失败！");
-            console.error("WX SDK Error:", error);
-          });
+          // wx.error((error) => {
+          //   Toast.show("分享配置失败！");
+          //   console.error("WX SDK Error:", error);
+          // });
         } catch (error) {
           console.error("请求微信分享配置失败:", error);
           Toast.show("请求微信分享配置失败");

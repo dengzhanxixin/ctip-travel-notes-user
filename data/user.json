@@ -3,7 +3,11 @@
     "id": 1,
     "username": "123",
     "password": "$2b$10$zS88KsSWbOeE0pU0Io5Iiu8wmR8VbqR0qHSC72CcZFKhxYtE.wPHO",
+<<<<<<< HEAD
     "avatar": "images/123_avatar.jpg",
+=======
+    "avatar": "images/avatar1.png",
+>>>>>>> 55f3ebffa05519132682560eb6521f24f314e073
     "likeNote": [],
     "saveNote": [],
     "followUser": []
@@ -18,5 +22,17 @@
     "followUser": [
       "云山集"
     ]
+<<<<<<< HEAD
+=======
+  },
+  {
+    "id": 3,
+    "username": "admin",
+    "password": "$2b$10$7jy9bN4pMGuEVoSpHU5ULO75JNVEMKI81L0bB3SnX18KGPkaQ.ggW",
+    "avatar": "images/avatar1.png",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": []
+>>>>>>> 55f3ebffa05519132682560eb6521f24f314e073
   }
 ]
