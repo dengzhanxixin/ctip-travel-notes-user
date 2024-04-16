@@ -82,13 +82,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     const imgPath = path.join('public', 'images', 'user', `id${lastId}_images_i${index}.jpg`);
                     const Path = path.join('/', 'images', 'user', `id${lastId}_images_i${index}.jpg`).replace(/\\/g, '/');
                     // 检查是否存在同名文件，如果存在，则删除
-                    try {
-                        // 同步读取
-                        const files = fs.readdirSync(imagesDirPath);
-                        console.log('目录下的文件:', files);
-                    } catch (err) {
-                        console.error('读取目录出错:', err);
-                    }
+                    // try {
+                    //     // 同步读取
+                    //     const files = fs.readdirSync(imagesDirPath);
+                    //     console.log('目录下的文件:', files);
+                    // } catch (err) {
+                    //     console.error('读取目录出错:', err);
+                    // }
                     if (fs.existsSync(imgPath)) {
                         fs.unlinkSync(imgPath);
                         console.log(`已删除旧文件：${imgPath}`);

@@ -1,0 +1,91 @@
+// sideNav.module.scss
+
+// 设置主题颜色
+$primary-color: rgb(130, 191, 166);
+$dark-color: #001529;
+
+// 定义主题
+.light-theme {
+  // 定义 light 主题样式
+  background-color: rgb(130, 191, 166);
+
+  // 自定义其他样式
+}
+
+.dark-theme {
+  // 定义 dark 主题样式
+  background-color: $dark-color;
+
+  // 自定义其他样式
+}
+
+// 顶部切换按钮样式
+.themeSwitch {
+  margin-bottom: 16px;
+
+  .ant-switch {
+    background-color: #fff;
+    border-color: #1890ff;
+  }
+}
+
+// 侧边栏容器样式
+.sideNavContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; // 使侧边栏铺满整个页面
+    width: 100%; // 使侧边栏铺满整个页面
+}
+
+// 菜单样式
+.sideNavMenu {
+    width: 100%;
+    margin-bottom: 16px;
+    flex-grow: 1;
+  
+    .ant-menu {
+      background-color: transparent; // 设置菜单背景透明
+      border: none; // 移除菜单边框
+    }
+  
+    .ant-menu-item {
+      color: #fff;
+      font-size: 18px; // 加大字体
+      font-weight: bold; // 加粗
+      line-height: 2; // 调整行间距
+      width: 100%; // 让菜单项等宽
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .ant-menu-item-selected {
+      background-color: #1890ff; // 设置选中菜单项的背景色
+    }
+  
+    .ant-menu-item:hover {
+      background-color: #40a9ff; // 设置鼠标悬停时的背景色
+    }
+  }
+  
+
+// 登录按钮样式
+.loginButton {
+  width: 100px;
+
+  .ant-btn {
+    margin-top: 16px;
+    background-color: #fff;
+    color: $primary-color;
+    border-color: #fff;
+
+    // 自定义登录按钮样式
+  }
+}
+
+// 设置子菜单样式
+.sub-menu {
+  .ant-menu-item {
+    padding-left: 32px; // 子菜单项的缩进
+  }
+}

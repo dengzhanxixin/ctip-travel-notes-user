@@ -7,6 +7,7 @@ import { EnvironmentOutlined, TeamOutlined, } from '@ant-design/icons';
 import { ExclamationCircleFill } from 'antd-mobile-icons'
 import AddImage from "../components/AddImage";
 import styles from "../styles/post.module.scss";
+
 import { options } from '../data/province'
 
 const items = ['公开可见', '仅自己可见']
@@ -28,8 +29,6 @@ interface FormData {
     checkReason: string;
     districtPoiCollect: string;
     url: string[];
-
-
     content: string;
     publishTime: string;
     firstPublishTime: string,
@@ -155,17 +154,17 @@ export default function AddPost() {
         }
         else {
             setFormData({ ...formData, [name]: value });
+            console.log(formData);
         }
     };
 
     const handleSubmit = () => {
         // console.log('Now formData.url.length', formData.url.length);
         const conditions = [
-            { condition: (!formData.title) && (EditorData && EditorData.title==""), message: '未填写标题' },
-            { condition: (!formData.content) && (EditorData && EditorData.content==""), message: '未填写正文' },
-            { condition: tempImages.length == 0, message: '图片不能为空' }
+            { condition: EditorData?(EditorData && EditorData.title==""):(formData.title==""), message: '未填写标题' },
+            { condition: EditorData?(EditorData && EditorData.content==""):(formData.title==""), message: '未填写正文' },
+            { condition: tempImages.length == 0 , message: '图片不能为空' }
         ];
-        console.log("conditions:", conditions);
 
         const errorMessage = conditions
             .filter(condition => condition.condition)
@@ -304,7 +303,7 @@ export default function AddPost() {
             Toast.show('你没有进行选择');
         }
     };
-    console.log('formData.url', formData.url);
+    // console.log('formData.url', formData.url);
     const back = () => router.push('/person');
 
 
@@ -326,8 +325,8 @@ export default function AddPost() {
             <div className="containerImage">
             
                 {/* 上传图片 */}
-                <div style={{ width: "100%", height: "180px" }}>
-                    <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
+                <div style={{ width: "90%", height: "180px" }}>
+                    <div style={{ padding: '5px 0 0 10px' }}>
                         {EditorData ? (
                             <AddImage ImgList={EditorData.images} onThumbUrlsChange={handleThumbUrlsChange} />
                         ) : (
@@ -412,7 +411,7 @@ export default function AddPost() {
 
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '15px', paddingLeft: '1px', width: '100%' }}>
-                {EditorData ? (null):<Button style={{
+                {EditorData ?(null): <Button style={{
                     width: '30%',
                     height: '140%',
                     backgroundColor: 'white',
