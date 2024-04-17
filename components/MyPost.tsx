@@ -54,7 +54,7 @@ const MyPost: React.FC = () => {
 
   const pages = [
     <div key={0}>{isLogin ? (
-      <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
+      <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', paddingLeft:'10px',marginRight: '10px' }}>
         <TravelWaterFlow notes={DoneInfo} />
       </div>) : (<Empty description={false}  style={{marginTop: '20px'}}/>)}</div>,
       <div key={1}>{isLogin ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
@@ -77,8 +77,12 @@ const MyPost: React.FC = () => {
             key={index}
             className={index === activeIndex ? style.name_active : style.name}
             onClick={() => handleSwipeChange(index)}
-          >
-            {name}
+            
+          > <div style={{
+            backgroundColor: index === activeIndex ? 'rgb(130, 191, 166,0.8)' : '#ffffff',width:'104px',borderRadius:'10px',textAlign:'center',paddingTop:'5px',paddingBottom:'5px',fontSize:'18px',color:'rgb(74,99,117)'}}>
+                {name}
+          </div>
+            
           </div>
         ))}
       </div>

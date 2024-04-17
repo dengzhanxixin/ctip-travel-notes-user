@@ -9,7 +9,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
     <>
-      {(router.pathname === "/travelDetail" || router.pathname === "/searchPage" || router.pathname === "/") ? (
+      {(router.pathname === "/travelDetail" || router.pathname === "/searchPage" 
+      || router.pathname === "/" || router.pathname === "/GaoDeMap") ? (
         <Component {...pageProps} />
       ) : (
         <BottomBar>

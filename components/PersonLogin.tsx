@@ -205,7 +205,7 @@ const PersonLogin = () => {
             setVisible(false);
           }}
           position="left"
-        // bodyStyle={{ width: "50vw" }}
+        bodyStyle={{ width: "50vw" }}
         >
           <SideNavigation isLogin={isLogin} />
 
@@ -271,16 +271,17 @@ const PersonLogin = () => {
 
           {!isLogin ? null :
             <div className={style.like}>
-               <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 100px', zIndex: 2 }}>
+               <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '18px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 10px', zIndex: 2 }}> 
               <div style={{ marginRight: '40px' }}>
-                <IconText icon={StarOutlined} text={(likeData?.likeNote.length.toString()) ?? '0'} />
+                <IconText icon={LikeOutlined} text={`获赞 ${likeData?.likeNote.length.toString() ?? '0'}`}
+ />
 
               </div>
               <div style={{ marginRight: '40px' }}>
-                <IconText icon={LikeOutlined} text={(likeData?.saveNote.length.toString()) ?? '0'} key="list-vertical-like-o" />
+                <IconText icon={StarOutlined} text={`收藏 ${likeData?.saveNote.length.toString() ?? '0'}`} key="list-vertical-like-o" />
               </div>
               <div style={{ listStyle: 'none' }}>
-                <IconText icon={MessageOutlined} text={(likeData?.followUser.length.toString()) ?? '0'} key="list-vertical-message" />
+                <IconText icon={MessageOutlined} text={`粉丝 ${likeData?.followUser.length.toString() ?? '0'}`} key="list-vertical-like-o" />
               </div>
             </List.Item>
 
@@ -300,7 +301,7 @@ const PersonLogin = () => {
             "--background": "rgb(130, 191, 166)",
           }}
         >
-          <EditSFill onClick={() => router.push(`/visitor?username=${userInfo.username}`)} style={{ color: "white" }} fontSize={32} />
+          <EditSFill onClick={() => fetchLikeandSave(userInfo.username)} style={{ color: "white" }} fontSize={32} />
         </FloatingBubble>
       </div>
     </div>

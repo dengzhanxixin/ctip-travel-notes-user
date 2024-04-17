@@ -106,6 +106,10 @@
   display: flex;
   align-items: center;
   overflow-x: scroll;
+  .content::-webkit-scrollbar{
+    display: none;
+  }
+
   // flex-direction: row;
   height: 200px;
   gap: 10px; 

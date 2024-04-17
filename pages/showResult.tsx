@@ -31,7 +31,7 @@ const SearchInfo: React.FC = () => {
   const travelInfo = {
     PageSize: 10,
     PageIndex: 0,
-    searchTitile: info,
+    searchTitle: info,
     searchUser: info,
     searchCity: info,
     strictSearch: false,

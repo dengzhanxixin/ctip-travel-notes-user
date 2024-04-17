@@ -31,56 +31,48 @@ $dark-color: #001529;
 
 // 侧边栏容器样式
 .sideNavContainer {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; // 使侧边栏铺满整个页面
-    width: 100%; // 使侧边栏铺满整个页面
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 10px;
+
+
+  .adm-list-header {
+    font-size: 20px;
+  }
+}
+.listItem {
+  text-align: left;
+  width: 100%;
+  padding: 0 2px;
+  margin: 0 0 130px 5px;
 }
 
-// 菜单样式
-.sideNavMenu {
-    width: 100%;
-    margin-bottom: 16px;
-    flex-grow: 1;
-  
-    .ant-menu {
-      background-color: transparent; // 设置菜单背景透明
-      border: none; // 移除菜单边框
-    }
-  
-    .ant-menu-item {
-      color: #fff;
-      font-size: 18px; // 加大字体
-      font-weight: bold; // 加粗
-      line-height: 2; // 调整行间距
-      width: 100%; // 让菜单项等宽
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .ant-menu-item-selected {
-      background-color: #1890ff; // 设置选中菜单项的背景色
-    }
-  
-    .ant-menu-item:hover {
-      background-color: #40a9ff; // 设置鼠标悬停时的背景色
-    }
-  }
-  
+.loginButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin-top: 40px;
+
+}
+
+
 
 // 登录按钮样式
 .loginButton {
-  width: 100px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(130, 191, 166);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
 
-  .ant-btn {
-    margin-top: 16px;
-    background-color: #fff;
-    color: $primary-color;
-    border-color: #fff;
 
-    // 自定义登录按钮样式
-  }
 }
 
 // 设置子菜单样式
@@ -88,4 +80,8 @@ $dark-color: #001529;
   .ant-menu-item {
     padding-left: 32px; // 子菜单项的缩进
   }
+}
+
+.listItem {
+  height: 10%
 }

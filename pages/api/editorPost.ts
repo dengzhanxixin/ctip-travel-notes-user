@@ -40,7 +40,7 @@ const imagesDirPath = path.join(process.cwd(), '/', 'images', 'user');
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
         id, title, user, city, isChecked, checkReason, districtPoiCollect,
-        content, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images,
+        content, publishTime, firstPublishTime, shootTime, shootDisplayTime, images,
     } = req.body as FormData;
     console.log('req.body', images);
 
@@ -63,13 +63,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2), 'utf8');
 
 
-         // 解析 JSON 数据
-         const jsonData = fs.readFileSync(userDataPath, 'utf8');
-         const data = JSON.parse(jsonData);
+        // 解析 JSON 数据
+        const jsonData = fs.readFileSync(userDataPath, 'utf8');
+        const data = JSON.parse(jsonData);
 
-         // 获取最后一条数据的 ID
-         const lastData = data[data.length - 1];
-         const lastId = lastData.id+1;
+        // 获取最后一条数据的 ID
+        const lastData = data[data.length - 1];
+        const lastId = lastData.id + 1;
 
 
         if (Array.isArray(images)) {
@@ -108,15 +108,24 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 
         // 添加新数据到数组中
-       
 
-       
 
-        let publishTime = new Date().toISOString();
+
+
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const hour = String(currentDate.getHours()).padStart(2, '0');
+        const minute = String(currentDate.getMinutes()).padStart(2, '0');
+        const second = String(currentDate.getSeconds()).padStart(2, '0');
+
+        const formattedTime = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+
         let coverNewImg = updatedImages[0];
         const newData: FormData = {
             id: lastId, title, coverImg: coverNewImg, user, city, isChecked, checkReason, districtPoiCollect,
-            content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, images: updatedImages.map(url => ({ url, width: 0, height: 0 })),
+            content, publishTime, firstPublishTime, publishDisplayTime: formattedTime, shootTime, shootDisplayTime, images: updatedImages.map(url => ({ url, width: 0, height: 0 })),
         };
 
         userData.push(newData);

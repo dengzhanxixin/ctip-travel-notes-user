@@ -91,15 +91,24 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         // 获取最后一条数据的 ID
         const jsonData = fs.readFileSync(userDataPath, 'utf8');
-         const data = JSON.parse(jsonData);
+        const data = JSON.parse(jsonData);
         const lastData = userData[userData.length - 1];
         const lastId = lastData.id + 1;
-        const publishTime = new Date().toISOString();
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const hour = String(currentDate.getHours()).padStart(2, '0');
+        const minute = String(currentDate.getMinutes()).padStart(2, '0');
+        const second = String(currentDate.getSeconds()).padStart(2, '0');
+
+        const formattedTime = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+
 
         // 2. 将新数据添加到现有数据的末尾
         const newData: FormData = {
             id: lastId, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
-            content, publishTime: publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime,
+            content, publishTime, firstPublishTime, publishDisplayTime: formattedTime, shootTime, shootDisplayTime,
             images: [],
         };
 

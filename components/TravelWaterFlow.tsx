@@ -46,6 +46,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
+  const [count, setCount] = useState(0);
   // const travelNoteList = travelNotes;
 
   // 点击推荐卡片跳转到详情页
@@ -68,18 +69,20 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   async function loadMore() {
     setPageProp((val) => ({ ...val, PageIndex: val.PageIndex + 1 }));
     const res = await fetchTravelNoteList(PageProp);
+
     setTravelNoteList((val) => {
       const filteredItems = res.items.filter(
         (item: TravelNoteProps) => !val.some((v: TravelNoteProps) => v.id === item.id)
       );
       return [...val, ...filteredItems];
     });
-    
+    setCount((count) => count + 1);
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {
     
-  },[PageProp])
+    loadMore()
+  },[])
   
 
 

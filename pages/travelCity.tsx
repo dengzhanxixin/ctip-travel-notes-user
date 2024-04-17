@@ -15,7 +15,7 @@ type cityProps = {
 
 type spotProps = {
   [key: string]: any;
-}
+};
 
 const CityTravelNotes: React.FC = () => {
   const router = useRouter();
@@ -95,18 +95,24 @@ const CityTravelNotes: React.FC = () => {
         </div>
       </div>
       <div className={Styles.content} ref={contentRef}>
-      <div className={Styles.CitySpots}>
-        <img className={Styles.hasDone} src="images/hasdone.png" />
-        <ul className={Styles.imgListContainer}>
-        {spotInfo.map((item,idx) => (
-          <div key={idx} className={Styles.imgContainer}>
-              <div className={Styles.text}>{item.poiName}</div>
-              <div className={Styles.shortFeature}>{item.shortFeature}</div>
-              <img src={item.images[0]} alt={item.poiName} width={135} height={178} className={Styles.img} />
-          </div>
-        ))}
-      </ul>
-      </div>
+        <div className={Styles.CitySpots}>
+          <img className={Styles.hasDone} src="images/hasdone.png" />
+          <ul className={Styles.imgListContainer}>
+            {spotInfo.map((item, idx) => (
+              <div
+                key={idx}
+                className={Styles.imgContainer}
+                onClick={() => {
+                  router.push(`/citySpot?city=${info}&idx=${idx}`);
+                }}
+              >
+                <div className={Styles.text}>{item.poiName}</div>
+                <div className={Styles.shortFeature}>{item.shortFeature}</div>
+                <img src={item.images[0]} alt={item.poiName} width={135} height={178} className={Styles.img} />
+              </div>
+            ))}
+          </ul>
+        </div>
         <div className={Styles.flowTitle}>
           <span className={Styles.titleLeft}>大家怎么玩</span>
           <span className={Styles.titleRight}>推荐</span>

@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Swiper, Tag, PullToRefresh, Toast } from "antd-mobile";
+import { Swiper, Tag} from "antd-mobile";
 import { SearchOutline } from "antd-mobile-icons";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
-import AMapLoader from "@amap/amap-jsapi-loader";
 
-const searchHotWords = ["上海", "上海迪斯尼", "东方明珠塔"];
+const searchHotWords = ["上海", "外滩", "亲子游"];
 const hotCityList = [
   { cityName: "上海", cityID: "2", isDomesticCity: "1" },
   { cityName: "北京", cityID: "1", isDomesticCity: "1" },
@@ -56,52 +55,9 @@ const TravelList: React.FC = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // 高德api定位当前城市
     if (typeof window !== "undefined") {
-      import("@amap/amap-jsapi-loader").then((AMapLoader) => {
-        AMapLoader.load({
-          key: "575c39e9399bb4d468773983fb489d2a",
-          version: "2.0",
-          plugins: ["AMap.Geolocation"],
-        })
-          .then((AMap) => {
-            const OPTIONS = {
-              // 是否使用高精度定位，默认：true
-              enableHighAccuracy: true,
-              // 设置定位超时时间，默认：无穷大
-              timeout: 10000,
-              maximumAge: 0, //定位结果缓存0毫秒，默认：0
-              // 定位按钮的停靠位置的偏移量，默认：Pixel(10, 20)
-              buttonOffset: new AMap.Pixel(10, 20),
-              //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-              zoomToAccuracy: true,
-              //  定位按钮的排放位置,  RB表示右下
-              buttonPosition: "RB",
-            };
-            var geolocation = new AMap.Geolocation(OPTIONS);
-            geolocation.getCityInfo((status: any, result: any) => {
-              if (status == "complete") {
-                const city = result.city;
-                // 因为爬取城市数据有限，因此只能显示爬过城市的数据；未爬过的城市显示全部数据
-                if (locateCities.includes(city.slice(0, -1))) {
-                  setSearchInfo({
-                    ...searchInfo,
-                    searchCity: city.slice(0, -1),
-                  });
-                  setIsReady(true);
-                }
-              } else {
-                setIsReady(true);
-              }
-            });
-          })
-          .catch((e) => {
-            // 无法定位时也显示全部数据
-            setIsReady(true);
-            console.log(e);
-          });
-      });
       import("@amap/amap-jsapi-loader").then((AMapLoader) => {
         AMapLoader.load({
           key: "575c39e9399bb4d468773983fb489d2a",
@@ -148,6 +104,7 @@ const TravelList: React.FC = () => {
           });
       });
     }
+
   }, []);
 
   useEffect(() => {
@@ -202,7 +159,6 @@ const TravelList: React.FC = () => {
           </div>
           <div className={Styles.searchButton}>搜索</div>
         </div>
-
 
         <div className={`${Styles.hotWords} ${ishidden ? Styles.hidden : ""}`}>
           <ul className={Styles.wordsContainer}>

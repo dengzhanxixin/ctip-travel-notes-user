@@ -8,24 +8,51 @@ interface LikeResponse {
     saveNote: string[];
     followUser: string[];
 }
-
-
 export default function handler(req: NextApiRequest, res: NextApiResponse<LikeResponse>) {
     const requestData = req.body;
+    const allData = [] as string[]
+    const postData = JSON.parse(fs.readFileSync('data/TravelData.json', 'utf8'));
+
+    const usersData = JSON.parse(fs.readFileSync('data/user.json', 'utf8'));
+    let likeNoteUsers = [] as string[];
+    let saveNoteUsers = [] as string[];
+    let followUserUsers = [] as string[];
+
     if (req.method === 'POST') {
         const { username } = requestData;
-        console.log('username',username);
-        const userData = JSON.parse(fs.readFileSync('data/user.json', 'utf8'));
 
-        const searchData = userData.find((item: any) => username === item.username);
+        const searchData = postData.filter((item: any) => username === item.user.nickName && item.isChecked == 1)
 
-        if (searchData) {
-            // 如果找到用户数据，则返回点赞、收藏和关注数据
-            res.status(200).json(searchData);
-        }
+        const allTravelIds = searchData.map((item: any) => item.id);
 
+
+        usersData.forEach((user: any) => {
+            // 遍历该用户的 likeNote，如果包含 any of allTravelIds，则添加用户名到 likeNoteUsers
+            user.likeNote.forEach((id: string) => {
+                if (allTravelIds.includes(id)) {
+                    likeNoteUsers.push(user.username);
+                }
+            });
+            user.saveNote.forEach((id: string) => {
+                if (allTravelIds.includes(id)) {
+                    saveNoteUsers.push(user.username);
+                }
+            });
+
+            // 处理 followUser
+            if (user.followUser.includes(username)) {
+                followUserUsers.push(user.username);
+            }
+        });
+        const response: LikeResponse = {
+            username,
+            likeNote: likeNoteUsers,
+            saveNote: saveNoteUsers,
+            followUser: followUserUsers
+        };
+        console.log(response);
+
+        res.status(200).json(response);
     }
-
-
 
 }

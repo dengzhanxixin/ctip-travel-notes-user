@@ -85,6 +85,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
   }
   var version = Math.random();
 
+
   return (
     <>
       <div className={styles.container}>

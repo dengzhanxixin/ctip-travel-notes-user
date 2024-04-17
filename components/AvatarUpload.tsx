@@ -73,7 +73,7 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
             >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%',borderRadius: '50%'}} /> : uploadButton}
             </Upload>
 
         </ImgCrop>
