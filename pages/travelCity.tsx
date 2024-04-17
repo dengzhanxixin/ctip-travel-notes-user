@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { NavBar } from "antd-mobile";
 import Styles from "@/styles/travelCity.module.scss";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
-import Image from "next/image";
 
 type cityProps = {
   cityName: string;
@@ -38,33 +37,46 @@ const CityTravelNotes: React.FC = () => {
 
   // 获取相关城市的景点
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/getCitySpot", {
-        method: "POST",
-        body: JSON.stringify({ cityName: info }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setSpotInfo(data);
+    const fetchSpotData = async () => {
+      try {
+        const response = await fetch("/api/getCitySpot", {
+          method: "POST",
+          body: JSON.stringify({ cityName: info }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setSpotInfo(data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
-    fetchData();
+
+    fetchSpotData();
   }, [info]);
 
   // 获取相关城市游记
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/getCityInfo", {
-        method: "POST",
-        body: JSON.stringify({ cityName: info }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setCityInfo(data);
-      setIsReady(true);
+      try {
+        const cityResponse = await fetch("/api/getCityInfo", {
+          method: "POST",
+          body: JSON.stringify({ cityName: info }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (cityResponse.ok) {
+          const cityData = await cityResponse.json();
+          setCityInfo(cityData);
+          setIsReady(true);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchData();
 

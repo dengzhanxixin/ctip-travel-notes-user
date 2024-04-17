@@ -84,6 +84,7 @@
   position: relative;
 
   .travelPlace {
+    width: 100%;
     display: flex;
     align-items: center;
     position: absolute;
@@ -92,7 +93,7 @@
     font-size: 15px;
 
     .PlaceText {
-      width: 70%;
+      max-width: 70%;
       white-space: nowrap; /* 让文本在一行内显示 */
       overflow: hidden; /* 隐藏超出部分 */
       text-overflow: ellipsis; /* 显示省略号 */

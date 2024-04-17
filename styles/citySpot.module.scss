@@ -98,6 +98,10 @@
         margin-right: 8px;
     }
 
+    .closeStatus {
+      color: #f95e53
+    }
+
     .openTime {
         display: inline-block;
         width: 80%;
@@ -136,6 +140,17 @@
 
 .SpotWaterFlow {
   // padding-top: 10px;
+  margin-top: 10px;
   padding: 10px;
   background-color: #fff;
+  border-radius: 10px;
+  .titleLeft {
+    display: block;
+    font-size: 18px;
+    font-family: "PingFangSC-Regular", sans-serif;
+    font-weight: 700;
+    color: #333;
+    padding-bottom: 5px;
+  }
+  
 }
