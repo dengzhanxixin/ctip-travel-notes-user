@@ -9,7 +9,7 @@ interface spotDetailProps {
   [key: string]: any;
 }
 
-const citySpot: React.FC = () => {
+const CitySpot: React.FC = () => {
   const [spotDetail, setSpotDetail] = useState<spotDetailProps>({});
   const router = useRouter();
   const city = router.query.city as string;
@@ -30,9 +30,9 @@ const citySpot: React.FC = () => {
     router.push({
       pathname: "/GaoDeMap",
       query: {
-        name: spotDetail?.poiName,
-        lat: spotDetail?.ggCoordinate.latitude,
-        lng: spotDetail?.ggCoordinate.longitude,
+        poiname: spotDetail?.poiName,
+        latitude: spotDetail?.ggCoordinate.latitude,
+        longitude: spotDetail?.ggCoordinate.longitude,
         address: spotDetail?.address,
       },
     });
@@ -104,4 +104,4 @@ const citySpot: React.FC = () => {
   );
 };
 
-export default citySpot;
+export default CitySpot;

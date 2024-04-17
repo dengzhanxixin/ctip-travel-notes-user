@@ -5,11 +5,11 @@ import MapContainer from "@/components/MapContainer";
 
 const Map: React.FC = () => {
   const router = useRouter();
-  const { name, lat, lng, address } = router.query;
+  const { poiname, latitude, longitude, address } = router.query;
   const data = {
-    name: name as string,
-    lat: parseFloat(lat as string),
-    lng: parseFloat(lng as string),
+    poiname: poiname as string,
+    latitude: parseFloat(latitude as string),
+    longitude: parseFloat(longitude as string),
     address: address as string,
   };
 
@@ -21,7 +21,7 @@ const Map: React.FC = () => {
           router.back();
         }}
       >
-        {name}
+        {poiname}
       </NavBar>
       <MapContainer data={data} />
     </div>
