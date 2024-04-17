@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 
 
-export default function personSet() {
+export default function PersonSet() {
     const router = useRouter();
     const back = () => {
         router.push("/person");

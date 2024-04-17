@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { Card, Toast, Button, Divider } from 'antd-mobile'
 import styles from "@/styles/checkTable.module.scss";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 interface UserInfo {
   icon: string; // 头像
@@ -106,7 +105,7 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                     />
                     </>
                     : <>
-                      <Image
+                      <img
                         src={`${item.coverImg}?v=${version}`}
                         className={styles.restImg}
                         alt={"旅游图片"}
