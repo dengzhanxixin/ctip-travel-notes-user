@@ -42,7 +42,9 @@
     flex: 1;
     overflow: scroll;
   }
-
+  .ctt::-webkit-scrollbar{
+    display: none;
+  }
   .content {
     margin: 0 auto;
     display: grid;

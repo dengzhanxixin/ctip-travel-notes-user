@@ -65,7 +65,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
                                             width={18}
                                             height={18}
                                         />
-                                        <span>{item.poiName ? item.poiName:item.city}</span>
+                                        <span className={Styles.PlaceText}>{item.poiName ? item.poiName:item.city}</span>
                                     </div>
                                     <div className={Styles.travelTitle}>
                                         <h3>{item.title}</h3>

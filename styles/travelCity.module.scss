@@ -40,6 +40,9 @@
   overflow: scroll;
   padding-top: 10px;
 }
+.content::-webkit-scrollbar{
+  display: none;
+}
 
 .CitySpots {
   width: 100%;
@@ -75,6 +78,7 @@
 
     
     .text {
+      max-width: 90%; 
       position: absolute;
       bottom: 20px;
       left: 5px;
@@ -82,6 +86,9 @@
       color: #333;
       font-size: 16px;
       font-weight: 700;
+      white-space: nowrap; /* 让文本在一行内显示 */
+      overflow: hidden; /* 隐藏超出部分 */
+      text-overflow: ellipsis; /* 显示省略号 */
     }
     .shortFeature {
       position: absolute;
@@ -92,6 +99,10 @@
       font-size: 10px;
     }
   }
+}
+
+.imgListContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .flowTitle {

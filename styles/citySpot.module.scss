@@ -7,6 +7,10 @@
   overflow-y: scroll;
 }
 
+.container::-webkit-scrollbar{
+  display: none;
+}
+
 .Navgate {
   transition: all 0.3s ease-out; /* 添加一个过渡效果 */
   width: 100%;
