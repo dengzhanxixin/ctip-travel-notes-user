@@ -39,3 +39,6 @@
   flex: 1;
   overflow-y: scroll;
 }
+.content::-webkit-scrollbar{
+  display: none;
+}

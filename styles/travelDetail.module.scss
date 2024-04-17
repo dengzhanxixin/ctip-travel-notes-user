@@ -30,6 +30,9 @@
   flex: 1;
   overflow-y: auto;
 }
+.content::-webkit-scrollbar{
+  display: none;
+}
 
 .imgSwiper {
     width: 100%;

@@ -23,6 +23,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<spotRe
   if (CityInfoData) {
     res.status(200).json(CityInfoData);
   } else {
-    res.status(404).json({ message: "City not found" });
+    res.status(500).json({ message: "spot not found" });
   }
 }

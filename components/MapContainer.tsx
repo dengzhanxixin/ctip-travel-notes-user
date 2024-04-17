@@ -3,16 +3,16 @@ import styles from "@/styles/MapContainer.module.scss";
 
 interface Props {
   data: {
-    name: string;
-    lat: number;
-    lng: number;
+    poiname: string;
+    latitude: number;
+    longitude: number;
     address: string;
   };
 }
 
 const MapContainer: React.FC<Props> = ({ data }) => {
   const [mapInstance, setMapInstance] = useState<any>({});
-  const { name, lat, lng, address } = data;
+  const { poiname, latitude, longitude, address } = data;
 
   const mapRef = useRef(null); // 创建一个指向 <div id="container"> 的引用
 
@@ -28,21 +28,20 @@ const MapContainer: React.FC<Props> = ({ data }) => {
             const map = new AMap.Map(mapRef.current, {
               viewMode: "3D",
               zoom: 17,
-              center: [lng, lat],
-              // center: [116.397428, 39.90923],
+              center: [longitude, latitude],
             });
 
             const geolocation = new AMap.Geolocation({
               enableHighAccuracy: true,
               timeout: 10000,
               buttonPosition: "RB",
-              position: [lng, lat],
+              position: [longitude, latitude],
               buttonOffset: new AMap.Pixel(10, 20),
               zoomToAccuracy: true,
             });
 
             const content1 = `<div class="${styles.marker}">
-            <h3>${name}</h3>
+            <h3>${poiname}</h3>
             </div>`;
 
             const icon = new AMap.Icon({
@@ -53,12 +52,12 @@ const MapContainer: React.FC<Props> = ({ data }) => {
             });
             const marker1 = new AMap.Marker({
               content: content1,
-              position: [lng, lat], // set the correct position here
+              position: [longitude, latitude], // set the correct position here
               offset: new AMap.Pixel(-17, -42),
             });
             const marker2 = new AMap.Marker({
               icon: icon,
-              position: [lng, lat], // set the correct position here
+              position: [longitude, latitude], // set the correct position here
               offset: new AMap.Pixel(-17, -42),
             });
             map.add(marker1);

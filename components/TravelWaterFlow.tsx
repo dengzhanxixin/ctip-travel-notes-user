@@ -31,6 +31,7 @@ interface travelNoteListProps {
     searchTitle?: string; // 查询标题与搜索词相关的旅游日记
     searchUser?: string; // 查询该用户的旅游日记
     searchCity?: string; // 查询关于该城市的旅游日记
+    searchSpot?: string; // 查询关于该景点的旅游日记
     strictSearch?: boolean; // 严格搜索还是模糊搜索
     searchChecked: number; // 游记审核状态
     notChecked?: boolean; // 

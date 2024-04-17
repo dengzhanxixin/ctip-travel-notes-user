@@ -9,6 +9,10 @@
     overflow-y: scroll; /* 滚动条在内容溢出时出现 */
   }
 
+.content::-webkit-scrollbar {
+  display: hidden;
+}
+
 .title {
   font-size: 20px;
   font-weight: 600;
@@ -84,6 +88,10 @@
         padding: 8px 15px;
         margin: 5px 5px;
       }
+    }
+
+    .wordsContainer::-webkit-scrollbar{
+      display: none;
     }
   }
   .hidden {
