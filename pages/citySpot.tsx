@@ -98,7 +98,7 @@ const CitySpot: React.FC = () => {
         </div>
       </div>
       <div className={Styles.SpotWaterFlow} >
-       {city && <TravelWaterFlow notes={{ PageSize: 10, PageIndex: 0, searchCity: city, strictSearch: true, searchChecked: 1 }} />}
+       {spotDetail.poiName && <TravelWaterFlow notes={{ PageSize: 10, PageIndex: 0, searchSpot: spotDetail.poiName, strictSearch: true, searchChecked: 1 }} />}
       </div>
     </div>
   );
