@@ -1,9 +1,10 @@
 import { Empty, Card, Drawer, Button } from 'antd';
-import { Swiper, SwiperRef } from 'antd-mobile'
+import { Swiper, SwiperRef, PullToRefresh} from 'antd-mobile'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
 import style from "../styles/person.module.scss";
+import { sleep } from 'antd-mobile/es/utils/sleep'
 
 interface TravelInfo {
   PageSize: number;
@@ -45,7 +46,7 @@ const MyPost: React.FC = () => {
         avatar: user.avatar,
       });
     }
-  }, []);
+  }, [userInfo.username]);
   useEffect(() => {
     if (userInfo.username){
       setIsLogin(true);
@@ -57,7 +58,7 @@ const MyPost: React.FC = () => {
       <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', paddingLeft:'10px',marginRight: '10px' }}>
         <TravelWaterFlow notes={DoneInfo} />
       </div>) : (<Empty description={false}  style={{marginTop: '20px'}}/>)}</div>,
-      <div key={1}>{isLogin ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
+      <div key={1}>{isLogin ? (<TravelWaterFlow notes={WaitInfo} isTab={true} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
       <div key={2}>{isLogin ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>
   ];
   const ref = useRef<SwiperRef>(null);
@@ -69,7 +70,6 @@ const MyPost: React.FC = () => {
 
   return (
     <>
-
       <div className={style.mypost}>
       <div className={style.nameBar}>
         {nameBars.map((name, index) => (

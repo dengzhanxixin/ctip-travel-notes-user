@@ -58,11 +58,11 @@ const SideNavigation: React.FC<Props> = ({ isLogin }) => {
         <div className={style.sideNavContainer}>
             <Layout style={{ width: '100%', height: '100%' }}>
 
-                <div style={{width:"95%",padding:"30px 0 50px"}}>
+                <div style={{width:"95%",padding:"20px 0 10px"}}>
                     <List header='账户设置'
                     className={style.listItem}
                         mode='card'
-                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px"}}>
+                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px",margin:'0 0 120px 5px'}}>
                         <List.Item prefix={<UserOutline />} onClick={() => {router.push("/personSet")}}
                         >
                             个人设置
@@ -78,7 +78,7 @@ const SideNavigation: React.FC<Props> = ({ isLogin }) => {
                     <List header='个人设置'
                         mode='card'
                         className={style.listItem}
-                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px"}}>
+                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px",margin:'0 0 70px 5px'}}>
                         <List.Item prefix={<UserOutline />} onClick={() => { }}
                         >
                             个人主页
@@ -90,7 +90,7 @@ const SideNavigation: React.FC<Props> = ({ isLogin }) => {
                     <List header='其他设置'
                         className={style.listItem}
                         mode='card'
-                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px"}}>
+                        style={{ "--prefix-width": "30px", "--font-size": "18px",  "--padding-left": "10px",margin:'0 0 90px 5px'}}>
                         <List.Item prefix={<UnorderedListOutline />} onClick={() => { }}
                         >
                             辅助功能

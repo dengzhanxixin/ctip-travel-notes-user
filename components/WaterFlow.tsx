@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import { Card, InfiniteScroll } from "antd-mobile";
 import Styles from "@/styles/travelWaterfallFlow.module.scss";
 import { useRouter } from "next/router";
@@ -21,14 +21,14 @@ interface TravelNoteProps {
 interface WaterFollowProps {
     travelNoteList: TravelNoteProps[];
 }
-const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
+const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
 
     const router = useRouter();
     const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-    const handleClick = (id: number, isChecked:number) => {
+    const handleClick = (id: number, isChecked: number) => {
         router.push(`/travelDetail?id=${id.toString()}`);
-   }
+    }
     const handleSetGridRowEnd = (index: number) => {
         const cardRef = cardRefs.current[index];
         if (!cardRef) return;
@@ -39,8 +39,8 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
     return (
         <>
             <div className={Styles.container}>
-                {travelNoteList  &&
-                    travelNoteList.map((item:any, i) => (
+                {travelNoteList &&
+                    travelNoteList.map((item: any, i) => (
                         <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
                             <Card
                                 onClick={() => handleClick(item.id, item.isChecked)}
@@ -65,7 +65,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) =>  {
                                             width={18}
                                             height={18}
                                         />
-                                        <span className={Styles.PlaceText}>{item.poiName ? item.poiName:item.city}</span>
+                                        <span className={Styles.PlaceText}>{item.poiName ? item.poiName : item.city}</span>
                                     </div>
                                     <div className={Styles.travelTitle}>
                                         <h3>{item.title}</h3>

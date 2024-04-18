@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { Card, Toast, Button, Divider } from 'antd-mobile'
-import styles from "@/styles/checkTable.module.scss";
+import { Card, Toast, Button, Divider, Ellipsis, CapsuleTabs } from 'antd-mobile'
+
+import styles from "@/styles/WaitCheck.module.scss";
 import { useRouter } from "next/router";
 
 interface UserInfo {
@@ -21,8 +22,9 @@ interface TravelNoteProps {
 };
 interface WaterFollowProps {
   travelNoteList: TravelNoteProps[];
+  isTab?: boolean
 }
-const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
+const WaitCheck: React.FC<WaterFollowProps> = ({ travelNoteList, isTab }) => {
 
   const router = useRouter();
   const [checkState, setCheckState] = useState<string>('');
@@ -71,85 +73,123 @@ const WaitCheack: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
     // grid-row-end: <line> | <span>;设置元素在网格布局中结束的位置
     cardRef.style.gridRowEnd = `span ${Math.ceil(height)}`;
   };
-  const checkStateChange = (isChecked: number) => {
-    if (isChecked === 0) {
-
-      return '未审核'
-    } else if (isChecked === 2) {
-      return '审核未通过';
-    } else {
-      // 你可以根据需要设置其他状态
-      return '其他状态';
-    }
-  }
   var version = Math.random();
+  const filterData = (travelNoteList: TravelNoteProps[], searchChecked?: string) => {
+    if (searchChecked) {
+      return travelNoteList.filter((item) => item.isChecked.toString() === searchChecked);
+    }
+    else
+      return travelNoteList;
+
+  };
+
+  const cardContainer = (travelNoteList: TravelNoteProps[], searchChecked?: string) => {
+    if (searchChecked) {
+      travelNoteList = filterData(travelNoteList, searchChecked)
+    }
+
+    return (
+      travelNoteList.map((item, i) => (
+        <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
+          <Card className={styles.cardcontainer}>
+            <div className={styles.content}>
+              <div className={styles.restImg}>
+                {item.coverImg == "" ?
+                  <>
+                    <img
+                      src='./notSubmit.png'
+
+                      alt={"旅游图片"}
+                      width={130}
+                      height={80}
+                      onLoad={() => handleSetGridRowEnd(i)}
+                    />
+                  </>
+                  : <>
+                    <img
+                      src={`${item.coverImg}?v=${version}`}
+                      alt={"旅游图片"}
+                      width={120}
+                      height={100}
+                      onLoad={() => handleSetGridRowEnd(i)}
+                    />
+                  </>
+                }
+
+              </div>
+
+              {item.title != "" ? <div className={styles.travelTitle}>
+                <div style={{
+                  fontSize: '22px',
+                  fontWeight: '800'
+                }}>
+                  <Ellipsis style={{ width: '100px', overflowWrap: 'break-word' }} direction='end' content={item.title} />
+                </div>
+
+                {item.isChecked != 0 ?
+                  // <p className={styles.checkReason}>{item.checkReason}</p> 
+
+                  <Ellipsis className={styles.checkReason} style={{ width: '100px', overflowWrap: 'break-word' }} direction='end'
+                    content={item.checkReason} />
+                  : null}
+              </div> : <h3 style={{ width: '200px' }}>标题未编辑</h3>}
+
+            </div>
+
+            <Divider />
+            <div className={styles.footer} onClick={e => e.stopPropagation()}>
+              <div className={styles.footerLeft}>
+                {!item.isChecked ? <Button
+                  className={styles.checkingButton}
+                  fill='none'
+                  style={{ "--text-color": "white" }}
+                >待审核 </Button> : item.isChecked == -1 ? <Button
+                  className={styles.notSubmitButton}
+                  fill='none' style={{ "--text-color": "white" }}
+                >待提交</Button> : (<Button
+                  className={styles.checkRejectButton}
+                  fill='none'
+                  style={{ "--text-color": "white" }}
+                >审核未通过</Button>)}
+
+              </div>
+              {item.isChecked != 3 ? <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
+              </div> : <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button>
+              </div>}
+            </div>
+
+          </Card>
+        </div>
+      ))
+
+    )
+  }
+
 
 
   return (
     <>
+
       <div className={styles.container}>
-        {travelNoteList &&
-          travelNoteList.map((item, i) => (
-            <div key={item.id} ref={(ref) => (cardRefs.current[i] = ref)}>
+        {isTab ? 
+        <div className="purple-theme">
+          <CapsuleTabs className={styles.tab}
+        style={{"color":"black"}}>
+          <CapsuleTabs.Tab title='全部' key='1'>
+            {cardContainer(travelNoteList)}
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='待审核' key='2'>
+            {cardContainer(travelNoteList, "0")}
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='审核未通过' key='3'>
+            {cardContainer(travelNoteList, "2")}
+          </CapsuleTabs.Tab>
+        </CapsuleTabs>
 
-              <Card className={styles.cardcontainer}>
-                <div className={styles.content}>
-                  {item.coverImg == "" ?
-                    <><img
-                      src='./notSubmit.png'
-                      className={styles.restImg}
-                      alt={"旅游图片"}
-                      width={120}
-                      height={80}
-                      onLoad={() => handleSetGridRowEnd(i)}
-                    />
-                    </>
-                    : <>
-                      <img
-                        src={`${item.coverImg}?v=${version}`}
-                        className={styles.restImg}
-                        alt={"旅游图片"}
-                        width={100}
-                        height={80}
-                        onLoad={() => handleSetGridRowEnd(i)}
-                      />
-                    </>
-                  }
-                  {item.title != "" ? <div className={styles.travelTitle}>
-                    <h3 style={{ width: '200px' }}>{item.title}</h3>
-                    {item.isChecked != 0 ? <p className={styles.checkReason}>{item.checkReason}</p> : null}
-                  </div> : <h3 style={{ width: '200px' }}>标题未编辑</h3>}
-
-
-
-
-                </div>
-
-                <Divider />
-                <div className={styles.footer} onClick={e => e.stopPropagation()}>
-                  {!item.isChecked ? <Button
-                    className={styles.checkingButton}
-                    color='primary'
-                  >待审核 </Button> : item.isChecked == -1 ? <Button
-                    className={styles.notSubmitButton}
-                    color='primary'
-                  >待提交</Button> :(<Button
-                    className={styles.checkRejectButton}
-                    color='primary'
-                  >审核未通过</Button>)}
-
-
-                  {item.isChecked != 3 ? <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
-                  </div> : <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button>
-                  </div>}
-                </div>
-
-              </Card>
-
-            </div>
-          ))}
+        </div> 
+          : <div>{cardContainer(travelNoteList)}</div>}
       </div>
     </>
   )
 }
-export default WaitCheack;
+export default WaitCheck;

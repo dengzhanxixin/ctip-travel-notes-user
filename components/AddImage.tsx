@@ -44,9 +44,85 @@ const getBase64 = (file: FileType): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result as string);
+        reader.onload = () => {
+            const img = document.createElement('img');
+            img.src = reader.result as string; //base64
+            const adjustSize = 1 * 1024
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                console.log('canvas', canvas)
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > adjustSize || height > adjustSize) {
+                        if (width > height) {
+                            height *= adjustSize / width;
+                            width = adjustSize;
+                        } else {
+                            width *= adjustSize / height;
+                            height = adjustSize;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+    
+                    ctx.drawImage(img, 0, 0, width, height);
+                    console.log('canvas', canvas)
+                    
+                    const base64 = canvas.toDataURL(file['type'], 0.2)
+                    resolve(base64);
+
+                }
+
+            }
+        };
         reader.onerror = (error) => reject(error);
     });
+
+const compressImage = (file: File) => {
+    const maxSize = 1024
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const img = document.createElement('img');
+            img.src = reader.result as string;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d')!;
+                let width = img.width;
+                let height = img.height;
+                if (width > maxSize || height > maxSize) {
+                    if (width > height) {
+                        height *= maxSize / width;
+                        width = maxSize;
+                    } else {
+                        width *= maxSize / height;
+                        height = maxSize;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // 将 canvas 内容转换为 Blob 对象
+                canvas.toBlob((result) => {
+                    if (result) {
+                        resolve(result);
+                    } else {
+                        reject(new Error('Failed to compress image'));
+                    }
+                }, file.type);
+            };
+        };
+        reader.onerror = (error) => reject(error);
+    });
+};
 
 interface AddImageProps {
     onThumbUrlsChange: (thumbUrls: string[]) => void;
@@ -62,31 +138,12 @@ interface DraggableUploadListItemProps {
     originNode: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
     file: UploadFile<any>;
 }
-const DraggableUploadListItem = ({ originNode, file }: DraggableUploadListItemProps) => {
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-        id: file.uid,
-    });
 
-    const style: React.CSSProperties = {
-        transform: CSS.Transform.toString(transform),
-        transition,
-        cursor: 'move',
-    };
 
-    return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            // prevent preview event when drag end
-            className={isDragging ? 'is-dragging' : ''}
-            {...attributes}
-            {...listeners}
-        >
-            {/* hide error tooltip when dragging */}
-            {file.status === 'error' && isDragging ? originNode.props.children : originNode}
-        </div>
-    );
-};
+
+
+
+
 
 const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
     const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -118,8 +175,11 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
         const newThumbUrls: string[] = [];
-        // console.log('newFileList', newFileList)
+
+
         const updatedFileList: UploadFile[] = await Promise.all(newFileList.map(async (file: UploadFile) => {
+
+
             if (file.url) {
 
                 let urlWithoutVersion = file.url;
@@ -167,15 +227,18 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
             return Upload.LIST_IGNORE;
         }
 
-        // 设置上传图片的大小限制为 2MB
-        const maxSize = 2 * 1024 * 1024; // 2MB
+        // 设置上传图片的大小限制为 5MB
+        const maxSize = 5 * 1024 * 1024; // 5MB
         if (file.size && file.size > maxSize) {
-            Toast.show('上传的图片大小不能超过2MB');
+            Toast.show('上传的图片大小不能超过5MB');
             return Upload.LIST_IGNORE;
         }
+        return true;
+    };
 
-        return true; // 允许上传
-    }
+
+
+
     const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
 
@@ -202,11 +265,19 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
         if (file.url) {
             imageData = file.url;
         } else {
+            // if (file.type === 'video/mp4') {
+            //     return new Promise((resolve, reject) => {
+            //       const reader = new FileReader();
+            //       reader.readAsDataURL(file);
+            //       reader.onload = () => resolve(reader.result as string);
+            //       reader.onerror = (error) => reject(error);
+            //     });
+            //   }
             imageData = await getBase64(file.originFileObj as FileType);
         }
         setPreviewImage(imageData);
         setPreviewVisible(true);
-        console.log('previewImage', previewImage)
+        // console.log('previewImage', previewImage)
         setFileToDelete(file);
     }
 
@@ -220,7 +291,7 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     const test = () => {
         fileList.forEach((file, index) => {
-            console.log('key', index, 'file', file, 'fileList.length', fileList.length);
+            console.log('key', index, 'file', file, 'fileList.length', fileList);
         });
     };
     const upload = (
@@ -244,48 +315,43 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
     }
 
     useEffect(() => {
-        test();
+        // test();
     }, [fileList]);
 
 
     return (
         <>
-            <DndContext sensors={[sensor]} onDragEnd={handleDragEnd}>
-                <SortableContext items={fileList.map(file => file.uid)} strategy={verticalListSortingStrategy}>
             <div className={styles.uploadContainer}>
-            {fileList.length === 0 ? (
-                upload
-            ) : (
-                <>
-                {fileList.map((file, index) => (
-                    <div key={file.uid} >
-                        <img className={`${styles.imgUpload} `} src={file.url} alt={file.name} width={'200px'} height={'150px'} onClick={() => handlePreview(file)} /> 
-                        <div style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '10%',
-                            height: '100%',
-                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                            display: 'flex',
-                            justifyContent: 'space-around',
-                            alignItems: 'center',
-                            opacity: 0, // 默认隐藏蒙层
-                        }}>
-                            <span onClick={() => handlePreview(file)}>预览</span>
-                            <span onClick={() => onRemove(file)}>删除</span>
-                        </div>     
-                    </div>
-                ))}
-                {fileList.length < maxCount && (
+                {fileList.length === 0 ? (
                     upload
+                ) : (
+                    <>
+                        {fileList.map((file, index) => (
+                            <div key={file.uid} >
+                                <img className={`${styles.imgUpload} `} src={file.url} alt={file.name} width={'200px'} height={'150px'} onClick={() => handlePreview(file)} />
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '10%',
+                                    height: '100%',
+                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    display: 'flex',
+                                    justifyContent: 'space-around',
+                                    alignItems: 'center',
+                                    opacity: 0, // 默认隐藏蒙层
+                                }}>
+                                    <span onClick={() => handlePreview(file)}>预览</span>
+                                    <span onClick={() => onRemove(file)}>删除</span>
+                                </div>
+                            </div>
+                        ))}
+                        {fileList.length < maxCount && (
+                            upload
+                        )}
+                    </>
                 )}
-                </>
-            )}
             </div>
-        
-            </SortableContext>
-            </DndContext>
             {/* {fileList ? <Upload className={styles.commonModal + ' ' + styles.paramsModal}
                 listType="picture-card"
                 fileList={fileList}

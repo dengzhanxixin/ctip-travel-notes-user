@@ -4,8 +4,26 @@
 //     height: 100%;
 //   }
 // }
+.checkReasonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-left: 1px;
+  background-color: rgb(242,232,227);
+  border-radius: 8px;
 
 
+}
+.checkReason{
+  width: 100px;
+  margin: 6px 0 0px ;
+  font-size: 18px;
+  word-wrap: break-word;
+  color: rgb(176,69,71);
+  font-weight: 600;
+}
 
 
 .searchBarContainer {
@@ -67,6 +85,7 @@
 }
 
 
+
 .root {
   :global {
     .adm-swiper-slide {
@@ -111,7 +130,7 @@
   }
 
   // flex-direction: row;
-  height: 200px;
+  height: 180px;
   gap: 10px; 
 
   .imgUpload {

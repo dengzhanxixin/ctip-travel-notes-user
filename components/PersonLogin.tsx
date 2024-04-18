@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import style from "../styles/person.module.scss";
-import { Card, Button, NavBar, TextArea, Popup, FloatingBubble, Divider, Toast, Dialog } from "antd-mobile";
+import { Card, Button, NavBar, TextArea, Popup, FloatingBubble, Divider, Toast, PullToRefresh } from "antd-mobile";
 import { List, Space, message, Row, Input, Avatar } from "antd";
 import type { GetProp, UploadProps, UploadFile } from "antd";
-import { MoreOutline, EditSFill, SetOutline, ContentOutline, MailOpenOutline, AddCircleOutline, CheckCircleOutline } from "antd-mobile-icons";
+import { MoreOutline, LoopOutline } from "antd-mobile-icons";
+
 import { LikeOutlined, MessageOutlined, StarOutlined, } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import MyPost from "./MyPost";
@@ -32,6 +33,7 @@ const PersonLogin = () => {
   const [imageUrl, setImageUrl] = useState<string>('');
   const [likeData, setLikeData] = useState<likeData>()
   const [exists, setExists] = useState('');
+  const [count, setCount] = useState(0);
 
 
 
@@ -80,6 +82,9 @@ const PersonLogin = () => {
       })
         .then(response => response.json()) // 解析响应数据为 JSON
         .then(data => {
+          if(JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote)){
+            setCount((count) => count + 1)
+          }
           if (data) {
             setLikeData({
               ...likeData,
@@ -95,6 +100,7 @@ const PersonLogin = () => {
           console.error('Error posting data:', error);
         });
     }
+    
   }
 
   const fetchAvatar = (username: string) => {
@@ -105,10 +111,13 @@ const PersonLogin = () => {
         setExists(data.avatar);
         console.log('exists', data.avatar);
 
-        if (data.avatar && data.avatar !== userInfo.avatar) {
+        const updatedAvatarUrl = data.avatar ? `${data.avatar}?timestamp=${new Date().getTime()}` : data.avatar;
+
+        if (updatedAvatarUrl && updatedAvatarUrl !== userInfo.avatar) {
+          // 只有在新的头像 URL 与当前存储的不同时才更新 userInfo
           setUserInfo(prevUserInfo => ({
             ...prevUserInfo,
-            avatar: data.avatar,
+            avatar: updatedAvatarUrl,
           }));
         }
       })
@@ -189,6 +198,8 @@ const PersonLogin = () => {
 
 
   return (
+    
+
     <div className={style.background}>
       <div className={style.top}>
         <MoreOutline
@@ -205,12 +216,13 @@ const PersonLogin = () => {
             setVisible(false);
           }}
           position="left"
-        bodyStyle={{ width: "50vw" }}
+          bodyStyle={{ width: "50vw" }}
         >
           <SideNavigation isLogin={isLogin} />
 
 
         </Popup>
+
 
 
         <Card className={style.cardContainer}>
@@ -244,51 +256,35 @@ const PersonLogin = () => {
           </div>
           {!isLogin ? null : <> {isEditing ? (
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
-              <TextArea
-                // type="text"
-                value={editingText}
-                onChange={handleChangeText}
-                style={{
-                  height: "60px",
-                  backgroundColor: "#f5f5f5",
-                  border: "1px dashed #ccc",
-                  margin: "1px 0 0 120px",
-                  fontSize: "14px",
-                  lineHeight: "14px",
-                  flexBasis: "180px",
-                }}
-                autoFocus
-              />
-              <Button className={style.save} onClick={handleSave}>
-                保存
-              </Button>
+              
             </div>
           ) : (
             <div className={style.userintroduction} onClick={handleDoubleClick}>
               {text}
             </div>
           )}</>}
+                 
 
           {!isLogin ? null :
             <div className={style.like}>
-               <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '18px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 10px', zIndex: 2 }}> 
-              <div style={{ marginRight: '40px' }}>
-                <IconText icon={LikeOutlined} text={`获赞 ${likeData?.likeNote.length.toString() ?? '0'}`}
- />
-
-              </div>
-              <div style={{ marginRight: '40px' }}>
-                <IconText icon={StarOutlined} text={`收藏 ${likeData?.saveNote.length.toString() ?? '0'}`} key="list-vertical-like-o" />
-              </div>
-              <div style={{ listStyle: 'none' }}>
-                <IconText icon={MessageOutlined} text={`粉丝 ${likeData?.followUser.length.toString() ?? '0'}`} key="list-vertical-like-o" />
-              </div>
-            </List.Item>
+              <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '18px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 10px', zIndex: 2 }}>
+                <div style={{ marginRight: '40px' }}>
+                  <IconText icon={LikeOutlined} text={`获赞 ${likeData?.likeNote.length.toString() ?? '0'}`}
+                  />
+                </div>
+                <div style={{ marginRight: '40px' }}>
+                  <IconText icon={StarOutlined} text={`收藏 ${likeData?.saveNote.length.toString() ?? '0'}`} key="list-vertical-like-o" />
+                </div>
+                <div style={{ listStyle: 'none' }}>
+                  <IconText icon={MessageOutlined} text={`粉丝 ${likeData?.followUser.length.toString() ?? '0'}`} key="list-vertical-like-o" />
+                </div>
+              </List.Item>
 
             </div>}
 
 
         </Card>
+        
       </div>
 
       <div className={style.bottom}>
@@ -301,9 +297,11 @@ const PersonLogin = () => {
             "--background": "rgb(130, 191, 166)",
           }}
         >
-          <EditSFill onClick={() => fetchLikeandSave(userInfo.username)} style={{ color: "white" }} fontSize={32} />
+          <LoopOutline onClick={() => fetchLikeandSave(userInfo.username)} style={{ color: "white" }} fontSize={32}/>
+
         </FloatingBubble>
       </div>
+     
     </div>
   );
 };
