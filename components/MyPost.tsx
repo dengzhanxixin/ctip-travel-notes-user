@@ -26,7 +26,6 @@ interface TravelNoteProps {
 const MyPost: React.FC = () => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
-  const [isMyPost, setIsMyPost] = useState(false); // 0表示未发表过游记
   const [activeIndex, setActiveIndex] = useState(0); // 当前活动页面的索引
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -67,6 +66,7 @@ const MyPost: React.FC = () => {
     ref.current?.swipeTo(index); // 切换页面
   };
   const nameBars = ["已发布游记", "未发布游记", "草稿箱"];
+  
 
   return (
     <>
@@ -86,7 +86,7 @@ const MyPost: React.FC = () => {
           </div>
         ))}
       </div>
-      <Swiper ref={ref} indicator={() => null}>
+      <Swiper ref={ref} indicator={() => null} onIndexChange={(index: number) => setActiveIndex(index)}>
           {pages.map((page, index) => (
             <Swiper.Item key={index}>{page}</Swiper.Item>
           ))}

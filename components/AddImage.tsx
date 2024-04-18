@@ -81,48 +81,6 @@ const getBase64 = (file: FileType): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 
-const compressImage = (file: File) => {
-    const maxSize = 1024
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            const img = document.createElement('img');
-            img.src = reader.result as string;
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                const ctx = canvas.getContext('2d')!;
-                let width = img.width;
-                let height = img.height;
-                if (width > maxSize || height > maxSize) {
-                    if (width > height) {
-                        height *= maxSize / width;
-                        width = maxSize;
-                    } else {
-                        width *= maxSize / height;
-                        height = maxSize;
-                    }
-                }
-                canvas.width = width;
-                canvas.height = height;
-
-                ctx.drawImage(img, 0, 0, width, height);
-
-                // 将 canvas 内容转换为 Blob 对象
-                canvas.toBlob((result) => {
-                    if (result) {
-                        resolve(result);
-                    } else {
-                        reject(new Error('Failed to compress image'));
-                    }
-                }, file.type);
-            };
-        };
-        reader.onerror = (error) => reject(error);
-    });
-};
 
 interface AddImageProps {
     onThumbUrlsChange: (thumbUrls: string[]) => void;
@@ -222,8 +180,9 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     const beforeUpload = (file: UploadFile) => {
         const isPNG = file.type === 'image/png' || file.type === 'image/jpeg';
-        if (!isPNG) {
-            Toast.show(`只能上传图片格式`)
+        const isVideo = file.type === 'video/mp4';
+        if (!isPNG && !isVideo) {
+            Toast.show(`只能上传图片/视频格式`)
             return Upload.LIST_IGNORE;
         }
 

@@ -48,15 +48,17 @@ const PersonLogin = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      setUserInfo({
-        ...userInfo,
-        username: user.username,
-        avatar: user.avatar,
-      });
+      fetchAvatar(user.username);
+      // setUserInfo({
+      //   ...userInfo,
+      //   username: user.username,
+      //   avatar: user.avatar,
+      // });
     }
+
+    console.log('set avatar')
+    
     if (userInfo.username !== "尊敬的用户") {
-      console.log('set avatar')
-      fetchAvatar(userInfo.username);
       fetchLikeandSave(userInfo.username);
       console.log('likeData', likeData)
       setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
@@ -82,7 +84,7 @@ const PersonLogin = () => {
       })
         .then(response => response.json()) // 解析响应数据为 JSON
         .then(data => {
-          if(JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote)){
+          if (JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote)) {
             setCount((count) => count + 1)
           }
           if (data) {
@@ -100,7 +102,7 @@ const PersonLogin = () => {
           console.error('Error posting data:', error);
         });
     }
-    
+
   }
 
   const fetchAvatar = (username: string) => {
@@ -118,6 +120,7 @@ const PersonLogin = () => {
           setUserInfo(prevUserInfo => ({
             ...prevUserInfo,
             avatar: updatedAvatarUrl,
+            username: username
           }));
         }
       })
@@ -198,7 +201,7 @@ const PersonLogin = () => {
 
 
   return (
-    
+
 
     <div className={style.background}>
       <div className={style.top}>
@@ -256,14 +259,14 @@ const PersonLogin = () => {
           </div>
           {!isLogin ? null : <> {isEditing ? (
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
-              
+
             </div>
           ) : (
             <div className={style.userintroduction} onClick={handleDoubleClick}>
               {text}
             </div>
           )}</>}
-                 
+
 
           {!isLogin ? null :
             <div className={style.like}>
@@ -284,7 +287,7 @@ const PersonLogin = () => {
 
 
         </Card>
-        
+
       </div>
 
       <div className={style.bottom}>
@@ -297,11 +300,11 @@ const PersonLogin = () => {
             "--background": "rgb(130, 191, 166)",
           }}
         >
-          <LoopOutline onClick={() => fetchLikeandSave(userInfo.username)} style={{ color: "white" }} fontSize={32}/>
+          <LoopOutline onClick={() => fetchLikeandSave(userInfo.username)} style={{ color: "white" }} fontSize={32} />
 
         </FloatingBubble>
       </div>
-     
+
     </div>
   );
 };

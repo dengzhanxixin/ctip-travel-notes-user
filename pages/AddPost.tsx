@@ -192,10 +192,12 @@ export default function AddPost() {
             return;
         }
         if (EditorData) {
+            
             setEditorData(prevEditorData => ({
                 ...prevEditorData,
                 ...EditorData,
                 images: tempEdit,
+                isChecked:0
             }));
         }
         else {
@@ -224,7 +226,18 @@ export default function AddPost() {
                 closeOnMaskClick: true,
             })
         }
-        setFormData({ ...formData, url: tempImages, isChecked: -1 });
+        if (EditorData) {
+            
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
+                ...EditorData,
+                images: tempEdit,
+                isChecked:-1
+            }));
+        }
+        else {
+            setFormData({ ...formData, url: tempImages, isChecked: -1 });
+        }
         setIsReady(true)
 
     }
@@ -234,6 +247,7 @@ export default function AddPost() {
         try {
             if (isReady) {
                 if (EditorData) {
+                    
                     const response = fetch(`/api/editorPost`, {
                         method: 'POST',
                         headers: {
@@ -419,7 +433,7 @@ export default function AddPost() {
 
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '5px', paddingLeft: '1px', width: '100%' }}>
-                {EditorData ? (null) : <Button style={{
+                 <Button style={{
                     width: '30%',
                     height: '140%',
                     backgroundColor: 'white',
@@ -442,7 +456,7 @@ export default function AddPost() {
                         <img src='./submit.png' style={{ width: '60px' }}></img>
                         <span style={{ fontSize: '18px', color: 'rgb(130, 191, 166)', fontWeight: '500' }}>草稿箱</span>
                     </div>
-                </Button>}
+                </Button>
 
 
                 <Button style={{
