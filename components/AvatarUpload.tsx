@@ -44,6 +44,7 @@ const getBase64 = (file: FileType): Promise<string> =>
 
                     const base64 = canvas.toDataURL(file['type'], 0.5)
                     resolve(base64);
+                    // console.log('base64', base64)
 
                 }
 
@@ -70,14 +71,15 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
     // const [fileList, setFileList] = useState<UploadFile[]>([]);
 
 
-    const handleChange: UploadProps['onChange'] = (info) => {
+    const handleChange: UploadProps['onChange'] = async (info) => {
         if (info.file.status === 'uploading') {
             setLoading(true);
             return;
         }
         if (info.file.status === 'done') {
             // Get this url from response in real world.
-            const base64Data = getBase64(info.file.originFileObj as FileType)
+            const base64Data = await getBase64(info.file.originFileObj as FileType);
+            console.log('base64Data', base64Data)
 
             setLoading(false);
             setImageUrl(base64Data.toString());
@@ -106,6 +108,7 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
                 showUploadList={false}
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
+
             >
                 {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
             </Upload>
