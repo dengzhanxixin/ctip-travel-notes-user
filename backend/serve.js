@@ -447,13 +447,10 @@ app.post("/api/register", async (req, res) => {
 
 app.get("/api/check-avatar", (req, res) => {
   const username = req.query.username; // 从请求中获取用户名
-  const filePath = path.join('public', 'images', `${username}_avatar.jpg`);
-  const Path = path.join('/', 'images',  `${username}_avatar.jpg`)
-  
-  if (fs.existsSync(filePath)){
-    res.json({ success: true, avatar: Path });
-  }
-  else {
+  const filePath = path.join(__dirname, "images", `${username}_avatar.jpg`);
+  if (fs.existsSync(filePath)) {
+    res.json({ success: true, avatar: filePath });
+  } else {
     res.json({ success: false, avatar: null });
   }
 });
@@ -487,14 +484,13 @@ app.post("/api/login", (req, res) => {
     }
   });
 });
-
 app.post("/api/avatar", (req, res) => {
   const { username, url } = req.body;
-  if (url.startsWith('data:image')) {
-    const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-    const buffer = Buffer.from(base64Data, 'base64');
-    
-    const imgPath = path.join('public', 'images', `${username}_avatar.jpg`);
+  console.log(username, url);
+  if (url.startsWith("data:image")) {
+    const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
+    const buffer = Buffer.from(base64Data, "base64");
+    const imgPath = path.join("public", "images", `${username}_avatar.jpg`);
 
     // 检查是否存在同名文件，如果存在，则删除
     if (fs.existsSync(imgPath)) {
