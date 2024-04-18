@@ -83,21 +83,9 @@ const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {
-    
     loadMore()
   },[])
   
-
-
-  // 瀑布流，通过设置grid-row-end属性实现
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const handleSetGridRowEnd = (index: number) => {
-    const cardRef = cardRefs.current[index];
-    if (!cardRef) return;
-    const height = cardRef.offsetHeight;
-    // grid-row-end: <line> | <span>;设置元素在网格布局中结束的位置
-    cardRef.style.gridRowEnd = `span ${Math.ceil(height)}`;
-  };
 
   return (
     <>

@@ -53,7 +53,7 @@ const WaterFollow: React.FC<WaterFollowProps> = ({ travelNoteList }) => {
                                     className={Styles.restImg}
                                     alt={"旅游图片"}
                                     width={180}
-                                    height={240}
+                                    height={item.ratio ? (item.ratio * 180) : 240}
                                     onLoad={() => handleSetGridRowEnd(i)}
                                 />
                                 <div className={Styles.infoBox}>
