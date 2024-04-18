@@ -2,11 +2,12 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState, useMemo } from 'react';
 import type { FC } from 'react'
 import { Typography, Divider, AutoComplete } from 'antd';
-import { NavBar, TextArea, Card, Popup, Button, CheckList, Cascader, Toast, NoticeBar, Space, List, Modal, } from "antd-mobile";
+import { NavBar, TextArea, AutoCenter, Popup, Button, CheckList, Cascader, Toast, NoticeBar, Space, List, Modal, } from "antd-mobile";
 import { EnvironmentOutlined, TeamOutlined, } from '@ant-design/icons';
 import { ExclamationCircleFill } from 'antd-mobile-icons'
 import AddImage from "../components/AddImage";
 import styles from "../styles/post.module.scss";
+
 import { options } from '../data/province'
 
 const items = ['公开可见', '仅自己可见']
@@ -28,8 +29,6 @@ interface FormData {
     checkReason: string;
     districtPoiCollect: string;
     url: string[];
-
-
     content: string;
     publishTime: string;
     firstPublishTime: string,
@@ -155,17 +154,17 @@ export default function AddPost() {
         }
         else {
             setFormData({ ...formData, [name]: value });
+            console.log(formData);
         }
     };
 
     const handleSubmit = () => {
         // console.log('Now formData.url.length', formData.url.length);
         const conditions = [
-            { condition: (!formData.title) && (EditorData && EditorData.title==""), message: '未填写标题' },
-            { condition: (!formData.content) && (EditorData && EditorData.content==""), message: '未填写正文' },
+            { condition: EditorData ? (EditorData && EditorData.title == "") : (formData.title == ""), message: '未填写标题' },
+            { condition: EditorData ? (EditorData && EditorData.content == "") : (formData.title == ""), message: '未填写正文' },
             { condition: tempImages.length == 0, message: '图片不能为空' }
         ];
-        console.log("conditions:", conditions);
 
         const errorMessage = conditions
             .filter(condition => condition.condition)
@@ -193,12 +192,16 @@ export default function AddPost() {
             return;
         }
         if (EditorData) {
+            
             setEditorData(prevEditorData => ({
                 ...prevEditorData,
                 ...EditorData,
                 images: tempEdit,
+                isChecked:0
             }));
+            console.log('EditorData', EditorData);
         }
+        
         else {
             setFormData({ ...formData, url: tempImages });
         }
@@ -206,7 +209,7 @@ export default function AddPost() {
         setIsReady(true)
     };
     const handleDraft = () => {
-        if ((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content)) && tempImages.length === 0) {
+        if (((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content))) && tempImages.length === 0) {
             Modal.alert({
                 header: (
                     <ExclamationCircleFill
@@ -219,15 +222,29 @@ export default function AddPost() {
                 title: '注意',
                 content: (
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', wordWrap: 'break-word' }}>
-                        <div style={{ width: '90px', lineHeight: '20px', textAlign: 'center' }}>游记内容不能为空</div>
+                        <div style={{ width: '200px', lineHeight: '20px', textAlign: 'center' }}>游记内容不能为空</div>
                     </div>
                 ),
                 closeOnMaskClick: true,
             })
+            return;
         }
-        setFormData({ ...formData, url: tempImages, isChecked: -1 });
+        if (EditorData) {
+            console.log('edit')
+            
+            setEditorData(prevEditorData => ({
+                ...prevEditorData,
+                ...EditorData,
+                images: tempEdit,
+                isChecked:-1
+            }));
+            
+        }
+        else {
+            setFormData({ ...formData, url: tempImages, isChecked: -1 });
+        }
         setIsReady(true)
-        
+
     }
 
     useEffect(() => {
@@ -235,6 +252,8 @@ export default function AddPost() {
         try {
             if (isReady) {
                 if (EditorData) {
+                    console.log('EditorData', EditorData);
+                    
                     const response = fetch(`/api/editorPost`, {
                         method: 'POST',
                         headers: {
@@ -243,9 +262,10 @@ export default function AddPost() {
                         body: JSON.stringify(EditorData)
                     });
                     Toast.show('编辑成功！');
-                    
+
                 }
-                else{
+                else {
+                    console.log('formData', formData);
                     const response = fetch(`/api/newPost`, {
                         method: 'POST',
                         headers: {
@@ -253,15 +273,15 @@ export default function AddPost() {
                         },
                         body: JSON.stringify(formData)
                     });
-                    if(formData.isChecked==-1){
+                    if (formData.isChecked == -1) {
                         Toast.show('保存成功！');
-                    }else{
+                    } else {
                         Toast.show('发布成功！');
                     }
-                    
 
-                } 
-                
+
+                }
+
                 router.push('/person');
             }
         } catch (error) {
@@ -304,7 +324,7 @@ export default function AddPost() {
             Toast.show('你没有进行选择');
         }
     };
-    console.log('formData.url', formData.url);
+    // console.log('formData.url', formData.url);
     const back = () => router.push('/person');
 
 
@@ -313,9 +333,9 @@ export default function AddPost() {
 
     return (
         <>
-        {EditorData ? (<NavBar back='返回' onBack={back}>
-          编辑游记
-        </NavBar>):<NoticeBar content='本月发布超过五条游记，即可获得100积分奖励' color='alert'
+            {EditorData ? (<NavBar back='返回' onBack={back}>
+                编辑游记
+            </NavBar>) : <NoticeBar content='本月发布超过五条游记，即可获得100积分奖励' color='alert'
                 extra={
                     <Space style={{ '--gap': '12px' }}>
                         <span>查看详情</span>
@@ -323,11 +343,15 @@ export default function AddPost() {
 
                 } closeable />
             }
-            <div className="containerImage">
+            {EditorData && EditorData.checkReason?<div className={styles.checkReasonContainer}>
+                <AutoCenter className={styles.checkReason}>审核驳回理由：{EditorData.checkReason}</AutoCenter>
+            </div>:null}
             
+
+            <div >
                 {/* 上传图片 */}
-                <div style={{ width: "100%", height: "180px" }}>
-                    <div style={{ padding: '10px 0 0 30px', width: '390px' }}>
+                <div style={{ width: "90%", height: "150px" }}>
+                    <div style={{ padding: '5px 0 0 10px' }}>
                         {EditorData ? (
                             <AddImage ImgList={EditorData.images} onThumbUrlsChange={handleThumbUrlsChange} />
                         ) : (
@@ -336,7 +360,11 @@ export default function AddPost() {
 
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px' }}>
+                <div>
+
+
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
                     <TextArea
                         name='title'
                         style={{ width: '90%', height: '10px', "--font-size": '20px' }}
@@ -344,12 +372,12 @@ export default function AddPost() {
                         onChange={(value) => { handleInputChange('title', value) }}
                         placeholder="请填写你的游记标题～"
                         showCount
-                        maxLength={30}
+                        maxLength={20}
                         autoSize />
                 </div>
                 <Divider dashed />
                 {/* 编写正文 */}
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '120px', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', marginTop: '20px', height: '150px', marginBottom: '10px' }}>
                     <TextArea
                         name='content'
                         value={EditorData && EditorData.content}
@@ -357,14 +385,14 @@ export default function AddPost() {
                         onChange={(value) => { handleInputChange('content', value) }}
                         placeholder="请在这里输入你的游记正文吧～"
                         showCount
-                        maxLength={300}
+                        maxLength={150}
                         autoSize={{ minRows: 3, maxRows: 5 }}
                     />
                 </div>
                 <div>
                     <List mode='card' style={{ margin: '10px', "--font-size": "18px", }} >
                         <List.Item prefix={<EnvironmentOutlined />} onClick={handleAddLocation} >
-                            {EditorData ? EditorData.city :
+                            {EditorData && EditorData.city ? EditorData.city :
                                 (formData.city ? <div style={{ color: 'rgb(108, 170, 137)', fontWeight: '700' }}>{formData.city}</div>
                                     : '添加地点')}
                         </List.Item>
@@ -411,8 +439,8 @@ export default function AddPost() {
                 </div>
 
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '15px', paddingLeft: '1px', width: '100%' }}>
-                {EditorData ? (null):<Button style={{
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '5px', paddingLeft: '1px', width: '100%' }}>
+                 <Button style={{
                     width: '30%',
                     height: '140%',
                     backgroundColor: 'white',
@@ -435,7 +463,7 @@ export default function AddPost() {
                         <img src='./submit.png' style={{ width: '60px' }}></img>
                         <span style={{ fontSize: '18px', color: 'rgb(130, 191, 166)', fontWeight: '500' }}>草稿箱</span>
                     </div>
-                </Button>}
+                </Button>
 
 
                 <Button style={{

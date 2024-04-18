@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Swiper, Tag, PullToRefresh, Toast } from "antd-mobile";
+import { Swiper, Tag} from "antd-mobile";
 import { SearchOutline } from "antd-mobile-icons";
 import Styles from "@/styles/bannerTravel.module.scss";
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
-import AMapLoader from "@amap/amap-jsapi-loader";
 
-const searchHotWords = ["上海", "上海迪斯尼", "东方明珠塔"];
+const searchHotWords = ["上海", "外滩", "亲子游"];
 const hotCityList = [
   { cityName: "上海", cityID: "2", isDomesticCity: "1" },
   { cityName: "北京", cityID: "1", isDomesticCity: "1" },
@@ -57,18 +56,6 @@ const TravelList: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/getTopicInfo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setTopics(data.items);
-    };
-    fetchData();
-
     // 高德api定位当前城市
     if (typeof window !== "undefined") {
       import("@amap/amap-jsapi-loader").then((AMapLoader) => {
@@ -93,6 +80,8 @@ const TravelList: React.FC = () => {
             };
             var geolocation = new AMap.Geolocation(OPTIONS);
             geolocation.getCityInfo((status: any, result: any) => {
+              console.log(status);
+              console.log(result);
               if (status == "complete") {
                 const city = result.city;
                 // 因为爬取城市数据有限，因此只能显示爬过城市的数据；未爬过的城市显示全部数据
@@ -115,6 +104,21 @@ const TravelList: React.FC = () => {
           });
       });
     }
+
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/getTopicInfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setTopics(data.items);
+    };
+    fetchData();
 
     contentRef.current?.addEventListener("scroll", handleScroll); // 添加滚动事件监听器
 

@@ -1,9 +1,10 @@
 import { Empty, Card, Drawer, Button } from 'antd';
-import { Swiper, SwiperRef } from 'antd-mobile'
+import { Swiper, SwiperRef, PullToRefresh} from 'antd-mobile'
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
 import TravelWaterFlow from "@/components/TravelWaterFlow";
 import style from "../styles/person.module.scss";
+import { sleep } from 'antd-mobile/es/utils/sleep'
 
 interface TravelInfo {
   PageSize: number;
@@ -24,7 +25,7 @@ interface TravelNoteProps {
 
 const MyPost: React.FC = () => {
   const router = useRouter();
-  const [isMyPost, setIsMyPost] = useState(false); // 0表示未发表过游记
+  const [isLogin, setIsLogin] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0); // 当前活动页面的索引
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -44,21 +45,20 @@ const MyPost: React.FC = () => {
         avatar: user.avatar,
       });
     }
-  }, []);
+  }, [userInfo.username]);
   useEffect(() => {
     if (userInfo.username){
-      setIsMyPost(true);
+      setIsLogin(true);
     }
   }, [userInfo.username]);
 
   const pages = [
-    <div key={0}>{isMyPost ? (
-      <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', marginRight: '10px' }}>
+    <div key={0}>{isLogin ? (
+      <div style={{ display: 'flex', flexWrap: "wrap", gap: '10px', justifyContent: 'center', paddingTop: '3px', paddingLeft:'10px',marginRight: '10px' }}>
         <TravelWaterFlow notes={DoneInfo} />
       </div>) : (<Empty description={false}  style={{marginTop: '20px'}}/>)}</div>,
-      <div key={1}>{isMyPost ? (<TravelWaterFlow notes={WaitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
-      <div key={2}>{isMyPost ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
-
+      <div key={1}>{isLogin ? (<TravelWaterFlow notes={WaitInfo} isTab={true} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>,
+      <div key={2}>{isLogin ? (<TravelWaterFlow notes={notSubmitInfo} />) : (<Empty description={false} style={{marginTop: '20px'}}/>)}</div>
   ];
   const ref = useRef<SwiperRef>(null);
   const handleSwipeChange = (index: number) => {
@@ -66,10 +66,10 @@ const MyPost: React.FC = () => {
     ref.current?.swipeTo(index); // 切换页面
   };
   const nameBars = ["已发布游记", "未发布游记", "草稿箱"];
+  
 
   return (
     <>
-
       <div className={style.mypost}>
       <div className={style.nameBar}>
         {nameBars.map((name, index) => (
@@ -77,12 +77,16 @@ const MyPost: React.FC = () => {
             key={index}
             className={index === activeIndex ? style.name_active : style.name}
             onClick={() => handleSwipeChange(index)}
-          >
-            {name}
+            
+          > <div style={{
+            backgroundColor: index === activeIndex ? 'rgb(130, 191, 166,0.8)' : '#ffffff',width:'104px',borderRadius:'10px',textAlign:'center',paddingTop:'5px',paddingBottom:'5px',fontSize:'18px',color:'rgb(74,99,117)'}}>
+                {name}
+          </div>
+            
           </div>
         ))}
       </div>
-      <Swiper ref={ref} indicator={() => null}>
+      <Swiper ref={ref} indicator={() => null} onIndexChange={(index: number) => setActiveIndex(index)}>
           {pages.map((page, index) => (
             <Swiper.Item key={index}>{page}</Swiper.Item>
           ))}

@@ -1,0 +1,146 @@
+[
+  {
+    "cityName": "上海",
+    "cityID": 2,
+    "scenicSpot": [
+      { "poiName": "上海迪士尼度假区", "poiId": 13412802 },
+      { "poiName": "东方明珠", "poiId": 75627 },
+      { "poiName": "陆家嘴", "poiId": 24302219 },
+      { "poiName": "外滩", "poiId": 75611 },
+      { "poiName": "上海野生动物园", "poiId": 75624 },
+      { "poiName": "豫园", "poiId": 75615 },
+      { "poiName": "上海海昌海洋公园", "poiId": 52075446 },
+      { "poiName": "迪士尼小镇", "poiId": 28408248 },
+      { "poiName": "南京路步行街", "poiId": 10524119 },
+      { "poiName": "上海海洋水族馆", "poiId": 80473 }
+    ]
+  },
+  {
+    "cityName": "北京",
+    "cityID": 1,
+    "scenicSpot": [
+      { "poiName": "北京环球度假区", "poiId": 31677717 },
+      { "poiName": "故宫博物院", "poiId": 75595 },
+      { "poiName": "八达岭长城", "poiId": 75596 },
+      { "poiName": "颐和园", "poiId": 75597 },
+      { "poiName": "中国国家博物馆", "poiId": 87207 },
+      { "poiName": "恭王府", "poiId": 76613 },
+      { "poiName": "天坛", "poiId": 75599 },
+      { "poiName": "慕田峪长城", "poiId": 75609 },
+      { "poiName": "圆明园", "poiId": 76625 },
+      { "poiName": "天安门广场", "poiId": 75594 }
+    ]
+  },
+  {
+    "cityName": "广州",
+    "cityID": 152,
+    "scenicSpot": [
+      { "poiName": "长隆野生动物世界", "poiId": 76896 },
+      { "poiName": "广州长隆度假区", "poiId": 10559608 },
+      { "poiName": "广州塔", "poiId": 90706 },
+      { "poiName": "广州长隆国际大马戏", "poiId": 10759002 },
+      { "poiName": "长隆欢乐世界", "poiId": 10558935 },
+      { "poiName": "珠江夜游", "poiId": 10758708 },
+      { "poiName": "沙面", "poiId": 78476 },
+      { "poiName": "广东科学中心", "poiId": 87819 },
+      { "poiName": "长隆水上乐园", "poiId": 10758351 },
+      { "poiName": "长隆飞鸟乐园", "poiId": 83568 }
+    ]
+  },
+  {
+    "cityName": "杭州",
+    "cityID": 14,
+    "scenicSpot": [
+      { "poiName": "灵隐寺", "poiId": 75771 },
+      { "poiName": "杭州宋城", "poiId": 10558619 },
+      { "poiName": "西湖风景名胜区", "poiId": 82922 },
+      { "poiName": "西湖游船", "poiId": 13253197 },
+      { "poiName": "西溪国家湿地公园", "poiId": 81715 },
+      { "poiName": "千岛湖景区", "poiId": 97470 },
+      { "poiName": "雷峰塔", "poiId": 75764 },
+      { "poiName": "灵隐飞来峰景区", "poiId": 82527 },
+      { "poiName": "垂云通天河", "poiId": 82827 },
+      { "poiName": "OMG心跳乐园", "poiId": 126080420 }
+    ]
+  },
+  {
+    "cityName": "成都",
+    "cityID": 104,
+    "scenicSpot": [
+      { "poiName": "成都大熊猫繁育研究基地", "poiId": 76342 },
+      { "poiName": "都江堰景区", "poiId": 76447 },
+      { "poiName": "武侯祠", "poiId": 76341 },
+      { "poiName": "杜甫草堂", "poiId": 76340 },
+      { "poiName": "青城山", "poiId": 87301 },
+      { "poiName": "金沙遗址博物馆", "poiId": 82723 },
+      { "poiName": "成都博物馆", "poiId": 30752363 },
+      { "poiName": "蜀风雅韵川剧院", "poiId": 10759015 },
+      { "poiName": "宽窄巷子", "poiId": 10559156 },
+      { "poiName": "锦里古街", "poiId": 10558940 }
+    ]
+  },
+  {
+    "cityName": "南京",
+    "cityID": 9,
+    "scenicSpot": [
+      { "poiName": "牛首山文化旅游区", "poiId": 80134 },
+      { "poiName": "夫子庙", "poiId": 75702 },
+      { "poiName": "夫子庙秦淮风光带", "poiId": 10558743 },
+      { "poiName": "南京总统府", "poiId": 75717 },
+      { "poiName": "南京博物院", "poiId": 80549 },
+      { "poiName": "明孝陵", "poiId": 75695 },
+      { "poiName": "钟山风景名胜区", "poiId": 92225 },
+      { "poiName": "秦淮河画舫", "poiId": 15009176 },
+      { "poiName": "红山森林动物园", "poiId": 80131 },
+      { "poiName": "中山陵景区", "poiId": 75697 }
+    ]
+  },
+  {
+    "cityName": "西安",
+    "cityID": 7,
+    "scenicSpot": [
+      { "poiName": "秦始皇帝陵博物院(兵马俑)", "poiId": 75682 },
+      { "poiName": "西安城墙", "poiId": 75686 },
+      { "poiName": "华山", "poiId": 98212 },
+      { "poiName": "华清宫", "poiId": 75681 },
+      { "poiName": "《长恨歌》演出", "poiId": 10758966 },
+      { "poiName": "大唐芙蓉园", "poiId": 81938 },
+      { "poiName": "陕西历史博物馆", "poiId": 75684 },
+      { "poiName": "西安钟楼", "poiId": 84631 },
+      { "poiName": "大雁塔", "poiId": 75680 },
+      { "poiName": "长安十二时辰主题街区", "poiId": 133979300 }
+    ]
+  },
+  {
+    "cityName": "重庆",
+    "cityID": 158,
+    "scenicSpot": [
+      { "poiName": "长江索道", "poiId": 91483 },
+      { "poiName": "武隆天生三桥", "poiId": 82315 },
+      { "poiName": "武隆喀斯特旅游区", "poiId": 92173 },
+      { "poiName": "洪崖洞民俗风貌区", "poiId": 10558957 },
+      { "poiName": "磁器口古镇", "poiId": 82093 },
+      { "poiName": "重庆两江游", "poiId": 13228641 },
+      { "poiName": "重庆动物园", "poiId": 78160 },
+      { "poiName": "解放碑步行街", "poiId": 10558680 },
+      { "poiName": "仙女山国家森林公园", "poiId": 78137 },
+      { "poiName": "重庆欢乐谷", "poiId": 33834153 }
+    ]
+  },
+  {
+    "cityName": "深圳",
+    "cityID": 26,
+    "scenicSpot": [
+      { "poiName": "世界之窗", "poiId": 75869 },
+      { "poiName": "深圳欢乐谷", "poiId": 79101 },
+      { "poiName": "锦绣中华民俗村", "poiId": 75867 },
+      { "poiName": "深圳平安金融中心云际观光层", "poiId": 46835160 },
+      { "poiName": "东部华侨城", "poiId": 83051 },
+      { "poiName": "云海谷体育公园", "poiId": 144168554 },
+      { "poiName": "大梅沙海滨公园", "poiId": 76815 },
+      { "poiName": "深圳野生动物园", "poiId": 76828 },
+      { "poiName": "欢乐港湾", "poiId": 94560231 },
+      { "poiName": "湾区之光摩天轮", "poiId": 112647075 }
+    ]
+  }
+]

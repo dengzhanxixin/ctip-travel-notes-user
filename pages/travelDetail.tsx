@@ -239,12 +239,11 @@ const TravelDetail: React.FC = () => {
       {travelDetail && (
         <div className={Styles.content}>
           <Swiper
-            indicatorProps={{
-              color: "white",
-              style: {
-                marginBottom: "10px",
-              },
-            }}
+            indicator={(total, current) => (
+              <div className={Styles.customIndicator}>
+                {`${current + 1} / ${total}`}
+              </div>
+            )}
           >
             {travelDetail.images.map((item: any, index: number) => (
               <Swiper.Item key={index}>

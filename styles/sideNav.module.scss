@@ -1,0 +1,87 @@
+// sideNav.module.scss
+
+// 设置主题颜色
+$primary-color: rgb(130, 191, 166);
+$dark-color: #001529;
+
+// 定义主题
+.light-theme {
+  // 定义 light 主题样式
+  background-color: rgb(130, 191, 166);
+
+  // 自定义其他样式
+}
+
+.dark-theme {
+  // 定义 dark 主题样式
+  background-color: $dark-color;
+
+  // 自定义其他样式
+}
+
+// 顶部切换按钮样式
+.themeSwitch {
+  margin-bottom: 16px;
+
+  .ant-switch {
+    background-color: #fff;
+    border-color: #1890ff;
+  }
+}
+
+// 侧边栏容器样式
+.sideNavContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 10px;
+
+
+  .adm-list-header {
+    font-size: 20px;
+  }
+}
+.listItem {
+  text-align: left;
+  width: 100%;
+  padding: 0 2px;
+  // margin: 0 0 130px 5px;
+}
+
+.loginButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin-top: 40px;
+
+}
+
+
+
+// 登录按钮样式
+.loginButton {
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(130, 191, 166);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+
+
+}
+
+// 设置子菜单样式
+.sub-menu {
+  .ant-menu-item {
+    padding-left: 32px; // 子菜单项的缩进
+  }
+}
+
+.listItem {
+  height: 10%
+}

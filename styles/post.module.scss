@@ -1,46 +1,30 @@
-.paramsModal {
-  :global {
-      .ant-upload-list{
-        width: 340px;
-        height: 220px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        // overflow-y: scroll;
-        
-      .ant-upload {
-          background-color: rgb(130, 191, 166);
-          width: auto;
-          height: 120px;
-          border-radius: 15px;
-          border: 0;
-          ant-upload-select{
-            .div{
-              color:white
+// .swiperItem{
+//   .adm-swiper-item {
+//     width: 80%;
+//     height: 100%;
+//   }
+// }
+.checkReasonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-left: 1px;
+  background-color: rgb(242,232,227);
+  border-radius: 8px;
 
-            }
-            
-          }
-      }
-      .ant-upload-list-item{
-        width: auto;
-        margin-right: 12px;
-        margin-bottom: 12px;
-        .ant-upload-list-item-info{
-          .ant-upload-list-item-name{
-            display: none;
-          }
-        }
-        .ant-upload-list-item-done{
-          width: auto;
-          height: 100px;
-          border-radius: 15px;
-          border: 2px solid rgb(130, 191, 166);
-      }
-    }
-  }
+
 }
+.checkReason{
+  width: 100px;
+  margin: 6px 0 0px ;
+  font-size: 18px;
+  word-wrap: break-word;
+  color: rgb(176,69,71);
+  font-weight: 600;
+}
+
 
 .searchBarContainer {
   padding: 12px;
@@ -56,39 +40,128 @@
   --border-top: 0;
   --border-bottom: 0;
 }
+
 .buttonContainer {
   display: flex;
-  justify-content: space-between; /* 水平方向平均分布子元素 */
-  align-items: center; /* 垂直方向居中对齐 */
+  justify-content: space-between;
+  /* 水平方向平均分布子元素 */
+  align-items: center;
+  /* 垂直方向居中对齐 */
   margin-top: 12px;
-  padding-left:10px;
+  padding-left: 10px;
   width: 100%;
 }
+
 .draft {
   display: flex;
   width: 100px;
   margin-left: 100px;
-  align-items: center; /* 垂直方向居中对齐 */
+  align-items: center;
+  /* 垂直方向居中对齐 */
 }
+
 .draft img {
   width: 15%;
-  
+
 }
-.submitButton{
+
+.submitButton {
   width: 90%;
   background-color: rgb(130, 191, 166);
   color: white;
   display: flex;
-  
+
   border-radius: 15px;
   border: 0;
   padding: 12px;
   margin-top: 12px;
 
 }
-.submitButton:hover{
+
+.submitButton:hover {
   background-color: rgb(130, 191, 166);
   color: white;
 
 }
+
+
+
+.root {
+  :global {
+    .adm-swiper-slide {
+      transform: scale(0.6);
+      transition: all 0.3s;
+    }
+
+    .adm-swiper-slide-active {
+      transform: scale(1);
+    }
+  }
 }
+
+.imageContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-left: 10px;
+  width: 10%;
+
+}
+
+.customIndicator {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  color: #ffffff;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.uploadContainer {
+  // background-color: red;
+  margin: 1px 0 0 10px;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  .content::-webkit-scrollbar{
+    display: none;
+  }
+
+  // flex-direction: row;
+  height: 180px;
+  gap: 10px; 
+
+  .imgUpload {
+    border: 2px solid rgb(130, 191, 166);; /* 设置黑色外边框 */
+    border-radius: 8px; /* 设置圆角 */
+}
+  
+}
+
+
+.uploadButton {
+  width: 120px !important;
+  height: 100px;
+  // background-color: rgb(130, 191, 166);
+  color: white;
+  // display: flex;
+  border-radius: 15px;
+  border: 0;
+  padding: 1px;
+  margin-top: 0px;
+  
+}
+.uploadContainer{
+  .ant-upload-wrapper {
+    .ant-upload {
+      &.ant-upload-select{
+        background-color: black;
+    }
+    
+    }
+  } 
+
+}
+

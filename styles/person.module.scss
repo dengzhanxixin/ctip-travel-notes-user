@@ -3,8 +3,7 @@
 .background {
   width: 100%;
   height: 100%;
-  // background-image: url('/personBackground.jpeg');
-  // background: linear-gradient(to bottom right, #f8a8b9, #8be9f6);
+//  background-color: rgb(130, 191, 166, 0.4);
   background-position: center;
   // padding: 20px;
   justify-self: center;
@@ -14,7 +13,6 @@
   position: relative;
   width: 100%;
   height: 18%;
-
 }
 
 .more,
@@ -32,36 +30,53 @@
 
 .cardContainer {
   z-index: 0;
-  height: 90%;
+  height: 100%;
   // padding: 2px;
   text-align: center;
-  // border-radius: 10px;
-  // top: 1px;
-  // left: 0px;
-  // right: 0.1px;
-
-  width: 100%;
-  background-image: url('/1.jpg'); /* 将 'your-image-url.jpg' 替换为您的图片路径 */
+  margin: 5px 10px 0 10px;
+  border-radius: 10px;
+  width: 95%;
+  opacity: 0.8;
+  background-image: url('/1.jpeg'); /* 将 'your-image-url.jpg' 替换为您的图片路径 */
   background-size: cover; /* 将背景图片调整为覆盖整个容器 */
   background-repeat: no-repeat; /* 禁止背景图片重复平铺 */
   background-position: center; /* 将背景图片居中显示 */
-  background-color: rgba(130, 191, 166, 0.8);
+  background-color: rgba(130, 191, 166, 0.4);
+}
+.overlay {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(130, 191, 166, 0.5)); /* 使用线性渐变从透明到黑色 */
+}
+.like{
+  position: absolute;
+  z-index: 2;
+  font-weight: 700;
+  
+
 }
 
 .username {
-  margin: 30px 0 10px 130px;
+  z-index: 4;
+  margin: 30px 0 10px 120px;
   display: 'flex-start';
-  width: 40%;
-  font-size: 24px;
+  width: 60%;
+  font-size: 28px;
   font-weight: bold;
-  color: rgb(243,242,239);
+  color: white;
+  letter-spacing: 3px;
+  opacity: 1;
 }
 
 .userintroduction {
-  margin-left: 70px;
+  margin-left: 90px;
   font-size: 18px;
   font-weight: bold;
-  color: rgb(243,242,239);
+  color: white;
   line-height: 130%;
   height: 40px;
   width: 80%;
@@ -109,6 +124,7 @@
 .editorAvatar,
 .userAvatar {
   position: absolute;
+  border-radius: 50%;
 }
 
 
@@ -124,10 +140,13 @@
   margin-left: 3px;
 }
 .bottom{
-  width: 95%;
-  // background-color: black;
+  width: 98%;
+  border-radius: 10px;
+
+  background-color:white;
   height: 80%;
-  margin: 2px 0 0 10px;
+  margin: 10px 2.5px 0 4px;
+  padding-right: 1px;
   border-radius: "10px 10px 0 0";
 }
 .sub{
@@ -172,14 +191,14 @@
   }
 }
 .navigation{
-  margin: 100px 10px,;
+  margin: 100px 1px,;
   padding: 20 60;
   font-size: 16px;
   text-align: start;
   line-height: 30px
 }
 .nameBar {
-  padding: 0 17px;
+  padding: 0 10px;
   display: flex;
   border-bottom: 1px solid #eee;
   .name_active {
@@ -196,4 +215,11 @@
     color: #777;
     margin-right: 20px;
   }
+  .active__IhGGA{
+    .active__KSZ3C{
+      border-bottom: #000 2px solid !important
+    }
+  }
+  
 }
+

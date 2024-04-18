@@ -1,0 +1,232 @@
+[
+  {
+    "poiName": "成都大熊猫繁育研究基地",
+    "address": "成都市成华区外北熊猫大道1375号",
+    "commentCount": 72482,
+    "commentScore": 4.6,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.743322, "longitude": 104.150921 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.73297, "longitude": 104.14582 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/100910000000p33rk361D_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/10020m000000dmr819B03_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0105x1200087dkrut0DBA_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100e180000014g444D0D6_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0103k12000ajm699h3E17_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "07:00-17:30开放" },
+    "description": "2023年度必打卡景点",
+    "shortFeature": "萌哒哒的国宝在等你",
+    "startTime": "07:00",
+    "endTime": "17:30"
+  },
+  {
+    "poiName": "都江堰景区",
+    "address": "成都市都江堰市公园路",
+    "commentCount": 34126,
+    "commentScore": 4.7,
+    "coordinate": { "coordinateType": "BD09", "latitude": 31.00793, "longitude": 103.617627 },
+    "districtEName": "Dujiangyan",
+    "districtId": 911,
+    "districtName": "都江堰",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 31.002203, "longitude": 103.611028 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/100g0z000000nd29yD334_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100r0u000000j21g68966_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350i1a0000018igsz1217_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/1lo4812000c49r7kg21F9_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350k1a0000018ntujFB4E_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "08:00-18:00开放（17:30停止入园）" },
+    "description": "2023年度山水景点",
+    "shortFeature": "延续两千年的水利工程",
+    "startTime": "08:00",
+    "endTime": "18:00"
+  },
+  {
+    "poiName": "武侯祠",
+    "address": "成都市武侯区武侯祠大街231号",
+    "commentCount": 15916,
+    "commentScore": 4.6,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.652927, "longitude": 104.054625 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.6447, "longitude": 104.049544 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/0104w1200094jgc7232B7_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0103m1200094jghmd82D6_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/010221200094jgfz8E171_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/010481200094jggkr2FAB_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/010431200094jgcwm40E0_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "09:00-18:00开放（17:00停止售票）" },
+    "description": "成都近期热门景点榜 No.1",
+    "shortFeature": "祭拜诸葛亮刘备品三国文化",
+    "startTime": "09:00",
+    "endTime": "18:00"
+  },
+  {
+    "poiName": "杜甫草堂",
+    "address": "成都市青羊区青华路37号",
+    "commentCount": 19076,
+    "commentScore": 4.6,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.666527, "longitude": 104.034938 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.659506, "longitude": 104.028633 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/0106k120008s8q2q0DB58_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0103l1200080wlbqpD19D_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0105y120008s8pzkz7856_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/01059120008s8pvpx62A9_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/01014120008s8poq02042_R_640_360_Q90.jpg"
+    ],
+    "openInfo": {
+      "openStatus": "开园中",
+      "openStatusType": 0,
+      "openTime": "09:00-18:00开放（17:00停止售票，17:00停止入园）"
+    },
+    "description": "2023年度亲子乐园景点",
+    "shortFeature": "访杜甫旧居 品文化圣地",
+    "startTime": "09:00",
+    "endTime": "18:00"
+  },
+  {
+    "poiName": "青城山",
+    "address": "都江堰市西南部青城山风景区",
+    "commentCount": 16185,
+    "commentScore": 4.6,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.911742, "longitude": 103.569195 },
+    "districtEName": "Dujiangyan",
+    "districtId": 911,
+    "districtName": "都江堰",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.905436, "longitude": 103.562793 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/0103t1200087ctezh5DC1_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0102u1200087di5tb4607_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0102y1200087dpciqE8F8_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0104b1200085i4d970429_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/10011c000001e4eot6786_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "08:30-17:00开放（16:30停止入园）" },
+    "description": "2023年度山水景点",
+    "shortFeature": "探访道教发源地",
+    "startTime": "08:30",
+    "endTime": "17:00"
+  },
+  {
+    "poiName": "金沙遗址博物馆",
+    "address": "成都市青羊区金沙遗址路2号成都金沙遗址博物馆",
+    "commentCount": 12905,
+    "commentScore": 4.7,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.687728, "longitude": 104.019188 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.681682, "longitude": 104.012678 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/10060z000000nmvc036BE_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350d1c000001dppxp4AFD_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/35091c000001dtlpd9C2E_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/3509170000011gnqz3A8A_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350a1c000001dsis1946F_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "09:00-18:00开放（17:00停止入园）" },
+    "description": "2023年度展览馆",
+    "shortFeature": "欣赏神秘的太阳神鸟",
+    "startTime": "09:00",
+    "endTime": "18:00"
+  },
+  {
+    "poiName": "成都博物馆",
+    "address": "成都市青羊区小河街1号（天府广场西侧）",
+    "commentCount": 4011,
+    "commentScore": 4.9,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.663457, "longitude": 104.070226 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.657356, "longitude": 104.063753 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/1lo5z12000cqe29n19D62_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350j1c000001cpign4A54_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/35051c000001cshq997B1_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350a1f000001ght5k4F96_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/35011f000001gtevc60A8_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "09:00-17:00开放（16:30停止入园）" },
+    "description": "2023年度展览馆",
+    "shortFeature": "馆藏20余万件展品",
+    "startTime": "09:00",
+    "endTime": "17:00"
+  },
+  {
+    "poiName": "蜀风雅韵川剧院",
+    "address": "成都市青羊区琴台路132号市文化公园门口蜀风雅韵民俗茶馆",
+    "commentCount": 5955,
+    "commentScore": 4.7,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.666437, "longitude": 104.052651 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.660141, "longitude": 104.046239 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/350p1c000001cicdd66CC_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100i0q000000ga8xaA2DD_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350t1c000001cj9bp58AD_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350q1a0000019rbo08508_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/350j1c000001ciq587E8F_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatus": "开园中", "openStatusType": 0, "openTime": "09:00-21:30开放" },
+    "description": "成都演出榜 No.2",
+    "shortFeature": "体验地道的川味民间艺术",
+    "startTime": "09:00",
+    "endTime": "21:30"
+  },
+  {
+    "poiName": "宽窄巷子",
+    "address": "成都市青羊区金河路口宽窄巷子",
+    "commentCount": 10894,
+    "commentScore": 4.5,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.669938, "longitude": 104.059763 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.663699, "longitude": 104.053338 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/100r1f000001gon9mBC5D_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100p0m000000dp3bq6018_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100v0m000000e107lD41E_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0106112000871f9kh0F44_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/fd/tg/g3/M00/A4/B2/CggYGlZ5DkiANDiGADJC6YktUJg495_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatusType": 0, "openTime": "全年全天开放" },
+    "description": "2023年度必打卡景点",
+    "shortFeature": "老街巷中感受时尚慢生活"
+  },
+  {
+    "poiName": "锦里古街",
+    "address": "成都市武侯区武侯祠大街231号",
+    "commentCount": 12261,
+    "commentScore": 4.5,
+    "coordinate": { "coordinateType": "BD09", "latitude": 30.651906, "longitude": 104.056257 },
+    "districtEName": "Chengdu",
+    "districtId": 104,
+    "districtName": "成都",
+    "ggCoordinate": { "coordinateType": "GCJ02", "latitude": 30.644857, "longitude": 104.049976 },
+    "images": [
+      "https://dimg04.c-ctrip.com/images/0105y1200086whywyF282_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/0102n1200086w96gq383F_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/010321200086w9c1k8834_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/100110000000pr47m0AB0_R_640_360_Q90.jpg",
+      "https://dimg04.c-ctrip.com/images/fd/tg/g3/M0A/BC/09/CggYG1Z5Dp-AKVvfAC5mKTQLbmM888_R_640_360_Q90.jpg"
+    ],
+    "openInfo": { "openStatusType": 0, "openTime": "全年全天开放" },
+    "description": "成都夜景榜 No.2",
+    "shortFeature": "古老繁华的商业街区"
+  }
+]

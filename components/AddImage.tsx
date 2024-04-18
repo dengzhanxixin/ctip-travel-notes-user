@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, Upload } from "antd";
-import { Toast } from "antd-mobile"
+import { Button, Image, Upload, Modal } from "antd";
+import { Toast, Swiper } from "antd-mobile"
 import type { GetProp, UploadFile, UploadProps } from 'antd';
 import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 
 import styles from "../styles/post.module.scss";
+// import antdStyle from "../styles/upload.antd.css";
+import type { DragEndEvent } from '@dnd-kit/core';
+import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    useSortable,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 const maxCount = 6
@@ -29,13 +39,48 @@ const maxCount = 6
 }
  * 
  */
+
 const getBase64 = (file: FileType): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result as string);
+        reader.onload = () => {
+            const img = document.createElement('img');
+            img.src = reader.result as string; //base64
+            const adjustSize = 1 * 1024
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                console.log('canvas', canvas)
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > adjustSize || height > adjustSize) {
+                        if (width > height) {
+                            height *= adjustSize / width;
+                            width = adjustSize;
+                        } else {
+                            width *= adjustSize / height;
+                            height = adjustSize;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+    
+                    ctx.drawImage(img, 0, 0, width, height);
+                    console.log('canvas', canvas)
+                    
+                    const base64 = canvas.toDataURL(file['type'], 0.2)
+                    resolve(base64);
+
+                }
+
+            }
+        };
         reader.onerror = (error) => reject(error);
     });
+
 
 interface AddImageProps {
     onThumbUrlsChange: (thumbUrls: string[]) => void;
@@ -47,12 +92,28 @@ interface InitFile {
     status: string;
     url: string;
 }
+interface DraggableUploadListItemProps {
+    originNode: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+    file: UploadFile<any>;
+}
+
+
+
+
+
+
 
 const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [thumbUrls, setThumbUrls] = useState<string[]>([])
     const [loading, setLoading] = useState(false);
-    const version = Math.random().toString();
+    const [fileToDelete, setFileToDelete] = useState<UploadFile | null>(null);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewVisible, setPreviewVisible] = useState(false);
+
+    const sensor = useSensor(PointerSensor, {
+        activationConstraint: { distance: 10 },
+    });
     // console.log('ImgList',ImgList)
     useEffect(() => {
         // 如果 ImgList 不为空，则将其转换为 UploadFile[] 格式并附加版本信息
@@ -72,19 +133,20 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
 
     const handleChange: UploadProps['onChange'] = async ({ fileList: newFileList }) => {
         const newThumbUrls: string[] = [];
-        console.log('newFileList', newFileList)
 
-    
+
         const updatedFileList: UploadFile[] = await Promise.all(newFileList.map(async (file: UploadFile) => {
+
+
             if (file.url) {
-                
+
                 let urlWithoutVersion = file.url;
                 // 检查是否包含版本信息，如果包含，去掉版本信息
                 const versionIndex = urlWithoutVersion.indexOf('?v=');
                 if (versionIndex !== -1) {
                     urlWithoutVersion = urlWithoutVersion.substring(0, versionIndex);
                 }
-                
+
                 newThumbUrls.push(urlWithoutVersion);
                 return file
 
@@ -103,8 +165,6 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 }
             }
         }));
-    
-        
         setThumbUrls(newThumbUrls); // 更新缩略图url列表
         onThumbUrlsChange(newThumbUrls); // 触发回调函数
         setFileList(updatedFileList);
@@ -115,14 +175,69 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
         const newFileList = fileList.slice();
         newFileList.splice(index, 1);
         setFileList(newFileList);
+        setPreviewVisible(false);
     }
 
     const beforeUpload = (file: UploadFile) => {
         const isPNG = file.type === 'image/png' || file.type === 'image/jpeg';
-        if (!isPNG) {
-            Toast.show(`只能上传图片格式`)
+        const isVideo = file.type === 'video/mp4';
+        if (!isPNG && !isVideo) {
+            Toast.show(`只能上传图片/视频格式`)
+            return Upload.LIST_IGNORE;
         }
-        return isPNG || Upload.LIST_IGNORE;
+
+        // 设置上传图片的大小限制为 5MB
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        if (file.size && file.size > maxSize) {
+            Toast.show('上传的图片大小不能超过5MB');
+            return Upload.LIST_IGNORE;
+        }
+        return true;
+    };
+
+
+
+
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (over && active.id !== over.id) {
+            setFileList(prevFileList => {
+                const oldIndex = prevFileList.findIndex(file => file.uid === active.id);
+                const newIndex = prevFileList.findIndex(file => file.uid === over.id);
+
+                return arrayMove(prevFileList, oldIndex, newIndex);
+            });
+        }
+    };
+    useEffect(() => {
+        const newThumbUrls = fileList.map(file => file.url).filter(Boolean) as string[];
+        setThumbUrls(newThumbUrls);
+        onThumbUrlsChange(newThumbUrls);
+    }, [fileList]);
+
+
+
+    const handlePreview = async (file: UploadFile) => {
+        // 点击图片的处理逻辑，设置预览图片和显示预览弹窗
+        let imageData = '';
+        if (file.url) {
+            imageData = file.url;
+        } else {
+            // if (file.type === 'video/mp4') {
+            //     return new Promise((resolve, reject) => {
+            //       const reader = new FileReader();
+            //       reader.readAsDataURL(file);
+            //       reader.onload = () => resolve(reader.result as string);
+            //       reader.onerror = (error) => reject(error);
+            //     });
+            //   }
+            imageData = await getBase64(file.originFileObj as FileType);
+        }
+        setPreviewImage(imageData);
+        setPreviewVisible(true);
+        // console.log('previewImage', previewImage)
+        setFileToDelete(file);
     }
 
     const uploadButton = (
@@ -131,12 +246,72 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
             <div style={{ marginTop: 8, fontSize: '14px' }}>上传图片</div>
         </button>
     );
-    // console.log('fileList', fileList)
+    // console.log('fileList.length', fileList.length)
+
+    const test = () => {
+        fileList.forEach((file, index) => {
+            console.log('key', index, 'file', file, 'fileList.length', fileList);
+        });
+    };
+    const upload = (
+        <Upload
+            className={styles.uploadButton}
+            listType="picture-card"
+            fileList={fileList}
+            onChange={handleChange}
+            beforeUpload={beforeUpload}
+            onRemove={onRemove}
+            showUploadList={false}
+        >
+            {uploadButton}
+        </Upload>
+
+    )
+    const handleCancel = () => {
+        // 关闭预览弹窗的处理逻辑
+        setPreviewVisible(false);
+        setFileToDelete(null);
+    }
+
+    useEffect(() => {
+        // test();
+    }, [fileList]);
 
 
     return (
         <>
-            {fileList ? <Upload className={styles.commonModal + ' ' + styles.paramsModal}
+            <div className={styles.uploadContainer}>
+                {fileList.length === 0 ? (
+                    upload
+                ) : (
+                    <>
+                        {fileList.map((file, index) => (
+                            <div key={file.uid} >
+                                <img className={`${styles.imgUpload} `} src={file.url} alt={file.name} width={'200px'} height={'150px'} onClick={() => handlePreview(file)} />
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '10%',
+                                    height: '100%',
+                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    display: 'flex',
+                                    justifyContent: 'space-around',
+                                    alignItems: 'center',
+                                    opacity: 0, // 默认隐藏蒙层
+                                }}>
+                                    <span onClick={() => handlePreview(file)}>预览</span>
+                                    <span onClick={() => onRemove(file)}>删除</span>
+                                </div>
+                            </div>
+                        ))}
+                        {fileList.length < maxCount && (
+                            upload
+                        )}
+                    </>
+                )}
+            </div>
+            {/* {fileList ? <Upload className={styles.commonModal + ' ' + styles.paramsModal}
                 listType="picture-card"
                 fileList={fileList}
                 onChange={handleChange}
@@ -144,9 +319,65 @@ const AddImage: React.FC<AddImageProps> = ({ onThumbUrlsChange, ImgList }) => {
                 onRemove={onRemove}
             >
                 {fileList.length >= maxCount ? null : uploadButton}
-            </Upload> : null}
+            </Upload> : null} */}
+
+            {/* {fileList.length == 0 ? upload :
+                <Swiper
+                    direction='horizontal'
+
+                    indicator={(total, current) => (
+                        <div className={styles.customIndicator}>
+                            {`${current + 1} / ${total}`}
+                        </div>)}
+                    style={{
+                        '--width': '100%',
+                        '--track-padding': '10px'
+                    }}>
+                    {fileList.map((file, index) => (
+                        <Swiper.Item key={index}>
+                            <div style={{ position: 'relative' }}>
+                                <img src={file.url} alt={file.name} width={'150px'} height={'120px'} onClick={() => handlePreview(file)} />
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    display: 'flex',
+                                    justifyContent: 'space-around',
+                                    alignItems: 'center',
+                                    opacity: 0, // 默认隐藏蒙层
+                                }}>
+                                    <span onClick={() => handlePreview(file)}>预览</span>
+                                    <span onClick={() => onRemove(file)}>删除</span>
+                                </div>
+                            </div>
+                            {index === fileList.length - 1 && fileList.length < maxCount && (
+                                upload
+                            )}
+                        </Swiper.Item>
+
+                    ))}
+                </Swiper>} */}
+            <Modal
+                open={previewVisible}
+                onCancel={handleCancel}
+                okText="删除"
+                cancelText="取消"
+                onOk={() => {
+                    if (fileToDelete) {
+                        onRemove(fileToDelete);
+                        setFileToDelete(null);
+                    }
+                }}
+            >
+                <img src={previewImage} alt="预览图片" style={{ width: '100%' }} />
+            </Modal>
+
 
         </>
-    )
+    );
+
 }
 export default AddImage;

@@ -1,0 +1,156 @@
+.container {
+  position: relative;
+  display: flex;
+  height: calc(100vh - 50px);
+  flex-direction: column;
+  background-color: rgb(238, 241, 246);
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+}
+
+.Navgate {
+  transition: all 0.3s ease-out; /* 添加一个过渡效果 */
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  top: 0px;
+}
+.fixed_Nav {
+  position: fixed;
+  color: #000;
+  background-color: rgb(238, 241, 246);
+}
+
+.SpotDetail {
+  position: relative;
+}
+
+.ImageSwiper {
+  position: absolute;
+  z-index: 0;
+}
+
+
+.SpotImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.content {
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  border-radius: 10px;
+  padding: 12px 12px;
+  .poiName {
+    color: #222;
+    font-family: "STHeiti SC", "sans-serif";
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  .scoreAnddescrip {
+    display: flex;
+    align-items: center;
+    .scoreAndcout {
+      background-color: rgba($color: #0066f6, $alpha: 0.15);
+      display: flex;
+      align-items: center;
+      .score {
+        color: #fff;
+        background-color: #0066f6;
+        font-size: 15px;
+        font-weight: 750;
+        padding: 1px;
+      }
+      .count {
+        color: #0066f6;
+        font-size: 12px;
+        padding-left: 3px;
+      }
+    }
+
+    .description {
+      color: #673114;
+      background-color: #ffeedf;
+      font-family: "PingFangSC-Regular";
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 10px;
+      padding: 3px;
+    }
+  }
+
+  .openInfo {
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    .openStatus {
+        color: #00b87a;
+        font-size: 12px;
+        font-weight: 700;
+        margin-right: 8px;
+    }
+
+    .closeStatus {
+      color: #f95e53
+    }
+
+    .openTime {
+        display: inline-block;
+        width: 80%;
+        color: #222;
+        font-size: 13px;
+        font-weight: 700;
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+        white-space: nowrap; /* 让文本在一行内显示 */
+    }
+  }
+
+  .addressAndmap{
+    width: 100%;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .address {
+        display: inline-block;
+        width: 70%;
+        color: #111;
+        font-size: 13px;
+        font-weight: 700;
+        overflow: hidden; /* 隐藏超出部分 */
+        text-overflow: ellipsis; /* 显示省略号 */
+        white-space: nowrap; /* 让文本在一行内显示 */
+    }
+    .map{
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.SpotWaterFlow {
+  // padding-top: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  .titleLeft {
+    display: block;
+    font-size: 18px;
+    font-family: "PingFangSC-Regular", sans-serif;
+    font-weight: 700;
+    color: #333;
+    padding-bottom: 5px;
+  }
+  
+}

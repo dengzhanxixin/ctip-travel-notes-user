@@ -31,6 +31,7 @@ interface travelNoteListProps {
     searchTitle?: string; // 查询标题与搜索词相关的旅游日记
     searchUser?: string; // 查询该用户的旅游日记
     searchCity?: string; // 查询关于该城市的旅游日记
+    searchSpot?: string; // 查询关于该景点的旅游日记
     strictSearch?: boolean; // 严格搜索还是模糊搜索
     searchChecked: number; // 游记审核状态
     notChecked?: boolean; // 
@@ -39,13 +40,16 @@ interface travelNoteListProps {
 
 interface Props {
     notes: travelNoteListProps
+    isTab?:boolean;
 }
 
 
-const TravelWaterFlow: React.FC<Props> = ({notes}) => {
+const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
+  
+  // const [isTab, setIsTab] = useState(false);
   // const travelNoteList = travelNotes;
 
   // 点击推荐卡片跳转到详情页
@@ -68,6 +72,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
   async function loadMore() {
     setPageProp((val) => ({ ...val, PageIndex: val.PageIndex + 1 }));
     const res = await fetchTravelNoteList(PageProp);
+
     setTravelNoteList((val) => {
       const filteredItems = res.items.filter(
         (item: TravelNoteProps) => !val.some((v: TravelNoteProps) => v.id === item.id)
@@ -78,24 +83,13 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {
-    
-  },[PageProp])
+    fetchTravelNoteList(PageProp)
+  },[])
   
-
-
-  // 瀑布流，通过设置grid-row-end属性实现
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const handleSetGridRowEnd = (index: number) => {
-    const cardRef = cardRefs.current[index];
-    if (!cardRef) return;
-    const height = cardRef.offsetHeight;
-    // grid-row-end: <line> | <span>;设置元素在网格布局中结束的位置
-    cardRef.style.gridRowEnd = `span ${Math.ceil(height)}`;
-  };
 
   return (
     <>
-    {(PageProp.notChecked || PageProp.notSubmit)?<Check travelNoteList={travelNoteList} />:<WaterFollow travelNoteList={travelNoteList} />}
+    {(PageProp.notChecked || PageProp.notSubmit)?<Check travelNoteList={travelNoteList} isTab={isTab} />:<WaterFollow travelNoteList={travelNoteList} />}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </>
   );

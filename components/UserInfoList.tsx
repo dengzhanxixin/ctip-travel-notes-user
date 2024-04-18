@@ -36,11 +36,10 @@ const UserInfoList: React.FC<Props> = ({ notes }) => {
     searchInfo: notes.searchInfo,
   });
 
-  // 点击用户卡片，跳转到用户主页（未实现）
+  
   const router = useRouter();
-
+  // 点击用户卡片，跳转到用户主页（未实现）
   const handleClick = (name: string) => {
-    // router.push(`/travelDetail?id=${id.toString()}`);
   };
 
   // 获取该用户关注数据
