@@ -59,10 +59,10 @@ const CitySpot: React.FC = () => {
           const currentMinutes = currentTime.getMinutes();
           const startParts = data.startTime.split(":");
           const endParts = data.endTime.split(":");
-          const startHours = parseInt(data[0]);
-          const startMinutes = parseInt(data[1]);
-          const endHours = parseInt(data[0]);
-          const endMinutes = parseInt(data[1]);
+          const startHours = parseInt(startParts[0]);
+          const startMinutes = parseInt(startParts[1]);
+          const endHours = parseInt(endParts[0]);
+          const endMinutes = parseInt(endParts[1]);
 
           const currentTotalMinutes = currentHours * 60 + currentMinutes;
           const startTotalMinutes = startHours * 60 + startMinutes;

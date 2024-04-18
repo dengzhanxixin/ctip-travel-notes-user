@@ -81,7 +81,6 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {
-    
     loadMore()
   },[])
   
