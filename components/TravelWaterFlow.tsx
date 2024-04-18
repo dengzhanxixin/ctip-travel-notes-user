@@ -71,7 +71,6 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
     setPageProp((val) => ({ ...val, PageIndex: val.PageIndex + 1 }));
     const res = await fetchTravelNoteList(PageProp);
 
-
     setTravelNoteList((val) => {
       const filteredItems = res.items.filter(
         (item: TravelNoteProps) => !val.some((v: TravelNoteProps) => v.id === item.id)
