@@ -107,7 +107,7 @@ const WaitCheck: React.FC<WaterFollowProps> = ({ travelNoteList, isTab }) => {
                   </>
                   : <>
                     <img
-                      src={`${item.coverImg}?v=${version}`}
+                      src={item.coverImg}
                       alt={"旅游图片"}
                       width={120}
                       height={100}

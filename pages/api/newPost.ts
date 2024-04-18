@@ -61,12 +61,14 @@ const imagesDirPath = path.join(process.cwd(), '/', 'images', 'user');
 
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log('req.body');
     const {
         id, title, coverImg, user, city, isChecked, checkReason, districtPoiCollect,
         content, publishTime, firstPublishTime, publishDisplayTime, shootTime, shootDisplayTime, url,
     } = req.body as CurrentData;
     if (req.method === "POST") {
         console.log('req.body', req.body.id);
+        console.log('req.body', req.body.title);
         let userData: FormData[] = [];
         try {
             const userDataContent = fs.readFileSync(userDataPath, 'utf8');

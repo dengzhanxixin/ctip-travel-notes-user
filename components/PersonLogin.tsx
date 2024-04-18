@@ -31,9 +31,18 @@ const PersonLogin = () => {
   const [isEditor, setIsEditor] = useState(false);
   const [isLogin, setIsLogin] = useState(false);// 初始化为未登录状态
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [likeData, setLikeData] = useState<likeData>()
+  const [loading, setLoading] = useState(true);
+  const [likeData, setLikeData] = useState<likeData>(
+    {
+      username: '',
+      likeNote: [],
+      saveNote: [],
+      followUser: []
+    }
+  )
   const [exists, setExists] = useState('');
   const [count, setCount] = useState(0);
+
 
 
 
@@ -49,59 +58,61 @@ const PersonLogin = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       fetchAvatar(user.username);
+      setLikeData({
+        ...likeData,
+        username: user.username,
+      });
       // setUserInfo({
       //   ...userInfo,
       //   username: user.username,
       //   avatar: user.avatar,
       // });
     }
-
     console.log('set avatar')
-    
+
     if (userInfo.username !== "尊敬的用户") {
+
       fetchLikeandSave(userInfo.username);
       console.log('likeData', likeData)
       setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
     }
-  }, [userInfo.username]);
+  }, [userInfo.username, count]);
+
+
+
+
 
   const fetchLikeandSave = (username: string) => {
-    if (isLogin) {
-      console.log('fetchLikeandSave')
-      const likeData = {
-        username,
-        likeNote: [] as string[],
-        saveNote: [] as string[],
-        followUser: [] as string[]
-      };
 
-      fetch(`/api/getlikeData`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username })
+    console.log('fetchLikeandSave')
+    fetch(`/api/getlikeData`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username })
+    })
+      .then(response => response.json()) // 解析响应数据为 JSON
+      .then(data => {
+        if (JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote)) {
+          console.log('condition', JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote))
+          setCount((count) => count + 1)
+        }
+        if (data) {
+          setLikeData({
+            ...likeData,
+            likeNote: data.likeNote,
+            saveNote: data.saveNote,
+            followUser: data.followUser
+          })
+          console.log('data', data)
+        }
+
       })
-        .then(response => response.json()) // 解析响应数据为 JSON
-        .then(data => {
-          if (JSON.stringify(data.likeNote) !== JSON.stringify(likeData.likeNote)) {
-            setCount((count) => count + 1)
-          }
-          if (data) {
-            setLikeData({
-              ...likeData,
-              likeNote: data.likeNote,
-              saveNote: data.saveNote,
-              followUser: data.followUser
-            })
-            console.log('data', data)
-          }
+      .catch(error => {
+        console.error('Error posting data:', error);
+      });
 
-        })
-        .catch(error => {
-          console.error('Error posting data:', error);
-        });
-    }
 
   }
 
@@ -201,10 +212,11 @@ const PersonLogin = () => {
 
 
   return (
-
+    <>
 
     <div className={style.background}>
       <div className={style.top}>
+
         <MoreOutline
           fontSize={36}
           color="white"
@@ -272,7 +284,8 @@ const PersonLogin = () => {
             <div className={style.like}>
               <List.Item style={{ display: 'flex', alignItems: 'center', fontSize: '18px', fontWeight: 'bold', color: 'rgb(243,242,239)', margin: '10px 0 0 10px', zIndex: 2 }}>
                 <div style={{ marginRight: '40px' }}>
-                  <IconText icon={LikeOutlined} text={`获赞 ${likeData?.likeNote.length.toString() ?? '0'}`}
+                  <IconText icon={LikeOutlined} text={
+                    isLogin ? `获赞 ${likeData?.likeNote.length.toString()}` : '0'}
                   />
                 </div>
                 <div style={{ marginRight: '40px' }}>
@@ -306,6 +319,10 @@ const PersonLogin = () => {
       </div>
 
     </div>
+    </>
+
+
+    
   );
 };
 

@@ -199,7 +199,9 @@ export default function AddPost() {
                 images: tempEdit,
                 isChecked:0
             }));
+            console.log('EditorData', EditorData);
         }
+        
         else {
             setFormData({ ...formData, url: tempImages });
         }
@@ -207,7 +209,7 @@ export default function AddPost() {
         setIsReady(true)
     };
     const handleDraft = () => {
-        if ((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content)) && tempImages.length === 0) {
+        if (((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content))) && tempImages.length === 0) {
             Modal.alert({
                 header: (
                     <ExclamationCircleFill
@@ -220,13 +222,15 @@ export default function AddPost() {
                 title: '注意',
                 content: (
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', wordWrap: 'break-word' }}>
-                        <div style={{ width: '90px', lineHeight: '20px', textAlign: 'center' }}>游记内容不能为空</div>
+                        <div style={{ width: '200px', lineHeight: '20px', textAlign: 'center' }}>游记内容不能为空</div>
                     </div>
                 ),
                 closeOnMaskClick: true,
             })
+            return;
         }
         if (EditorData) {
+            console.log('edit')
             
             setEditorData(prevEditorData => ({
                 ...prevEditorData,
@@ -234,6 +238,7 @@ export default function AddPost() {
                 images: tempEdit,
                 isChecked:-1
             }));
+            
         }
         else {
             setFormData({ ...formData, url: tempImages, isChecked: -1 });
@@ -247,6 +252,7 @@ export default function AddPost() {
         try {
             if (isReady) {
                 if (EditorData) {
+                    console.log('EditorData', EditorData);
                     
                     const response = fetch(`/api/editorPost`, {
                         method: 'POST',
@@ -259,6 +265,7 @@ export default function AddPost() {
 
                 }
                 else {
+                    console.log('formData', formData);
                     const response = fetch(`/api/newPost`, {
                         method: 'POST',
                         headers: {
