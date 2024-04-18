@@ -11,11 +11,46 @@ type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 interface AvatarUploadProps {
     onChange: (url: string) => void;// 假设子组件返回的是图片 URL
 }
-const getBase64 = (img: FileType, callback: (url: string) => void) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result as string));
-    reader.readAsDataURL(img);
-};
+const getBase64 = (file: FileType): Promise<string> =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const img = document.createElement('img');
+            img.src = reader.result as string; //base64
+            const adjustSize = 1 * 1024
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                console.log('canvas', canvas)
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > adjustSize || height > adjustSize) {
+                        if (width > height) {
+                            height *= adjustSize / width;
+                            width = adjustSize;
+                        } else {
+                            width *= adjustSize / height;
+                            height = adjustSize;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    ctx.drawImage(img, 0, 0, width, height);
+                    console.log('canvas', canvas)
+
+                    const base64 = canvas.toDataURL(file['type'], 0.5)
+                    resolve(base64);
+
+                }
+
+            }
+        };
+        reader.onerror = (error) => reject(error);
+    });
 
 const beforeUpload = (file: FileType) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -42,11 +77,11 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
         }
         if (info.file.status === 'done') {
             // Get this url from response in real world.
-            getBase64(info.file.originFileObj as FileType, (url) => {
-                setLoading(false);
-                setImageUrl(url);
-                onChange(url);
-            });
+            const base64Data = getBase64(info.file.originFileObj as FileType)
+
+            setLoading(false);
+            setImageUrl(base64Data.toString());
+            onChange(base64Data.toString());
         }
     };
 
@@ -63,7 +98,6 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
         <ImgCrop
             rotationSlider
             cropShape='round'
-            quality={0.8}
         >
             <Upload
                 name="avatar"
@@ -73,7 +107,7 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange }) => {
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
             >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%',borderRadius: '50%'}} /> : uploadButton}
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%', borderRadius: '50%' }} /> : uploadButton}
             </Upload>
 
         </ImgCrop>

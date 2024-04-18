@@ -40,14 +40,16 @@ interface travelNoteListProps {
 
 interface Props {
     notes: travelNoteListProps
+    isTab?:boolean;
 }
 
 
-const TravelWaterFlow: React.FC<Props> = ({notes}) => {
+const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
-  const [count, setCount] = useState(0);
+  
+  // const [isTab, setIsTab] = useState(false);
   // const travelNoteList = travelNotes;
 
   // 点击推荐卡片跳转到详情页
@@ -77,7 +79,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
       );
       return [...val, ...filteredItems];
     });
-    setCount((count) => count + 1);
+    
     setHasMore(res.items.length > 0);
   }
   useEffect(() => {
@@ -99,7 +101,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes}) => {
 
   return (
     <>
-    {(PageProp.notChecked || PageProp.notSubmit)?<Check travelNoteList={travelNoteList} />:<WaterFollow travelNoteList={travelNoteList} />}
+    {(PageProp.notChecked || PageProp.notSubmit)?<Check travelNoteList={travelNoteList} isTab={isTab} />:<WaterFollow travelNoteList={travelNoteList} />}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </>
   );
