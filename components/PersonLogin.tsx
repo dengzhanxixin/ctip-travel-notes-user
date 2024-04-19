@@ -56,31 +56,24 @@ const PersonLogin = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
+      console.log('storedUser', storedUser)
       const user = JSON.parse(storedUser);
       fetchAvatar(user.username);
       setLikeData({
         ...likeData,
         username: user.username,
       });
-      // setUserInfo({
-      //   ...userInfo,
-      //   username: user.username,
-      //   avatar: user.avatar,
-      // });
-    }
-    console.log('set avatar')
 
-    if (userInfo.username !== "尊敬的用户") {
+    }
+    setIsLogin(storedUser ? true : false);
+    if (isLogin) {
 
       fetchLikeandSave(userInfo.username);
       console.log('likeData', likeData)
-      setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
+      // setIsLogin(userInfo.username === "尊敬的用户" ? false : true);
     }
   }, [userInfo.username, count]);
-
-
-
-
+  // console.log('userInfo',userInfo)
 
   const fetchLikeandSave = (username: string) => {
 
@@ -126,14 +119,14 @@ const PersonLogin = () => {
 
         const updatedAvatarUrl = data.avatar ? `${data.avatar}?timestamp=${new Date().getTime()}` : data.avatar;
 
-        if (updatedAvatarUrl && updatedAvatarUrl !== userInfo.avatar) {
-          // 只有在新的头像 URL 与当前存储的不同时才更新 userInfo
+        console.log('updatedAvatarUrl', updatedAvatarUrl);
+         
           setUserInfo(prevUserInfo => ({
             ...prevUserInfo,
             avatar: updatedAvatarUrl,
             username: username
           }));
-        }
+        
       })
       .catch(error => console.error('Error:', error));
   };

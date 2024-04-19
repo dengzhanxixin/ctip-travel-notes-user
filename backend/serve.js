@@ -447,10 +447,15 @@ app.post("/api/register", async (req, res) => {
 
 app.get("/api/check-avatar", (req, res) => {
   const username = req.query.username; // 从请求中获取用户名
-  const filePath = path.join(__dirname, "images", `${username}_avatar.jpg`);
+  console.log("username",username)
+  const filePath = path.join("public", "images", `${username}_avatar.jpg`);
+  const Path =path.join("/", "images", `${username}_avatar.jpg`)
+  console.log("filePath",filePath,fs.existsSync(filePath))
   if (fs.existsSync(filePath)) {
-    res.json({ success: true, avatar: filePath });
+    console.log("头像文件存在");
+    res.json({ success: true, avatar: Path });
   } else {
+    console.log("头像文件不存在");
     res.json({ success: false, avatar: null });
   }
 });
@@ -486,7 +491,7 @@ app.post("/api/login", (req, res) => {
 });
 app.post("/api/avatar", (req, res) => {
   const { username, url } = req.body;
-  console.log(username, url);
+  // console.log(username, url);
   if (url.startsWith("data:image")) {
     const base64Data = url.replace(/^data:image\/\w+;base64,/, "");
     const buffer = Buffer.from(base64Data, "base64");
