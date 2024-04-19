@@ -48,6 +48,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
   const [travelNoteList, setTravelNoteList] = useState<TravelNoteProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [PageProp, setPageProp] = useState(notes);
+ 
   
   // const [isTab, setIsTab] = useState(false);
   // const travelNoteList = travelNotes;
@@ -67,6 +68,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
     const data = await response.json();
     return data;
   }
+ 
 
   // 无限加载，当用户页面滚动到底部 threshold (默认为 250px)时调用。
   async function loadMore() {

@@ -207,6 +207,7 @@ export default function AddPost() {
         }
 
         setIsReady(true)
+        console.log('formData', formData.city);
     };
     const handleDraft = () => {
         if (((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content))) && tempImages.length === 0) {
@@ -320,6 +321,12 @@ export default function AddPost() {
                 ...prevFormData,
                 city: selectedCity,
             }));
+            if(EditorData){
+                setEditorData(prevEditorData => ({
+                    ...prevEditorData,
+                    city: selectedCity,
+                }));
+            }
             Toast.show(`你选择了 ${selectedCity}`);
         } else {
             Toast.show('你没有进行选择');
@@ -393,7 +400,7 @@ export default function AddPost() {
                 <div>
                     <List mode='card' style={{ margin: '10px', "--font-size": "18px", }} >
                         <List.Item prefix={<EnvironmentOutlined />} onClick={handleAddLocation} >
-                            {EditorData && EditorData.city ? EditorData.city :
+                            {EditorData && EditorData.city ? <div style={{ color: 'rgb(108, 170, 137)', fontWeight: '700' }}>{EditorData.city}</div> :
                                 (formData.city ? <div style={{ color: 'rgb(108, 170, 137)', fontWeight: '700' }}>{formData.city}</div>
                                     : '添加地点')}
                         </List.Item>
