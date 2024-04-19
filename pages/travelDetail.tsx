@@ -5,7 +5,6 @@ import Image from "next/image";
 import Styles from "@/styles/travelDetail.module.scss";
 import wx from "weixin-js-sdk";
 import axios from "axios";
-import Avatar from "./avatar";
 
 interface TravelDetailProps {
   [key: string]: any;
@@ -14,7 +13,6 @@ interface TravelDetailProps {
 const TravelDetail: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
-    avatar:""
   }); 
   const [travelDetail, setTravelDetail] = useState<TravelDetailProps | undefined>(undefined);
   const [commentState, setCommentState] = useState({
@@ -30,7 +28,6 @@ const TravelDetail: React.FC = () => {
   const [isShare, setShareState] = useState(false);
   const router = useRouter();
   const id = parseInt(router.query.id as string);
-  const [isLogin, setIsLogin] = useState(false);// 初始化为未登录状态
 
   const shareBtns = [
     {
@@ -183,29 +180,6 @@ const TravelDetail: React.FC = () => {
     initWeChatShare();
   }, [travelDetail]);
 
-  const [count, setCount] = useState(0);
-
-
-  const fetchAvatar = (username: string) => {
-    const url = `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/api/check-avatar?username=${username}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const updatedAvatarUrl = data.avatar ? `${data.avatar}?timestamp=${new Date().getTime()}` : data.avatar;
-
-        console.log('updatedAvatarUrl', updatedAvatarUrl);
-         
-          setUserInfo(prevUserInfo => ({
-            ...prevUserInfo,
-            avatar: updatedAvatarUrl,
-            username: username
-          }));
-        
-      })
-      .catch(error => console.error('Error:', error));
-  };
-
-
   useEffect(() => {
     // 获取游记详情
     if (id) {
@@ -214,12 +188,12 @@ const TravelDetail: React.FC = () => {
 
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      console.log('storedUser', storedUser)
       const user = JSON.parse(storedUser);
-      fetchAvatar(user.username);
+      setUserInfo({
+        username: user.username,
+      });
     }
-    setIsLogin(storedUser ? true : false);
-  }, [id, count]);
+  }, [id]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");

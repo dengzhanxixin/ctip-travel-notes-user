@@ -86,6 +86,7 @@ const TravelWaterFlow: React.FC<Props> = ({notes,isTab}) => {
   }
   useEffect(() => {
     fetchTravelNoteList(PageProp)
+    loadMore() 
   },[])
   
 

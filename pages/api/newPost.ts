@@ -57,7 +57,7 @@ interface CurrentData {
     shootDisplayTime: string
 }
 const userDataPath = path.join(process.cwd(), 'data', 'TravelData.json');
-const imagesDirPath = path.join(process.cwd(), '/', 'images', 'user');
+const imagesDirPath = path.join(process.cwd(), 'public', 'images', 'user');
 
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

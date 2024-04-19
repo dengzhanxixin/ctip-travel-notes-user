@@ -116,8 +116,18 @@ const PersonLogin = () => {
       .then(data => {
         setExists(data.avatar);
         console.log('exists', data.avatar);
-
-        const updatedAvatarUrl = data.avatar ? `${data.avatar}?timestamp=${new Date().getTime()}` : data.avatar;
+        if(exists==null){
+          const storedUser = localStorage.getItem("user");
+          if(storedUser){
+            const user = JSON.parse(storedUser);
+            setUserInfo(prevUserInfo => ({
+              ...prevUserInfo,
+              username: username,
+              avatar: user.avatar,
+            }));
+          }
+        }else{
+          const updatedAvatarUrl = data.avatar ? `${data.avatar}?timestamp=${new Date().getTime()}` : data.avatar;
 
         console.log('updatedAvatarUrl', updatedAvatarUrl);
          
@@ -126,7 +136,8 @@ const PersonLogin = () => {
             avatar: updatedAvatarUrl,
             username: username
           }));
-        
+
+        }
       })
       .catch(error => console.error('Error:', error));
   };

@@ -43,5 +43,23 @@
     ],
     "saveNote": [],
     "followUser": []
+  },
+  {
+    "id": 5,
+    "username": "mmm",
+    "password": "$2b$10$Zdfdr/Ss3riOD.JaGu3BLO4wROS6TAbCAjLeAWVtDf5XWJTPPeEI2",
+    "avatar": "images/mmm_avatar.jpg",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": []
+  },
+  {
+    "id": 6,
+    "username": "444",
+    "password": "$2b$10$377uFOyw25UojhP/olr10uSfFHLApEGnDeUd2ZORHAbJVmP.nwAsW",
+    "avatar": "images/444_avatar.jpg",
+    "likeNote": [],
+    "saveNote": [],
+    "followUser": []
   }
 ]
