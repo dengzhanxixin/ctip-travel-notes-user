@@ -210,6 +210,7 @@ export default function AddPost() {
     };
     const handleDraft = () => {
         if (((!formData.title && !formData.content) || ((EditorData && !EditorData.title && !EditorData.content))) && tempImages.length === 0) {
+            // console.log(((!formData.title && !formData.content) ))
             Modal.alert({
                 header: (
                     <ExclamationCircleFill

@@ -146,11 +146,11 @@ const WaitCheck: React.FC<WaterFollowProps> = ({ travelNoteList, isTab }) => {
                 >待审核 </Button> : item.isChecked == -1 ? <Button
                   className={styles.notSubmitButton}
                   fill='none' style={{ "--text-color": "white" }}
-                >待提交</Button> : (<Button
+                >待提交</Button> : item.isChecked == 2 ? (<Button
                   className={styles.checkRejectButton}
                   fill='none'
                   style={{ "--text-color": "white" }}
-                >审核未通过</Button>)}
+                >审核未通过</Button>):null}
 
               </div>
               {item.isChecked != 3 ? <div><Button className={styles.editButton} onClick={() => Delete(item.id)}>删除</Button> <Button className={styles.editButton} onClick={() => handleClick(item.id, item.isChecked)}>编辑</Button>
